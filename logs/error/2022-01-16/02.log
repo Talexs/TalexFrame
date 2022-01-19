@@ -1,0 +1,17 @@
+[2022/01/16-14:14:22] [main] org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter: 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+ 
+[2022/01/16-14:18:37] [http-nio-8080-exec-5] com.talex.frame.talexframe.handler.RestExceptionHandler: [AutomaticAnalyse] NotSupportedRequest: Request method 'GET' not supported 
+[2022/01/16-14:18:37] [http-nio-8080-exec-7] com.talex.frame.talexframe.handler.RestExceptionHandler: [AutomaticAnalyse] NotSupportedRequest: Request method 'GET' not supported 
+[2022/01/16-14:19:07] [http-nio-8080-exec-9] com.talex.frame.talexframe.handler.RestExceptionHandler: [AutomaticAnalyse] NotSupportedRequest: Request method 'GET' not supported 

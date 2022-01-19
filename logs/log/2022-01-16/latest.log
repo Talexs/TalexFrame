@@ -1,0 +1,697 @@
+[2022/01/16-12:59:41] [$-5level] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 7352 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-12:59:41] [$-5level] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-12:59:42] [$-5level] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-12:59:43] [$-5level] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-12:59:44] [$-5level] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Starting... 
+[2022/01/16-12:59:44] [$-5level] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Start completed. 
+[2022/01/16-12:59:46] [$-5level] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-12:59:49] [$-5level] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 9.399 seconds (JVM running for 10.837) 
+[2022/01/16-13:00:35] [$-5level] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated... 
+[2022/01/16-13:00:35] [$-5level] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed. 
+[2022/01/16-13:00:40] [$-5level] [restartedMain] org.springframework.boot.SpringApplication: Application run failed 
+java.lang.IllegalStateException: java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.spi.Interpreter@15:16 - no applicable action for [level], current ElementPath  is [[configuration][appender][level]]
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:328)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:282)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:240)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:216)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:131)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:85)
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$environmentPrepared$2(SpringApplicationRunListeners.java:66)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:120)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:114)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:65)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:296)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at com.talex.frame.talexframe.TalexFrameApplication.main(TalexFrameApplication.java:14)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.spi.Interpreter@15:16 - no applicable action for [level], current ElementPath  is [[configuration][appender][level]]
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.loadConfiguration(LogbackLoggingSystem.java:179)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initializeWithConventions(AbstractLoggingSystem.java:80)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initialize(AbstractLoggingSystem.java:60)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.initialize(LogbackLoggingSystem.java:132)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:313)
+	... 23 common frames omitted
+[2022/01/16-13:01:16] [$-5level] [restartedMain] org.springframework.boot.SpringApplication: Application run failed 
+java.lang.IllegalStateException: java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Could not find an appropriate class for property [filter]
+ERROR in ch.qos.logback.core.joran.spi.Interpreter@17:20 - no applicable action for [level], current ElementPath  is [[configuration][appender][filter][level]]
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:328)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:282)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:240)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:216)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:131)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:85)
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$environmentPrepared$2(SpringApplicationRunListeners.java:66)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:120)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:114)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:65)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:296)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at com.talex.frame.talexframe.TalexFrameApplication.main(TalexFrameApplication.java:14)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Could not find an appropriate class for property [filter]
+ERROR in ch.qos.logback.core.joran.spi.Interpreter@17:20 - no applicable action for [level], current ElementPath  is [[configuration][appender][filter][level]]
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.loadConfiguration(LogbackLoggingSystem.java:179)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initializeWithConventions(AbstractLoggingSystem.java:80)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initialize(AbstractLoggingSystem.java:60)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.initialize(LogbackLoggingSystem.java:132)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:313)
+	... 23 common frames omitted
+[2022/01/16-13:01:36] [$-5level] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 12692 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:01:36] [$-5level] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:01:38] [$-5level] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:01:39] [$-5level] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:01:40] [$-5level] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Starting... 
+[2022/01/16-13:01:40] [$-5level] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Start completed. 
+[2022/01/16-13:01:42] [$-5level] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:01:45] [$-5level] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 9.472 seconds (JVM running for 10.746) 
+[2022/01/16-13:02:41] [$-5level] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated... 
+[2022/01/16-13:02:41] [$-5level] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed. 
+[2022/01/16-13:02:46] [INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 11288 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:02:46] [INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:02:48] [WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:02:49] [WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:02:50] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Starting... 
+[2022/01/16-13:02:50] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Start completed. 
+[2022/01/16-13:02:52] [WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:02:55] [INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 9.797 seconds (JVM running for 11.097) 
+[2022/01/16-13:03:01] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated... 
+[2022/01/16-13:03:01] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed. 
+[2022/01/16-13:03:06] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 1064 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:03:06] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:03:07] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:03:08] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:03:10] [ INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Starting... 
+[2022/01/16-13:03:10] [ INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Start completed. 
+[2022/01/16-13:03:11] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:03:14] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 9.147 seconds (JVM running for 10.686) 
+[2022/01/16-13:05:38] [ INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated... 
+[2022/01/16-13:05:38] [ INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed. 
+[2022/01/16-13:05:45] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 28840 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:05:45] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:05:47] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:05:48] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:05:50] [ INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Starting... 
+[2022/01/16-13:05:50] [ INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Start completed. 
+[2022/01/16-13:05:52] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:05:55] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 10.451 seconds (JVM running for 11.606) 
+[2022/01/16-13:08:27] [ INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated... 
+[2022/01/16-13:08:27] [ INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed. 
+[2022/01/16-13:08:32] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 22140 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:08:32] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:08:34] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:08:34] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:08:36] [ INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Starting... 
+[2022/01/16-13:08:36] [ INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Start completed. 
+[2022/01/16-13:08:38] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:08:40] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 9.657 seconds (JVM running for 10.993) 
+[2022/01/16-13:10:06] [ INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated... 
+[2022/01/16-13:10:06] [ INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed. 
+[2022/01/16-13:10:13] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 18512 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:10:13] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:10:14] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:10:15] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:10:16] [ INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Starting... 
+[2022/01/16-13:10:17] [ INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Start completed. 
+[2022/01/16-13:10:18] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:10:21] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 8.838 seconds (JVM running for 9.991) 
+[2022/01/16-13:10:43] [ INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated... 
+[2022/01/16-13:10:43] [ INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed. 
+[2022/01/16-13:10:48] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 7428 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:10:48] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:10:48] [ INFO ] [background-preinit] org.hibernate.validator.internal.util.Version: HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/16-13:10:48] [ INFO ] [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/16-13:10:48] [ INFO ] [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/16-13:10:49] [ INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate: Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/16-13:10:49] [ INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate: Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/16-13:10:49] [ INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate: Finished Spring Data repository scanning in 58 ms. Found 1 JPA repository interfaces. 
+[2022/01/16-13:10:49] [ INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate: Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/16-13:10:49] [ INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate: Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/16-13:10:49] [ INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/16-13:10:49] [ INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate: Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces. 
+[2022/01/16-13:10:50] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:10:50] [ INFO ] [restartedMain] org.springframework.cloud.context.scope.GenericScope: BeanFactory id=6ee48b34-2fb7-391e-a45d-f7e61555b1cc 
+[2022/01/16-13:10:50] [ INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer: Tomcat initialized with port(s): 8080 (http) 
+[2022/01/16-13:10:50] [ INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol: Initializing ProtocolHandler ["http-nio-8080"] 
+[2022/01/16-13:10:50] [ INFO ] [restartedMain] org.apache.catalina.core.StandardService: Starting service [Tomcat] 
+[2022/01/16-13:10:50] [ INFO ] [restartedMain] org.apache.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/16-13:10:50] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:10:50] [ INFO ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/16-13:10:50] [ INFO ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/16-13:10:50] [ INFO ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/16-13:10:50] [ INFO ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/16-13:10:51] [ INFO ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/16-13:10:52] [ INFO ] [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext 
+[2022/01/16-13:10:52] [ INFO ] [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 3578 ms 
+[2022/01/16-13:10:52] [ INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Starting... 
+[2022/01/16-13:10:52] [ INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Start completed. 
+[2022/01/16-13:10:52] [ INFO ] [restartedMain] org.hibernate.jpa.internal.util.LogHelper: HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/16-13:10:52] [ INFO ] [restartedMain] org.hibernate.Version: HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/16-13:10:52] [ INFO ] [restartedMain] org.hibernate.annotations.common.Version: HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/16-13:10:52] [ INFO ] [restartedMain] org.hibernate.dialect.Dialect: HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/16-13:10:53] [ INFO ] [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/16-13:10:53] [ INFO ] [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean: Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/16-13:10:54] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:10:55] [ INFO ] [restartedMain] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: 930f14e8-493b-47e1-ace6-75f09ed72660
+ 
+[2022/01/16-13:10:55] [ INFO ] [restartedMain] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver: Exposing 1 endpoint(s) beneath base path '/actuator' 
+[2022/01/16-13:10:55] [ INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain: Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@26479a41, org.springframework.security.web.context.SecurityContextPersistenceFilter@62e48da8, org.springframework.security.web.header.HeaderWriterFilter@6d9fedd7, org.springframework.web.filter.CorsFilter@1d7f98d2, org.springframework.security.web.csrf.CsrfFilter@39cf570c, org.springframework.security.web.authentication.logout.LogoutFilter@7e95941c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2e2f4a6b, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6242ead7, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@2abaff86, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3c816e7d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@439ee0cc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4ca6644a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@140adc19, org.springframework.security.web.session.SessionManagementFilter@37ceb93, org.springframework.security.web.access.ExceptionTranslationFilter@66f5404, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7651b9ae] 
+[2022/01/16-13:10:55] [ INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer: LiveReload server is running on port 35729 
+[2022/01/16-13:10:56] [ INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol: Starting ProtocolHandler ["http-nio-8080"] 
+[2022/01/16-13:10:56] [ INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer: Tomcat started on port(s): 8080 (http) with context path '' 
+[2022/01/16-13:10:56] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 9.34 seconds (JVM running for 10.61) 
+[2022/01/16-13:10:57] [ INFO ] [RMI TCP Connection(2)-192.168.2.11] org.springframework.amqp.rabbit.connection.CachingConnectionFactory: Attempting to connect to: [localhost:5672] 
+[2022/01/16-13:10:57] [ INFO ] [RMI TCP Connection(1)-192.168.2.11] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet' 
+[2022/01/16-13:10:57] [ INFO ] [RMI TCP Connection(1)-192.168.2.11] org.springframework.web.servlet.DispatcherServlet: Initializing Servlet 'dispatcherServlet' 
+[2022/01/16-13:10:57] [ INFO ] [RMI TCP Connection(1)-192.168.2.11] org.springframework.web.servlet.DispatcherServlet: Completed initialization in 2 ms 
+[2022/01/16-13:10:57] [ INFO ] [RMI TCP Connection(2)-192.168.2.11] org.springframework.amqp.rabbit.connection.CachingConnectionFactory: Created new connection: rabbitConnectionFactory#7ecb530b:0/SimpleConnection@590f7326 [delegate=amqp://guest@127.0.0.1:5672/, localPort= 65200] 
+[2022/01/16-13:11:52] [ INFO ] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean: Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/16-13:11:52] [ INFO ] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl: HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/16-13:11:52] [ INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated... 
+[2022/01/16-13:11:52] [ INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed. 
+[2022/01/16-13:11:57] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 29500 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:11:57] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:11:59] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:11:59] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:12:01] [ INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Starting... 
+[2022/01/16-13:12:01] [ INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Start completed. 
+[2022/01/16-13:12:03] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:12:05] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 9.384 seconds (JVM running for 10.643) 
+[2022/01/16-13:12:28] [ INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated... 
+[2022/01/16-13:12:28] [ INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed. 
+[2022/01/16-13:12:33] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 9432 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:12:33] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:12:35] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:12:35] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:12:39] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:12:41] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 9.34 seconds (JVM running for 10.528) 
+[2022/01/16-13:14:14] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 11652 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:14:14] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:14:16] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:14:17] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:14:22] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:14:25] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 11.877 seconds (JVM running for 13.267) 
+[2022/01/16-13:19:53] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 25272 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:19:53] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:19:56] [ WARN ] [main] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:19:57] [ WARN ] [main] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:20:02] [ WARN ] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:20:05] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 13.896 seconds (JVM running for 18.388) 
+[2022/01/16-13:21:59] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 25964 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:21:59] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:22:01] [ WARN ] [main] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:22:03] [ WARN ] [main] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:22:07] [ WARN ] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:22:08] [ INFO ] [main] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: 62ca5b38-3a28-4866-938f-e7f1afefabc9
+ 
+[2022/01/16-13:22:10] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 12.414 seconds (JVM running for 16.258) 
+[2022/01/16-13:22:16] [ ERROR] [http-nio-8080-exec-2] com.talex.frame.talexframe.handler.RestExceptionHandler: [GlobalException] Exception: Request method 'GET' not supported 
+org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported
+	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.handleNoMatch(RequestMappingInfoHandlerMapping.java:253)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lookupHandlerMethod(AbstractHandlerMethodMapping.java:442)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:383)
+	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:125)
+	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:67)
+	at org.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler(AbstractHandlerMapping.java:498)
+	at org.springframework.web.servlet.DispatcherServlet.getHandler(DispatcherServlet.java:1261)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1043)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:150)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter.doFilterInternal(DefaultLogoutPageGeneratingFilter.java:58)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:237)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:223)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:219)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:213)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.__invoke(StandardContextValve.java:97)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:41002)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[2022/01/16-13:22:16] [ WARN ] [http-nio-8080-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported] 
+[2022/01/16-13:23:06] [ WARN ] [http-nio-8080-exec-4] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:23:53] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 31768 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:23:53] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:23:56] [ WARN ] [main] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:23:57] [ WARN ] [main] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:24:02] [ WARN ] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:24:03] [ INFO ] [main] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: 48a630de-e0dc-4695-983b-dc91aeade7d4
+ 
+[2022/01/16-13:24:04] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 12.727 seconds (JVM running for 16.788) 
+[2022/01/16-13:24:44] [ WARN ] [http-nio-8080-exec-3] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:24:45] [ ERROR] [http-nio-8080-exec-3] com.talex.frame.talexframe.handler.RestExceptionHandler: [GlobalException] Exception: Request method 'GET' not supported 
+org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported
+	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.handleNoMatch(RequestMappingInfoHandlerMapping.java:253)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lookupHandlerMethod(AbstractHandlerMethodMapping.java:442)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:383)
+	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:125)
+	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:67)
+	at org.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler(AbstractHandlerMapping.java:498)
+	at org.springframework.web.servlet.DispatcherServlet.getHandler(DispatcherServlet.java:1261)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1043)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:150)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter.doFilterInternal(DefaultLogoutPageGeneratingFilter.java:58)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:237)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:223)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:219)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:213)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.__invoke(StandardContextValve.java:97)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:41002)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[2022/01/16-13:24:45] [ WARN ] [http-nio-8080-exec-3] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported] 
+[2022/01/16-13:37:21] [ WARN ] [http-nio-8080-exec-5] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:38:37] [ ERROR] [http-nio-8080-exec-7] com.talex.frame.talexframe.handler.RestExceptionHandler: [AutomaticAnalyse] NotSupportedRequest: Request method 'GET' not supported 
+[2022/01/16-13:38:37] [ WARN ] [http-nio-8080-exec-7] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported] 
+[2022/01/16-13:42:53] [ ERROR] [http-nio-8080-exec-8] com.talex.frame.talexframe.handler.RestExceptionHandler: [AutomaticAnalyse] NotSupportedRequest: Request method 'GET' not supported 
+[2022/01/16-13:42:53] [ WARN ] [http-nio-8080-exec-8] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported] 
+[2022/01/16-13:43:30] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 29272 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:43:30] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:43:32] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:43:32] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:43:37] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:43:38] [ INFO ] [restartedMain] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: 2a283c37-5a30-48f4-a621-0dd0608c873a
+ 
+[2022/01/16-13:43:39] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 11.065 seconds (JVM running for 12.934) 
+[2022/01/16-13:47:47] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 18544 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:47:47] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:47:49] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:47:49] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:47:53] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:47:55] [ INFO ] [restartedMain] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: 92f7eecb-92fd-4ea1-9cf3-cbb3322b2205
+ 
+[2022/01/16-13:47:56] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 10.689 seconds (JVM running for 12.216) 
+[2022/01/16-13:49:54] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 30920 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:49:54] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:49:57] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:49:58] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:50:01] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:50:02] [ INFO ] [restartedMain] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: b8d353c1-002c-4735-b5ba-636e1ed9cb10
+ 
+[2022/01/16-13:50:03] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 10.118 seconds (JVM running for 11.326) 
+[2022/01/16-13:51:41] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 30920 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:51:41] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:51:41] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:51:42] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:51:43] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:51:43] [ INFO ] [restartedMain] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: cb961204-9fa2-47a6-bedf-a2ade62b824f
+ 
+[2022/01/16-13:51:44] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 4.162 seconds (JVM running for 112.405) 
+[2022/01/16-13:51:46] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 30920 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:51:46] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:51:46] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:51:47] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:51:47] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:51:47] [ INFO ] [restartedMain] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: 6c2c79c8-d9bf-4bda-97a7-c5e325a0cc69
+ 
+[2022/01/16-13:51:49] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 3.2 seconds (JVM running for 116.581) 
+[2022/01/16-13:51:51] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 30920 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:51:51] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:51:52] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:51:52] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:51:53] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:51:54] [ INFO ] [restartedMain] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: 09b1d65d-e3f0-499a-a026-37a430ff48d6
+ 
+[2022/01/16-13:51:55] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 4.908 seconds (JVM running for 123.11) 
+[2022/01/16-13:51:55] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplicationTests: Starting TalexFrameApplicationTests using Java 1.8.0_291 on LENOVO-NX-T with PID 2216 (started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:51:55] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplicationTests: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:51:59] [ WARN ] [main] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:52:05] [ WARN ] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:52:07] [ INFO ] [main] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: 813e9fcd-ace2-4aea-babc-9fe56a4b90ff
+ 
+[2022/01/16-13:52:08] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplicationTests: Started TalexFrameApplicationTests in 14.141 seconds (JVM running for 16.432) 
+[2022/01/16-13:58:47] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 30920 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:58:47] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:58:48] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:58:48] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:58:48] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:58:48] [ INFO ] [restartedMain] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: cf295029-bb28-45fb-9ab8-086a33817036
+ 
+[2022/01/16-13:58:50] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 3.305 seconds (JVM running for 537.667) 
+[2022/01/16-13:58:51] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 30920 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:58:51] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:58:52] [ WARN ] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:58:52] [ WARN ] [restartedMain] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-13:58:52] [ WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:58:53] [ INFO ] [restartedMain] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: a0717332-7438-4c46-8dcc-223219dbdb6c
+ 
+[2022/01/16-13:58:54] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplicationTests: Starting TalexFrameApplicationTests using Java 1.8.0_291 on LENOVO-NX-T with PID 29088 (started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-13:58:54] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplicationTests: No active profile set, falling back to default profiles: default 
+[2022/01/16-13:58:54] [ INFO ] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 3.48 seconds (JVM running for 541.919) 
+[2022/01/16-13:58:56] [ WARN ] [main] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-13:59:01] [ WARN ] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-13:59:03] [ INFO ] [main] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: 33a4e7c8-4401-403c-b781-662f9788f3b7
+ 
+[2022/01/16-13:59:04] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplicationTests: Started TalexFrameApplicationTests in 11.473 seconds (JVM running for 12.9) 
+[2022/01/16-14:14:08] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 4868 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-14:14:08] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-14:14:12] [ WARN ] [main] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-14:14:13] [ WARN ] [main] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-14:14:19] [ WARN ] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-14:14:20] [ INFO ] [main] org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: 
+
+Using generated security password: 0a89b96d-b9c0-4f31-b5ce-da785ba580d8
+ 
+[2022/01/16-14:14:21] [ WARN ] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer: Unable to start LiveReload server 
+[2022/01/16-14:14:22] [ WARN ] [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use 
+[2022/01/16-14:14:22] [ ERROR] [main] org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter: 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+ 
+[2022/01/16-14:15:25] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplicationTests: Starting TalexFrameApplicationTests using Java 1.8.0_291 on LENOVO-NX-T with PID 24588 (started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-14:15:25] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplicationTests: No active profile set, falling back to default profiles: default 
+[2022/01/16-14:15:28] [ WARN ] [main] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-14:15:36] [ WARN ] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-14:15:40] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplicationTests: Started TalexFrameApplicationTests in 16.389 seconds (JVM running for 19.051) 
+[2022/01/16-14:15:40] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 24944 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-14:15:40] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-14:15:44] [ WARN ] [main] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-14:15:45] [ WARN ] [main] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-14:15:50] [ WARN ] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-14:15:53] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 15.512 seconds (JVM running for 25.069) 
+[2022/01/16-14:16:54] [ INFO ] [http-nio-8080-exec-2] com.talex.frame.talexframe.interceptor.TimeConsumingInterceptor: [TimeConsuming] 处理耗时较长 / /error #160099000millis 
+[2022/01/16-14:18:37] [ WARN ] [http-nio-8080-exec-5] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-14:18:37] [ ERROR] [http-nio-8080-exec-5] com.talex.frame.talexframe.handler.RestExceptionHandler: [AutomaticAnalyse] NotSupportedRequest: Request method 'GET' not supported 
+[2022/01/16-14:18:37] [ ERROR] [http-nio-8080-exec-7] com.talex.frame.talexframe.handler.RestExceptionHandler: [AutomaticAnalyse] NotSupportedRequest: Request method 'GET' not supported 
+[2022/01/16-14:18:37] [ WARN ] [http-nio-8080-exec-7] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported] 
+[2022/01/16-14:18:37] [ WARN ] [http-nio-8080-exec-5] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported] 
+[2022/01/16-14:19:07] [ ERROR] [http-nio-8080-exec-9] com.talex.frame.talexframe.handler.RestExceptionHandler: [AutomaticAnalyse] NotSupportedRequest: Request method 'GET' not supported 
+[2022/01/16-14:19:07] [ WARN ] [http-nio-8080-exec-9] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported] 
+[2022/01/16-17:48:07] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 25764 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-17:48:07] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-17:48:10] [ WARN ] [main] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-17:48:12] [ WARN ] [main] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-17:48:16] [ WARN ] [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userBaseController': Unsatisfied dependency expressed through field 'userDataMapper'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.talex.frame.talexframe.mapper.user.IUserDataMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)} 
+[2022/01/16-17:48:16] [ ERROR] [main] org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter: 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field userDataMapper in com.talex.frame.talexframe.controller.UserBaseController required a bean of type 'com.talex.frame.talexframe.mapper.user.IUserDataMapper' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.talex.frame.talexframe.mapper.user.IUserDataMapper' in your configuration.
+ 
+[2022/01/16-17:49:18] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 21540 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/16-17:49:18] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: No active profile set, falling back to default profiles: default 
+[2022/01/16-17:49:20] [ WARN ] [main] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-17:49:21] [ WARN ] [main] org.apache.catalina.core.AprLifecycleListener: This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/16-17:49:25] [ WARN ] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/16-17:49:27] [ INFO ] [main] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 11.19 seconds (JVM running for 15.077) 
+[2022/01/16-17:51:02] [ INFO ] [http-nio-8080-exec-2] com.talex.frame.talexframe.interceptor.TimeConsumingInterceptor: [TimeConsuming] 处理耗时较长 / /error #120142000nanosecond 
+[2022/01/16-17:54:57] [ WARN ] [http-nio-8080-exec-6] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-18:25:46] [ WARN ] [http-nio-8080-exec-2] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-18:26:05] [ ERROR] [http-nio-8080-exec-5] com.talex.frame.talexframe.handler.RestExceptionHandler: [AutomaticAnalyse] NotSupportedRequest: Request method 'GET' not supported 
+[2022/01/16-18:26:05] [ WARN ] [http-nio-8080-exec-5] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported] 
+[2022/01/16-18:31:32] [ WARN ] [http-nio-8080-exec-1] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-18:31:32] [ ERROR] [http-nio-8080-exec-1] com.talex.frame.talexframe.handler.RestExceptionHandler: [GlobalException] Exception: org.springframework.http.server.ServletServerHttpRequest cannot be cast to javax.servlet.http.HttpServletRequest 
+java.lang.ClassCastException: org.springframework.http.server.ServletServerHttpRequest cannot be cast to javax.servlet.http.HttpServletRequest
+	at com.talex.frame.talexframe.interceptor.ResponseAdviceInterceptor.beforeBodyWrite(ResponseAdviceInterceptor.java:50)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain.processBody(RequestResponseBodyAdviceChain.java:141)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyAdviceChain.beforeBodyWrite(RequestResponseBodyAdviceChain.java:116)
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor.writeWithMessageConverters(AbstractMessageConverterMethodProcessor.java:281)
+	at org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor.handleReturnValue(HttpEntityMethodProcessor.java:219)
+	at org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite.handleReturnValue(HandlerMethodReturnValueHandlerComposite.java:78)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:135)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:102)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:102)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:711)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:385)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:313)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:403)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:249)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[2022/01/16-18:31:32] [ WARN ] [http-nio-8080-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: Resolved [java.lang.ClassCastException: org.springframework.http.server.ServletServerHttpRequest cannot be cast to javax.servlet.http.HttpServletRequest] 
+[2022/01/16-18:45:16] [ WARN ] [http-nio-8080-exec-2] org.mybatis.spring.mapper.ClassPathMapperScanner: No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/16-18:45:17] [ ERROR] [http-nio-8080-exec-2] com.talex.frame.talexframe.interceptor.TimeConsumingInterceptor: [TimeConsuming] 处理耗时超时 / [//api/user/login] #767327000nanosecond 

@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "sa-token.token-name",
+      "type": "java.lang.String",
+      "description": "Description for sa-token.token-name."
+    },
+    {
+      "name": "sa-token.timeout",
+      "type": "java.lang.String",
+      "description": "Description for sa-token.timeout."
+    },
+    {
+      "name": "sa-token.is-concurrent",
+      "type": "java.lang.String",
+      "description": "Description for sa-token.is-concurrent."
+    }
+  ] }
