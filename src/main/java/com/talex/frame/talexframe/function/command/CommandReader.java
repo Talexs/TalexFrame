@@ -77,7 +77,7 @@ public class CommandReader {
     
     private void processCommand(String cmd) {
 
-        log.info("[Command] 未知的命令: " + cmd);
+        TFrame.tframe.getCommandManager().processCommand(TFrame.tframe.getFrameSender(), cmd);
 
     }
 

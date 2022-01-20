@@ -22,6 +22,6 @@ public interface ICommand {
      *
      * @return 返回真则阻止继续，返回假的继续 (即返回真后后续的命令执行器都不会再执行）
      */
-    boolean executeCommand(FrameCreator sender, String wholeCommand, String matchedLabel, String[] args);
+    boolean executeCommand(ISender sender, String wholeCommand, String matchedLabel, String[] args);
 
 }
