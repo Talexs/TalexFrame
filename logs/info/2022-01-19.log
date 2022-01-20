@@ -455,3 +455,710 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 [2022/01/19-21:30:39] [main] com.talex.frame.talexframe.TalexFrameApplication: Started TalexFrameApplication in 14.171 seconds (JVM running for 18.397) 
 [2022/01/19-21:30:39] [main] com.talex.frame.talexframe.function.command.CommandReader: [Command] 输入 help 来查看命令列表! 
 [2022/01/19-21:30:39] [main] com.talex.frame.talexframe.listener.FrameMajorListener: 框架启动成功! 
+[2022/01/19-21:54:28] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean: Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-21:54:28] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl: HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-21:54:39] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-21:54:40] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 4300 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-21:54:40] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-21:54:40] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-21:54:40] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-21:54:41] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-21:54:41] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-21:54:41] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 98 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-21:54:41] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-21:54:41] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-21:54:41] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-21:54:41] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-21:54:42] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-21:54:42] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-21:54:43] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-21:54:43] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-21:54:43] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-21:54:43] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-21:54:43] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-21:54:43] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-21:54:43] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-21:54:43] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-21:54:43] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-21:54:44] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-21:54:44] [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-21:54:44] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 4169 ms 
+[2022/01/19-21:54:44] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-21:54:44] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-21:54:45] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-21:54:45] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-21:54:46] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-21:54:46] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-21:54:47] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-21:54:48] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-21:54:49] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-21:54:50] [main] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-21:54:50] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-21:54:51] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-21:54:51] [main] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 14.285 seconds (JVM running for 18.431) 
+[2022/01/19-21:54:51] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-21:54:51] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-21:55:37] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-21:55:37] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-21:59:27] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-21:59:27] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 5432 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-21:59:27] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-21:59:27] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-21:59:27] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-21:59:29] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-21:59:29] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-21:59:29] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 92 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-21:59:29] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-21:59:29] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-21:59:29] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-21:59:29] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-21:59:29] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-21:59:30] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-21:59:30] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-21:59:30] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-21:59:30] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-21:59:30] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-21:59:31] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-21:59:31] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-21:59:31] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-21:59:31] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-21:59:31] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-21:59:32] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-21:59:32] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 4389 ms 
+[2022/01/19-21:59:32] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-21:59:32] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-21:59:33] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-21:59:33] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-22:04:05] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-22:04:06] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 27204 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-22:04:06] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-22:04:06] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-22:04:06] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-22:04:08] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-22:04:08] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-22:04:08] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 133 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-22:04:08] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-22:04:08] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-22:04:08] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-22:04:08] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 26 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-22:04:08] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-22:04:08] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-22:04:09] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-22:04:09] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-22:04:09] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-22:04:09] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-22:04:09] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-22:04:09] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-22:04:09] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-22:04:09] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-22:04:09] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-22:04:10] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-22:04:11] [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-22:04:11] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 4898 ms 
+[2022/01/19-22:04:11] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-22:04:11] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-22:04:12] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-22:04:12] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-22:04:13] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-22:04:13] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-22:04:14] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-22:04:15] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-22:04:16] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-22:04:17] [main] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-22:04:17] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-22:04:18] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-22:04:18] [main] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 15.262 seconds (JVM running for 19.462) 
+[2022/01/19-22:04:18] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-22:04:18] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-22:04:20] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 未知的命令: ? 
+[2022/01/19-22:04:22] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 未知的命令: ? 
+[2022/01/19-22:04:22] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 未知的命令: . 
+[2022/01/19-22:04:24] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 未知的命令: help 
+[2022/01/19-22:15:25] [main] com.talex.frame.talexframe.TalexFrameApplicationTests Starting TalexFrameApplicationTests using Java 1.8.0_291 on LENOVO-NX-T with PID 8264 (started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-22:15:25] [main] com.talex.frame.talexframe.TalexFrameApplicationTests No active profile set, falling back to default profiles: default 
+[2022/01/19-22:15:25] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-22:15:27] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-22:15:27] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-22:15:27] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 277 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-22:15:27] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-22:15:27] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-22:15:27] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-22:15:27] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-22:15:27] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-22:15:27] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=d6a4ac94-342f-3ea4-9055-e299640899bb 
+[2022/01/19-22:15:28] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-22:15:28] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-22:15:29] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-22:15:29] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-22:15:31] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-22:15:31] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-22:15:32] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-22:15:35] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-22:15:35] [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled. 
+[2022/01/19-22:15:36] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-22:15:36] [main] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-22:17:30] [rebel-change-detector-thread] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-22:17:30] [rebel-change-detector-thread] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 64 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-22:17:30] [rebel-change-detector-thread] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-22:17:30] [rebel-change-detector-thread] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-22:17:30] [rebel-change-detector-thread] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-22:17:30] [rebel-change-detector-thread] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-22:17:34] [main] com.talex.frame.talexframe.TalexFrameApplicationTests Starting TalexFrameApplicationTests using Java 1.8.0_291 on LENOVO-NX-T with PID 27572 (started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-22:17:34] [main] com.talex.frame.talexframe.TalexFrameApplicationTests No active profile set, falling back to default profiles: default 
+[2022/01/19-22:17:34] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-22:17:35] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-22:17:35] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-22:17:35] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 201 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-22:17:35] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-22:17:35] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-22:17:35] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-22:17:35] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 10 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-22:17:36] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-22:17:36] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=d6a4ac94-342f-3ea4-9055-e299640899bb 
+[2022/01/19-22:17:37] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-22:17:37] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-22:17:37] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-22:17:37] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-22:17:39] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-22:17:39] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-22:17:40] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-22:17:43] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-22:17:43] [main] com.talex.frame.talexframe.TalexFrameApplicationTests Started TalexFrameApplicationTests in 11.711 seconds (JVM running for 12.848) 
+[2022/01/19-22:17:43] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-22:17:43] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-22:53:13] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-22:53:13] [SpringApplicationShutdownHook] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-22:53:13] [SpringApplicationShutdownHook] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-22:53:13] [SpringApplicationShutdownHook] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-22:53:13] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-22:53:14] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated... 
+[2022/01/19-22:53:14] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed. 
+[2022/01/19-23:01:20] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-23:01:20] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 21608 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-23:01:20] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-23:01:20] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-23:01:20] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-23:01:22] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:01:22] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-23:01:22] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 245 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-23:01:22] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:01:22] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-23:01:22] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-23:01:22] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-23:01:22] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-23:01:22] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-23:01:23] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-23:01:23] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:01:23] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-23:01:23] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-23:01:23] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-23:01:23] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-23:01:23] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-23:01:23] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-23:01:23] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-23:01:24] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-23:01:24] [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-23:01:24] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 4092 ms 
+[2022/01/19-23:01:25] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-23:01:25] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-23:01:25] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-23:01:26] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-23:01:27] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-23:01:27] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:01:28] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-23:01:29] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-23:01:30] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:01:30] [main] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:01:30] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-23:01:32] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:01:32] [main] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 14.335 seconds (JVM running for 18.601) 
+[2022/01/19-23:01:32] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-23:01:32] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-23:02:47] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:02:47] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-23:02:58] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-23:02:58] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 3932 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-23:02:58] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-23:02:58] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-23:02:58] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-23:03:00] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:03:00] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-23:03:00] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 220 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-23:03:00] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:03:00] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-23:03:00] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-23:03:00] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-23:03:00] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-23:03:00] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-23:03:01] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-23:03:01] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:03:01] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-23:03:01] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-23:03:01] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-23:03:01] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-23:03:01] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-23:03:01] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-23:03:01] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-23:03:02] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-23:03:02] [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-23:03:02] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 4011 ms 
+[2022/01/19-23:03:03] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-23:03:03] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-23:03:03] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-23:03:03] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-23:03:04] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-23:03:04] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:03:05] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-23:03:06] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-23:03:08] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:03:08] [main] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:03:08] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-23:03:09] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:03:09] [main] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 13.786 seconds (JVM running for 17.637) 
+[2022/01/19-23:03:09] [main] com.talex.frame.talexframe.function.plugins.core.PluginManager [Module] Plugin loaded! 
+[2022/01/19-23:03:09] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-23:03:09] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-23:06:21] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:06:21] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-23:06:33] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-23:06:33] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 27676 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-23:06:33] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-23:06:33] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-23:06:33] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-23:06:35] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:06:35] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-23:06:35] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 268 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-23:06:35] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:06:35] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-23:06:35] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-23:06:35] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 19 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-23:06:35] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-23:06:36] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-23:06:36] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-23:06:36] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:06:36] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-23:06:36] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-23:06:36] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-23:06:36] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-23:06:36] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-23:06:36] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-23:06:36] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-23:06:38] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-23:06:38] [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-23:06:38] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 4684 ms 
+[2022/01/19-23:06:38] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-23:06:38] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-23:06:38] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-23:06:39] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-23:06:40] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-23:06:40] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:06:41] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-23:06:42] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-23:06:43] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:06:43] [main] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:06:43] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-23:06:45] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:06:45] [main] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 14.738 seconds (JVM running for 18.825) 
+[2022/01/19-23:06:45] [main] com.talex.frame.talexframe.function.plugins.core.PluginManager [Module] Plugin loaded! 
+[2022/01/19-23:06:45] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-23:06:45] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-23:07:21] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:07:21] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-23:07:32] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-23:07:32] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 11744 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-23:07:32] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-23:07:32] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-23:07:32] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-23:07:34] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:07:34] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-23:07:34] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 225 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-23:07:34] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:07:34] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-23:07:34] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-23:07:34] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-23:07:34] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-23:07:34] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-23:07:35] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-23:07:35] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:07:35] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-23:07:35] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-23:07:35] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-23:07:35] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-23:07:35] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-23:07:35] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-23:07:35] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-23:07:36] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-23:07:36] [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-23:07:36] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 4005 ms 
+[2022/01/19-23:07:37] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-23:07:37] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-23:07:37] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-23:07:37] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-23:07:38] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-23:07:38] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:07:39] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-23:07:40] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-23:07:42] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:07:42] [main] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:07:42] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-23:07:43] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:07:43] [main] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 13.745 seconds (JVM running for 17.549) 
+[2022/01/19-23:07:43] [main] com.talex.frame.talexframe.function.plugins.core.PluginManager [Module] Plugin loaded! 
+[2022/01/19-23:07:43] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-23:07:43] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-23:09:25] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:09:25] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-23:09:36] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-23:09:36] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 19124 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-23:09:36] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-23:09:36] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-23:09:36] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-23:09:37] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:09:37] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-23:09:38] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 238 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-23:09:38] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:09:38] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-23:09:38] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-23:09:38] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-23:09:38] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-23:09:38] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-23:09:39] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-23:09:39] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:09:39] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-23:09:39] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-23:09:39] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-23:09:39] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-23:09:39] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-23:09:39] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-23:09:39] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-23:09:40] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-23:09:40] [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-23:09:40] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 4039 ms 
+[2022/01/19-23:09:41] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-23:09:41] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-23:09:41] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-23:09:41] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-23:09:42] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-23:09:42] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:09:43] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-23:09:44] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-23:09:46] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:09:46] [main] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:09:46] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-23:09:47] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:09:47] [main] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 13.961 seconds (JVM running for 17.997) 
+[2022/01/19-23:09:47] [main] com.talex.frame.talexframe.function.plugins.core.PluginManager [Module] Plugin loaded! 
+[2022/01/19-23:09:47] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-23:09:47] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-23:11:11] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:11:11] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-23:11:22] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-23:11:23] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 23504 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-23:11:23] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-23:11:23] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-23:11:23] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-23:11:24] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:11:24] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-23:11:24] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 224 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-23:11:24] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:11:24] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-23:11:24] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-23:11:24] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-23:11:25] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-23:11:25] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-23:11:25] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-23:11:25] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:11:25] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-23:11:25] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-23:11:25] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-23:11:25] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-23:11:25] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-23:11:25] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-23:11:25] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-23:11:27] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-23:11:27] [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-23:11:27] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 3931 ms 
+[2022/01/19-23:11:27] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-23:11:27] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-23:11:27] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-23:11:28] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-23:11:29] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-23:11:29] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:11:30] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-23:11:30] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-23:11:32] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:11:32] [main] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:11:32] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-23:11:34] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:11:34] [main] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 13.775 seconds (JVM running for 17.752) 
+[2022/01/19-23:11:34] [main] com.talex.frame.talexframe.function.plugins.core.PluginManager [Module] Plugin loaded! 
+[2022/01/19-23:11:34] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-23:11:34] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-23:12:48] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:12:48] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-23:12:54] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 22700 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-23:12:54] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-23:12:54] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-23:12:54] [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-23:12:54] [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-23:12:55] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:12:55] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-23:12:55] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 68 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-23:12:55] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:12:55] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-23:12:55] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-23:12:55] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-23:12:56] [restartedMain] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-23:12:56] [restartedMain] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-23:12:56] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-23:12:56] [restartedMain] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:12:56] [restartedMain] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-23:12:56] [restartedMain] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-23:12:56] [restartedMain] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-23:12:56] [restartedMain] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-23:12:56] [restartedMain] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-23:12:56] [restartedMain] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-23:12:56] [restartedMain] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-23:12:57] [restartedMain] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-23:12:57] [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-23:12:57] [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 3157 ms 
+[2022/01/19-23:12:58] [restartedMain] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-23:12:58] [restartedMain] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-23:12:58] [restartedMain] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-23:12:58] [restartedMain] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-23:12:59] [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-23:12:59] [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:13:00] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-23:13:01] [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-23:13:02] [restartedMain] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:13:02] [restartedMain] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:13:02] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-23:13:04] [restartedMain] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:13:04] [restartedMain] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 11.634 seconds (JVM running for 13.162) 
+[2022/01/19-23:13:04] [restartedMain] com.talex.frame.talexframe.function.plugins.core.PluginManager [Module] Plugin loaded! 
+[2022/01/19-23:13:04] [restartedMain] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-23:13:04] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-23:15:36] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:15:36] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-23:15:48] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-23:15:48] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 20204 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-23:15:48] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-23:15:48] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-23:15:48] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-23:15:50] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:15:50] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-23:15:50] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 264 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-23:15:50] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:15:50] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-23:15:50] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-23:15:50] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-23:15:50] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-23:15:50] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-23:15:51] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-23:15:51] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:15:51] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-23:15:51] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-23:15:51] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-23:15:51] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-23:15:51] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-23:15:51] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-23:15:51] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-23:15:52] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-23:15:53] [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-23:15:53] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 4409 ms 
+[2022/01/19-23:15:53] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-23:15:53] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-23:15:53] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-23:15:54] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-23:15:55] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-23:15:55] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:15:56] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-23:15:57] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-23:15:59] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:15:59] [main] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:15:59] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-23:16:00] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:16:00] [main] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 14.982 seconds (JVM running for 19.281) 
+[2022/01/19-23:16:00] [main] com.talex.frame.talexframe.function.plugins.core.PluginManager [Module] Plugin loaded! 
+[2022/01/19-23:16:00] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-23:16:00] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-23:16:17] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:16:17] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-23:16:28] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-23:16:28] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 8240 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-23:16:28] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-23:16:28] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-23:16:28] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-23:16:30] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:16:30] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-23:16:30] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 233 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-23:16:30] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:16:30] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-23:16:30] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-23:16:30] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-23:16:30] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-23:16:30] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-23:16:31] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-23:16:31] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:16:31] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-23:16:31] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-23:16:31] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-23:16:31] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-23:16:31] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-23:16:31] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-23:16:31] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-23:16:32] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-23:16:32] [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-23:16:32] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 4071 ms 
+[2022/01/19-23:16:33] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-23:16:33] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-23:16:33] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-23:16:33] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-23:16:34] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-23:16:34] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:16:35] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-23:16:36] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-23:16:38] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:16:38] [main] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:16:38] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-23:16:39] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:16:39] [main] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 14.02 seconds (JVM running for 17.884) 
+[2022/01/19-23:16:39] [main] com.talex.frame.talexframe.function.plugins.core.PluginManager [Module] Plugin loaded! 
+[2022/01/19-23:16:39] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-23:16:39] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-23:18:35] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:18:35] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-23:18:46] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-23:18:47] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 23560 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-23:18:47] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-23:18:47] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-23:18:47] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-23:18:48] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:18:48] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-23:18:48] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 233 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-23:18:48] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:18:48] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-23:18:48] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-23:18:48] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-23:18:49] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-23:18:49] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-23:18:50] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-23:18:50] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:18:50] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-23:18:50] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-23:18:50] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-23:18:50] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-23:18:50] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-23:18:50] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-23:18:50] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-23:18:51] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-23:18:51] [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-23:18:51] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 4143 ms 
+[2022/01/19-23:18:51] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-23:18:51] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-23:18:52] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-23:18:52] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-23:18:53] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-23:18:53] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:18:54] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-23:18:55] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-23:18:56] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:18:56] [main] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:18:56] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-23:18:58] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:18:58] [main] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 14.219 seconds (JVM running for 18.27) 
+[2022/01/19-23:18:58] [main] com.talex.frame.talexframe.function.plugins.core.PluginManager [Module] Plugin loaded! 
+[2022/01/19-23:18:58] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-23:18:58] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-23:19:24] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:19:24] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-23:19:34] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-23:19:35] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 11640 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-23:19:35] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-23:19:35] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-23:19:35] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-23:19:36] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:19:36] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-23:19:36] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 218 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-23:19:36] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:19:36] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-23:19:36] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-23:19:36] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-23:19:37] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-23:19:37] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-23:19:38] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-23:19:38] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:19:38] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-23:19:38] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-23:19:38] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-23:19:38] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-23:19:38] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-23:19:38] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-23:19:38] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-23:19:39] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-23:19:39] [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-23:19:39] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 3918 ms 
+[2022/01/19-23:19:39] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-23:19:39] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-23:19:40] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-23:19:40] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-23:19:41] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-23:19:41] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:19:42] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-23:19:43] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-23:19:44] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:19:44] [main] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:19:44] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-23:19:46] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:19:46] [main] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 13.529 seconds (JVM running for 17.284) 
+[2022/01/19-23:19:46] [main] com.talex.frame.talexframe.function.plugins.core.PluginManager [Module] Plugin loaded! 
+[2022/01/19-23:19:46] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-23:19:46] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-23:21:38] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:21:38] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 
+[2022/01/19-23:21:49] [background-preinit] org.hibernate.validator.internal.util.Version HV000001: Hibernate Validator 6.2.0.Final 
+[2022/01/19-23:21:49] [main] com.talex.frame.talexframe.TalexFrameApplication Starting TalexFrameApplication using Java 1.8.0_291 on LENOVO-NX-T with PID 26560 (G:\WorkSpace\Talexs\TalexFrame\target\classes started by Lenovo in G:\WorkSpace\Talexs\TalexFrame) 
+[2022/01/19-23:21:49] [main] com.talex.frame.talexframe.TalexFrameApplication No active profile set, falling back to default profiles: default 
+[2022/01/19-23:21:49] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+[2022/01/19-23:21:49] [main] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+[2022/01/19-23:21:51] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:21:51] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[2022/01/19-23:21:51] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 227 ms. Found 1 JPA repository interfaces. 
+[2022/01/19-23:21:51] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode! 
+[2022/01/19-23:21:51] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode. 
+[2022/01/19-23:21:51] [main] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.talex.frame.talexframe.dao.BaseUserDataRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository. 
+[2022/01/19-23:21:51] [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces. 
+[2022/01/19-23:21:51] [main] org.mybatis.spring.mapper.ClassPathMapperScanner No MyBatis mapper was found in '[com.talex.frame.talexframe]' package. Please check your configuration. 
+[2022/01/19-23:21:51] [main] org.springframework.cloud.context.scope.GenericScope BeanFactory id=651d78a5-2b87-3b22-9c3a-c3e51372e01d 
+[2022/01/19-23:21:52] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat initialized with port(s): 9981 (http) 
+[2022/01/19-23:21:52] [main] org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:21:52] [main] org.apache.catalina.core.StandardService Starting service [Tomcat] 
+[2022/01/19-23:21:52] [main] org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.56] 
+[2022/01/19-23:21:52] [main] org.apache.catalina.core.AprLifecycleListener This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext]. 
+[2022/01/19-23:21:52] [main] org.apache.catalina.core.AprLifecycleListener An older version [1.2.14] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30] 
+[2022/01/19-23:21:52] [main] org.apache.catalina.core.AprLifecycleListener Loaded Apache Tomcat Native library [1.2.14] using APR version [1.6.2]. 
+[2022/01/19-23:21:52] [main] org.apache.catalina.core.AprLifecycleListener APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false]. 
+[2022/01/19-23:21:52] [main] org.apache.catalina.core.AprLifecycleListener APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true] 
+[2022/01/19-23:21:53] [main] org.apache.catalina.core.AprLifecycleListener OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017] 
+[2022/01/19-23:21:53] [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext 
+[2022/01/19-23:21:53] [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 4011 ms 
+[2022/01/19-23:21:54] [main] org.hibernate.jpa.internal.util.LogHelper HHH000204: Processing PersistenceUnitInfo [name: default] 
+[2022/01/19-23:21:54] [main] org.hibernate.Version HHH000412: Hibernate ORM core version 5.6.3.Final 
+[2022/01/19-23:21:54] [main] org.hibernate.annotations.common.Version HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+[2022/01/19-23:21:54] [main] org.hibernate.dialect.Dialect HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect 
+[2022/01/19-23:21:56] [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+[2022/01/19-23:21:56] [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:21:56] [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[2022/01/19-23:21:57] [main] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer LiveReload server is running on port 35729 
+[2022/01/19-23:21:59] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:21:59] [main] org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-9981"] 
+[2022/01/19-23:21:59] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer Tomcat started on port(s): 9981 (http) with context path '' 
+[2022/01/19-23:22:01] [main] org.springframework.cloud.commons.util.InetUtils Cannot determine local hostname 
+[2022/01/19-23:22:01] [main] com.talex.frame.talexframe.TalexFrameApplication Started TalexFrameApplication in 13.956 seconds (JVM running for 17.771) 
+[2022/01/19-23:22:01] [main] com.talex.frame.talexframe.function.plugins.core.PluginManager [Module] Plugin loaded! 
+[2022/01/19-23:22:01] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/19-23:22:01] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
+[2022/01/19-23:39:03] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/19-23:39:03] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 

@@ -18,7 +18,7 @@ import java.util.Map;
 @Slf4j
 public class TalexEventBus implements IEventBus {
 
-    private static volatile TalexEventBus instance;
+    private static TalexEventBus instance;
 
     private final Map<FrameListener, List<MethodManager>> mapCaches;
 
@@ -30,21 +30,15 @@ public class TalexEventBus implements IEventBus {
 
     public static TalexEventBus getDefault() {
 
-        if (null == instance) {
+        if (instance == null) {
 
-            synchronized (TalexEventBus.class) {
+            instance = new TalexEventBus();
 
-                if (null == instance) {
-
-                    instance = new TalexEventBus();
-
-                }
-
-            }
+            return instance;
 
         }
 
-        return instance;
+        return null;
 
     }
 

@@ -33,6 +33,8 @@ public class FrameMajorListener {
     @EventListener
     public void onStart(ApplicationPreparedEvent event) {
 
+        TFrame.initialFrame();
+
         TFrame.tframe.setFrameStatus(FrameStatus.PREPARING);
 
         TFrame.tframe.getEventBus().callEvent(new FramePreInstallEvent(System.nanoTime() - TalexFrameApplication.startedTimeStamp));

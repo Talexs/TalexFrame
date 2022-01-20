@@ -53,17 +53,21 @@ public class PluginManager {
 
         this.pluginFolder = mainFolder;
 
+        if( !this.pluginFolder.exists() ) {  this.pluginFolder.mkdir(); }
+
     }
 
     public void loadAllPluginsInFolder() {
 
         String[] list = this.pluginFolder.list();
 
-        if( list == null ) return;
+        if( list != null ) {
 
-        for( String targetFile : Objects.requireNonNull(list) ) {
+            for( String targetFile : Objects.requireNonNull(list) ) {
 
-            loadPlugin(targetFile);
+                loadPlugin(targetFile);
+
+            }
 
         }
 

@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * <br /> {@link com.talex.frame.talexframe.function.command Package }
@@ -34,7 +35,10 @@ public class CommandReader {
 
             thread.setName("Command");
 
+            System.setProperty("jline.internal.Log.debug", "true");
             log.info("[Command] 输入 help 来查看命令列表!");
+
+            Scanner scanner = new Scanner(System.in);
 
             while( true ) {
 
@@ -48,13 +52,18 @@ public class CommandReader {
 
                 }
 
-                String cmd = null;
-                try {
-                    cmd = reader.readLine(">");
+
+
+                String cmd = scanner.nextLine();
                     if( !StrUtil.isEmptyIfStr(cmd) ) processCommand(cmd);
-                } catch ( IOException e ) {
-                    e.printStackTrace();
-                }
+
+//                String cmd = null;
+//                try {
+//                    cmd = reader.readLine(">");
+//                    if( !StrUtil.isEmptyIfStr(cmd) ) processCommand(cmd);
+//                } catch ( IOException e ) {
+//                    e.printStackTrace();
+//                }
 
 
 
