@@ -1,6 +1,7 @@
 package com.talex.frame.talexframe.config;
 
 import com.talex.frame.talexframe.interceptor.TimeConsumingInterceptor;
+import com.talex.frame.talexframe.interceptor.request.RequestInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -17,6 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
+        registry.addInterceptor(new RequestInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(new TimeConsumingInterceptor()).addPathPatterns("/**");
 
     }

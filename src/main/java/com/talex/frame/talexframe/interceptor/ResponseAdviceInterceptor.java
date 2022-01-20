@@ -1,7 +1,7 @@
 package com.talex.frame.talexframe.interceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.talex.frame.talexframe.annotations.WrapperResponse;
+import com.talex.frame.talexframe.pojo.annotations.WrapperResponse;
 import com.talex.frame.talexframe.wrapper.ResultData;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,6 +4,13 @@ import cn.hutool.core.io.IoUtil;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import com.talex.frame.talexframe.TalexFrameApplication;
+import com.talex.frame.talexframe.function.controller.TController;
+import com.talex.frame.talexframe.function.controller.TControllerManager;
+import com.talex.frame.talexframe.function.event.events.frame.FrameFirstInstallEvent;
+import com.talex.frame.talexframe.function.repository.TRepository;
+import com.talex.frame.talexframe.function.repository.TRepositoryManager;
+import com.talex.frame.talexframe.function.talex.TFrame;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +60,8 @@ public class PluginManager {
 
         this.pluginFolder = mainFolder;
 
-        if( !this.pluginFolder.exists() ) {  this.pluginFolder.mkdir(); }
+        if( !this.pluginFolder.exists() ) {  this.pluginFolder.mkdir();
+            TFrame.tframe.callEvent(new FrameFirstInstallEvent(System.nanoTime() - TalexFrameApplication.startedTimeStamp)); }
 
     }
 
@@ -142,6 +150,8 @@ public class PluginManager {
 
         this.pluginHashMap.put(pluginName, webPlugin);
 
+        log.info("[插件] " + webPlugin.getName() + " v" + webPlugin.getInfo().getPluginVersion() + " 已加载完毕!");
+
     }
 
     private URL[] getUrls(File dir) {
@@ -225,6 +235,44 @@ public class PluginManager {
 
         plugin.onDisable();
 
+        int i = 0;
+
+        TControllerManager controllerManager = TFrame.tframe.getControllerManager();
+
+        for( Map.Entry<TController, String> entry : controllerManager.getControllerPluginMap().entrySet() ) {
+
+            if( entry.getValue().equalsIgnoreCase(pluginName) ) {
+
+                controllerManager.unRegisterController(plugin, entry.getKey());
+
+                ++i;
+
+            }
+
+        }
+
+        if( i != 0)
+            log.info("[Plugin] 已自动注销 " + i + " 个控制器类.");
+
+        i = 0;
+
+        TRepositoryManager repositoryManager = TFrame.tframe.getRepositoryManager();
+
+        for( Map.Entry<TRepository, String> entry : repositoryManager.getRepositoryPluginMap().entrySet() ) {
+
+            if( entry.getValue().equalsIgnoreCase(pluginName) ) {
+
+                repositoryManager.unRegisterRepository(plugin, entry.getKey());
+
+                ++i;
+
+            }
+
+        }
+
+        if( i != 0)
+            log.info("[Plugin] 已自动注销 " + i + " 个储存器类.");
+
         urlClassLoader.setPackageAssertionStatus(classPath,false);
 
         urlClassLoader.close();
@@ -233,8 +281,6 @@ public class PluginManager {
         this.pluginJarFiles.remove(pluginName);
         this.pluginHashMap.remove(pluginName);
         this.nameClassIndex.remove(pluginName);
-
-        plugin = null;
 
         return true;
 

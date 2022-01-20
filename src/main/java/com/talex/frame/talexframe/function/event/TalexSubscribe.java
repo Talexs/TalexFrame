@@ -24,4 +24,11 @@ public @interface TalexSubscribe {
      */
     EventPriority priority() default EventPriority.NORMAL;
 
+    /**
+     *
+     * 是否只监听一次
+     *
+     */
+    boolean once() default false;
+
 }

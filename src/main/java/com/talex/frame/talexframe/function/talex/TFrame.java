@@ -1,11 +1,18 @@
 package com.talex.frame.talexframe.function.talex;
 
+import com.talex.frame.talexframe.dao.MajorDAO;
 import com.talex.frame.talexframe.function.command.CommandManager;
 import com.talex.frame.talexframe.function.command.CommandReader;
+import com.talex.frame.talexframe.function.command.frame.HelpCmd;
+import com.talex.frame.talexframe.function.command.frame.PluginCmd;
+import com.talex.frame.talexframe.function.controller.TControllerManager;
 import com.talex.frame.talexframe.function.event.FrameListener;
+import com.talex.frame.talexframe.function.event.TalexEvent;
+import com.talex.frame.talexframe.function.event.events.frame.FrameMajorDAOInitiatedEvent;
 import com.talex.frame.talexframe.function.event.service.TalexEventBus;
 import com.talex.frame.talexframe.function.plugins.addon.FramePluginListener;
 import com.talex.frame.talexframe.function.plugins.core.PluginManager;
+import com.talex.frame.talexframe.function.repository.TRepositoryManager;
 import com.talex.frame.talexframe.mapper.frame.FrameSender;
 import com.talex.frame.talexframe.pojo.enums.FrameStatus;
 import lombok.AccessLevel;
@@ -81,9 +88,13 @@ public class TFrame {
         CommandManager.initial();
 
         this.commandManager = CommandManager.INSTANCE;
+        this.commandManager.setCommandExecutor("help", new HelpCmd());
+        this.commandManager.setCommandExecutor("plugin", new PluginCmd());
+
+        this.repositoryManager = TRepositoryManager.init();
+        this.controllerManager = TControllerManager.init();
 
         this.pluginManager = new PluginManager(new File(mainFile.getAbsolutePath() + "/plugins"));
-
         this.pluginManager.loadAllPluginsInFolder();
 
 
@@ -97,6 +108,15 @@ public class TFrame {
     private final TalexEventBus eventBus = TalexEventBus.getDefault();
 
     private PluginManager pluginManager;
+
+    public TFrame callEvent(TalexEvent event) {
+
+        assert eventBus != null;
+        eventBus.callEvent(event);
+
+        return this;
+
+    }
 
     public TFrame registerEvent(FramePluginListener listener) {
 
@@ -115,5 +135,24 @@ public class TFrame {
         return this;
 
     }
+
+    private MajorDAO majorDao;
+
+    public TFrame setMajorDAO(MajorDAO majorDao) {
+
+        if( this.majorDao == null ) {
+
+            this.majorDao = majorDao;
+
+            this.callEvent(new FrameMajorDAOInitiatedEvent(majorDao));
+
+        }
+
+        return this;
+
+    }
+
+    private TRepositoryManager repositoryManager;
+    private TControllerManager controllerManager;
 
 }

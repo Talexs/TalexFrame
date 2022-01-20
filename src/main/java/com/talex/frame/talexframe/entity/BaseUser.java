@@ -2,6 +2,7 @@ package com.talex.frame.talexframe.entity;
 
 import com.talex.frame.talexframe.mapper.IData;
 import lombok.*;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ import javax.validation.constraints.NotNull;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "user")
+@Accessors( chain = true)
 public class BaseUser implements IData {
 
     @Id
@@ -30,5 +32,16 @@ public class BaseUser implements IData {
     protected String username;
 
     protected String extraInformation;
+
+    public PackedUser pack() {
+
+        PackedUser pack = new PackedUser().setExtraInformation(this.extraInformation);
+
+        pack.setUsername(this.username);
+        pack.setId(this.id);
+
+         return pack;
+
+    }
 
 }

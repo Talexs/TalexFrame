@@ -1,4 +1,4 @@
-package com.talex.frame.talexframe.annotations;
+package com.talex.frame.talexframe.pojo.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

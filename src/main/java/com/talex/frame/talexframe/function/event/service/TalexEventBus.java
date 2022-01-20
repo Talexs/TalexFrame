@@ -130,7 +130,6 @@ public class TalexEventBus implements IEventBus {
                     @Override
                     public void run() {
 
-
                         event(event, methodManager);
 
                     }
@@ -157,9 +156,21 @@ public class TalexEventBus implements IEventBus {
 
             methodManager.getMethod().invoke(methodManager.getOwner(), event);
 
+            if( methodManager.getTalexSubscribe().once() ) {
+
+                FrameListener listener = methodManager.getOwner();
+
+                List<MethodManager> methodsList = mapCaches.get(listener);
+
+                methodsList.remove(methodManager);
+
+                mapCaches.put(listener, methodsList);
+
+            }
+
         } catch (Exception e) {
 
-            log.error("[事件] 在调用 " + methodManager.getMethod().getName() + " 时,目标抛出异常: " + e.getCause().getMessage() + "   @" + methodManager.getMethod().getDeclaringClass().getName() + "." + methodManager.getMethod().getName());
+            log.error("[事件] 在调用 " + methodManager.getMethod().getName() + " 时, 目标抛出异常: " + e.getCause().getMessage() + "   @" + methodManager.getMethod().getDeclaringClass().getName() + "." + methodManager.getMethod().getName());
 
             e.printStackTrace();
 
@@ -171,6 +182,7 @@ public class TalexEventBus implements IEventBus {
     public TalexEventBus unRegisterListener(FrameListener listener) {
 
         mapCaches.remove(listener);
+
         return this;
 
     }

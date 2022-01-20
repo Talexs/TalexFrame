@@ -5,4 +5,4 @@
  * @author TalexDreamSoul
  * @date 2022/1/16 10:35 <br /> Project: TalexFrame <br />
  */
-package com.talex.frame.talexframe.annotations;
+package com.talex.frame.talexframe.pojo.annotations;

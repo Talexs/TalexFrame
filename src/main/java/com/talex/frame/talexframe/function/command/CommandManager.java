@@ -1,11 +1,16 @@
 package com.talex.frame.talexframe.function.command;
 
-import com.talex.frame.talexframe.function.talex.FrameCreator;
+import cn.hutool.core.util.StrUtil;
+import com.talex.frame.talexframe.pojo.annotations.TalexCommand;
+import com.talex.frame.talexframe.function.talex.TFrame;
+import com.talex.frame.talexframe.wrapper.WrappedSender;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.*;
-import java.util.function.Predicate;
 
 /**
  * 命令管理器
@@ -49,23 +54,35 @@ public class CommandManager {
      */
     public void processCommand(ISender sender, String wholeCmd) {
 
-        List<String> list = Arrays.asList(wholeCmd.split(" "));
+        List<String> list = new ArrayList<>(Arrays.asList(wholeCmd.split(" ")));
 
         String label = list.get(0);
         list.remove(0);
 
+        String[] args = list.toArray(new String[0]);
+
         boolean match = false;
 
         for( Map.Entry<String, BaseCommand> entry : this.commands.entrySet() ) {
-
-            match = true;
 
             String cmdLabel = entry.getKey();
             BaseCommand cmd = entry.getValue();
 
             if( cmdLabel.equalsIgnoreCase(label) || Arrays.stream(cmd.getAlias()).anyMatch(s -> s.equalsIgnoreCase(label)) ) {
 
-                if( cmd.executeCommand(sender, wholeCmd, label, list.toArray(new String[0])) ) break;
+                match = true;
+
+                try {
+
+                    this.processCmdClass(sender, cmd, wholeCmd, label, args);
+
+                } catch ( InvocationTargetException | IllegalAccessException e ) {
+
+                    TFrame.tframe.getFrameSender().errorConsoleMessage("在执行命令扫描器的时候出现问题: " + label + " @" + cmd.getClass(), e);
+
+                }
+
+                if( cmd.executeCommand(sender, wholeCmd, label, args) ) break;
 
             }
 
@@ -79,6 +96,131 @@ public class CommandManager {
 
     }
 
+    private void processCmdClass(ISender sender, BaseCommand cmd, String wholeCmd, String inputLabel, String[] args) throws InvocationTargetException, IllegalAccessException {
+
+        for( Method method : cmd.getClass().getMethods() ) {
+
+            TalexCommand tc = method.getAnnotation(TalexCommand.class);
+
+            if( tc == null ) continue;
+
+            Parameter[] parameters = method.getParameters();
+
+            if( parameters == null || parameters.length == 0 ) continue;
+
+            String value = tc.value();
+
+            if( tc.completedMatch() ) {
+
+                if( tc.matchCase() ) {
+
+                    if( value.equals(wholeCmd) ) {
+
+                        invoke(cmd, method, parameters[0], sender, inputLabel);
+
+                    }
+
+                } else {
+
+                    if( value.equalsIgnoreCase(wholeCmd) ) {
+
+                        invoke(cmd, method, parameters[0], sender, inputLabel);
+
+                    }
+
+                }
+
+                continue;
+
+            }
+
+            if( tc.ignoreContent() ) {
+
+                int len = parameters.length - 1;
+
+                if( args.length == len ) {
+
+                    invoke(cmd, method, parameters[0], sender, inputLabel, args, tc.nullAutoComplete());
+
+                }
+
+            }
+
+            /*
+                如果 参数只有一个即匹配的content 或者content是空 则匹配默认的方法 即不检测任何的方法
+             */
+            if( parameters.length == 1 && args.length == 0 && StrUtil.isBlankIfStr(value) ) { invoke(cmd, method, parameters[0], sender, inputLabel); continue; }
+
+            if( args.length < 1 ) continue;
+
+            List<String> newArgs = new ArrayList<>(Arrays.asList(args));
+            newArgs.remove(0);
+
+            boolean matched;
+
+            if( tc.matchCase() ) {
+
+                matched = args[0].equals(value);
+
+            } else matched = args[0].equalsIgnoreCase(value);
+
+            if( !matched ) continue;
+
+            this.invoke(cmd, method, parameters[0], sender, inputLabel, newArgs.toArray(new String[0]), tc.nullAutoComplete());
+
+        }
+
+    }
+
+    private void invoke(BaseCommand cmd, Method method, Parameter paramFirst, ISender sender, String label) throws InvocationTargetException, IllegalAccessException {
+
+        if( paramFirst.getType() == WrappedSender.class ) {
+
+            method.invoke(cmd, new WrappedSender(sender, label, null));
+
+        } else method.invoke(cmd, sender);
+
+    }
+
+    private void invoke(BaseCommand cmd, Method method, Parameter paramFirst, ISender sender, String label, String[] args, boolean autoComplete) throws InvocationTargetException, IllegalAccessException {
+
+        List<Object> params = new ArrayList<>();
+
+        if( paramFirst.getType() == WrappedSender.class ) {
+
+            params.add(new WrappedSender(sender, label, args));
+
+        } else {
+
+            params.add(sender);
+
+        }
+
+        List<String> list = new ArrayList<>(Arrays.asList(args));
+
+        if( args.length < method.getParameterCount() - 1 ) {
+
+            if( !autoComplete ) {
+
+                sender.senderMessage("你需要额外的 " + (method.getParameterCount() - args.length - 1) + " 个参数来使用这个命令.");
+                return;
+
+            }
+
+            for( int i = 0;i < method.getParameterCount() - 1;++i ) {
+
+                list.add(null);
+
+            }
+
+        }
+
+        params.addAll(list);
+
+        method.invoke(cmd, params.toArray());
+
+    }
+
     /**
      *
      * 设置指令的执行器
@@ -89,6 +231,12 @@ public class CommandManager {
      * @return 返回是否成功 返回假一般代表已有此命令 （可以通过 namespace 解决）
      */
     public boolean setCommandExecutor(String label, BaseCommand command) {
+
+        if( !label.equals(command.getLabel()) ) {
+
+            throw new RuntimeException("Label标识符与内部CommandLabel标识符不一致!");
+
+        }
 
         if( this.commands.containsKey(label) ) return false;
 

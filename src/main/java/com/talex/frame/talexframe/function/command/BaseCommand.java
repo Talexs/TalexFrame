@@ -1,6 +1,8 @@
 package com.talex.frame.talexframe.function.command;
 
 import com.talex.frame.talexframe.function.talex.FrameCreator;
+import com.talex.frame.talexframe.function.talex.TFrame;
+import com.talex.frame.talexframe.mapper.frame.FrameSender;
 import lombok.Getter;
 
 /**
@@ -12,7 +14,11 @@ import lombok.Getter;
 @Getter
 public abstract class BaseCommand implements ICommand {
 
+    protected TFrame tframe = TFrame.tframe;
+    protected FrameSender frameSender = tframe.getFrameSender();
+
     private final FrameCreator owner;
+    public static final String DIVIDER = "---------------------------";
 
     private final String label;
     private final String[] alias;
@@ -34,6 +40,19 @@ public abstract class BaseCommand implements ICommand {
         this.label = label;
         this.alias = alias;
         this.description = description;
+
+    }
+
+    /**
+     *
+     * 当扫描到这个类但是没有任何相关匹配的时候，执行操作 （@Override 重写）
+     *
+     * @param sender 命令发出者
+     */
+    @Deprecated
+    public void onDisMatched(ISender sender) {
+
+        sender.senderMessage("命令参数错误!");
 
     }
 

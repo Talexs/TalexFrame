@@ -45,15 +45,23 @@ public class PackedUser extends BaseUser {
     }
 
     @Override
-    public void setExtraInformation(String extraInformation) {
+    public PackedUser setExtraInformation(String extraInformation) {
 
         super.setExtraInformation(extraInformation);
 
         String str = SaBase64Util.decode(this.extraInformation);
 
-        if( StrUtil.isBlankIfStr(str) ) { return; }
+        if( StrUtil.isBlankIfStr(str) ) { return this; }
 
         this.properties = JSONUtil.parseObj(str);
+
+        return this;
+
+    }
+
+    public BaseUser unPack() {
+
+        return this;
 
     }
 
