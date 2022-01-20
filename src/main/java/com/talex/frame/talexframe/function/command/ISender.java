@@ -16,6 +16,6 @@ public interface ISender {
      * @param message 要发出的消息
      *
      */
-    void senderMessage(String... message);
+    void sendMessage(String... message);
 
 }

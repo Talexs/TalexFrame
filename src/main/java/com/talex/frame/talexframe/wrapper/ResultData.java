@@ -18,7 +18,7 @@ public class ResultData<T> {
 
     @Getter
     @AllArgsConstructor
-    static enum ResultEnum {
+    public static enum ResultEnum {
 
         /**操作成功**/
         SUCCESS(100,"OK"),

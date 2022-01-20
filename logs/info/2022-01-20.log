@@ -1765,3 +1765,5 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 [2022/01/20-19:42:13] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
 [2022/01/20-19:42:13] [main] com.talex.frame.talexframe.function.plugins.core.PluginManager [Module] Plugin loaded! 
 [2022/01/20-19:42:13] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/20-21:10:32] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/20-21:10:32] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 

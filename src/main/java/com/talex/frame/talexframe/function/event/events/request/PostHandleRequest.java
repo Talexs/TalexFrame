@@ -2,6 +2,7 @@ package com.talex.frame.talexframe.function.event.events.request;
 
 import com.talex.frame.talexframe.function.event.Cancellable;
 import com.talex.frame.talexframe.function.event.TalexEvent;
+import com.talex.frame.talexframe.wrapper.BodyCopyHttpServletRequestWrapper;
 import lombok.Getter;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class PostHandleRequest extends TalexEvent implements Cancellable {
 
     @Getter
-    private final HttpServletRequest request;
+    private final BodyCopyHttpServletRequestWrapper request;
 
     @Getter
     private final HttpServletResponse response;
@@ -30,7 +31,7 @@ public class PostHandleRequest extends TalexEvent implements Cancellable {
     @Getter
     private final ModelAndView modelAndView;
 
-    public PostHandleRequest(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+    public PostHandleRequest(BodyCopyHttpServletRequestWrapper request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
 
         this.request = request;
         this.response = response;

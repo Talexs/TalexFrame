@@ -1828,3 +1828,5 @@ Caused by: java.lang.NullPointerException: null
 [2022/01/20-19:42:13] [ INFO ] [Command] com.talex.frame.talexframe.function.command.CommandReader [Command] 输入 help 来查看命令列表! 
 [2022/01/20-19:42:13] [ INFO ] [main] com.talex.frame.talexframe.function.plugins.core.PluginManager [Module] Plugin loaded! 
 [2022/01/20-19:42:13] [ INFO ] [main] com.talex.frame.talexframe.listener.FrameMajorListener 框架启动成功! 
+[2022/01/20-21:10:32] [ INFO ] [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean Closing JPA EntityManagerFactory for persistence unit 'default' 
+[2022/01/20-21:10:32] [ INFO ] [SpringApplicationShutdownHook] org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down' 

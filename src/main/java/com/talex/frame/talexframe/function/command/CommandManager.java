@@ -90,7 +90,7 @@ public class CommandManager {
 
         if( !match ) {
 
-            sender.senderMessage("未知的命令: " + wholeCmd);
+            sender.sendMessage("未知的命令: " + wholeCmd);
 
         }
 
@@ -202,7 +202,7 @@ public class CommandManager {
 
             if( !autoComplete ) {
 
-                sender.senderMessage("你需要额外的 " + (method.getParameterCount() - args.length - 1) + " 个参数来使用这个命令.");
+                sender.sendMessage("你需要额外的 " + (method.getParameterCount() - args.length - 1) + " 个参数来使用这个命令.");
                 return;
 
             }

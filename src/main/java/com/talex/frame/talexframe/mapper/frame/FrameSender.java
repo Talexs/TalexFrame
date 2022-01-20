@@ -94,7 +94,7 @@ public final class FrameSender extends FrameCreator implements IConsoleSender {
     }
 
     @Override
-    public void senderMessage(String... message) {
+    public void sendMessage(String... message) {
 
         this.sendConsoleMessage(message);
 

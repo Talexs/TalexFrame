@@ -52,7 +52,7 @@ public abstract class BaseCommand implements ICommand {
     @Deprecated
     public void onDisMatched(ISender sender) {
 
-        sender.senderMessage("命令参数错误!");
+        sender.sendMessage("命令参数错误!");
 
     }
 

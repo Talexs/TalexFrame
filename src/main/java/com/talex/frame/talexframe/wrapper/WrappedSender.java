@@ -29,7 +29,7 @@ public class WrappedSender implements ISender {
     }
 
     @Override
-    public void senderMessage(String... message) {
+    public void sendMessage(String... message) {
 
         for( String msg : message ) {
 
@@ -67,7 +67,7 @@ public class WrappedSender implements ISender {
 
             }
 
-            this.sender.senderMessage( m );
+            this.sender.sendMessage( m );
 
         }
 

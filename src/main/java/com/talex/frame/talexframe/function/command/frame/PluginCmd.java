@@ -24,19 +24,19 @@ public class PluginCmd extends BaseCommand {
     @TalexCommand
     public void onDefault(WrappedSender sender) {
 
-        sender.senderMessage(DIVIDER);
-        sender.senderMessage("/%label% #Plugin 帮助");
-        sender.senderMessage("/%label% load <pluginName> #加载一个插件");
-        sender.senderMessage("/%label% unload <pluginName> #卸载一个插件");
-        sender.senderMessage("/%label% reload <pluginName> #重载一个插件");
-        sender.senderMessage("%divider%");
+        sender.sendMessage(DIVIDER);
+        sender.sendMessage("/%label% #Plugin 帮助");
+        sender.sendMessage("/%label% load <pluginName> #加载一个插件");
+        sender.sendMessage("/%label% unload <pluginName> #卸载一个插件");
+        sender.sendMessage("/%label% reload <pluginName> #重载一个插件");
+        sender.sendMessage("%divider%");
 
     }
 
     @TalexCommand( "load" )
     public void onLoadPlugin(ISender sender, String loadPlugin) {
 
-        sender.senderMessage("[插件] 正在加载插件 " + loadPlugin);
+        sender.sendMessage("[插件] 正在加载插件 " + loadPlugin);
 
         tframe.getPluginManager().loadPlugin(loadPlugin);
 
@@ -45,11 +45,11 @@ public class PluginCmd extends BaseCommand {
     @TalexCommand( "unload" )
     public void onUnloadPlugin(ISender sender, String loadPlugin) {
 
-        sender.senderMessage("[插件] 正在卸载插件 " + loadPlugin);
+        sender.sendMessage("[插件] 正在卸载插件 " + loadPlugin);
 
         if( tframe.getPluginManager().unloadPlugin(loadPlugin) ) {
 
-            sender.senderMessage("[插件] " + loadPlugin + " 已卸载!");
+            sender.sendMessage("[插件] " + loadPlugin + " 已卸载!");
 
         } else {
 
@@ -57,7 +57,7 @@ public class PluginCmd extends BaseCommand {
 
                 ((FrameSender)sender).errorConsoleMessage("[插件] " + loadPlugin + " 卸载失败!");
 
-            } else sender.senderMessage("[插件] " + loadPlugin + " 卸载失败!");
+            } else sender.sendMessage("[插件] " + loadPlugin + " 卸载失败!");
 
         }
 
@@ -66,7 +66,7 @@ public class PluginCmd extends BaseCommand {
     @TalexCommand( "load" )
     public void onReloadPlugin(ISender sender, String loadPlugin) {
 
-        sender.senderMessage("[插件] 正在重载插件 " + loadPlugin);
+        sender.sendMessage("[插件] 正在重载插件 " + loadPlugin);
 
         if( !tframe.getPluginManager().unloadPlugin(loadPlugin) ) {
 
@@ -74,7 +74,7 @@ public class PluginCmd extends BaseCommand {
 
                 ((FrameSender)sender).errorConsoleMessage("[插件] " + loadPlugin + " 重载失败! (无法卸载)");
 
-            } else sender.senderMessage("[插件] " + loadPlugin + " 重载失败! (无法卸载)");
+            } else sender.sendMessage("[插件] " + loadPlugin + " 重载失败! (无法卸载)");
 
             return;
 
