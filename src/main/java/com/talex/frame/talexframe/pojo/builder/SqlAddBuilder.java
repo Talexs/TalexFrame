@@ -8,29 +8,74 @@ import java.util.List;
 
 public class SqlAddBuilder extends SqlBuilder {
 
+    public static class AddParam {
+
+        @Getter
+        private String subParamName;
+
+        public AddParam setSubParamName(String name){
+
+            this.subParamName = name;
+            return this;
+
+        }
+
+        @Getter
+        private String subParamValue;
+
+        public AddParam setSubParamValue(String value){
+
+            this.subParamValue = value;
+            return this;
+
+        }
+
+    }
+
     @Getter
     @Setter
     private List<AddParam> map = new ArrayList<>();
-    @Getter
-    private String tableName = "default_table_" + System.currentTimeMillis();
-    @Getter
-    private AddType addType = AddType.IGNORE;
 
-    public SqlAddBuilder addTableParam(AddParam tp) {
+    public SqlAddBuilder addTableParam(AddParam tp){
 
         this.map.add(tp);
         return this;
 
     }
 
-    public SqlAddBuilder setTableName(String name) {
+    @Getter
+    private String tableName = "default_table_" + System.currentTimeMillis();
+
+    public SqlAddBuilder setTableName(String name){
 
         this.tableName = name;
         return this;
 
     }
 
-    public SqlAddBuilder setType(AddType type) {
+    public enum AddType {
+
+        /** 忽略 **/
+        IGNORE("IGNORE"),
+
+        /** 替换 **/
+        REPLACE("REPLACE");
+
+        @Getter
+        String displayName;
+
+        AddType(String displayName){
+
+            this.displayName = displayName;
+
+        }
+
+    }
+
+    @Getter
+    private AddType addType = AddType.IGNORE;
+
+    public SqlAddBuilder setType(AddType type){
 
         this.addType = type;
         return this;
@@ -38,18 +83,18 @@ public class SqlAddBuilder extends SqlBuilder {
     }
 
     @Override
-    public String toString() {
+    public String toString(){
 
-        StringBuilder sb = new StringBuilder(( addType == AddType.IGNORE ? "INSERT " + addType.getDisplayName() : "REPLACE" ) + " INTO `" + this.tableName + "` (");
+        StringBuilder sb = new StringBuilder((addType == AddType.IGNORE ? "INSERT " + addType.getDisplayName() : "REPLACE") + " INTO `" + this.tableName + "` (");
         StringBuilder key = new StringBuilder("VALUES (");
         int i = 0;
 
-        for ( AddParam tp : map ) {
+        for(AddParam tp : map){
 
             ++i;
             StringBuilder tsb = new StringBuilder("`" + tp.getSubParamName() + "`");
 
-            if ( map.size() <= i ) {
+            if(map.size() <= i){
 
                 key.append("\"").append(tp.getSubParamValue()).append("\"");
 
@@ -65,45 +110,6 @@ public class SqlAddBuilder extends SqlBuilder {
         }
 
         return sb.append(") ").append(key).append(")").toString();
-
-    }
-
-    public enum AddType {
-
-        IGNORE("IGNORE"),
-        REPLACE("REPLACE");
-
-        @Getter
-        String displayName;
-
-        AddType(String displayName) {
-
-            this.displayName = displayName;
-
-        }
-
-    }
-
-    public static class AddParam {
-
-        @Getter
-        private String subParamName;
-        @Getter
-        private String subParamValue;
-
-        public AddParam setSubParamName(String name) {
-
-            this.subParamName = name;
-            return this;
-
-        }
-
-        public AddParam setSubParamValue(String value) {
-
-            this.subParamValue = value;
-            return this;
-
-        }
 
     }
 

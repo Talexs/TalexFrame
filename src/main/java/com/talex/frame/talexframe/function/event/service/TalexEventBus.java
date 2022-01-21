@@ -3,6 +3,7 @@ package com.talex.frame.talexframe.function.event.service;
 import cn.hutool.core.thread.ThreadUtil;
 import com.talex.frame.talexframe.function.event.*;
 import com.talex.frame.talexframe.pojo.enums.ThreadMode;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
@@ -80,6 +81,12 @@ public class TalexEventBus implements IEventBus {
 
                 methodsList.add(methodManager);
 
+                for( TalexEvent continueEvent : continueEvents.values() ) {
+
+                    this.callEvent( continueEvent, methodManager );
+
+                }
+
             }
 
             mapCaches.put(listener, methodsList);
@@ -90,8 +97,35 @@ public class TalexEventBus implements IEventBus {
 
     }
 
+    private void callEvent(TalexEvent event, MethodManager methodManager) {
+
+        if (methodManager.getParamType().isAssignableFrom(event.getClass())) {
+
+            methodManager.listen( (( IContinue ) event).getMatchKey() );
+
+            if(methodManager.getTalexSubscribe().threadMode() == ThreadMode.ASYNC) {
+
+                ThreadUtil.execAsync(() -> event(event, methodManager));
+
+            } else {
+
+                event(event, methodManager);
+
+            }
+
+        }
+
+    }
+
     @Override
     public TalexEventBus callEvent(TalexEvent event) {
+
+        if( event instanceof IContinue ) {
+
+            String matchKey = ( (IContinue) event ).getMatchKey();
+            continueEvents.put(matchKey, event);
+
+        }
 
         Map<Integer, MethodManager> preList = new HashMap<>(mapCaches.size());
 
@@ -125,16 +159,7 @@ public class TalexEventBus implements IEventBus {
 
             if(methodManager.getTalexSubscribe().threadMode() == ThreadMode.ASYNC) {
 
-                ThreadUtil.execAsync(new Runnable() {
-
-                    @Override
-                    public void run() {
-
-                        event(event, methodManager);
-
-                    }
-
-                });
+                ThreadUtil.execAsync(() -> event(event, methodManager));
 
             } else {
 
@@ -148,13 +173,27 @@ public class TalexEventBus implements IEventBus {
 
     }
 
+    @Getter
+    private final Map<String, TalexEvent> continueEvents = new HashMap<>(16);
+
     private void event(TalexEvent event, MethodManager methodManager) {
 
-        log.debug("[Event] --> Invoke: " + event.getClass().getName() + " | " + methodManager.getMethod().getName() + " <> " + methodManager.getOwner().getClass().getName() );
+        Method method = methodManager.getMethod();
+
+        log.debug("[Event] --> Invoke: " + event.getClass().getName() + " | " + method.getName() + " <> " + methodManager.getOwner().getClass().getName() );
 
         try {
 
-            methodManager.getMethod().invoke(methodManager.getOwner(), event);
+            method.invoke(methodManager.getOwner(), event);
+
+            if( event instanceof IContinue ) {
+
+                String matchKey = ( (IContinue) event ).getMatchKey();
+                continueEvents.put(matchKey, event);
+
+                methodManager.listen(matchKey);
+
+            }
 
             if( methodManager.getTalexSubscribe().once() ) {
 
@@ -170,7 +209,12 @@ public class TalexEventBus implements IEventBus {
 
         } catch (Exception e) {
 
-            log.error("[事件] 在调用 " + methodManager.getMethod().getName() + " 时, 目标抛出异常: " + e.getCause().getMessage() + "   @" + methodManager.getMethod().getDeclaringClass().getName() + "." + methodManager.getMethod().getName());
+            if( e.getCause() == null ) {
+
+
+                log.error("[事件] 在调用 " + method.getName() + " 时, 目标抛出异常" + "   @" + method.getDeclaringClass().getName() + "." + method.getName());
+
+            } else log.error("[事件] 在调用 " + method.getName() + " 时, 目标抛出异常: " + e.getCause().getMessage() + "   @" + method.getDeclaringClass().getName() + "." + method.getName());
 
             e.printStackTrace();
 

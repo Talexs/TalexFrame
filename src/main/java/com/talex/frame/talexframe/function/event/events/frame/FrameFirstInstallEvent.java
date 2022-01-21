@@ -1,5 +1,6 @@
 package com.talex.frame.talexframe.function.event.events.frame;
 
+import com.talex.frame.talexframe.function.event.IContinue;
 import com.talex.frame.talexframe.function.event.TalexEvent;
 import com.talex.frame.talexframe.function.event.Cancellable;
 import lombok.Data;
@@ -8,7 +9,7 @@ import lombok.Getter;
 
 @EqualsAndHashCode( callSuper = true )
 @Data
-public class FrameFirstInstallEvent extends TalexEvent implements Cancellable {
+public class FrameFirstInstallEvent extends TalexEvent implements Cancellable, IContinue {
 
     @Getter
     private long installedTimeStamp;
@@ -38,6 +39,12 @@ public class FrameFirstInstallEvent extends TalexEvent implements Cancellable {
 
         this.cancelled = var;
 
+    }
+
+    @Override
+    public String getMatchKey() {
+
+        return System.nanoTime() + " # FrameFirstInstallEvent";
     }
 
 }

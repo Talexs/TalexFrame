@@ -11,6 +11,15 @@
         </encoder>
     </appender>
 
+<!--    <appender name="fileTerminalLog" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+<!--            <level>INFO</level>-->
+<!--        </filter>-->
+<!--        <TerminalConsole>-->
+<!--            <PatternLayout pattern="[%d{HH:mm:ss} %level]: %minecraftFormatting{%msg}{strip}%n"/>-->
+<!--        </TerminalConsole>-->
+<!--    </appender>-->
+
     <appender name="fileLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>INFO</level>

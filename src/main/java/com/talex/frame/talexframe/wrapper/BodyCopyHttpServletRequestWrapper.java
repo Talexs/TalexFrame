@@ -30,13 +30,17 @@ public class BodyCopyHttpServletRequestWrapper extends HttpServletRequestWrapper
         super(request);
 
         this.body = getBodyString(request);
+        this.originRequest = request;
 
         bytes = this.body.getBytes(StandardCharsets.UTF_8);
 
     }
 
     @Getter
-    private String body;
+    private final String body;
+
+    @Getter
+    private final HttpServletRequest originRequest;
 
     /**
      *

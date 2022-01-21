@@ -1,5 +1,7 @@
 package com.talex.frame.talexframe.function.command.frame;
 
+import com.talex.frame.talexframe.function.plugins.core.PluginInfo;
+import com.talex.frame.talexframe.function.plugins.core.WebPlugin;
 import com.talex.frame.talexframe.pojo.annotations.TalexCommand;
 import com.talex.frame.talexframe.function.command.BaseCommand;
 import com.talex.frame.talexframe.function.command.ISender;
@@ -26,9 +28,33 @@ public class PluginCmd extends BaseCommand {
 
         sender.sendMessage(DIVIDER);
         sender.sendMessage("/%label% #Plugin 帮助");
+        sender.sendMessage("/%label% list #Plugin 插件列表");
         sender.sendMessage("/%label% load <pluginName> #加载一个插件");
         sender.sendMessage("/%label% unload <pluginName> #卸载一个插件");
         sender.sendMessage("/%label% reload <pluginName> #重载一个插件");
+        sender.sendMessage("%divider%");
+
+    }
+
+    @TalexCommand( "list" )
+    public void onListPlugin(WrappedSender sender) {
+
+        sender.sendMessage("%divider%");
+
+        for( WebPlugin plugin : tframe.getPluginManager().getPluginHashMap().values() ) {
+
+            PluginInfo info = plugin.getInfo();
+
+            sender.sendMessage(" " + plugin.getName() + " (" + info.getPluginVersion() + " @" + info.getSupportVersion() + ")");
+            sender.sendMessage("       -- by " + info.getPluginAuthor());
+            sender.sendMessage("       ");
+            sender.sendMessage("   " + info.getDescription());
+            sender.sendMessage("");
+            sender.sendMessage("       @" + info.getWebsite());
+            sender.sendMessage("");
+
+        }
+
         sender.sendMessage("%divider%");
 
     }
@@ -63,7 +89,7 @@ public class PluginCmd extends BaseCommand {
 
     }
 
-    @TalexCommand( "load" )
+    @TalexCommand( "reload" )
     public void onReloadPlugin(ISender sender, String loadPlugin) {
 
         sender.sendMessage("[插件] 正在重载插件 " + loadPlugin);

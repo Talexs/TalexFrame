@@ -12,6 +12,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode( callSuper = true )
 @Data
+@Deprecated
 public class FrameMajorDAOInitiatedEvent extends TalexEvent {
 
     private final MajorDAO majorDAO;

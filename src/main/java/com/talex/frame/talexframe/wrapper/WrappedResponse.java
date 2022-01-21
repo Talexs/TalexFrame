@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
@@ -59,10 +58,12 @@ public class WrappedResponse {
     @SneakyThrows
     public void returnDataByFailed(ResultData.ResultEnum rEnum, Object data) {
 
+        if( response.isCommitted() ) return;
+
         String str = JSONUtil.toJsonStr(ResultData.FAILED(rEnum, data));
 
         response.setStatus(200);
-        response.setContentLength(str.length());
+        // response.setContentLength(str.length());
         response.setContentType("application/json");
 
         OutputStream os = response.getOutputStream();
@@ -74,10 +75,12 @@ public class WrappedResponse {
     @SneakyThrows
     public void returnDataByFailed(Object data) {
 
+        if( response.isCommitted() ) return;
+
         String str = JSONUtil.toJsonStr(ResultData.FAILED(data));
 
         response.setStatus(200);
-        response.setContentLength(str.length());
+        // response.setContentLength(str.length());
         response.setContentType("application/json");
 
         OutputStream os = response.getOutputStream();
@@ -92,7 +95,7 @@ public class WrappedResponse {
         String str = JSONUtil.toJsonStr(ResultData.SUCCESS(data));
 
         response.setStatus(200);
-        response.setContentLength(str.length());
+        // response.setContentLength(str.length());
         response.setContentType("application/json");
 
         OutputStream os = response.getOutputStream();

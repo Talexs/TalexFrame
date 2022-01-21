@@ -1,10 +1,16 @@
 package com.talex.frame.talexframe.function.plugins.core;
 
 import com.talex.frame.talexframe.function.talex.FrameCreator;
+import com.talex.frame.talexframe.function.talex.TFrame;
+import com.talex.frame.talexframe.mapper.frame.FrameSender;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public abstract class WebPlugin extends FrameCreator implements IPlugin {
+
+    protected TFrame tframe = TFrame.tframe;
+    protected FrameSender sender = TFrame.tframe.getFrameSender();
 
     public WebPlugin(String pluginName, PluginInfo info) {
 
@@ -16,6 +22,8 @@ public abstract class WebPlugin extends FrameCreator implements IPlugin {
     }
 
     private final String name;
-    private final PluginInfo info;
+
+    @Setter
+    private PluginInfo info;
 
 }

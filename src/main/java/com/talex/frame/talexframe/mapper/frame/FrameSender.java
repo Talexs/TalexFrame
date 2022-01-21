@@ -3,7 +3,6 @@ package com.talex.frame.talexframe.mapper.frame;
 import com.talex.frame.talexframe.function.command.IConsoleSender;
 import com.talex.frame.talexframe.function.talex.FrameCreator;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.event.Level;
 
 /**
  * 框架发出者
@@ -23,11 +22,9 @@ public final class FrameSender extends FrameCreator implements IConsoleSender {
 
             INSTANCE = new FrameSender();
 
-            return INSTANCE;
-
         }
 
-        return null;
+        return INSTANCE;
 
     }
 

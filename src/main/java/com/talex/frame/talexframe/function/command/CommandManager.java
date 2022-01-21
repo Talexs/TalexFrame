@@ -39,7 +39,7 @@ public class CommandManager {
     @SneakyThrows
     private CommandManager() {
 
-        this.commandReader = new CommandReader();
+        this.commandReader = new CommandReader(this);
 
         this.commandReader.run();
 

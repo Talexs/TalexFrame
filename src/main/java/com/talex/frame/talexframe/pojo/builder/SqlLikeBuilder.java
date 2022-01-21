@@ -13,8 +13,6 @@ public class SqlLikeBuilder extends SqlBuilder {
     private List<String> map = new ArrayList<>();
 
     private String like;
-    @Getter
-    private String tableName = "default_table_" + System.currentTimeMillis();
 
     public SqlLikeBuilder setLike(String like) {
 
@@ -23,14 +21,17 @@ public class SqlLikeBuilder extends SqlBuilder {
 
     }
 
-    public SqlLikeBuilder addTableParam(String likeTableParam) {
+    public SqlLikeBuilder addTableParam(String likeTableParam){
 
         this.map.add(likeTableParam);
         return this;
 
     }
 
-    public SqlLikeBuilder setTableName(String name) {
+    @Getter
+    private String tableName = "default_table_" + System.currentTimeMillis();
+
+    public SqlLikeBuilder setTableName(String name){
 
         this.tableName = name;
         return this;
@@ -38,17 +39,17 @@ public class SqlLikeBuilder extends SqlBuilder {
     }
 
     @Override
-    public String toString() {
+    public String toString(){
 
         StringBuilder sb = new StringBuilder("SELECT * FROM `" + this.tableName + "` WHERE  CONCAT(");
         int i = 0;
 
-        for ( String key : getMap() ) {
+        for(String key : getMap()){
 
             ++i;
             StringBuilder tsb = new StringBuilder("`" + key + "`");
 
-            if ( map.size() > i ) {
+            if(map.size() > i){
 
                 tsb.append(",");
 

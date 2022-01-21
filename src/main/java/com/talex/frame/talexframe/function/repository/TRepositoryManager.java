@@ -15,7 +15,14 @@ import java.util.Map;
 @Getter
 public class TRepositoryManager {
 
-    private final Map<String, TRepository> repositories = new HashMap<>();
+    private final Map<Class<? extends TRepository>, TRepository> repositories = new HashMap<>();
+
+    /**
+     *
+     * TableName -> RepositoryClass 映射
+     *
+     */
+    private final Map<String, Class<? extends TRepository>> tableNameClzMap = new HashMap<>();
     private final Map<TRepository, String> repositoryPluginMap = new HashMap<>();
 
     private static TRepositoryManager manager;
@@ -51,8 +58,15 @@ public class TRepositoryManager {
 
         }
 
-        this.repositories.put(repository.getProvider(), repository);
+        this.tableNameClzMap.put(repository.getProvider(), repository.getClass());
+        this.repositories.put(repository.getClass(), repository);
         this.repositoryPluginMap.put(repository, plugin.getName());
+
+        if( repository instanceof TAutoRepository ) {
+
+            ( (TAutoRepository<?>) repository ).onInstall();
+
+        }
 
         return true;
 
@@ -75,7 +89,14 @@ public class TRepositoryManager {
 
         }
 
-        this.repositories.remove(repository.getProvider(), repository);
+        if( repository instanceof TAutoRepository ) {
+
+            ((TAutoRepository<?>) repository).saveAllDataToMysql();
+
+        }
+
+        this.tableNameClzMap.remove(repository.getProvider(), repository.getClass());
+        this.repositories.remove(repository.getClass(), repository);
         this.repositoryPluginMap.remove(repository, plugin.getName());
 
         return true;

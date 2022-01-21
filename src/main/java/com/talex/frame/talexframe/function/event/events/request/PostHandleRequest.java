@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author TalexDreamSoul
  * @date 2022/1/20 19:23 <br /> Project: TalexFrame <br />
  */
-public class PostHandleRequest extends TalexEvent implements Cancellable {
+public class PostHandleRequest extends TalexEvent {
 
     @Getter
     private final BodyCopyHttpServletRequestWrapper request;
@@ -37,21 +37,6 @@ public class PostHandleRequest extends TalexEvent implements Cancellable {
         this.response = response;
         this.handler = handler;
         this.modelAndView = modelAndView;
-
-    }
-
-    private boolean cancel;
-
-    @Override
-    public boolean isCancelled() {
-
-        return cancel;
-    }
-
-    @Override
-    public void setCancelled(boolean var) {
-
-        this.cancel = var;
 
     }
 

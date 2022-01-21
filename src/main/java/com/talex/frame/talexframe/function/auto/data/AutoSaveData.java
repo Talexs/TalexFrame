@@ -16,7 +16,7 @@ import java.lang.reflect.Field;
  * @author TalexDreamSoul
  * @date 2022/1/20 14:49 <br /> Project: TalexFrame <br />
  */
-public class AutoSaveData extends FrameData {
+public abstract class AutoSaveData extends FrameData {
 
     public AutoSaveData(String provider) {
 
@@ -103,5 +103,12 @@ public class AutoSaveData extends FrameData {
         return json;
 
     }
+
+    /**
+     *
+     * 获得主key
+     *
+     */
+    public abstract String getMainKey();
 
 }

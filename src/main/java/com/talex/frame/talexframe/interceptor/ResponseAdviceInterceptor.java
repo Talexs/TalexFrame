@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.talex.frame.talexframe.pojo.annotations.WrapperResponse;
 import com.talex.frame.talexframe.wrapper.ResultData;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -12,6 +13,8 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+
+import java.util.Objects;
 
 /**
  * <br /> {@link com.talex.frame.talexframe.interceptor Package }
@@ -32,7 +35,7 @@ public class ResponseAdviceInterceptor implements ResponseBodyAdvice<Object> {
 
         if( wr != null && !wr.value() ) { return false; }
 
-        wr = returnType.getMethod().getAnnotation(WrapperResponse.class);
+        wr = Objects.requireNonNull(returnType.getMethod()).getAnnotation(WrapperResponse.class);
 
         return wr == null || wr.value();
 

@@ -1,6 +1,7 @@
 package com.talex.frame.talexframe.function.plugins.core;
 
 import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.util.StrUtil;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
@@ -86,9 +87,7 @@ public class PluginManager {
     @SneakyThrows
     private PluginInfo getPluginMainClassPathFromPluginName(String pluginName){
 
-        JarFile jarFile = new JarFile(this.pluginFolder + "/" + pluginName + ".jar");
-
-        this.pluginJarFiles.put(pluginName, jarFile);
+        JarFile jarFile = new JarFile(pluginName.endsWith(".jar") ? this.pluginFolder + "/" + pluginName : this.pluginFolder + "/" + pluginName + ".jar");
 
         for (Enumeration<JarEntry> en = jarFile.entries(); en.hasMoreElements(); ) {
 
@@ -105,7 +104,7 @@ public class PluginManager {
 
                     JsonObject json = JsonParser.parseString(a).getAsJsonObject();
 
-                    return new PluginInfo()
+                    PluginInfo info = new PluginInfo()
                             .setPluginAuthor(json.get("author").getAsString())
                             .setMainClassPath(json.get("mainClass").getAsString())
                             .setDescription(json.get("description").getAsString())
@@ -113,6 +112,10 @@ public class PluginManager {
                             .setPluginVersion(json.get("version").getAsString())
                             .setWebsite(json.get("website").getAsString())
                             .setSupportVersion(PluginInfo.PluginSupportVersion.valueOf(json.get("supportVersion").getAsString()));
+
+                    this.pluginJarFiles.put(info.getPluginName(), jarFile);
+
+                    return info;
 
                 } catch (JsonSyntaxException e) {
 
@@ -131,7 +134,7 @@ public class PluginManager {
 
     }
 
-    public void loadPlugin(String pluginName){
+    public void loadPlugin(String pluginName) {
 
         if(pluginHashMap.containsKey(pluginName)) {
 
@@ -144,11 +147,26 @@ public class PluginManager {
 
         URLClassLoader urlClassLoader = new URLClassLoader(urls, this.getClass().getClassLoader());
 
-        this.pluginClassLoaders.put(pluginName, urlClassLoader);
+        PluginInfo info = Objects.requireNonNull(getPluginMainClassPathFromPluginName(pluginName));
 
-        WebPlugin webPlugin = getPluginInstance(pluginName, Objects.requireNonNull(getPluginMainClassPathFromPluginName(pluginName)));
+        this.pluginClassLoaders.put(info.getPluginName(), urlClassLoader);
 
-        this.pluginHashMap.put(pluginName, webPlugin);
+        WebPlugin webPlugin = getPluginInstance(info.getPluginName(), info);
+
+        if( !Objects.equals(webPlugin.getName(), info.getPluginName()) ) {
+
+            log.info("[插件] 插件内部名称与描述文件不符! - 加载失败");
+
+            this.pluginClassLoaders.remove(info.getPluginName());
+            this.nameClassIndex.remove(info.getPluginName());
+
+            webPlugin.onDisable();
+
+            return;
+
+        }
+
+        this.pluginHashMap.put(webPlugin.getName(), webPlugin);
 
         log.info("[插件] " + webPlugin.getName() + " v" + webPlugin.getInfo().getPluginVersion() + " 已加载完毕!");
 
@@ -187,11 +205,37 @@ public class PluginManager {
     }
 
     @SneakyThrows
-    public boolean unloadPlugin(String pluginName){
+    public boolean unloadPlugin(String pluginName) {
 
         if(!pluginHashMap.containsKey(pluginName)) {
 
             log.warn("[插件] 未从插件列表中找到: " + pluginName);
+
+            Map<String, WebPlugin> list = new HashMap<>();
+
+            for( Map.Entry<String, WebPlugin> entry : pluginHashMap.entrySet() ) {
+
+                String str = entry.getKey();
+
+                if( StrUtil.similar(str, pluginName) >= 0.75 ) list.put(str, entry.getValue());
+
+            }
+
+            if( list.size() > 0 ) {
+
+                log.info("[插件] 或许你是想要: ");
+
+                for( Map.Entry<String, WebPlugin> entry : list.entrySet() ) {
+
+                    PluginInfo info = entry.getValue().getInfo();
+
+                    log.info(" " + entry.getKey() + " (by " + info.getPluginAuthor() + ") v" + info.getPluginVersion());
+                    log.info("        @" + info.getMainClassPath());
+
+                }
+
+            }
+
             return false;
 
         }
@@ -314,6 +358,7 @@ public class PluginManager {
         try {
 
             instance = clazz.newInstance();
+            // instance = clazz.getConstructors()[0].newInstance(pluginName, info);
 
         } catch (InstantiationException | IllegalAccessException e) {
 
@@ -338,6 +383,8 @@ public class PluginManager {
         }
 
         WebPlugin wp = (WebPlugin) instance;
+
+        wp.setInfo(info);
 
         wp.onEnable();
 

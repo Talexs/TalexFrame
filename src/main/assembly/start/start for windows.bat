@@ -1,10 +1,13 @@
-echo off
+title ${project.build.finalName} ConsoleManager
 
-set APP_NAME=${project.build.finalName}.jar
+chcp 65001
 
-:jmx
-java -server -jar lib/%APP_NAME%
-goto end
+cls
 
 :end
+
+java -server -jar lib/${project.build.finalName}.jar
+
+goto end
+
 pause

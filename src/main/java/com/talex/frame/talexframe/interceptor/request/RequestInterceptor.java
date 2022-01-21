@@ -1,20 +1,22 @@
 package com.talex.frame.talexframe.interceptor.request;
 
 import cn.hutool.core.convert.ConvertException;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.talex.frame.talexframe.function.controller.TController;
+import com.talex.frame.talexframe.function.controller.TControllerManager;
 import com.talex.frame.talexframe.function.event.events.request.PostHandleRequest;
 import com.talex.frame.talexframe.function.event.events.request.PreHandleRequest;
 import com.talex.frame.talexframe.function.event.events.request.RequestAfterCompletion;
 import com.talex.frame.talexframe.function.talex.TFrame;
 import com.talex.frame.talexframe.pojo.annotations.TParam;
 import com.talex.frame.talexframe.pojo.annotations.TRequest;
+import com.talex.frame.talexframe.utils.UrlUtil;
 import com.talex.frame.talexframe.wrapper.BodyCopyHttpServletRequestWrapper;
 import com.talex.frame.talexframe.wrapper.ResultData;
 import com.talex.frame.talexframe.wrapper.WrappedResponse;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,24 +35,59 @@ import java.util.List;
  * @author TalexDreamSoul
  * @date 2022/1/20 16:47 <br /> Project: TalexFrame <br />
  */
-@Component
-@Order
+// @Component
+// @Order
+@Slf4j
 public final class RequestInterceptor implements HandlerInterceptor {
-
-    private final TFrame tframe = TFrame.tframe;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
+        if( TFrame.tframe == null ) return false;
+
+        TFrame tframe = TFrame.tframe;
+
         PreHandleRequest event = new PreHandleRequest(request, response, handler);
 
-        TFrame.tframe.callEvent(event);
+        tframe.callEvent(event);
 
-        return !event.isCancelled();
+        if( event.isCancelled() ) return false;
+
+        BodyCopyHttpServletRequestWrapper copiedRequest = new BodyCopyHttpServletRequestWrapper(request);
+
+        log.info("[接口层] 新的请求 " + request.getRequestURI() + " #来自: " + request.getSession().getId());
+
+        WrappedResponse wr = new WrappedResponse(copiedRequest, response);
+
+        TControllerManager manager = tframe.getControllerManager();
+
+        if( manager == null ) {
+
+            wr.returnDataByFailed("Frame not install yet.");
+
+            return false;
+
+        }
+
+        for( TController controller : manager.getControllers().values() ) {
+
+            processClassRequest(controller, wr);
+
+        }
+
+        if( !response.isCommitted() ) {
+
+            wr.returnDataByFailed(ResultData.ResultEnum.NOT_FOUND, "请重新确认 URL 正误.");
+
+        }
+
+        return false;
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+        if( TFrame.tframe == null ) return;
 
         BodyCopyHttpServletRequestWrapper copiedRequest = new BodyCopyHttpServletRequestWrapper(request);
 
@@ -58,21 +95,13 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
         TFrame.tframe.callEvent(event);
 
-        if( event.isCancelled() ) return;
-
-        tframe.getFrameSender().sendConsoleMessage("[接口层] 新的请求 " + request.getRequestURI() + " #来自: " + request.getRemoteUser());
-
-        WrappedResponse wr = new WrappedResponse(copiedRequest, response);
-
-        for( TController controller : tframe.getControllerManager().getControllers().values() ) {
-
-            processClassRequest(controller, wr);
-
-        }
+        // if( event.isCancelled() ) return;
 
     }
 
     private void processClassRequest(TController controller, WrappedResponse wr) throws InstantiationException, IllegalAccessException, InvocationTargetException {
+
+        if( TFrame.tframe == null ) return;
 
         Class<?> clz = controller.getClass();
 
@@ -82,15 +111,29 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
             if( request == null ) continue;
 
+            if( !UrlUtil.advancedUrlChecker(wr.getRequest().getRequestURI(), request.value())) continue;
+
             List<Object> params = new ArrayList<>();
 
             params.add(wr);
 
             if( !method.isAccessible() ) method.setAccessible(true);
 
-            if( !request.parseJSON() ) { method.invoke(clz.newInstance(), params.toArray()); }
+            if( !request.parseJSON() ) { method.invoke(clz.newInstance(), params.toArray()); return; }
 
-            JSONObject json = JSONUtil.parseObj(wr.getRequest().getBody());
+            String str = wr.getRequest().getBody();
+
+            if( StrUtil.isBlankIfStr(str) ) {
+
+                wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Data error");
+
+                log.info("[接口层] 请求数据错误 - 无任何数据");
+
+                return;
+
+            }
+
+            JSONObject json = JSONUtil.parseObj(str);
 
             for( Parameter parameter : method.getParameters() ) {
 
@@ -108,9 +151,9 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
                     if( !param.value() ) {
 
-                        wr.returnDataByFailed(ResultData.ResultEnum.RC203, "Parameter error");
+                        wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Parameter error");
 
-                        tframe.getFrameSender().sendConsoleMessage("[接口层] 请求参数错误 - " + (param.field() != null ? param.field() : parameter.getName()) + " #" + e.getMessage());
+                        log.info("[接口层] 请求参数错误 - " + (param.field() != null ? param.field() : parameter.getName()) + " #" + e.getMessage());
 
                         return;
 
@@ -124,7 +167,7 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
             }
 
-            tframe.getFrameSender().sendConsoleMessage("[接口层] 由 @" + clz + " 开始处理.");
+            log.info("[接口层] 由 @" + clz + " 开始处理.");
 
             long a = System.nanoTime();
 
@@ -134,9 +177,9 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
             if( a > 200000000 ) {
 
-                tframe.getFrameSender().warnConsoleMessage("[接口层] 处理完毕 - 耗时较长，请优化接口！ 耗时: " + a + "nanoTime");
+                log.warn("[接口层] 处理完毕 - 耗时较长，请优化接口！ 耗时: " + a + "nanoTime");
 
-            } else tframe.getFrameSender().sendMessage("[接口层] 处理完毕 耗时: " + a + "nanoTime");
+            } else log.info("[接口层] 处理完毕 耗时: " + a + "nanoTime");
 
             return;
 
