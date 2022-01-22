@@ -1,5 +1,6 @@
 package com.talex.frame.talexframe.function.plugins.core;
 
+import cn.hutool.core.comparator.VersionComparator;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.StrUtil;
 import com.google.gson.JsonObject;
@@ -112,6 +113,20 @@ public class PluginManager {
                             .setPluginVersion(json.get("version").getAsString())
                             .setWebsite(json.get("website").getAsString())
                             .setSupportVersion(PluginInfo.PluginSupportVersion.valueOf(json.get("supportVersion").getAsString()));
+
+                    if( info.getSupportVersion() != TFrame.tframe.getVersionE() ) {
+
+                        log.error("[插件] 抱歉，此插件是为版本 " + info.getSupportVersion().name() + " 编写的，不适用于 " + TFrame.tframe.getVersionE().name());
+
+                        return null;
+
+                    }
+
+                    if( VersionComparator.INSTANCE.compare(info.getSupportVersion().getVersion(), TFrame.tframe.getVersion()) != 1 ) {
+
+                        log.warn("[插件] 此插件需要版本 " + info.getSupportVersion().getVersion() + " 或更高，当前框架版本：" + TFrame.tframe.getVersion() + " 请尝试升级框架.");
+
+                    }
 
                     this.pluginJarFiles.put(info.getPluginName(), jarFile);
 

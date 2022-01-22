@@ -16,40 +16,49 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 public class PluginInfo {
 
-    enum PluginSupportVersion {
+    public enum PluginSupportVersion {
 
 //        <4.0.0
-        FOUR(),
+        FOUR("4.0.0"),
 
 //        <=4.0.0
-        FOUR_PLUS(),
+        FOUR_PLUS("4.0.0a"),
 
 //        5.0.0
-        FIVE(),
+        FIVE("5.0.0"),
 
 //        5.0.0 - 5.1.0
-        FIVE_PLUS(),
+        FIVE_PLUS("5.0.0a"),
 
 //        5.2.0
-        FIVE_PLUS_PRO(),
+        FIVE_PLUS_PRO("5.2.0a"),
 
 //        5.x(>2).0
-        FIVE_SNAPSHOT(),
+        FIVE_SNAPSHOT("5.2a.0"),
 
 //        6.0.0-PV
-        SIX_PREVIEW(),
+        SIX_PREVIEW("6.0.0-pv"),
 
 //        6.0.0
-        SIX_NORMAL(),
+        SIX_NORMAL("6.0.0"),
 
 //        6.0.0-alpha
-        SIX_ALPHA(),
+        SIX_ALPHA("6.0.0-a"),
 
 //        6.0.0-beta
-        SIX_BETA(),
+        SIX_BETA("6.0.0-beta"),
 
 //        7.0.0
-        SEVEN()
+        SEVEN("7.0.0");
+
+        @Getter
+        private final String version;
+
+        PluginSupportVersion(String version) {
+
+            this.version = version;
+
+        }
 
     }
 

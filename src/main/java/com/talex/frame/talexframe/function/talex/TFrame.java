@@ -12,6 +12,7 @@ import com.talex.frame.talexframe.function.event.events.frame.FrameStartedEvent;
 import com.talex.frame.talexframe.function.event.service.TalexEventBus;
 import com.talex.frame.talexframe.function.mysql.MysqlManager;
 import com.talex.frame.talexframe.function.plugins.addon.FramePluginListener;
+import com.talex.frame.talexframe.function.plugins.core.PluginInfo;
 import com.talex.frame.talexframe.function.plugins.core.PluginManager;
 import com.talex.frame.talexframe.function.repository.TRepositoryManager;
 import com.talex.frame.talexframe.listener.FrameSelfListener;
@@ -35,6 +36,9 @@ import java.io.File;
 public class TFrame {
 
     public static TFrame tframe = new TFrame();
+
+    private final PluginInfo.PluginSupportVersion versionE = PluginInfo.PluginSupportVersion.SIX_NORMAL;
+    private final String version = "6.1.0";
 
     @Setter
     private FrameStatus frameStatus = FrameStatus.STOPPED;
