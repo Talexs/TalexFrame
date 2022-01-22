@@ -104,4 +104,16 @@ public class WrappedResponse {
 
     }
 
+    @SneakyThrows
+    public void returnDataByBlob(byte[] data) {
+
+        response.setStatus(200);
+        response.setContentType("multipart/form-data");
+
+        OutputStream os = response.getOutputStream();
+        os.write(data);
+        os.flush();
+
+    }
+
 }

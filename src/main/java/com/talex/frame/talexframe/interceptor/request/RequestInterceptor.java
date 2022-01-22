@@ -9,6 +9,7 @@ import com.talex.frame.talexframe.function.controller.TControllerManager;
 import com.talex.frame.talexframe.function.event.events.request.PostHandleRequest;
 import com.talex.frame.talexframe.function.event.events.request.PreHandleRequest;
 import com.talex.frame.talexframe.function.event.events.request.RequestAfterCompletion;
+import com.talex.frame.talexframe.function.event.events.request.RequestCorsTryEvent;
 import com.talex.frame.talexframe.function.talex.TFrame;
 import com.talex.frame.talexframe.pojo.annotations.TParam;
 import com.talex.frame.talexframe.pojo.annotations.TRequest;
@@ -47,17 +48,36 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
         TFrame tframe = TFrame.tframe;
 
-        PreHandleRequest event = new PreHandleRequest(request, response, handler);
+        BodyCopyHttpServletRequestWrapper copiedRequest = new BodyCopyHttpServletRequestWrapper(request);
+
+        WrappedResponse wr = new WrappedResponse(copiedRequest, response);
+
+        PreHandleRequest event = new PreHandleRequest(wr, response, handler);
 
         tframe.callEvent(event);
 
         if( event.isCancelled() ) return false;
 
-        BodyCopyHttpServletRequestWrapper copiedRequest = new BodyCopyHttpServletRequestWrapper(request);
+        if ( request.getMethod().equals("OPTIONS")) {
+
+            RequestCorsTryEvent e = new RequestCorsTryEvent(wr);
+
+            tframe.callEvent(e);
+
+            if(e.isCancelled()) return false;
+
+            response.addHeader("Access-Control-Allow-Credentials", "true");
+            response.addHeader("Access-Control-Allow-Origin", "*");
+            response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+            response.addHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,sessionToken,X-TOKEN");
+
+            wr.returnDataByOK("SUCCESS");
+
+            return false;
+
+        }
 
         log.info("[接口层] 新的请求 " + request.getRequestURI() + " #来自: " + request.getSession().getId());
-
-        WrappedResponse wr = new WrappedResponse(copiedRequest, response);
 
         TControllerManager manager = tframe.getControllerManager();
 

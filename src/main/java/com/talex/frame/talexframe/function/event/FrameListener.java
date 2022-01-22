@@ -1,11 +1,14 @@
 package com.talex.frame.talexframe.function.event;
 
 import com.talex.frame.talexframe.function.talex.FrameCreator;
+import com.talex.frame.talexframe.function.talex.TFrame;
 
 /**
  * @author TalexDreamSoul
  */
 public class FrameListener extends FrameCreator {
+
+    protected TFrame tframe = TFrame.tframe;
 
     public FrameListener(String provider) {
 

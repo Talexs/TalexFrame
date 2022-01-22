@@ -5,31 +5,21 @@ import com.talex.frame.talexframe.function.event.TalexEvent;
 import com.talex.frame.talexframe.wrapper.WrappedResponse;
 import lombok.Getter;
 
-import javax.servlet.http.HttpServletResponse;
-
 /**
- * 在建立请求之前 (interceptor pre handle request)
+ * 框架尝试同意一个 OPTIONS 请求时
  * <br /> {@link com.talex.frame.talexframe.function.event.events.request Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 19:19 <br /> Project: TalexFrame <br />
+ * @date 2022/1/22 17:19 <br /> Project: TalexFrame <br />
  */
-public class PreHandleRequest extends TalexEvent implements Cancellable {
+public class RequestCorsTryEvent extends TalexEvent implements Cancellable {
 
     @Getter
-    private final WrappedResponse request;
+    private final WrappedResponse response;
 
-    @Getter
-    private final HttpServletResponse response;
+    public RequestCorsTryEvent(WrappedResponse response) {
 
-    @Getter
-    private final Object handler;
-
-    public PreHandleRequest(WrappedResponse request, HttpServletResponse response, Object handler) {
-
-        this.request = request;
         this.response = response;
-        this.handler = handler;
 
     }
 
@@ -44,7 +34,7 @@ public class PreHandleRequest extends TalexEvent implements Cancellable {
     @Override
     public void setCancelled(boolean var) {
 
-        this.cancel = var;
+        cancel = var;
 
     }
 

@@ -2,7 +2,7 @@ package com.talex.frame.talexframe.function.controller;
 
 import com.talex.frame.talexframe.function.repository.TRepository;
 import com.talex.frame.talexframe.function.talex.FrameCreator;
-import lombok.AllArgsConstructor;
+import com.talex.frame.talexframe.function.talex.TFrame;
 import lombok.Getter;
 
 /**
@@ -14,6 +14,7 @@ import lombok.Getter;
 @Getter
 public abstract class TController extends FrameCreator {
 
+    protected TFrame tframe = TFrame.tframe;
     protected TRepository repository;
 
     public TController(String provider) {

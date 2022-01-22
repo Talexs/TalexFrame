@@ -41,6 +41,30 @@ public class TRepositoryManager {
 
     }
 
+    public TRepository getRepositoryByTableName(String tableName) {
+
+        return getRepositoryByClass(tableNameClzMap.get(tableName));
+
+    }
+
+    public TRepository getRepositoryByClass(Class<?> clz) {
+
+        return repositories.get(clz);
+
+    }
+
+    public TAutoRepository<?> getASRepositoryByTableName(String tableName) {
+
+        return (TAutoRepository<?>) getRepositoryByClass(tableNameClzMap.get(tableName));
+
+    }
+
+    public TAutoRepository<?> getASRepositoryByClass(Class<?> clz) {
+
+        return (TAutoRepository<?>) repositories.get(clz);
+
+    }
+
     /**
      *
      * 注册一个储存库

@@ -153,20 +153,17 @@ public class PluginManager {
 
         WebPlugin webPlugin = getPluginInstance(info.getPluginName(), info);
 
-        if( !Objects.equals(webPlugin.getName(), info.getPluginName()) ) {
+        this.pluginHashMap.put(webPlugin.getName(), webPlugin);
+
+        if( !webPlugin.getName().equalsIgnoreCase(info.getPluginName()) ) {
 
             log.info("[插件] 插件内部名称与描述文件不符! - 加载失败");
 
-            this.pluginClassLoaders.remove(info.getPluginName());
-            this.nameClassIndex.remove(info.getPluginName());
-
-            webPlugin.onDisable();
+            this.unloadPlugin( webPlugin.getName() );
 
             return;
 
         }
-
-        this.pluginHashMap.put(webPlugin.getName(), webPlugin);
 
         log.info("[插件] " + webPlugin.getName() + " v" + webPlugin.getInfo().getPluginVersion() + " 已加载完毕!");
 

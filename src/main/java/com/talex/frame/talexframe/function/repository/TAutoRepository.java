@@ -171,7 +171,7 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
         }
 
-        log.info("[BaseAutoSaveData] " + getProvider() + " @" + getClass() + " 存储完毕!");
+        log.debug("[BaseAutoSaveData] " + getProvider() + " @" + getClass() + " 存储完毕!");
 
     }
 

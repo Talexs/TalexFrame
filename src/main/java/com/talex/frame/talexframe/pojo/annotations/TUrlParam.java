@@ -4,21 +4,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * 注入JSON字段
+ * 注入URL字段
  * <br /> {@link com.talex.frame.talexframe.pojo.annotations Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 20:33 <br /> Project: TalexFrame <br />
+ * @date 2022/1/22 17:14 <br /> Project: TalexFrame <br />
  */
 @Retention( RetentionPolicy.RUNTIME )
-public @interface TParam {
-
-    /**
-     *
-     * 是否允许字段不存在 如果不存在且此项为假则会报错并且返回友好提示
-     *
-     */
-    boolean value() default false;
+public @interface TUrlParam {
 
     /**
      *
