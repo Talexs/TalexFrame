@@ -13,6 +13,7 @@ import com.talex.frame.talexframe.function.event.events.request.RequestCorsTryEv
 import com.talex.frame.talexframe.function.talex.TFrame;
 import com.talex.frame.talexframe.pojo.annotations.TParam;
 import com.talex.frame.talexframe.pojo.annotations.TRequest;
+import com.talex.frame.talexframe.pojo.annotations.TUrlParam;
 import com.talex.frame.talexframe.utils.UrlUtil;
 import com.talex.frame.talexframe.wrapper.BodyCopyHttpServletRequestWrapper;
 import com.talex.frame.talexframe.wrapper.ResultData;
@@ -154,12 +155,36 @@ public final class RequestInterceptor implements HandlerInterceptor {
             }
 
             JSONObject json = JSONUtil.parseObj(str);
+            String url = wr.getRequest().getRequestURI();
 
             for( Parameter parameter : method.getParameters() ) {
 
                 TParam param = parameter.getAnnotation(TParam.class);
 
-                if( param == null ) continue;
+                if( param == null ) {
+
+                    TUrlParam urlParam = parameter.getAnnotation(TUrlParam.class);
+
+                    if( urlParam == null ) { continue; }
+
+                    String key = "{" + (StrUtil.isBlankIfStr(urlParam.field()) ? parameter.getName() : urlParam.field()) + "}";
+                    int ind = url.indexOf(key);
+
+                    if( ind == -1 ) {
+
+                        wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Url parameter error");
+
+                        log.info("[接口层] 请求路径错误 - " + url + " # 缺少参数: " + key);
+
+                        return;
+
+                    }
+
+                    params.add(url.substring(ind, ind + key.length()));
+
+                    continue;
+
+                }
 
                 try {
 
