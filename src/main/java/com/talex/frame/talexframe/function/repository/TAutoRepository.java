@@ -54,10 +54,10 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
     /**
      *
-     * 是否默认读取所有数据到 dataMap 中, 默认为真
+     * 是否默认读取所有数据到 dataMap 中, 默认为假
      *
      */
-    public boolean doCached() { return true; }
+    public boolean doCached() { return false; }
 
     public T getData(String identifyId) {
         if (identifyId == null) {
