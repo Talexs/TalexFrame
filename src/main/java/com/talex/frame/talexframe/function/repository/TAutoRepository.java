@@ -30,8 +30,7 @@ import java.util.Map;
 @Slf4j
 public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
-    private Map<String, T> dataMap;
-
+    protected Map<String, T> dataMap;
 
     protected final WebPlugin ownPlugin;
     protected final Class<? extends AutoSaveData> templateData;
@@ -52,6 +51,13 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
         this.templateData = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
     }
+
+    /**
+     *
+     * 是否默认读取所有数据到 dataMap 中, 默认为真
+     *
+     */
+    public boolean doCached() { return true; }
 
     public T getData(String identifyId) {
         if (identifyId == null) {
@@ -89,6 +95,8 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
         initTable();
 
         this.dataMap = new HashMap<>();
+
+        if( !doCached() ) return;
 
         ResultSet rs = readSearchAllData();
 
