@@ -148,35 +148,11 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
         RateLimiter clzLimiter = tframe.getRateLimiterManager().getClassLimiterMapper().get(clz);
 
-        if( clzLimiter != null && !clzLimiter.tryAcquire() ) {
+        if( clzLimiter != null ) {
 
-            RequestCannotGetTokenEvent rcg = new RequestCannotGetTokenEvent(wr, RequestCannotGetTokenEvent.LimiterType.CLASS);
+            if( !clzLimiter.tryAcquire() ) {
 
-            if( !rcg.isCancelled() ) {
-
-                wr.returnDataByFailed(ResultData.ResultEnum.SERVICE_LIMITED, "服务器繁忙");
-
-                return;
-
-            }
-
-        }
-
-        clzLimiter.acquire();
-
-        for( Method method : clz.getMethods() ) {
-
-            TRequest request = method.getAnnotation(TRequest.class);
-
-            if( request == null ) continue;
-
-            if( !UrlUtil.advancedUrlChecker(wr.getRequest().getRequestURI(), request.value())) continue;
-
-            RateLimiter methodLimiter = tframe.getRateLimiterManager().getMethodLimiterMapper().get(method);
-
-            if( methodLimiter != null && !methodLimiter.tryAcquire() ) {
-
-                RequestCannotGetTokenEvent rcg = new RequestCannotGetTokenEvent(wr, RequestCannotGetTokenEvent.LimiterType.METHOD);
+                RequestCannotGetTokenEvent rcg = new RequestCannotGetTokenEvent(wr, RequestCannotGetTokenEvent.LimiterType.CLASS);
 
                 if( !rcg.isCancelled() ) {
 
@@ -188,7 +164,39 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
             }
 
-            methodLimiter.acquire();
+            clzLimiter.acquire();
+
+        }
+
+        for( Method method : clz.getMethods() ) {
+
+            TRequest request = method.getAnnotation(TRequest.class);
+
+            if( request == null ) continue;
+
+            if( !UrlUtil.advancedUrlChecker(wr.getRequest().getRequestURI(), request.value())) continue;
+
+            RateLimiter methodLimiter = tframe.getRateLimiterManager().getMethodLimiterMapper().get(method);
+
+            if( methodLimiter != null ) {
+
+                if( !methodLimiter.tryAcquire() ) {
+
+                    RequestCannotGetTokenEvent rcg = new RequestCannotGetTokenEvent(wr, RequestCannotGetTokenEvent.LimiterType.METHOD);
+
+                    if( !rcg.isCancelled() ) {
+
+                        wr.returnDataByFailed(ResultData.ResultEnum.SERVICE_LIMITED, "服务器繁忙");
+
+                        return;
+
+                    }
+
+                }
+
+                methodLimiter.acquire();
+
+            }
 
             List<Object> params = new ArrayList<>();
 
