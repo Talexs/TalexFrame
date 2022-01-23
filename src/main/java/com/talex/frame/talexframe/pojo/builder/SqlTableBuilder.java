@@ -59,6 +59,16 @@ public class SqlTableBuilder extends SqlBuilder{
 
         }
 
+        @Getter
+        private boolean uniqueOnly = false;
+
+        public TableParam setUniqueOnly(boolean only){
+
+            this.uniqueOnly = only;
+            return this;
+
+        }
+
     }
 
     @Getter
@@ -106,11 +116,28 @@ public class SqlTableBuilder extends SqlBuilder{
 
     }
 
+    /**
+     *
+     * 若不设置则不会追加代码
+     * 追加代码结尾必须为 ,
+     *
+     */
+    @Getter
+    private String addonSql;
+
+    public SqlTableBuilder setAddonSql(String addonSql) {
+
+        this.addonSql = addonSql;
+        return this;
+
+    }
+
     @Override
     public String toString(){
 
         StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS `" + this.tableName + "` (");
         String key = "PRIMARY KEY (`%stp%`)";
+        StringBuilder uniqueKey = new StringBuilder("UNIQUE KEY `only` (");
 
         for(TableParam tp : map){
 
@@ -126,17 +153,39 @@ public class SqlTableBuilder extends SqlBuilder{
 
                 tsb.append("DEFAULT NULL,");
 
-            }else if(tp.defaultNull.equalsIgnoreCase("null")){
+            } else if(tp.defaultNull.equalsIgnoreCase("null")){
 
                 tsb.append("NOT NULL,");
 
-            }else{
+            } else{
 
                 tsb.append("DEFAULT \"").append(tp.defaultNull).append("\",");
 
             }
 
+            if(tp.isUniqueOnly()) {
+
+                uniqueKey.append("`").append(tp.getSubParamName()).append("`").append(",");
+
+            }
+
             sb.append(tsb);
+
+        }
+
+        String unique = uniqueKey.toString();
+
+        if( unique.endsWith(",") ) {
+
+            unique = unique.substring(0,unique.length() - 1) + "),";
+
+            sb.append(unique);
+
+        }
+
+        if( this.getAddonSql() != null ) {
+
+            sb.append(this.getAddonSql());
 
         }
 

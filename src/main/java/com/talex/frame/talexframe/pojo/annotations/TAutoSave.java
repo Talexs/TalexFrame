@@ -54,4 +54,11 @@ public @interface TAutoSave {
      */
     boolean String() default false;
 
+    /**
+     *
+     * 当启用时，将会建立到表字段 UNIQUE KEY 中
+     *
+     */
+    boolean UNIQUE_ONLY() default false;
+
 }
