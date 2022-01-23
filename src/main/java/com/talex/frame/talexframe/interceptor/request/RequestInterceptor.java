@@ -68,6 +68,8 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
                 wr.returnDataByFailed(ResultData.ResultEnum.SERVICE_LIMITED, "服务器繁忙");
 
+                log.warn("[RateLimiter] 请求已被拦截 - 服务器繁忙 (Global)");
+
                 return false;
 
             }
@@ -158,6 +160,8 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
                     wr.returnDataByFailed(ResultData.ResultEnum.SERVICE_LIMITED, "服务器繁忙");
 
+                    log.warn("[RateLimiter] 请求已被拦截 - 服务器繁忙 (Class) @" + clz.getName());
+
                     return;
 
                 }
@@ -187,6 +191,8 @@ public final class RequestInterceptor implements HandlerInterceptor {
                     if( !rcg.isCancelled() ) {
 
                         wr.returnDataByFailed(ResultData.ResultEnum.SERVICE_LIMITED, "服务器繁忙");
+
+                        log.warn("[RateLimiter] 请求已被拦截 - 服务器繁忙 (Method) @" + clz.getName() + "." + method.getName());
 
                         return;
 
