@@ -211,6 +211,8 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
                     if ( extracted(wr, params, parameter, param) ) {
 
+                        e.printStackTrace();
+
                         return;
 
                     }
@@ -245,7 +247,7 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
             wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Parameter error");
 
-            log.info("[接口层] 请求参数错误 - " + ( param.field() != null ? param.field() : parameter.getName()));
+            log.info("[接口层] 请求参数错误 - " + ( !StrUtil.isBlankIfStr(param.field()) ? param.field() : parameter.getName()));
 
             return true;
 
