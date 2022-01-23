@@ -4,12 +4,10 @@ import cn.hutool.core.convert.ConvertException;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.google.common.util.concurrent.RateLimiter;
 import com.talex.frame.talexframe.function.controller.TController;
 import com.talex.frame.talexframe.function.controller.TControllerManager;
-import com.talex.frame.talexframe.function.event.events.request.PostHandleRequest;
-import com.talex.frame.talexframe.function.event.events.request.PreHandleRequest;
-import com.talex.frame.talexframe.function.event.events.request.RequestAfterCompletion;
-import com.talex.frame.talexframe.function.event.events.request.RequestCorsTryEvent;
+import com.talex.frame.talexframe.function.event.events.request.*;
 import com.talex.frame.talexframe.function.talex.TFrame;
 import com.talex.frame.talexframe.pojo.annotations.TParam;
 import com.talex.frame.talexframe.pojo.annotations.TRequest;
@@ -29,6 +27,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 请求过滤器
@@ -58,6 +57,24 @@ public final class RequestInterceptor implements HandlerInterceptor {
         tframe.callEvent(event);
 
         if( event.isCancelled() ) return false;
+
+        RateLimiter globalLimiter = tframe.getRateLimiterManager().getGlobalLimiter();
+
+        if( !globalLimiter.tryAcquire(100, TimeUnit.MILLISECONDS) ) {
+
+            RequestCannotGetTokenEvent rcg = new RequestCannotGetTokenEvent(wr, RequestCannotGetTokenEvent.LimiterType.GLOBAL);
+
+            if( !rcg.isCancelled() ) {
+
+                wr.returnDataByFailed(ResultData.ResultEnum.SERVICE_LIMITED, "服务器繁忙");
+
+                return false;
+
+            }
+
+        }
+
+        globalLimiter.acquire();
 
         if ( request.getMethod().equals("OPTIONS")) {
 
@@ -125,7 +142,27 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
         if( TFrame.tframe == null ) return;
 
+        TFrame tframe = TFrame.tframe;
+
         Class<?> clz = controller.getClass();
+
+        RateLimiter clzLimiter = tframe.getRateLimiterManager().getClassLimiterMapper().get(clz);
+
+        if( clzLimiter != null && !clzLimiter.tryAcquire() ) {
+
+            RequestCannotGetTokenEvent rcg = new RequestCannotGetTokenEvent(wr, RequestCannotGetTokenEvent.LimiterType.CLASS);
+
+            if( !rcg.isCancelled() ) {
+
+                wr.returnDataByFailed(ResultData.ResultEnum.SERVICE_LIMITED, "服务器繁忙");
+
+                return;
+
+            }
+
+        }
+
+        clzLimiter.acquire();
 
         for( Method method : clz.getMethods() ) {
 
@@ -134,6 +171,24 @@ public final class RequestInterceptor implements HandlerInterceptor {
             if( request == null ) continue;
 
             if( !UrlUtil.advancedUrlChecker(wr.getRequest().getRequestURI(), request.value())) continue;
+
+            RateLimiter methodLimiter = tframe.getRateLimiterManager().getMethodLimiterMapper().get(method);
+
+            if( methodLimiter != null && !methodLimiter.tryAcquire() ) {
+
+                RequestCannotGetTokenEvent rcg = new RequestCannotGetTokenEvent(wr, RequestCannotGetTokenEvent.LimiterType.METHOD);
+
+                if( !rcg.isCancelled() ) {
+
+                    wr.returnDataByFailed(ResultData.ResultEnum.SERVICE_LIMITED, "服务器繁忙");
+
+                    return;
+
+                }
+
+            }
+
+            methodLimiter.acquire();
 
             List<Object> params = new ArrayList<>();
 

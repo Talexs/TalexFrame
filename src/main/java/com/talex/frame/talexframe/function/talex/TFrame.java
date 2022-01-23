@@ -19,6 +19,7 @@ import com.talex.frame.talexframe.listener.FrameSelfListener;
 import com.talex.frame.talexframe.mapper.frame.FrameSender;
 import com.talex.frame.talexframe.pojo.enums.FrameStatus;
 import com.talex.frame.talexframe.service.MailServiceImpl;
+import com.talex.frame.talexframe.service.RateLimiterManager;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -89,6 +90,8 @@ public class TFrame {
 
         this.mysqlManager = new MysqlManager(this, MysqlConfig.getInfo());
 
+        this.rateLimiterManager = new RateLimiterManager();
+
         CommandManager.initial();
 
         this.commandManager = CommandManager.INSTANCE;
@@ -118,6 +121,8 @@ public class TFrame {
         return MailServiceImpl.INSTANCE;
 
     }
+
+    private RateLimiterManager rateLimiterManager;
 
     private CommandManager commandManager;
     private MysqlManager mysqlManager;

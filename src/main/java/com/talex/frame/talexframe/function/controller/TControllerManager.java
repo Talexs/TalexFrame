@@ -1,10 +1,12 @@
 package com.talex.frame.talexframe.function.controller;
 
+import com.google.common.util.concurrent.RateLimiter;
 import com.talex.frame.talexframe.function.plugins.core.WebPlugin;
-import com.talex.frame.talexframe.function.repository.TAutoRepository;
-import com.talex.frame.talexframe.function.repository.TRepository;
+import com.talex.frame.talexframe.function.talex.TFrame;
+import com.talex.frame.talexframe.pojo.annotations.TRequestLimit;
 import lombok.Getter;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,6 +58,32 @@ public class TControllerManager {
         this.controllers.put(controller.getProvider(), controller);
         this.controllerPluginMap.put(controller, plugin.getName());
 
+        Class<?> clz = controller.getClass();
+
+        TRequestLimit clzLimit = clz.getAnnotation(TRequestLimit.class);
+
+        if( clzLimit != null ) {
+
+            RateLimiter limiter = RateLimiter.create(clzLimit.QPS(), clzLimit.timeout(), clzLimit.timeUnit());
+
+            TFrame.tframe.getRateLimiterManager().getClassLimiterMapper().put(clz, limiter);
+
+        }
+
+        for( Method method : clz.getMethods() ) {
+
+            TRequestLimit methodLimit = method.getAnnotation(TRequestLimit.class);
+
+            if( methodLimit != null ) {
+
+                RateLimiter limiter = RateLimiter.create(methodLimit.QPS(), methodLimit.timeout(), methodLimit.timeUnit());
+
+                TFrame.tframe.getRateLimiterManager().getMethodLimiterMapper().put(method, limiter);
+
+            }
+
+        }
+
         return true;
 
     }
@@ -79,6 +107,16 @@ public class TControllerManager {
 
         this.controllers.remove(controller.getProvider(), controller);
         this.controllerPluginMap.remove(controller, plugin.getName());
+
+        Class<?> clz = controller.getClass();
+
+        TFrame.tframe.getRateLimiterManager().getClassLimiterMapper().remove(clz);
+
+        for( Method method : clz.getMethods() ) {
+
+            TFrame.tframe.getRateLimiterManager().getMethodLimiterMapper().remove(method);
+
+        }
 
         return true;
 
