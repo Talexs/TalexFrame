@@ -1,5 +1,6 @@
 package com.talex.frame.talexframe.service;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
  * @date 2022/1/23 20:08 <br /> Project: TalexFrame <br />
  */
 @Component
+@Getter
 public class MailServiceImpl {
 
     public static MailServiceImpl INSTANCE;
