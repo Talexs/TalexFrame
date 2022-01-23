@@ -228,18 +228,10 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
         }
 
-        String sql = sqlTableBuilder
+        this.joinTable(sqlTableBuilder
 
                 .addTableParam(new SqlTableBuilder.TableParam()
-                        .setDefaultNull(null).setType(infoType).setSubParamName("as_info").setMain(false)).toString();
-
-        log.debug("-> 执行SQL: " + sql);
-
-       if( ! mysql.prepareStatement(sql) ) {
-
-           log.debug("建立表 " + getProvider() + " 失败!");
-
-       }
+                        .setDefaultNull(null).setType(infoType).setSubParamName("as_info").setMain(false)));
 
     }
 
