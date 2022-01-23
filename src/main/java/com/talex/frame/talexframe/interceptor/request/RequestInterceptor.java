@@ -189,23 +189,29 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
                 try {
 
-                    Object obj = param.field() != null ? json.get(param.field(), parameter.getType()) : json.get(parameter.getName(), parameter.getType());
+                    String fieldName = param.field() != null ? param.field() : parameter.getName();
 
-                    params.add(obj);
+                    if( !json.containsKey(fieldName) ) {
 
-                } catch ( ConvertException e ) {
+                        if ( extracted(wr, params, parameter, param) ) {
 
-                    if( !param.value() ) {
+                            return;
 
-                        wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Parameter error");
-
-                        log.info("[接口层] 请求参数错误 - " + (param.field() != null ? param.field() : parameter.getName()) + " #" + e.getMessage());
-
-                        return;
+                        }
 
                     } else {
 
-                        params.add(null);
+                        Object obj = json.get(fieldName, parameter.getType());
+
+                        params.add(obj);
+
+                    }
+
+                } catch ( ConvertException e ) {
+
+                    if ( extracted(wr, params, parameter, param) ) {
+
+                        return;
 
                     }
 
@@ -231,6 +237,24 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
         }
 
+    }
+
+    private boolean extracted(WrappedResponse wr, List<Object> params, Parameter parameter, TParam param) {
+
+        if( !param.value() ) {
+
+            wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Parameter error");
+
+            log.info("[接口层] 请求参数错误 - " + ( param.field() != null ? param.field() : parameter.getName()));
+
+            return true;
+
+        } else {
+
+            params.add(null);
+
+        }
+        return false;
     }
 
     @Override

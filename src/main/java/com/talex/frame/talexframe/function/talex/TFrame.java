@@ -18,6 +18,7 @@ import com.talex.frame.talexframe.function.repository.TRepositoryManager;
 import com.talex.frame.talexframe.listener.FrameSelfListener;
 import com.talex.frame.talexframe.mapper.frame.FrameSender;
 import com.talex.frame.talexframe.pojo.enums.FrameStatus;
+import com.talex.frame.talexframe.service.MailServiceImpl;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -109,6 +110,12 @@ public class TFrame {
         this.pluginManager.loadAllPluginsInFolder();
 
         log.info("框架启动成功!");
+
+    }
+
+    public MailServiceImpl getMailService() {
+
+        return MailServiceImpl.INSTANCE;
 
     }
 
