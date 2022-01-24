@@ -78,6 +78,12 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
         globalLimiter.acquire();
 
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Credentials", "true");
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+        response.addHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,sessionToken,X-TOKEN");
+        response.addHeader("Access-Control-Max-Age", "1728000");
+
         if ( request.getMethod().equals("OPTIONS")) {
 
             RequestCorsTryEvent e = new RequestCorsTryEvent(wr);
@@ -85,12 +91,6 @@ public final class RequestInterceptor implements HandlerInterceptor {
             tframe.callEvent(e);
 
             if(e.isCancelled()) return false;
-
-            response.addHeader("Access-Control-Allow-Credentials", "true");
-            response.addHeader("Access-Control-Allow-Origin", "*");
-            response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-            response.addHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,sessionToken,X-TOKEN");
-            response.addHeader("Access-Control-Max-Age", "1728000");
 
             wr.returnDataByOK("SUCCESS");
 
