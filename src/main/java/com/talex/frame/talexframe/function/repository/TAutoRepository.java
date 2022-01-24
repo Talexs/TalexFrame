@@ -134,7 +134,7 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
                 TAutoSave as = field.getAnnotation(TAutoSave.class);
 
-                if(as == null) { continue; }
+                if(as == null || !as.isMySqlFiled()) { continue; }
 
                 if( !field.isAccessible() ) field.setAccessible(true);
 
