@@ -21,6 +21,7 @@ public class TalexEventBus implements IEventBus {
 
     private static TalexEventBus instance;
 
+    @Getter
     private final Map<FrameListener, List<MethodManager>> mapCaches;
 
     private TalexEventBus() {

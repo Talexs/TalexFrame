@@ -9,7 +9,9 @@ import com.google.gson.JsonSyntaxException;
 import com.talex.frame.talexframe.TalexFrameApplication;
 import com.talex.frame.talexframe.function.controller.TController;
 import com.talex.frame.talexframe.function.controller.TControllerManager;
+import com.talex.frame.talexframe.function.event.FrameListener;
 import com.talex.frame.talexframe.function.event.events.frame.FrameFirstInstallEvent;
+import com.talex.frame.talexframe.function.plugins.addon.FramePluginListener;
 import com.talex.frame.talexframe.function.repository.TRepository;
 import com.talex.frame.talexframe.function.repository.TRepositoryManager;
 import com.talex.frame.talexframe.function.talex.TFrame;
@@ -328,6 +330,24 @@ public class PluginManager {
 
         if( i != 0)
             log.info("[Plugin] 已自动注销 " + i + " 个储存器类.");
+
+        i = 0;
+
+        for( FrameListener listener : TFrame.tframe.getListeners().keySet() ) {
+
+            if( listener instanceof FramePluginListener ) {
+
+                if( ( (FramePluginListener) listener ).getWebPlugin().getName().equals(plugin.getName()) ) {
+
+                    TFrame.tframe.unRegisterListener((FramePluginListener) listener);
+
+                    ++i;
+
+                }
+
+            }
+
+        }
 
         urlClassLoader.setPackageAssertionStatus(classPath,false);
 

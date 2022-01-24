@@ -7,6 +7,8 @@ import com.talex.frame.talexframe.function.command.frame.HelpCmd;
 import com.talex.frame.talexframe.function.command.frame.PluginCmd;
 import com.talex.frame.talexframe.function.command.frame.StopCmd;
 import com.talex.frame.talexframe.function.controller.TControllerManager;
+import com.talex.frame.talexframe.function.event.FrameListener;
+import com.talex.frame.talexframe.function.event.MethodManager;
 import com.talex.frame.talexframe.function.event.TalexEvent;
 import com.talex.frame.talexframe.function.event.events.frame.FrameStartedEvent;
 import com.talex.frame.talexframe.function.event.service.TalexEventBus;
@@ -26,6 +28,8 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <br /> {@link com.talex.frame.talexframe.function.talex Package }
@@ -143,7 +147,7 @@ public class TFrame {
 
     }
 
-    public TFrame registerEvent(FramePluginListener listener) {
+    public TFrame registerListener(FramePluginListener listener) {
 
         assert eventBus != null;
         eventBus.registerListener(listener);
@@ -152,12 +156,19 @@ public class TFrame {
 
     }
 
-    public TFrame unRegisterEvent(FramePluginListener listener) {
+    public TFrame unRegisterListener(FramePluginListener listener) {
 
         assert eventBus != null;
         eventBus.unRegisterListener(listener);
 
         return this;
+
+    }
+
+    public Map<FrameListener, List<MethodManager>> getListeners() {
+
+        assert eventBus != null;
+        return eventBus.getMapCaches();
 
     }
 
