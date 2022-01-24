@@ -16,8 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.sql.ResultSet;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * 自动化存储库 # 自动存储数据
@@ -30,7 +30,7 @@ import java.util.Map;
 @Slf4j
 public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
-    protected Map<String, T> dataMap;
+    protected ConcurrentMap<String, T> dataMap;
 
     protected final WebPlugin ownPlugin;
     protected final Class<? extends AutoSaveData> templateData;
@@ -94,7 +94,7 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
         initTable();
 
-        this.dataMap = new HashMap<>();
+        this.dataMap = new ConcurrentHashMap<>();
 
         if( !doCached() ) return;
 
@@ -121,6 +121,8 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
     @SneakyThrows
     public void saveAllDataToMysql() {
+
+        if( dataMap == null ) return;
 
         for (AutoSaveData data : dataMap.values()) {
 

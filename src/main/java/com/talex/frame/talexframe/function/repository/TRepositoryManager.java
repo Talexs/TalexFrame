@@ -3,8 +3,8 @@ package com.talex.frame.talexframe.function.repository;
 import com.talex.frame.talexframe.function.plugins.core.WebPlugin;
 import lombok.Getter;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * <br /> {@link com.talex.frame.talexframe.function.repository Package }
@@ -15,15 +15,15 @@ import java.util.Map;
 @Getter
 public class TRepositoryManager {
 
-    private final Map<Class<? extends TRepository>, TRepository> repositories = new HashMap<>();
+    private final ConcurrentMap<Class<? extends TRepository>, TRepository> repositories = new ConcurrentHashMap<>();
 
     /**
      *
      * TableName -> RepositoryClass 映射
      *
      */
-    private final Map<String, Class<? extends TRepository>> tableNameClzMap = new HashMap<>();
-    private final Map<TRepository, String> repositoryPluginMap = new HashMap<>();
+    private final ConcurrentMap<String, Class<? extends TRepository>> tableNameClzMap = new ConcurrentHashMap<>();
+    private final ConcurrentMap<TRepository, String> repositoryPluginMap = new ConcurrentHashMap<>();
 
     private static TRepositoryManager manager;
 

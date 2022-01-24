@@ -3,8 +3,8 @@ package com.talex.frame.talexframe.function.command.frame;
 import com.talex.frame.talexframe.TalexFrameApplication;
 import com.talex.frame.talexframe.function.command.BaseCommand;
 import com.talex.frame.talexframe.function.command.ISender;
+import com.talex.frame.talexframe.function.plugins.core.WebPlugin;
 import com.talex.frame.talexframe.function.talex.TFrame;
-import com.talex.frame.talexframe.pojo.annotations.TalexCommand;
 import com.talex.frame.talexframe.pojo.enums.FrameStatus;
 
 /**
@@ -27,6 +27,12 @@ public class StopCmd extends BaseCommand {
         tframe.getFrameSender().warnConsoleMessage("正在关闭服务器...");
 
         tframe.setFrameStatus(FrameStatus.STOPPING);
+
+        for( String plugin : tframe.getPluginManager().getPluginHashMap().keySet() ) {
+
+            tframe.getPluginManager().unloadPlugin(plugin);
+
+        }
 
         TalexFrameApplication.context.close();
 

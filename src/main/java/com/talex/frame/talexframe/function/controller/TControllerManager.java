@@ -7,8 +7,8 @@ import com.talex.frame.talexframe.pojo.annotations.TRequestLimit;
 import lombok.Getter;
 
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * <br /> {@link com.talex.frame.talexframe.function.repository Package }
@@ -19,8 +19,8 @@ import java.util.Map;
 @Getter
 public class TControllerManager {
 
-    private final Map<String, TController> controllers = new HashMap<>();
-    private final Map<TController, String> controllerPluginMap = new HashMap<>();
+    private final ConcurrentMap<String, TController> controllers = new ConcurrentHashMap<>(32);
+    private final ConcurrentMap<TController, String> controllerPluginMap = new ConcurrentHashMap<>(32);
 
     private static TControllerManager manager;
 

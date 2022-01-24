@@ -87,8 +87,7 @@ public class PluginManager {
 
     }
 
-    @SneakyThrows
-    private PluginInfo getPluginMainClassPathFromPluginName(String pluginName){
+    private PluginInfo getPluginMainClassPathFromPluginName(String pluginName) throws IOException {
 
         JarFile jarFile = new JarFile(pluginName.endsWith(".jar") ? this.pluginFolder + "/" + pluginName : this.pluginFolder + "/" + pluginName + ".jar");
 
@@ -151,6 +150,7 @@ public class PluginManager {
 
     }
 
+    @SneakyThrows
     public void loadPlugin(String pluginName) {
 
         if(pluginHashMap.containsKey(pluginName)) {
