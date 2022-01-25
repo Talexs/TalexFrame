@@ -44,16 +44,21 @@ public class TFrame {
     public static TFrame tframe = new TFrame();
 
     private final PluginInfo.PluginSupportVersion versionE = PluginInfo.PluginSupportVersion.SIX_NORMAL;
-    private final String version = "6.1.0";
+    private final String version = "6.2.0";
 
     @Setter
     private FrameStatus frameStatus = FrameStatus.STOPPED;
 
+    @Getter
     private static final File mainFile = new File("");
 
     private boolean started = false;
 
     private TFrame() {
+
+        this.printBanner();
+
+        this.frameSender = FrameSender.getDefault();
 
     }
 
@@ -88,16 +93,11 @@ public class TFrame {
         started = true;
         setFrameStatus(FrameStatus.RUNNING);
 
-        this.printBanner();
-
-        this.frameSender = FrameSender.getDefault();
-
         this.mysqlManager = new MysqlManager(this, MysqlConfig.getInfo());
 
         this.rateLimiterManager = new RateLimiterManager();
 
         CommandManager.initial();
-
         this.commandManager = CommandManager.INSTANCE;
         this.commandManager.setCommandExecutor("help", new HelpCmd());
         this.commandManager.setCommandExecutor("plugin", new PluginCmd());

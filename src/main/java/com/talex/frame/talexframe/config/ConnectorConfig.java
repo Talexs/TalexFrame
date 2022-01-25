@@ -1,5 +1,7 @@
 package com.talex.frame.talexframe.config;
 
+import com.talex.frame.talexframe.function.talex.TFrame;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
@@ -7,6 +9,8 @@ import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.io.File;
 
 /**
  * SSL (HTTP & HTTPS)
@@ -16,26 +20,55 @@ import org.springframework.context.annotation.Configuration;
  * @date 2022/1/24 16:48 <br /> Project: TalexFrame <br />
  */
 @Configuration
+@Slf4j
 public class ConnectorConfig {
+
+    private static boolean HTTPS = false;
+
+    static {
+
+        if( !new File(TFrame.getMainFile() + "/config/keystore.p12").exists() ) {
+
+            log.info("[Connector] 未检测到 keystore -> 启动 HTTP 服务");
+
+        } else {
+
+            HTTPS = true;
+
+            log.info("[Connector] 已检测到 keystore -> 启动 HTTPS 服务");
+
+        }
+
+    }
 
     @Bean
     public TomcatServletWebServerFactory servletContainer() { //springboot2 新变化
 
-        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
+        if( HTTPS ) {
 
-            @Override
-            protected void postProcessContext(Context context) {
+            TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
 
-                SecurityConstraint securityConstraint = new SecurityConstraint();
-                securityConstraint.setUserConstraint("CONFIDENTIAL");
-                SecurityCollection collection = new SecurityCollection();
-                collection.addPattern("/*");
-                securityConstraint.addCollection(collection);
-                context.addConstraint(securityConstraint);
-            }
-        };
-        tomcat.addAdditionalTomcatConnectors(initiateHttpConnector());
-        return tomcat;
+                @Override
+                protected void postProcessContext(Context context) {
+
+                    SecurityConstraint securityConstraint = new SecurityConstraint();
+                    securityConstraint.setUserConstraint("CONFIDENTIAL");
+                    SecurityCollection collection = new SecurityCollection();
+                    collection.addPattern("/*");
+                    securityConstraint.addCollection(collection);
+                    context.addConstraint(securityConstraint);
+                }
+            };
+            tomcat.addAdditionalTomcatConnectors(initiateHttpConnector());
+            return tomcat;
+
+        } else {
+
+            return new TomcatServletWebServerFactory();
+
+        }
+
+
     }
 
     private Connector initiateHttpConnector() {

@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentMap;
 @Getter
 public class TControllerManager {
 
-    private final ConcurrentMap<String, TController> controllers = new ConcurrentHashMap<>(32);
+    private final ConcurrentMap<Class<?>, TController> controllers = new ConcurrentHashMap<>(32);
     private final ConcurrentMap<TController, String> controllerPluginMap = new ConcurrentHashMap<>(32);
 
     private static TControllerManager manager;
@@ -43,19 +43,19 @@ public class TControllerManager {
      * 注册一个管理器
      *
      * @param plugin 管理器插件
-     * @param repository 管理器
+     * @param controller 管理器
      *
      * @return 注册是否成功
      */
     public boolean registerController(WebPlugin plugin, TController controller) {
 
-        if( this.controllers.containsKey(controller.getProvider()) ) {
+        if( this.controllers.containsKey(controller.getClass()) ) {
 
             return false;
 
         }
 
-        this.controllers.put(controller.getProvider(), controller);
+        this.controllers.put(controller.getClass(), controller);
         this.controllerPluginMap.put(controller, plugin.getName());
 
         Class<?> clz = controller.getClass();
@@ -93,19 +93,19 @@ public class TControllerManager {
      * 注销一个储存库
      *
      * @param plugin 储存库插件
-     * @param repository 储存库
+     * @param controller 管理器
      *
      * @return 注销是否成功
      */
     public boolean unRegisterController(WebPlugin plugin, TController controller) {
 
-        if( !this.controllers.containsKey(controller.getProvider()) ) {
+        if( !this.controllers.containsKey(controller.getClass()) ) {
 
             return false;
 
         }
 
-        this.controllers.remove(controller.getProvider(), controller);
+        this.controllers.remove(controller.getClass(), controller);
         this.controllerPluginMap.remove(controller, plugin.getName());
 
         Class<?> clz = controller.getClass();

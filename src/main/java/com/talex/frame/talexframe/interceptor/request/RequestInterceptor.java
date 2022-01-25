@@ -78,11 +78,15 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
         globalLimiter.acquire();
 
-        response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Access-Control-Allow-Credentials", "true");
-        response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-        response.addHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,sessionToken,X-TOKEN");
-        response.addHeader("Access-Control-Max-Age", "1728000");
+        if( !response.containsHeader("Access-Control-Allow-Origin") ) {
+
+            response.addHeader("Access-Control-Allow-Origin", "*");
+            response.addHeader("Access-Control-Allow-Credentials", "true");
+            response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+            response.addHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,sessionToken,X-TOKEN");
+            response.addHeader("Access-Control-Max-Age", "1728000");
+
+        }
 
         if ( request.getMethod().equals("OPTIONS")) {
 
@@ -92,13 +96,15 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
             if(e.isCancelled()) return false;
 
+            log.info("[接口层] 请求 " + request.getRequestURI() + " #来自: " + request.getSession().getId() + " 已批准跨域!");
+
             wr.returnDataByOK("SUCCESS");
 
             return false;
 
         }
 
-        log.info("[接口层] 新的请求 " + request.getRequestURI() + " #来自: " + request.getSession().getId());
+        log.info("[接口层] 新的请求 " + request.getRequestURI() + " #来自: " + request.getSession().getId() + " (" + request.getRemoteHost() + ")");
 
         TControllerManager manager = tframe.getControllerManager();
 

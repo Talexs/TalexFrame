@@ -62,8 +62,6 @@ public class PluginCmd extends BaseCommand {
     @TalexCommand( "load" )
     public void onLoadPlugin(ISender sender, String loadPlugin) {
 
-        sender.sendMessage("[插件] 正在加载插件 " + loadPlugin);
-
         tframe.getPluginManager().loadPlugin(loadPlugin);
 
     }

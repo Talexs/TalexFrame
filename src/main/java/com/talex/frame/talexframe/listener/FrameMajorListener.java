@@ -67,8 +67,6 @@ public class FrameMajorListener {
 
         TFrame.tframe.started();
 
-        log.info("框架启动成功!");
-
     }
 
     /**
@@ -99,11 +97,16 @@ public class FrameMajorListener {
 
         PluginManager pluginsManager = TFrame.tframe.getPluginManager();
 
-        for( String str : pluginsManager.getPluginHashMap().keySet() ) {
+        if(pluginsManager != null) {
 
-            pluginsManager.unloadPlugin( str );
+            for( String str : pluginsManager.getPluginHashMap().keySet() ) {
+
+                pluginsManager.unloadPlugin( str );
+
+            }
 
         }
+
 
         MysqlManager mysqlManager = TFrame.tframe.getMysqlManager();
         if( mysqlManager != null )

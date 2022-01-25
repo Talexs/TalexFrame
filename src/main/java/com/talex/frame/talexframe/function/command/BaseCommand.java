@@ -56,4 +56,15 @@ public abstract class BaseCommand implements ICommand {
 
     }
 
+    /**
+     *
+     * 减少冗杂代码
+     *
+     */
+    @Override
+    public boolean executeCommand(ISender sender, String wholeCommand, String matchedLabel, String[] args) {
+
+        return false;
+    }
+
 }

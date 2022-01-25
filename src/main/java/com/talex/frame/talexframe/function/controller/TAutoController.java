@@ -23,19 +23,19 @@ public class TAutoController<T extends TAutoRepository<?>> extends TController {
      *
      */
     protected T asRepository;
-    private final String repositoryName;
     private final WebPlugin ownPlugin;
     private Class<T> templateData;
 
     /**
-     * @param repositoryName 一定是 Repository 的TablName
+     *
+     * Provider 已采用全新架构方式 无需再输入本类名
+     *
      * @param webPlugin 所属插件
      */
-    public TAutoController(String repositoryName, WebPlugin webPlugin) {
+    public TAutoController(String provider, WebPlugin webPlugin) {
 
-        super(repositoryName);
+        super(provider);
 
-        this.repositoryName = repositoryName;
         this.ownPlugin = webPlugin;
 
     }
@@ -45,7 +45,7 @@ public class TAutoController<T extends TAutoRepository<?>> extends TController {
 
         this.templateData = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
-        asRepository = (T) TFrame.tframe.getRepositoryManager().getRepositories().get(templateData);
+        super.repository = asRepository = (T) TFrame.tframe.getRepositoryManager().getRepositories().get(templateData);
 
         return asRepository;
     }

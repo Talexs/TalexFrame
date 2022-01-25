@@ -35,4 +35,10 @@ public abstract class TController extends FrameCreator {
 
     public abstract TRepository getRepository();
 
+    public String getTableName() {
+
+        return this.repository.getProvider();
+
+    }
+
 }

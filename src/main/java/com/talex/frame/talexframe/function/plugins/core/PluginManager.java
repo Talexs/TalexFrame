@@ -15,6 +15,7 @@ import com.talex.frame.talexframe.function.plugins.addon.FramePluginListener;
 import com.talex.frame.talexframe.function.repository.TRepository;
 import com.talex.frame.talexframe.function.repository.TRepositoryManager;
 import com.talex.frame.talexframe.function.talex.TFrame;
+import com.talex.frame.talexframe.wrapper.WrappedInfo;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -54,7 +55,7 @@ public class PluginManager {
     private final HashMap<String, URLClassLoader> pluginClassLoaders = new HashMap<>();
 
     @SneakyThrows
-    public PluginManager(File mainFolder){
+    public PluginManager(File mainFolder) {
 
         if( mainFolder == null ) {
 
@@ -73,6 +74,8 @@ public class PluginManager {
 
         String[] list = this.pluginFolder.list();
 
+        log.info("[Module] Plugin loading!");
+
         if( list != null ) {
 
             for( String targetFile : Objects.requireNonNull(list) ) {
@@ -87,11 +90,11 @@ public class PluginManager {
 
     }
 
-    private PluginInfo getPluginMainClassPathFromPluginName(String pluginName) throws IOException {
+    private WrappedInfo getPluginMainClassPathFromPluginName(String fileDir) throws IOException {
 
-        JarFile jarFile = new JarFile(pluginName.endsWith(".jar") ? this.pluginFolder + "/" + pluginName : this.pluginFolder + "/" + pluginName + ".jar");
+        JarFile jarFile = new JarFile(fileDir);
 
-        for (Enumeration<JarEntry> en = jarFile.entries(); en.hasMoreElements(); ) {
+        for ( Enumeration<JarEntry> en = jarFile.entries(); en.hasMoreElements(); ) {
 
             JarEntry jarEntry = en.nextElement();
             if(jarEntry.getName().contains("plugin.yml")) {
@@ -115,27 +118,11 @@ public class PluginManager {
                             .setWebsite(json.get("website").getAsString())
                             .setSupportVersion(PluginInfo.PluginSupportVersion.valueOf(json.get("supportVersion").getAsString()));
 
-                    if( info.getSupportVersion() != TFrame.tframe.getVersionE() ) {
-
-                        log.error("[插件] 抱歉，此插件是为版本 " + info.getSupportVersion().name() + " 编写的，不适用于 " + TFrame.tframe.getVersionE().name());
-
-                        return null;
-
-                    }
-
-                    if( VersionComparator.INSTANCE.compare(info.getSupportVersion().getVersion(), TFrame.tframe.getVersion()) != 1 ) {
-
-                        log.warn("[插件] 此插件需要版本 " + info.getSupportVersion().getVersion() + " 或更高，当前框架版本：" + TFrame.tframe.getVersion() + " 请尝试升级框架.");
-
-                    }
-
-                    this.pluginJarFiles.put(info.getPluginName(), jarFile);
-
-                    return info;
+                    return new WrappedInfo(info, jarFile);
 
                 } catch (JsonSyntaxException e) {
 
-                    throw new RuntimeException("Load web plugin error due to load " + pluginName);
+                    throw new RuntimeException("Load web plugin error due to load " + fileDir);
 
                 }
 
@@ -164,25 +151,82 @@ public class PluginManager {
 
         URLClassLoader urlClassLoader = new URLClassLoader(urls, this.getClass().getClassLoader());
 
-        PluginInfo info = Objects.requireNonNull(getPluginMainClassPathFromPluginName(pluginName));
+        String fileDir = pluginName.endsWith(".jar") ? this.pluginFolder + "/" + pluginName : this.pluginFolder + "/" + pluginName + ".jar";
 
-        this.pluginClassLoaders.put(info.getPluginName(), urlClassLoader);
+        WrappedInfo wInfo = null;
 
-        WebPlugin webPlugin = getPluginInstance(info.getPluginName(), info);
+        if( new File(fileDir).exists() ) {
 
-        this.pluginHashMap.put(webPlugin.getName(), webPlugin);
+            wInfo = getPluginMainClassPathFromPluginName(fileDir);
 
-        if( !webPlugin.getName().equalsIgnoreCase(info.getPluginName()) ) {
+        } else {
 
-            log.info("[插件] 插件内部名称与描述文件不符! - 加载失败");
+            boolean matched = false;
 
-            this.unloadPlugin( webPlugin.getName() );
+            for( File f : Objects.requireNonNull(this.pluginFolder.listFiles()) ) {
+
+                wInfo = getPluginMainClassPathFromPluginName(f.getPath());
+
+                if( wInfo == null ) continue;
+
+                if( wInfo.getInfo().getPluginName().equalsIgnoreCase(pluginName) ) {
+
+                    matched = true;
+
+                    break;
+
+                }
+
+            }
+
+            if( !matched ) {
+
+                log.warn("[插件] " + pluginName + " 无法找到这个插件!");
+                return;
+
+            }
+
+        }
+
+        if( wInfo == null ) return;
+
+        PluginInfo info = wInfo.getInfo();
+
+        log.info("[插件] 正在加载插件 " + info.getPluginName() + " v" + info.getPluginVersion());
+
+        if( info.getSupportVersion() != TFrame.tframe.getVersionE() ) {
+
+            log.error("[插件] 抱歉，此插件是为版本 " + info.getSupportVersion().name() + " 编写的，不适用于 " + TFrame.tframe.getVersionE().name());
 
             return;
 
         }
 
-        log.info("[插件] " + webPlugin.getName() + " v" + webPlugin.getInfo().getPluginVersion() + " 已加载完毕!");
+        if( VersionComparator.INSTANCE.compare(info.getSupportVersion().getVersion(), TFrame.tframe.getVersion()) != 1 ) {
+
+            log.warn("[插件] 此插件需要版本 " + info.getSupportVersion().getVersion() + " 或更高，当前框架版本：" + TFrame.tframe.getVersion() + " 请尝试升级框架.");
+
+        }
+
+        this.pluginJarFiles.put(info.getPluginName(), wInfo.getJarFile());
+
+        this.pluginClassLoaders.put(info.getPluginName(), urlClassLoader);
+
+        WebPlugin webPlugin = getPluginInstance(info.getPluginName(), info);
+
+        this.pluginHashMap.put(info.getPluginName(), webPlugin);
+
+        if( !webPlugin.getName().equalsIgnoreCase(info.getPluginName()) ) {
+
+            log.info("[插件] 插件内部名称与描述文件不符! - 加载失败");
+
+            this.unloadPlugin( info.getPluginName() );
+
+            return;
+
+        }
+
+        log.info("[插件] " + webPlugin.getName() + " v" + info.getPluginVersion() + " 已加载完毕!");
 
     }
 

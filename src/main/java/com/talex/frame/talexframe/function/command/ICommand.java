@@ -1,7 +1,5 @@
 package com.talex.frame.talexframe.function.command;
 
-import com.talex.frame.talexframe.function.talex.FrameCreator;
-
 /**
  * Command接口 -> 命令处理器
  * <br /> {@link com.talex.frame.talexframe.function.command Package }
