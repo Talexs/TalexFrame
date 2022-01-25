@@ -83,7 +83,7 @@ public final class RequestInterceptor implements HandlerInterceptor {
             response.addHeader("Access-Control-Allow-Origin", "*");
             response.addHeader("Access-Control-Allow-Credentials", "true");
             response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-            response.addHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,sessionToken,X-TOKEN");
+            response.addHeader("Access-Control-Allow-Headers", "*");
             response.addHeader("Access-Control-Max-Age", "1728000");
 
         }

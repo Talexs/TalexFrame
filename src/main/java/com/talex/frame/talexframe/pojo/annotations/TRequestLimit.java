@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2022/1/23 23:27 <br /> Project: TalexFrame <br />
  */
 @Retention( RetentionPolicy.RUNTIME )
-@Target( {ElementType.METHOD, ElementType.PACKAGE} )
+@Target( { ElementType.METHOD, ElementType.TYPE } )
 public @interface TRequestLimit {
 
     /** 每秒并发 (创建令牌数) **/
