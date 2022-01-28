@@ -61,4 +61,7 @@ public @interface TAutoSave {
      */
     boolean UNIQUE_ONLY() default false;
 
+    /** 当不为空时将忽略其他字段 直接注入本字段 **/
+    String columnContent() default "";
+
 }

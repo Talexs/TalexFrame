@@ -1,6 +1,7 @@
 package com.talex.frame.talexframe.function.repository;
 
 import cn.hutool.core.codec.Base64;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.talex.frame.talexframe.function.auto.data.AutoSaveData;
 import com.talex.frame.talexframe.function.plugins.core.WebPlugin;
@@ -201,38 +202,46 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
             if(as == null || !as.isMySqlFiled()) { continue; }
 
-            if( "info".equals(field.getName()) ) {
+            if( !StrUtil.isBlankIfStr(as.columnContent()) ) {
 
-                throw new IllegalArgumentException("MysqlField name cannot be info, because it will recover data.");
+                sqlTableBuilder.addTableParam(new SqlTableBuilder.TableParam().setColumnContent(as.columnContent()));
+
+            } else {
+
+                if( "info".equalsIgnoreCase(field.getName()) ) {
+
+                    throw new IllegalArgumentException("MysqlField name cannot be info, because it will recover data.");
+
+                }
+
+                if(!field.getType().isPrimitive() && field.getType() != String.class) {
+
+                    throw new IllegalArgumentException("MysqlField type can only use primitive type (" + field.getType().getName() + ")");
+
+                }
+
+                String defaultNull = as.defaultNull();
+
+                if( "null".equalsIgnoreCase(defaultNull)) {
+
+                    defaultNull = null;
+
+                } else if( "n_null".equalsIgnoreCase(defaultNull)) {
+
+                    defaultNull = "null";
+
+                }
+
+                sqlTableBuilder.addTableParam(new SqlTableBuilder.TableParam()
+
+                        .setSubParamName("as_" + field.getName())
+                        .setType(as.type())
+                        .setDefaultNull(defaultNull)
+                        .setMain(as.isMain())
+
+                );
 
             }
-
-            if(!field.getType().isPrimitive() && field.getType() != String.class) {
-
-                throw new IllegalArgumentException("MysqlField type can only use primitive type (" + field.getType().getName() + ")");
-
-            }
-
-            String defaultNull = as.defaultNull();
-
-            if( "null".equalsIgnoreCase(defaultNull)) {
-
-                defaultNull = null;
-
-            } else if( "n_null".equalsIgnoreCase(defaultNull)) {
-
-                defaultNull = "null";
-
-            }
-
-            sqlTableBuilder.addTableParam(new SqlTableBuilder.TableParam()
-
-                    .setSubParamName("as_" + field.getName())
-                    .setType(as.type())
-                    .setDefaultNull(defaultNull)
-                    .setMain(as.isMain())
-
-            );
 
         }
 
