@@ -153,17 +153,17 @@ public class SqlTableBuilder extends SqlBuilder{
 
             StringBuilder tsb = new StringBuilder("`" + tp.getSubParamName() + "` " + tp.type).append(" ");
 
+            if(tp.isMain()){
+
+                key = key.replace("%stp%",tp.subParamName);
+
+            }
+
             if( tp.getColumnContent() != null ) {
 
                 tsb.append(tp.getColumnContent() );
 
             } else {
-
-                if(tp.isMain()){
-
-                    key = key.replace("%stp%",tp.subParamName);
-
-                }
 
                 if(tp.defaultNull == null){
 
