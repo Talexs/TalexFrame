@@ -5,6 +5,7 @@ import com.talex.frame.talexframe.function.plugins.core.WebPlugin;
 import com.talex.frame.talexframe.function.repository.TRepository;
 import com.talex.frame.talexframe.function.repository.TRepositoryManager;
 import com.talex.frame.talexframe.function.talex.TFrame;
+import com.talex.frame.talexframe.imple.IUnRegisterHandler;
 import com.talex.frame.talexframe.pojo.annotations.TRepoInject;
 import com.talex.frame.talexframe.pojo.annotations.TRequestLimit;
 import lombok.Getter;
@@ -135,6 +136,12 @@ public class TControllerManager {
         if( !this.controllers.containsKey(controller.getClass()) ) {
 
             return false;
+
+        }
+
+        if( controller instanceof IUnRegisterHandler ) {
+
+            ((IUnRegisterHandler) controller).onUnRegister();
 
         }
 

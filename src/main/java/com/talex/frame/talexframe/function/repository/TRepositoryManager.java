@@ -1,6 +1,7 @@
 package com.talex.frame.talexframe.function.repository;
 
 import com.talex.frame.talexframe.function.plugins.core.WebPlugin;
+import com.talex.frame.talexframe.imple.IUnRegisterHandler;
 import com.talex.frame.talexframe.pojo.annotations.TRepoInject;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -147,6 +148,12 @@ public class TRepositoryManager {
         if( repository instanceof TAutoRepository ) {
 
             ((TAutoRepository<?>) repository).saveAllDataToMysql();
+
+        }
+
+        if( repository instanceof IUnRegisterHandler ) {
+
+            ((IUnRegisterHandler) repository).onUnRegister();
 
         }
 
