@@ -200,6 +200,9 @@ public final class RequestInterceptor implements HandlerInterceptor {
             if( repSupportMethod != null && !ReqMethodUtil.checkStatus(wr.getRequest().getMethod(), repSupportMethod) ) {
 
                 wr.returnDataByFailed("Error request method.");
+
+                log.info("[接口层] 请求 " + wr.getRequest().getRequestURI() + " #来自: " + wr.getRequest().getSession().getId() + " (" + wr.getRequest().getRemoteHost() + ") 方法不支持.");
+
                 return;
 
             }
@@ -235,6 +238,9 @@ public final class RequestInterceptor implements HandlerInterceptor {
                 if( tReqLoginChecker != null && !StpUtil.isLogin() ) {
 
                     wr.returnDataByFailed("请先登录.");
+
+                    log.info("[@TReqLoginChecker] 请求已被拦截 - 请先登录 @" + clz.getName() + "." + method.getName());
+
                     return;
 
                 }
