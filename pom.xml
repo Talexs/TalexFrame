@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.talex.frame</groupId>
     <artifactId>TalexFrame</artifactId>
-    <version>6.2.0-SNAPSHOT</version>
+    <version>6.3.0-SNAPSHOT</version>
     <name>TalexFrame</name>
     <description>TalexFrame</description>
     <properties>
@@ -50,6 +50,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
+            <version>2.6.3</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
@@ -70,10 +71,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.6.3</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
+            <version>2.6.3</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.mybatis.spring.boot</groupId>-->
@@ -108,6 +111,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>2.6.3</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -118,6 +122,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.6.3</version>
             <scope>test</scope>
         </dependency>
 <!--        <dependency>-->
@@ -176,7 +181,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.7.19</version>
+            <version>5.7.20</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
@@ -189,6 +194,22 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.8.9</version>
+        </dependency>
+        <!--elasticsearch-->
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>7.16.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>7.16.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.freewayso</groupId>
+            <artifactId>image-combiner</artifactId>
+            <version>2.2.2</version>
         </dependency>
 
     </dependencies>
@@ -217,6 +238,11 @@
         <repository>
             <id>dmulloy2-repo</id>
             <url>https://repo.dmulloy2.net/repository/public/</url>
+        </repository>
+        <repository>
+            <id>es-snapshots</id>
+            <name>elasticsearch snapshot repo</name>
+            <url>https://snapshots.elastic.co/maven/</url>
         </repository>
     </repositories>
 

@@ -82,10 +82,16 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
     /**
      *
      * @param data 数据实例
+     *             默认 不cache 所以每次数据一更新就自动塞到数据库
      *
      * @return 返回真不放入数据map
      */
     public boolean onSingleDataLoaded(WrappedData<T> data) {
+
+        saveAllDataToMysql();
+
+        dataMap.clear();
+
         return false;
     }
 

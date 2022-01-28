@@ -11,7 +11,7 @@ import java.util.List;
 public class SqlTableBuilder extends SqlBuilder{
 
     @NoArgsConstructor
-    public static class TableParam{
+    public static class TableParam {
 
         @Getter
         private String subParamName;
@@ -66,6 +66,16 @@ public class SqlTableBuilder extends SqlBuilder{
 
             this.uniqueOnly = only;
             return this;
+
+        }
+
+        @Getter
+        private String columnContent = null;
+
+        public TableParam setColumnContent(String content){
+
+        	this.columnContent = content;
+        	return this;
 
         }
 
@@ -143,29 +153,37 @@ public class SqlTableBuilder extends SqlBuilder{
 
             StringBuilder tsb = new StringBuilder("`" + tp.getSubParamName() + "` " + tp.type).append(" ");
 
-            if(tp.isMain()){
+            if( tp.getColumnContent() != null ) {
 
-                key = key.replace("%stp%",tp.subParamName);
+                tsb.append(tp.getColumnContent() );
 
-            }
+            } else {
 
-            if(tp.defaultNull == null){
+                if(tp.isMain()){
 
-                tsb.append("DEFAULT NULL,");
+                    key = key.replace("%stp%",tp.subParamName);
 
-            } else if(tp.defaultNull.equalsIgnoreCase("null")){
+                }
 
-                tsb.append("NOT NULL,");
+                if(tp.defaultNull == null){
 
-            } else{
+                    tsb.append("DEFAULT NULL,");
 
-                tsb.append("DEFAULT \"").append(tp.defaultNull).append("\",");
+                } else if(tp.defaultNull.equalsIgnoreCase("null")){
 
-            }
+                    tsb.append("NOT NULL,");
 
-            if(tp.isUniqueOnly()) {
+                } else{
 
-                uniqueKey.append("`").append(tp.getSubParamName()).append("`").append(",");
+                    tsb.append("DEFAULT \"").append(tp.defaultNull).append("\",");
+
+                }
+
+                if(tp.isUniqueOnly()) {
+
+                    uniqueKey.append("`").append(tp.getSubParamName()).append("`").append(",");
+
+                }
 
             }
 

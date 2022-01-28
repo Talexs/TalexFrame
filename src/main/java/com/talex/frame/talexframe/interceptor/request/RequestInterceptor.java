@@ -1,5 +1,6 @@
 package com.talex.frame.talexframe.interceptor.request;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.convert.ConvertException;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
@@ -9,9 +10,8 @@ import com.talex.frame.talexframe.function.controller.TController;
 import com.talex.frame.talexframe.function.controller.TControllerManager;
 import com.talex.frame.talexframe.function.event.events.request.*;
 import com.talex.frame.talexframe.function.talex.TFrame;
-import com.talex.frame.talexframe.pojo.annotations.TParam;
-import com.talex.frame.talexframe.pojo.annotations.TRequest;
-import com.talex.frame.talexframe.pojo.annotations.TUrlParam;
+import com.talex.frame.talexframe.pojo.annotations.*;
+import com.talex.frame.talexframe.utils.ReqMethodUtil;
 import com.talex.frame.talexframe.utils.UrlUtil;
 import com.talex.frame.talexframe.wrapper.BodyCopyHttpServletRequestWrapper;
 import com.talex.frame.talexframe.wrapper.ResultData;
@@ -178,6 +178,15 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
         }
 
+        TReqLoginChecker tReqLoginChecker = clz.getAnnotation(TReqLoginChecker.class);
+
+        if( tReqLoginChecker != null && !StpUtil.isLogin() ) {
+
+            wr.returnDataByFailed("请先登录.");
+            return;
+
+        }
+
         for( Method method : clz.getMethods() ) {
 
             TRequest request = method.getAnnotation(TRequest.class);
@@ -185,6 +194,15 @@ public final class RequestInterceptor implements HandlerInterceptor {
             if( request == null ) continue;
 
             if( !UrlUtil.advancedUrlChecker(wr.getRequest().getRequestURI(), request.value())) continue;
+
+            TReqSupportMethod repSupportMethod = method.getAnnotation(TReqSupportMethod.class);
+
+            if( repSupportMethod != null && !ReqMethodUtil.checkStatus(wr.getRequest().getMethod(), repSupportMethod) ) {
+
+                wr.returnDataByFailed("Error request method.");
+                return;
+
+            }
 
             RateLimiter methodLimiter = tframe.getRateLimiterManager().getMethodLimiterMapper().get(method);
 
@@ -207,6 +225,19 @@ public final class RequestInterceptor implements HandlerInterceptor {
                 }
 
                 methodLimiter.acquire();
+
+            }
+
+            if( tReqLoginChecker == null ) {
+
+                tReqLoginChecker = method.getAnnotation(TReqLoginChecker.class);
+
+                if( tReqLoginChecker != null && !StpUtil.isLogin() ) {
+
+                    wr.returnDataByFailed("请先登录.");
+                    return;
+
+                }
 
             }
 
@@ -300,7 +331,7 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
             long a = System.nanoTime();
 
-            method.invoke(clz.newInstance(), params.toArray());
+            method.invoke(controller, params.toArray());
 
             a = System.nanoTime() - a;
 

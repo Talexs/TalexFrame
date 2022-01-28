@@ -1,13 +1,16 @@
 package com.talex.frame.talexframe.function.auto.data;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.json.JSONObject;
-import com.talex.frame.talexframe.pojo.annotations.TAutoSave;
+import cn.hutool.json.JSONUtil;
 import com.talex.frame.talexframe.function.talex.FrameData;
+import com.talex.frame.talexframe.pojo.annotations.TAutoSave;
 import com.talex.frame.talexframe.wrapper.WrappedData;
 import lombok.SneakyThrows;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.sql.ResultSet;
 
 /**
  * 自动保存数据类
@@ -21,6 +24,25 @@ public abstract class AutoSaveData extends FrameData {
     public AutoSaveData(String provider) {
 
         super(provider);
+    }
+
+    @SneakyThrows
+    public static WrappedData<?> deserialize(Class<? extends AutoSaveData> clz, ResultSet rs) {
+
+        return deserialize(clz, rs.getString("as_info"));
+
+    }
+
+    public static WrappedData<?> deserializeByBase64Str(Class<? extends AutoSaveData> clz, String base64) {
+
+        return deserialize(clz, Base64.decodeStr(base64));
+
+    }
+
+    public static WrappedData<?> deserialize(Class<? extends AutoSaveData> clz, String json) {
+
+        return deserialize(clz, JSONUtil.parseObj(json));
+
     }
 
     @SneakyThrows

@@ -2,10 +2,15 @@ package com.talex.frame.talexframe.function.controller;
 
 import com.google.common.util.concurrent.RateLimiter;
 import com.talex.frame.talexframe.function.plugins.core.WebPlugin;
+import com.talex.frame.talexframe.function.repository.TRepository;
+import com.talex.frame.talexframe.function.repository.TRepositoryManager;
 import com.talex.frame.talexframe.function.talex.TFrame;
+import com.talex.frame.talexframe.pojo.annotations.TRepoInject;
 import com.talex.frame.talexframe.pojo.annotations.TRequestLimit;
 import lombok.Getter;
+import lombok.SneakyThrows;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -47,6 +52,7 @@ public class TControllerManager {
      *
      * @return 注册是否成功
      */
+    @SneakyThrows
     public boolean registerController(WebPlugin plugin, TController controller) {
 
         if( this.controllers.containsKey(controller.getClass()) ) {
@@ -79,6 +85,33 @@ public class TControllerManager {
                 RateLimiter limiter = RateLimiter.create(methodLimit.QPS(), methodLimit.timeout(), methodLimit.timeUnit());
 
                 TFrame.tframe.getRateLimiterManager().getMethodLimiterMapper().put(method, limiter);
+
+            }
+
+        }
+
+        TRepositoryManager repoManager = TFrame.tframe.getRepositoryManager();
+
+        /** 扫描类中所有字段 带有 TRepInject 的字段，自动从 TRepositoryManager 中根据字段类型注入 **/
+        for( Field field : clz.getDeclaredFields() ) {
+
+            TRepoInject repoInject = field.getAnnotation(TRepoInject.class);
+
+            if( repoInject != null ) {
+
+                Class<?> repClz = field.getType();
+
+                field.setAccessible(true);
+
+                TRepository tRep = repoManager.getASRepositoryByClass(repClz);
+
+                if( tRep == null ) {
+
+                    throw new NullPointerException("Inject repository with null - " + repClz.getClass());
+
+                }
+
+                field.set(controller, tRep);
 
             }
 

@@ -1,6 +1,7 @@
 package com.talex.frame.talexframe.function.controller;
 
 import com.talex.frame.talexframe.function.repository.TRepository;
+import com.talex.frame.talexframe.function.repository.TRepositoryManager;
 import com.talex.frame.talexframe.function.talex.FrameCreator;
 import com.talex.frame.talexframe.function.talex.TFrame;
 import com.talex.frame.talexframe.mapper.frame.FrameSender;
@@ -17,6 +18,8 @@ public abstract class TController extends FrameCreator {
 
     protected TFrame tframe = TFrame.tframe;
     protected FrameSender frameSender = tframe.getFrameSender();
+    protected TControllerManager controllerManager = tframe.getControllerManager();
+    protected TRepositoryManager repositoryManager = tframe.getRepositoryManager();
     protected TRepository repository;
 
     public TController(String provider) {

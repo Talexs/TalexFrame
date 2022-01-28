@@ -44,7 +44,7 @@ public class TFrame {
     public static TFrame tframe = new TFrame();
 
     private final PluginInfo.PluginSupportVersion versionE = PluginInfo.PluginSupportVersion.SIX_NORMAL;
-    private final String version = "6.2.0";
+    private final String version = "6.3.0";
 
     @Setter
     private FrameStatus frameStatus = FrameStatus.STOPPED;
