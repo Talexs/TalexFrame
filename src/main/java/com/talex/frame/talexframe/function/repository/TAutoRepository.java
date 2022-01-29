@@ -89,9 +89,13 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
      */
     public boolean onSingleDataLoaded(WrappedData<T> data) {
 
-        saveAllDataToMysql();
+        if( !doCached() ) {
 
-        dataMap.clear();
+            saveAllDataToMysql();
+
+            dataMap.clear();
+
+        }
 
         return false;
     }
@@ -143,7 +147,7 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
                 TAutoSave as = field.getAnnotation(TAutoSave.class);
 
-                if(as == null || !as.isMySqlFiled()) { continue; }
+                if(as == null || !as.isMySqlFiled() || !as.noneWrite()) { continue; }
 
                 if( !field.isAccessible() ) field.setAccessible(true);
 

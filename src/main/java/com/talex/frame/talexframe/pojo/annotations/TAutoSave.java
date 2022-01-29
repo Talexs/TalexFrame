@@ -64,4 +64,7 @@ public @interface TAutoSave {
     /** 当不为空时将忽略其他字段 直接注入本字段 **/
     String columnContent() default "";
 
+    /** 是否写入 - 不写入即代表如 AUTO_INCREMENT 这种 **/
+    boolean noneWrite() default false;
+
 }
