@@ -30,6 +30,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -43,16 +45,16 @@ public class PluginManager {
     private final File pluginFolder;
 
     @Getter
-    private final HashMap<String, WebPlugin> pluginHashMap = new HashMap<>();
+    private final ConcurrentMap<String, WebPlugin> pluginHashMap = new ConcurrentHashMap<>();
 
     @Getter
-    private final HashMap<String, String> nameClassIndex = new HashMap<>();
+    private final ConcurrentMap<String, String> nameClassIndex = new ConcurrentHashMap<>();
 
     @Getter
-    private final HashMap<String, JarFile> pluginJarFiles = new HashMap<>();
+    private final ConcurrentMap<String, JarFile> pluginJarFiles = new ConcurrentHashMap<>();
 
     @Getter
-    private final HashMap<String, URLClassLoader> pluginClassLoaders = new HashMap<>();
+    private final ConcurrentMap<String, URLClassLoader> pluginClassLoaders = new ConcurrentHashMap<>();
 
     @SneakyThrows
     public PluginManager(File mainFolder) {
