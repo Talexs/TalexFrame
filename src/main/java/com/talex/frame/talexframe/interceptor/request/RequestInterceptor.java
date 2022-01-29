@@ -146,13 +146,13 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
     }
 
-    private void processClassRequest(TController controller, WrappedResponse wr) throws InstantiationException, IllegalAccessException, InvocationTargetException {
-
-        if( TFrame.tframe == null ) return;
+    private void processClassRequest(TController controller, WrappedResponse wr) throws IllegalAccessException, InvocationTargetException {
 
         TFrame tframe = TFrame.tframe;
 
         Class<?> clz = controller.getClass();
+
+        log.debug("[接口层] 检查 " + clz.getName() + " 的匹配...");
 
         RateLimiter clzLimiter = tframe.getRateLimiterManager().getClassLimiterMapper().get(clz);
 
@@ -183,17 +183,34 @@ public final class RequestInterceptor implements HandlerInterceptor {
         if( tReqLoginChecker != null && !StpUtil.isLogin() ) {
 
             wr.returnDataByFailed("请先登录.");
+
+            log.info("[@TReqLoginChecker] 请求已被拦截 - 请先登录 @" + clz.getName());
+
             return;
 
         }
 
         for( Method method : clz.getMethods() ) {
 
+            log.debug("[接口层] 检查 " + method.getName() + " 的匹配...");
+
             TRequest request = method.getAnnotation(TRequest.class);
 
-            if( request == null ) continue;
+            if( request == null ) {
 
-            if( !UrlUtil.advancedUrlChecker(wr.getRequest().getRequestURI(), request.value())) continue;
+                log.debug("[接口层] " + method.getName() + " 没有 @TRequest 注解, 跳过...");
+
+                continue;
+
+            }
+
+            if( !UrlUtil.advancedUrlChecker(request.value(), wr.getRequest().getRequestURI())) {
+
+                log.debug("[接口层] " + method.getName() + " 没有匹配, 跳过... (" + wr.getRequest().getRequestURI() + " # " + request.value() + ")");
+
+                continue;
+
+            }
 
             TReqSupportMethod repSupportMethod = method.getAnnotation(TReqSupportMethod.class);
 
@@ -253,21 +270,33 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
             if( !method.isAccessible() ) method.setAccessible(true);
 
-            if( !request.parseJSON() ) { method.invoke(clz.newInstance(), params.toArray()); return; }
-
             String str = wr.getRequest().getBody();
+            JSONObject json = null;
 
-            if( StrUtil.isBlankIfStr(str) ) {
+            if( !request.parseJSON() ) {
 
-                wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Data error");
+                log.info("[接口层] 请求无需解析JSON @" + clz.getName() + "." + method.getName());
 
-                log.info("[接口层] 请求数据错误 - 无任何数据");
+                // method.invoke(controller, params.toArray());
 
-                return;
+                // return;
+
+            } else {
+
+                if( StrUtil.isBlankIfStr(str) ) {
+
+                    wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Data error");
+
+                    log.info("[接口层] 请求数据错误 - 无任何数据");
+
+                    return;
+
+                }
+
+                json = JSONUtil.parseObj(str);
 
             }
 
-            JSONObject json = JSONUtil.parseObj(str);
             String url = wr.getRequest().getRequestURI();
 
             for( Parameter parameter : method.getParameters() ) {
@@ -294,6 +323,16 @@ public final class RequestInterceptor implements HandlerInterceptor {
                     }
 
                     params.add(url.substring(ind, ind + key.length()));
+
+                    continue;
+
+                }
+
+                if( json == null ) {
+
+                    log.warn("[接口层] 自动填充null # 请求数据错误 - 无任何数据 使用数据 @" + parameter.getName() + "." + clz.getName() + "." + method.getName());
+
+                    params.add(null);
 
                     continue;
 
@@ -368,7 +407,9 @@ public final class RequestInterceptor implements HandlerInterceptor {
             params.add(null);
 
         }
+
         return false;
+
     }
 
     @Override

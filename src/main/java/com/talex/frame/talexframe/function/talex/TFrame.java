@@ -117,6 +117,7 @@ public class TFrame {
         this.pluginManager.loadAllPluginsInFolder();
 
         log.info("框架启动成功!");
+        log.debug("DEBUG 模式已启动!");
 
     }
 
