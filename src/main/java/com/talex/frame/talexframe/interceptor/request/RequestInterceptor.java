@@ -309,20 +309,30 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
                     if( urlParam == null ) { continue; }
 
-                    String key = "{" + (StrUtil.isBlankIfStr(urlParam.field()) ? parameter.getName() : urlParam.field()) + "}";
-                    int ind = url.indexOf(key);
+                    String[] requestUrls = url.split("/");
+                    String[] requireUrls = request.value().split("/");
 
-                    if( ind == -1 ) {
+                    if( requestUrls.length != requireUrls.length ) {
 
-                        wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Url parameter error");
-
-                        log.info("[接口层] 请求路径错误 - " + url + " # 缺少参数: " + key);
+                        log.info("[接口层] 请求路径错误 - " + url + " # 缺少参数");
 
                         return;
 
                     }
 
-                    params.add(url.substring(ind, ind + key.length()));
+                    for( int i = 0; i < requireUrls.length; ++i ) {
+
+                        String subUrl = requireUrls[i];
+
+                        log.debug("[接口层] 请求路径 #" + i + " - " + url + " # " + subUrl + " / " + requireUrls[i]);
+
+                        if ( subUrl.startsWith("{") && subUrl.endsWith("}") ) {
+
+                            params.add(requestUrls[i]);
+
+                        }
+
+                    }
 
                     continue;
 

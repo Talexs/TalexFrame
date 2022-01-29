@@ -13,11 +13,4 @@ import java.lang.annotation.RetentionPolicy;
 @Retention( RetentionPolicy.RUNTIME )
 public @interface TUrlParam {
 
-    /**
-     *
-     * 默认解析json字段为当前参数名，设置后将按照field解析
-     *
-     */
-    String field() default "";
-
 }

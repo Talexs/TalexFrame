@@ -29,7 +29,7 @@ public abstract class AutoSaveData extends FrameData {
     @SneakyThrows
     public static WrappedData<?> deserialize(Class<? extends AutoSaveData> clz, ResultSet rs) {
 
-        return deserialize(clz, rs.getString("as_info"));
+        return deserializeByBase64Str(clz, rs.getString("as_info"));
 
     }
 
