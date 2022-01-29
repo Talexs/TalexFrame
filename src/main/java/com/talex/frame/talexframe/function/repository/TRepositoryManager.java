@@ -114,7 +114,7 @@ public class TRepositoryManager {
 
                 if( tRep == null ) {
 
-                    throw new NullPointerException("Inject repository with null - " + repClz.getClass());
+                    throw new NullPointerException("Inject repository with null - " + repClz.getName());
 
                 }
 

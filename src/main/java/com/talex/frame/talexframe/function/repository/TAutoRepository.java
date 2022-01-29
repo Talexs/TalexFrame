@@ -204,7 +204,8 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
             if( !StrUtil.isBlankIfStr(as.columnContent()) ) {
 
-                sqlTableBuilder.addTableParam(new SqlTableBuilder.TableParam().setColumnContent(as.columnContent()).setMain(as.isMain()));
+                sqlTableBuilder.addTableParam(new SqlTableBuilder.TableParam().setColumnContent(as.columnContent())
+                        .setSubParamName("as_" + field.getName()).setMain(as.isMain()));
 
             } else {
 

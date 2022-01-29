@@ -108,7 +108,7 @@ public class TControllerManager {
 
                 if( tRep == null ) {
 
-                    throw new NullPointerException("Inject repository with null - " + repClz.getClass());
+                    throw new NullPointerException("Inject repository with null - " + repClz.getName());
 
                 }
 
