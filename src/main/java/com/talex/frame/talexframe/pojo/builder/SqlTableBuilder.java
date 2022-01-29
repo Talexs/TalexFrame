@@ -1,5 +1,6 @@
 package com.talex.frame.talexframe.pojo.builder;
 
+import cn.hutool.core.util.StrUtil;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -159,9 +160,17 @@ public class SqlTableBuilder extends SqlBuilder{
 
             }
 
-            if( tp.getColumnContent() != null ) {
+            if( !StrUtil.isBlankIfStr( tp.getColumnContent() ) ) {
 
-                tsb.append(tp.getColumnContent() );
+                String content = tp.getColumnContent();
+
+                if( !content.endsWith(",") ) {
+
+                    content = content + ",";
+
+                }
+
+                sb.append( content );
 
             } else {
 
@@ -173,7 +182,7 @@ public class SqlTableBuilder extends SqlBuilder{
 
                     tsb.append("NOT NULL,");
 
-                } else{
+                } else {
 
                     tsb.append("DEFAULT \"").append(tp.defaultNull).append("\",");
 
@@ -185,9 +194,9 @@ public class SqlTableBuilder extends SqlBuilder{
 
                 }
 
-            }
+                sb.append(tsb);
 
-            sb.append(tsb);
+            }
 
         }
 
