@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,9 +72,9 @@ public class TalexEventBus implements IEventBus {
 
                 Class<?>[] parameterTypes = method.getParameterTypes();
 
-                if (parameterTypes.length != 1) {
+                if (parameterTypes.length > 2) {
 
-                    throw new RuntimeException(method.getName() + " 参数个数必须为1");
+                    throw new RuntimeException(method.getName() + " 参数个数必须 <= 2");
 
                 }
 
@@ -185,7 +186,21 @@ public class TalexEventBus implements IEventBus {
 
         try {
 
-            method.invoke(methodManager.getOwner(), event);
+            List<Object> objs = new ArrayList<>();
+
+            objs.add(event);
+
+            for( Parameter parameter : method.getParameters() ) {
+
+                if( parameter.getType().isInstance( MethodManager.class )) {
+
+                    objs.add(methodManager);
+
+                }
+
+            }
+
+            method.invoke(methodManager.getOwner(), objs.toArray(new Object[0]));
 
             if( event instanceof IContinue ) {
 

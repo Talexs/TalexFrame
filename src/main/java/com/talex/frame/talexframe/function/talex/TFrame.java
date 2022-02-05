@@ -44,13 +44,13 @@ public class TFrame {
     public static TFrame tframe = new TFrame();
 
     private final PluginInfo.PluginSupportVersion versionE = PluginInfo.PluginSupportVersion.SIX_NORMAL;
-    private final String version = "6.3.0";
+    private final String version = "6.4.0";
 
     @Setter
     private FrameStatus frameStatus = FrameStatus.STOPPED;
 
     @Getter
-    private static final File mainFile = new File("");
+    private static final File mainFile = new File(System.getProperty("user.dir"));
 
     private boolean started = false;
 

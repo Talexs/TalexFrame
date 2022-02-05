@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.lang.reflect.Method;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author TalexDreamSoul
@@ -23,17 +23,18 @@ public class MethodManager {
     @Getter
     private TalexSubscribe talexSubscribe;
 
-    private Set<String> listenedEvents = new HashSet<>();
+    @Getter
+    private Map<String, Long> listenedEvents = new HashMap<>();
 
     public void listen(String key) {
 
-        if( listenedEvents.contains(key) ) {
+        if( listenedEvents.containsKey(key) ) {
 
             throw new RuntimeException("在监听时出现错误 - key的重复发放 " + key);
 
         }
 
-        listenedEvents.add(key);
+        listenedEvents.put(key, System.currentTimeMillis());
 
     }
 

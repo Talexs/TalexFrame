@@ -21,6 +21,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -105,7 +106,7 @@ public class PluginManager {
 
                 String a = IoUtil.read(is, Charset.defaultCharset());
 
-                jarFile.close();
+                // jarFile.close();
 
                 try {
 
@@ -120,9 +121,13 @@ public class PluginManager {
                             .setWebsite(json.get("website").getAsString())
                             .setSupportVersion(PluginInfo.PluginSupportVersion.valueOf(json.get("supportVersion").getAsString()));
 
+                    is.close();
+
                     return new WrappedInfo(info, jarFile);
 
                 } catch (JsonSyntaxException e) {
+
+                    is.close();
 
                     throw new RuntimeException("Load web plugin error due to load " + fileDir);
 
@@ -166,6 +171,8 @@ public class PluginManager {
             boolean matched = false;
 
             for( File f : Objects.requireNonNull(this.pluginFolder.listFiles()) ) {
+
+                if( f.isDirectory() ) { continue; }
 
                 wInfo = getPluginMainClassPathFromPluginName(f.getPath());
 
@@ -225,6 +232,24 @@ public class PluginManager {
             this.unloadPlugin( info.getPluginName() );
 
             return;
+
+        }
+
+        JarEntry config = wInfo.getJarFile().getJarEntry("config.yml");
+
+        if( config != null ) {
+
+            File file = new File(this.pluginFolder + "/" + info.getPluginName() + "/config.yml");
+
+            if( !file.exists() ) {
+
+                InputStream is = wInfo.getJarFile().getInputStream(config);
+
+                String a = IoUtil.read(is, Charset.defaultCharset());
+
+                IoUtil.writeUtf8(new FileOutputStream(file), true, a);
+
+            }
 
         }
 
@@ -338,6 +363,8 @@ public class PluginManager {
 //        HttpRequestManager.getInstance().releasePlugin(plugin);
 
         plugin.onDisable();
+
+        plugin.tempDataFolder.delete();
 
         int i = 0;
 
