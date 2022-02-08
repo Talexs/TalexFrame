@@ -192,6 +192,8 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
         for( Method method : clz.getMethods() ) {
 
+            if( wr.getResponse().isCommitted() ) return;
+
             log.debug("[接口层] 检查 " + method.getName() + " 的匹配...");
 
             TRequest request = method.getAnnotation(TRequest.class);
