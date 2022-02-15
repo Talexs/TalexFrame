@@ -86,7 +86,7 @@ public class SqlTableBuilder extends SqlBuilder{
     @Setter
     private List<TableParam> map = new ArrayList<>();
 
-    private List<String> tableKeys = new ArrayList<>();
+    private final List<String> tableKeys = new ArrayList<>();
 
     public void addTableParamIgnore(TableParam tp){
 

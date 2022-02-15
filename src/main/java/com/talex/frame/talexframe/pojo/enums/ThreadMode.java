@@ -18,6 +18,6 @@ public enum ThreadMode {
      * 网络访问等耗时操作，完成后异步通知
      *
      */
-    ASYNC;
+    ASYNC
 
 }

@@ -1,6 +1,5 @@
 package com.talex.frame.talexframe.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 /**

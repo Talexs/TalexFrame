@@ -14,7 +14,7 @@ import lombok.Getter;
 @Getter
 public abstract class BaseCommand implements ICommand {
 
-    protected TFrame tframe = TFrame.tframe;
+    protected final TFrame tframe = TFrame.tframe;
     protected FrameSender frameSender = tframe.getFrameSender();
 
     private final FrameCreator owner;

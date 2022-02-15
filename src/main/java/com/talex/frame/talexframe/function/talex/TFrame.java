@@ -41,7 +41,7 @@ import java.util.Map;
 @Slf4j
 public class TFrame {
 
-    public static TFrame tframe = new TFrame();
+    public static final TFrame tframe = new TFrame();
 
     private final PluginInfo.PluginSupportVersion versionE = PluginInfo.PluginSupportVersion.SIX_NORMAL;
     private final String version = "6.4.0";
@@ -132,7 +132,7 @@ public class TFrame {
     private CommandManager commandManager;
     private MysqlManager mysqlManager;
 
-    private FrameSender frameSender;
+    private final FrameSender frameSender;
 
     @Getter( AccessLevel.PACKAGE )
     private final TalexEventBus eventBus = TalexEventBus.getDefault();

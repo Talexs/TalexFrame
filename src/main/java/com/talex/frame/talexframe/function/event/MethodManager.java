@@ -24,7 +24,7 @@ public class MethodManager {
     private TalexSubscribe talexSubscribe;
 
     @Getter
-    private Map<String, Long> listenedEvents = new HashMap<>();
+    private final Map<String, Long> listenedEvents = new HashMap<>();
 
     public void listen(String key) {
 

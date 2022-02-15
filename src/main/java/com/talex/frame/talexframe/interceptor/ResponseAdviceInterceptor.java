@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.talex.frame.talexframe.pojo.annotations.WrapperResponse;
 import com.talex.frame.talexframe.wrapper.ResultData;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -25,8 +24,9 @@ import java.util.Objects;
 @RestControllerAdvice
 public class ResponseAdviceInterceptor implements ResponseBodyAdvice<Object> {
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
+
+    public ResponseAdviceInterceptor(ObjectMapper objectMapper) {this.objectMapper = objectMapper;}
 
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {

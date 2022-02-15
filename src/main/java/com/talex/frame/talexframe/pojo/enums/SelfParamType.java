@@ -16,6 +16,6 @@ public enum SelfParamType {
     TalexRequest(),
 
     /** 提供方法本身注解 **/
-    TalexRequestLimit();
+    TalexRequestLimit()
 
 }

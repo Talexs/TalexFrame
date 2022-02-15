@@ -42,6 +42,6 @@ public enum ProcessType {
      * 使用 TalexsFrame 框架接口层进行处理, 成功后进入 框架网络层处理
      *
      */
-    API_LOGIN;
+    API_LOGIN
 
 }

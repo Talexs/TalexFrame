@@ -1,4 +1,4 @@
-# TalexFrame
+# TalexFrame # Plus
 
 ```
  /__  ___/                            //   / /                                   
@@ -33,6 +33,8 @@
 ## Module
 
 #### We use modules to add functions like _apis, commands, etc.
+
+#### It's amazing that we provide lots of funcs even can compare with origin SpringBoot.
 
 
 

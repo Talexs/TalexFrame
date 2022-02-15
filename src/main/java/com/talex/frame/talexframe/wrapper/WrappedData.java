@@ -1,7 +1,6 @@
 package com.talex.frame.talexframe.wrapper;
 
 import com.talex.frame.talexframe.function.auto.data.AutoSaveData;
-import com.talex.frame.talexframe.function.talex.FrameData;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

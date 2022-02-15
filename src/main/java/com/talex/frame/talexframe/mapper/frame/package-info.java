@@ -1,5 +1,5 @@
 /**
- * 框架的 Mapper
+ * TalexFrame # 框架的 Mapper
  * <br /> {@link com.talex.frame.talexframe.mapper.frame Package }
  *
  * @author TalexDreamSoul

@@ -15,7 +15,7 @@ import lombok.Getter;
 @Getter
 public class RequestCannotGetTokenEvent extends TalexEvent implements Cancellable {
 
-    public static enum LimiterType {
+    public enum LimiterType {
 
         GLOBAL(), CLASS(), METHOD()
 

@@ -18,12 +18,12 @@ import java.util.jar.JarFile;
 @Getter
 public abstract class WebPlugin extends FrameCreator implements IPlugin {
 
-    protected TFrame tframe = TFrame.tframe;
+    protected final TFrame tframe = TFrame.tframe;
     protected FrameSender sender = TFrame.tframe.getFrameSender();
-    protected JarFile jarFile;
+    protected final JarFile jarFile;
 
-    protected File pluginDataFolder;
-    protected File tempDataFolder;
+    protected final File pluginDataFolder;
+    protected final File tempDataFolder;
 
     public WebPlugin(String pluginName, PluginInfo info) {
 

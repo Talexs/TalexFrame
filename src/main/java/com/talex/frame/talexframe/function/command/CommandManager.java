@@ -50,7 +50,7 @@ public class CommandManager {
      * 处理命令 - 内部接口请勿调用 （可以用来发配假装指令）
      * dispatch
      *
-     * @param wholeCmd
+     * @param wholeCmd 完整的命令
      */
     public void processCommand(ISender sender, String wholeCmd) {
 
@@ -230,6 +230,7 @@ public class CommandManager {
      *
      * @return 返回是否成功 返回假一般代表已有此命令 （可以通过 namespace 解决）
      */
+    @SuppressWarnings( "UnusedReturnValue" )
     public boolean setCommandExecutor(String label, BaseCommand command) {
 
         if( !label.equals(command.getLabel()) ) {

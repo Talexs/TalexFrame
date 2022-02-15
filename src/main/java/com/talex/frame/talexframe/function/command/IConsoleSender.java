@@ -1,7 +1,5 @@
 package com.talex.frame.talexframe.function.command;
 
-import org.slf4j.event.Level;
-
 /**
  * ConsoleSender -> Sender接口
  * <br /> {@link com.talex.frame.talexframe.function.command Package }

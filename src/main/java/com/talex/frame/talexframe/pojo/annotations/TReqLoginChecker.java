@@ -15,4 +15,7 @@ import java.lang.annotation.Target;
 @Retention( RetentionPolicy.RUNTIME )
 @Target( {ElementType.METHOD, ElementType.TYPE} )
 public @interface TReqLoginChecker {
+
+    boolean value() default true;
+
 }

@@ -22,7 +22,7 @@ public class FrameFirstInstallEvent extends TalexEvent implements Cancellable, I
 
     /**
      *
-     * @Description: 在本事件中如果设定为真则不会输出默认的 config.yml 文件
+     * 在本事件中如果设定为真则不会输出默认的 config.yml 文件
      *
      */
     private boolean cancelled = false;

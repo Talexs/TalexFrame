@@ -25,9 +25,9 @@ public class RateLimiterManager {
 
     }
 
-    private RateLimiter globalLimiter = RateLimiter.create(100);
+    private final RateLimiter globalLimiter = RateLimiter.create(100);
 
-    private Map<Class, RateLimiter> classLimiterMapper = new HashMap<>(32);
-    private Map<Method, RateLimiter> methodLimiterMapper = new HashMap<>(32);
+    private final Map<Class<?>, RateLimiter> classLimiterMapper = new HashMap<>(32);
+    private final Map<Method, RateLimiter> methodLimiterMapper = new HashMap<>(32);
 
 }

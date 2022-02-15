@@ -1,5 +1,5 @@
 /**
- * 请求管理器 - 框架核心
+ * TalexFrame # 请求管理器 - 框架核心
  * <br /> {@link com.talex.frame.talexframe.interceptor.request Package }
  *
  * @author TalexDreamSoul

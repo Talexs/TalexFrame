@@ -81,7 +81,7 @@ public class TRepositoryManager {
     @SneakyThrows
     public boolean registerRepository(WebPlugin plugin, TRepository repository) {
 
-        if( this.repositories.containsKey(repository.getProvider()) ) {
+        if( this.repositories.containsKey(repository.getClass()) ) {
 
             return false;
 
@@ -99,7 +99,7 @@ public class TRepositoryManager {
 
         Class<?> clz = repository.getClass();
 
-        /** 扫描类中所有字段 带有 TRepInject 的字段，自动从 TRepositoryManager 中根据字段类型注入 **/
+        /* 扫描类中所有字段 带有 TRepInject 的字段，自动从 TRepositoryManager 中根据字段类型注入 **/
         for( Field field : clz.getDeclaredFields() ) {
 
             TRepoInject repoInject = field.getAnnotation(TRepoInject.class);
@@ -139,7 +139,7 @@ public class TRepositoryManager {
      */
     public boolean unRegisterRepository(WebPlugin plugin, TRepository repository) {
 
-        if( !this.repositories.containsKey(repository.getProvider()) ) {
+        if( !this.repositories.containsKey(repository.getClass()) ) {
 
             return false;
 

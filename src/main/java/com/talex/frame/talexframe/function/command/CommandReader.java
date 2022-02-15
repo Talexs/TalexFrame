@@ -37,50 +37,13 @@ public class CommandReader {
 
             new FrameConsole().start();
 
-            // Scanner scanner = new Scanner(System.in);
-            //
-            // while( true ) {
-            //
-            //     if( TFrame.tframe.getFrameStatus() != FrameStatus.RUNNING ) {
-            //
-            //         log.info("[Command] 命令系统已结束!");
-            //
-            //         thread.interrupt();
-            //
-            //         break;
-            //
-            //     }
-            //
-            //
-            //
-            //     // String cmd = scanner.nextLine();
-            //     //     if( !StrUtil.isEmptyIfStr(cmd) ) processCommand(cmd);
-            //
-            //    // String cmd = null;
-            //    //
-            //    // try {
-            //    //
-            //    //     cmd = reader.readLine(">");
-            //    //
-            //    //     if( !StrUtil.isEmptyIfStr(cmd) ) processCommand(cmd);
-            //    //
-            //    // } catch ( IOException e ) {
-            //    //
-            //    //     e.printStackTrace();
-            //    //
-            //    // }
-            //
-            //
-            //
-            // }
-
         });
 
         this.thread.start();
 
     }
 
-    private CommandManager commandManager;
+    private final CommandManager commandManager;
 
     class FrameConsole extends SimpleTerminalConsole {
 
@@ -92,20 +55,6 @@ public class CommandReader {
 
         @Override
         protected void runCommand(String command) {
-
-            // if( commandManager == null ) {
-            //
-            //     commandManager = TFrame.tframe.getCommandManager();
-            //
-            //     if( commandManager == null ) {
-            //
-            //         log.warn("命令系统尚未初始化完成!");
-            //
-            //         return;
-            //
-            //     }
-            //
-            // }
 
             commandManager.processCommand(FrameSender.getDefault(), command);
 

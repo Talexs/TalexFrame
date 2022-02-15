@@ -16,7 +16,7 @@ import lombok.Getter;
 @Getter
 public abstract class TController extends FrameCreator {
 
-    protected TFrame tframe = TFrame.tframe;
+    protected final TFrame tframe = TFrame.tframe;
     protected FrameSender frameSender = tframe.getFrameSender();
     protected TControllerManager controllerManager = tframe.getControllerManager();
     protected TRepositoryManager repositoryManager = tframe.getRepositoryManager();

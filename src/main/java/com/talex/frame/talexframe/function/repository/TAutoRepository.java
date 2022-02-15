@@ -49,6 +49,7 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
         super(tableName);
 
         this.ownPlugin = webPlugin;
+        //noinspection unchecked
         this.templateData = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
     }
@@ -69,15 +70,15 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
     public void delData(T data) {
         this.dataMap.remove(data.getMainKey(), data);
-        this.onSingleDataRemoved(new WrappedData<T>(data));
+        this.onSingleDataRemoved(new WrappedData<>(data));
     }
 
-    public void onSingleDataRemoved(WrappedData<T> data) {
+    public void onSingleDataRemoved(WrappedData<?> data) {
     }
 
     public void addData(T data) {
-        this.dataMap.put(data.getMainKey(), new WrappedData<T>(data).getValue());
-        this.onSingleDataLoaded(new WrappedData<T>(data));
+        this.dataMap.put(data.getMainKey(), new WrappedData<>(data).getValue());
+        this.onSingleDataLoaded(new WrappedData<>(data));
     }
 
     /**
@@ -112,8 +113,8 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
         ResultSet rs = readSearchAllData();
 
         while ( rs != null && rs.next()) {
-            WrappedData<T> data = (WrappedData<T>) AutoSaveData.deserialize(templateData, JSONUtil.parseObj(Base64.decodeStr(rs.getString("as_info"))));
-            if (data.getValue() == null || ((AutoSaveData)data.getValue()).getMainKey() == null) {
+            @SuppressWarnings( "unchecked" ) WrappedData<T> data = (WrappedData<T>) AutoSaveData.deserialize(templateData, JSONUtil.parseObj(Base64.decodeStr(rs.getString("as_info"))));
+            if (data.getValue() == null || data.getValue().getMainKey() == null) {
                 log.error("[AutoSaveData] FatalError!! # " + templateData.getName());
             }
             if (onSingleDataLoaded(data)) continue;

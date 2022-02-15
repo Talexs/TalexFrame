@@ -93,7 +93,11 @@ public class TControllerManager {
 
         TRepositoryManager repoManager = TFrame.tframe.getRepositoryManager();
 
-        /** 扫描类中所有字段 带有 TRepInject 的字段，自动从 TRepositoryManager 中根据字段类型注入 **/
+        /*
+
+          扫描类中所有字段 带有 TRepInject 的字段，自动从 TRepositoryManager 中根据字段类型注入
+
+         */
         for( Field field : clz.getDeclaredFields() ) {
 
             TRepoInject repoInject = field.getAnnotation(TRepoInject.class);

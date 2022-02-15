@@ -23,7 +23,7 @@ import java.io.File;
 @Slf4j
 public class ConnectorConfig {
 
-    private static boolean HTTPS = false;
+    private static final boolean HTTPS = false;
 
     static {
 

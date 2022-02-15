@@ -46,7 +46,7 @@ public class BodyCopyHttpServletRequestWrapper extends HttpServletRequestWrapper
      *
      * 获取请求Body
      *
-     * @param request
+     * @param request 原始请求
      *
      */
     @SneakyThrows
@@ -57,7 +57,7 @@ public class BodyCopyHttpServletRequestWrapper extends HttpServletRequestWrapper
         InputStream inputStream = cloneInputStream(request.getInputStream());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
 
-        String line = "";
+        String line;
 
         while ( Objects.nonNull((line = reader.readLine())) ) {
 
@@ -96,7 +96,7 @@ public class BodyCopyHttpServletRequestWrapper extends HttpServletRequestWrapper
     }
 
     @Override
-    public BufferedReader getReader() throws IOException {
+    public BufferedReader getReader() {
 
         return new BufferedReader(new InputStreamReader(getInputStream()));
 
@@ -115,7 +115,7 @@ public class BodyCopyHttpServletRequestWrapper extends HttpServletRequestWrapper
         return new ServletInputStream() {
 
             @Override
-            public int read() throws IOException {
+            public int read() {
                 return copyStream.read();
             }
 

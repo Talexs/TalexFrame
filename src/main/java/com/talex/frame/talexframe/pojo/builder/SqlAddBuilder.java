@@ -62,6 +62,7 @@ public class SqlAddBuilder extends SqlBuilder {
         REPLACE("REPLACE");
 
         @Getter
+        final
         String displayName;
 
         AddType(String displayName){

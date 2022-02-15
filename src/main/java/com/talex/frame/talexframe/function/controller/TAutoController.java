@@ -40,6 +40,7 @@ public class TAutoController<T extends TAutoRepository<?>> extends TController {
 
     }
 
+    @SuppressWarnings( "unchecked" )
     @Override
     public TRepository getRepository() {
 

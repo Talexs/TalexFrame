@@ -18,16 +18,16 @@ public class MailServiceImpl {
 
     public static MailServiceImpl INSTANCE;
 
-    @Autowired
-    private JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
     @Value("${spring.mail.username}")
     private String fromMailOwner;
 
-    public MailServiceImpl() {
+    public MailServiceImpl(JavaMailSender mailSender) {
 
         INSTANCE = this;
 
+        this.mailSender = mailSender;
     }
 
 }

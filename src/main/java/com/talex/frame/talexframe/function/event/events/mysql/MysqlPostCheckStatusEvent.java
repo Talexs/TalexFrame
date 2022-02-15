@@ -1,6 +1,5 @@
 package com.talex.frame.talexframe.function.event.events.mysql;
 
-import com.talex.frame.talexframe.function.event.Cancellable;
 import com.talex.frame.talexframe.function.event.TalexEvent;
 import com.talex.frame.talexframe.function.mysql.MysqlManager;
 import lombok.Getter;

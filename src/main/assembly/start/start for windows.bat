@@ -9,5 +9,3 @@ cls
 java -server -jar lib/${project.build.finalName}.jar
 
 goto end
-
-pause

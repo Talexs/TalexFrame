@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * 自动保存实例
  * 标注在方法上，代表将执行这个方法并保存方法返回
- * <br /> {@link com.talex.frame.talexframe.annotations Package }
+ * <br /> {@link com.talex.frame.talexframe.pojo.annotations Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 15:14 <br /> Project: TalexFrame <br />

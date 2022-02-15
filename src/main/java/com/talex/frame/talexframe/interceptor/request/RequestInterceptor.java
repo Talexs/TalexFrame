@@ -132,7 +132,7 @@ public final class RequestInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
 
         if( TFrame.tframe == null ) return;
 
@@ -180,13 +180,25 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
         TReqLoginChecker tReqLoginChecker = clz.getAnnotation(TReqLoginChecker.class);
 
-        if( tReqLoginChecker != null && !StpUtil.isLogin() ) {
+        if( tReqLoginChecker != null ) {
 
-            wr.returnDataByFailed("请先登录.");
+            if( tReqLoginChecker.value() && !StpUtil.isLogin() ) {
 
-            log.info("[@TReqLoginChecker] 请求已被拦截 - 请先登录 @" + clz.getName());
+                wr.returnDataByFailed("请先登录.");
 
-            return;
+                log.info("[@TReqLoginChecker] 请求已被拦截 - 请先登录 @" + clz.getName());
+
+                return;
+
+            } else if( !tReqLoginChecker.value() && StpUtil.isLogin() ) {
+
+                wr.returnDataByFailed("已登录.");
+
+                log.info("[@TReqLoginChecker] 请求已被拦截 - 已登录 @" + clz.getName());
+
+                return;
+
+            }
 
         }
 
@@ -425,7 +437,7 @@ public final class RequestInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
 
         TFrame.tframe.callEvent(new RequestAfterCompletion(request, response, handler, ex));
 

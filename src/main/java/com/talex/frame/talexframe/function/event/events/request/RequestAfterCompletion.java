@@ -1,6 +1,5 @@
 package com.talex.frame.talexframe.function.event.events.request;
 
-import com.talex.frame.talexframe.function.event.Cancellable;
 import com.talex.frame.talexframe.function.event.TalexEvent;
 import lombok.Getter;
 
