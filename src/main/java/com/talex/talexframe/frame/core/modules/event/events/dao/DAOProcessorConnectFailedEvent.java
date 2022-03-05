@@ -1,9 +1,9 @@
-package com.talex.talexframe.frame.core.modules.event.events.mysql;
+package com.talex.talexframe.frame.core.modules.event.events.dao;
 
 import com.talex.talexframe.frame.core.modules.event.Cancellable;
 import com.talex.talexframe.frame.core.modules.event.IContinue;
 import com.talex.talexframe.frame.core.modules.event.TalexEvent;
-import com.talex.talexframe.frame.core.modules.mysql.MysqlManager;
+import com.talex.talexframe.frame.core.pojo.dao.interfaces.IDataProcessor;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,14 +16,14 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class MysqlConnectFailedEvent extends TalexEvent implements Cancellable, IContinue {
+public class DAOProcessorConnectFailedEvent extends TalexEvent implements Cancellable, IContinue {
 
-    private final MysqlManager mysqlManager;
+    private final IDataProcessor processor;
     private final Exception e;
 
-    public MysqlConnectFailedEvent(MysqlManager mysqlManager, Exception e) {
+    public DAOProcessorConnectFailedEvent(IDataProcessor processor, Exception e) {
 
-        this.mysqlManager = mysqlManager;
+        this.processor = processor;
         this.e = e;
 
     }

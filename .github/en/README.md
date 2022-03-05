@@ -1,6 +1,6 @@
 # TalexFrame
 
-[简体中文](./../../) | English
+[简体中文](./../../README.md) | English
 
 ```
 /__  ___/                            //   / /                                   

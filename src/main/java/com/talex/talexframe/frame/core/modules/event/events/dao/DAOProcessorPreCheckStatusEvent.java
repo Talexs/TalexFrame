@@ -1,8 +1,9 @@
-package com.talex.talexframe.frame.core.modules.event.events.mysql;
+package com.talex.talexframe.frame.core.modules.event.events.dao;
 
 import com.talex.talexframe.frame.core.modules.event.Cancellable;
 import com.talex.talexframe.frame.core.modules.event.TalexEvent;
 import com.talex.talexframe.frame.core.modules.mysql.MysqlManager;
+import com.talex.talexframe.frame.core.pojo.dao.interfaces.IDataProcessor;
 import lombok.Getter;
 
 /**
@@ -11,14 +12,14 @@ import lombok.Getter;
  * @author TalexDreamSoul
  * @date 2022/1/29 23:50 <br /> Project: TalexFrame <br />
  */
-public class MysqlPreCheckStatusEvent extends TalexEvent implements Cancellable {
+public class DAOProcessorPreCheckStatusEvent extends TalexEvent implements Cancellable {
 
     @Getter
-    private final MysqlManager mysql;
+    private final IDataProcessor processor;
 
-    public MysqlPreCheckStatusEvent(MysqlManager mysql) {
+    public DAOProcessorPreCheckStatusEvent(IDataProcessor processor) {
 
-        this.mysql = mysql;
+        this.processor = processor;
 
     }
 

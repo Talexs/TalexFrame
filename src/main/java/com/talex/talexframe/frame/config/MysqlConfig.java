@@ -1,6 +1,7 @@
 package com.talex.talexframe.frame.config;
 
-import com.talex.talexframe.frame.core.modules.mysql.core.MysqlInfo;
+import com.talex.talexframe.frame.core.pojo.dao.interfaces.IProcessorConfig;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,27 +12,9 @@ import org.springframework.context.annotation.Configuration;
  * @date 2022/1/21 15:48 <br /> Project: TalexFrame <br />
  */
 @Configuration
-public class MysqlConfig {
+public class MysqlConfig implements IProcessorConfig {
 
-    private static MysqlInfo MYSQL_INFO;
-
-    public static MysqlInfo getInfo() {
-
-        if( MYSQL_INFO == null ) {
-
-            MYSQL_INFO = new MysqlInfo()
-                    .setIp(instance.ip).setPort(instance.port)
-                    .setDatabaseName(instance.database)
-                    .setPassword(instance.password)
-                    .setUsername(instance.username)
-                    .setUseSSL(instance.useSSL);
-
-        }
-
-        return  MYSQL_INFO;
-
-    }
-
+    @Getter
     private static MysqlConfig instance;
 
     public MysqlConfig() {
@@ -57,5 +40,41 @@ public class MysqlConfig {
 
     @Value("${mysql.useSSL}")
     private boolean useSSL;
+
+    @Override
+    public String getIpAddress() {
+
+        return ip;
+    }
+
+    @Override
+    public int getPort() {
+
+        return port;
+    }
+
+    @Override
+    public String getDatabaseName() {
+
+        return database;
+    }
+
+    @Override
+    public String getUsername() {
+
+        return username;
+    }
+
+    @Override
+    public String getPassword() {
+
+        return password;
+    }
+
+    @Override
+    public String getExtra() {
+
+        return "?autoReconnect=true&serverTimezone=Asia/Shanghai&useSSL=" + useSSL;
+    }
 
 }

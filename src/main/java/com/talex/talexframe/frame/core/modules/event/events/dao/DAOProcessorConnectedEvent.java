@@ -1,8 +1,8 @@
-package com.talex.talexframe.frame.core.modules.event.events.mysql;
+package com.talex.talexframe.frame.core.modules.event.events.dao;
 
 import com.talex.talexframe.frame.core.modules.event.IContinue;
 import com.talex.talexframe.frame.core.modules.event.TalexEvent;
-import com.talex.talexframe.frame.core.modules.mysql.MysqlManager;
+import com.talex.talexframe.frame.core.pojo.dao.interfaces.IDataProcessor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,14 +16,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class MysqlConnectedEvent extends TalexEvent implements IContinue {
+public class DAOProcessorConnectedEvent extends TalexEvent implements IContinue {
 
-    private final MysqlManager mysqlManager;
+    private final IDataProcessor processor;
 
     @Override
     public String getMatchKey() {
 
-        return System.nanoTime() + " # MysqlConnected @" + this.hashCode();
+        return System.nanoTime() + " # DAOProcessorConnectedEvent @" + this.hashCode();
     }
 
 }

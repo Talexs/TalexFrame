@@ -1,8 +1,8 @@
-package com.talex.talexframe.frame.core.modules.event.events.mysql;
+package com.talex.talexframe.frame.core.modules.event.events.dao;
 
 import com.talex.talexframe.frame.core.modules.event.Cancellable;
 import com.talex.talexframe.frame.core.modules.event.TalexEvent;
-import com.talex.talexframe.frame.core.modules.mysql.MysqlManager;
+import com.talex.talexframe.frame.core.pojo.dao.interfaces.IDataProcessor;
 import lombok.Getter;
 
 /**
@@ -12,15 +12,15 @@ import lombok.Getter;
  * @date 2022/1/21 15:44 <br /> Project: TalexFrame <br />
  */
 @Getter
-public class MysqlPreShutdownEvent extends TalexEvent implements Cancellable {
+public class DAOProcessorPreShutdownEvent extends TalexEvent implements Cancellable {
 
-    private final MysqlManager mysqlManager;
+    private final IDataProcessor processor;
 
     private boolean cancel;
 
-    public MysqlPreShutdownEvent(MysqlManager manager) {
+    public DAOProcessorPreShutdownEvent(IDataProcessor processor) {
 
-        this.mysqlManager = manager;
+        this.processor = processor;
 
     }
 

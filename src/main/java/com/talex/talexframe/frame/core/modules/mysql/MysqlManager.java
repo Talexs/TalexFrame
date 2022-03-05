@@ -2,10 +2,15 @@ package com.talex.talexframe.frame.core.modules.mysql;
 
 import cn.hutool.core.thread.ThreadUtil;
 import com.talex.talexframe.frame.core.modules.mysql.core.MysqlInfo;
-import com.talex.talexframe.frame.core.modules.mysql.core.SqlCommand;
 import com.talex.talexframe.frame.core.pojo.builder.*;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.*;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.data.SqlDataBuilder;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.insert.SqlInsertBuilder;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.liker.SqlLikeBuilder;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.table.SqlTableBuilder;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.update.SqlUpdBuilder;
 import com.talex.talexframe.frame.core.talex.TFrame;
-import com.talex.talexframe.frame.core.modules.event.events.mysql.*;
+import com.talex.talexframe.frame.core.modules.event.events.dao.*;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,9 +45,10 @@ public class MysqlManager {
 
     }
 
+    @Override
     public void checkStatus() {
 
-        MysqlPreCheckStatusEvent mysqlPreStatusCheckEvent = new MysqlPreCheckStatusEvent(this);
+        DAOProcessorPreCheckStatusEvent mysqlPreStatusCheckEvent = new DAOProcessorPreCheckStatusEvent(this);
         talexs.callEvent(mysqlPreStatusCheckEvent);
 
         try {
@@ -73,11 +79,12 @@ public class MysqlManager {
 
         }
 
-        MysqlPostCheckStatusEvent mysqlStatusCheckEvent = new MysqlPostCheckStatusEvent(this);
+        DAOProcessorPostCheckStatusEvent mysqlStatusCheckEvent = new DAOProcessorPostCheckStatusEvent(this);
         talexs.callEvent(mysqlStatusCheckEvent);
 
     }
 
+    @Override
     public void reConnect() {
 
         this.shutdown();
@@ -92,22 +99,23 @@ public class MysqlManager {
 
     }
 
+    @Override
     public boolean connectMySQL() {
 
         try {
 
             this.connection = DriverManager.getConnection(
-                    "jdbc:mysql://" + mysqlInfo.getIp() + ":" + mysqlInfo.getPort()
+                    "jdbc:dao://" + mysqlInfo.getIp() + ":" + mysqlInfo.getPort()
                             + "/" + mysqlInfo.getDatabaseName() + "?autoReconnect=true&serverTimezone=Asia/Shanghai&useSSL=" + mysqlInfo.isUseSSL()
                     , mysqlInfo.getUsername(), mysqlInfo.getPassword());
 
         } catch (SQLException e) {
 
-            MysqlConnectFailedEvent mysqlConnectFailedEvent = new MysqlConnectFailedEvent(this, e);
+            DAOProcessorConnectFailedEvent DAOProcessorConnectFailedEvent = new DAOProcessorConnectFailedEvent(this, e);
 
-            talexs.callEvent(mysqlConnectFailedEvent);
+            talexs.callEvent(DAOProcessorConnectFailedEvent);
 
-            if (!mysqlConnectFailedEvent.isCancelled()) {
+            if (!DAOProcessorConnectFailedEvent.isCancelled()) {
 
                 e.printStackTrace();
 
@@ -117,7 +125,7 @@ public class MysqlManager {
 
         }
 
-        MysqlConnectedEvent mysqlConnectedEvent = new MysqlConnectedEvent(this);
+        DAOProcessorConnectedEvent mysqlConnectedEvent = new DAOProcessorConnectedEvent(this);
         talexs.callEvent(mysqlConnectedEvent);
 
         log.info("[Module] Mysql 已连接成功 !");
@@ -126,6 +134,7 @@ public class MysqlManager {
 
     }
 
+    @Override
     public boolean autoAccess(SqlBuilder sb) {
         try {
             PreparedStatement ps = this.connection.prepareStatement(sb.toString());
@@ -138,6 +147,7 @@ public class MysqlManager {
         }
     }
 
+    @Override
     public ResultSet likeData(SqlLikeBuilder slb) {
         try {
             PreparedStatement ps = this.connection.prepareStatement(slb.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -149,6 +159,7 @@ public class MysqlManager {
         }
     }
 
+    @Override
     public boolean updateData(SqlUpdBuilder upd) {
         try {
             PreparedStatement ps = this.connection.prepareStatement(upd.toString());
@@ -161,7 +172,8 @@ public class MysqlManager {
         }
     }
 
-    public boolean addData(SqlAddBuilder sab) {
+    @Override
+    public boolean addData(SqlInsertBuilder sab) {
         try {
             PreparedStatement ps = this.connection.prepareStatement(sab.toString());
             return ps.execute();
@@ -173,6 +185,7 @@ public class MysqlManager {
         }
     }
 
+    @Override
     public boolean deleteData(String table, String type, String value) {
         try {
             PreparedStatement ps = this.connection.prepareStatement(SqlCommand.DELETE_DATA.commandToString().replaceFirst("%table_name%", table.replace("--", "")).replaceFirst("%username%", type.replace("--", "")).replaceFirst("%value%", value));
@@ -185,6 +198,7 @@ public class MysqlManager {
         }
     }
 
+    @Override
     public void joinTable(SqlTableBuilder stb) {
         String cmd = stb.toString();
         try {
@@ -198,6 +212,7 @@ public class MysqlManager {
         }
     }
 
+    @Override
     public ResultSet readSearchAllData(String table) {
         try {
             PreparedStatement ps = this.connection.prepareStatement(SqlCommand.SELECT_ALL_DATA.commandToString().replaceFirst("%table_name%", table), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -210,6 +225,7 @@ public class MysqlManager {
         }
     }
 
+    @Override
     public ResultSet readSearchData(String table, String selectType, String value, int limit) {
         String s = "NONE";
         try {
@@ -223,6 +239,7 @@ public class MysqlManager {
         }
     }
 
+    @Override
     public ResultSet readSearchData(String table, String selectType, String value) {
         String s = "NONE";
         try {
@@ -236,20 +253,22 @@ public class MysqlManager {
         }
     }
 
+    @Override
     @SneakyThrows
     public boolean hasData(String table, SqlDataBuilder.DataParam dataParam) {
-        String cmd = "SELECT 1 FROM " + table + " WHERE " + dataParam.getSubParamName() + " = \"" + dataParam.getSubParamValue() + "\" LIMIT 1";
+        String cmd = "SELECT * FROM " + table + " WHERE " + dataParam.getSubParamName() + " = \"" + dataParam.getSubParamValue() + "\" LIMIT 1";
         ResultSet rs = this.connection.prepareStatement(cmd).executeQuery();
         return rs != null && rs.next();
     }
 
+    @Override
     public void shutdown() {
         if (this.connection == null) {
             return;
         }
-        MysqlPreShutdownEvent mysqlPreShutdownEvent = new MysqlPreShutdownEvent(this);
-        talexs.callEvent(mysqlPreShutdownEvent);
-        if (mysqlPreShutdownEvent.isCancelled()) {
+        DAOProcessorPreShutdownEvent daoProcessorPreShutdownEvent = new DAOProcessorPreShutdownEvent(this);
+        talexs.callEvent(daoProcessorPreShutdownEvent);
+        if ( daoProcessorPreShutdownEvent.isCancelled()) {
             return;
         }
         log.warn("[数据库] 数据库已停止服务!");
@@ -261,15 +280,18 @@ public class MysqlManager {
         }
     }
 
+    @Override
     @SneakyThrows
     public boolean getStatus(int timeout) {
         return this.connection.isValid(timeout);
     }
 
+    @Override
     public boolean isServiceNull() {
         return this.connection == null;
     }
 
+    @Override
     public boolean prepareStatement(String sql) {
         try {
             return this.connection.prepareStatement(sql).execute();
@@ -281,6 +303,7 @@ public class MysqlManager {
         }
     }
 
+    @Override
     public ResultSet executeWithCallBack(String sql) {
         try {
             return this.connection.prepareStatement(sql).executeQuery();

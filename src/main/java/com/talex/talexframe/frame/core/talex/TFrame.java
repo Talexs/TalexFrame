@@ -1,7 +1,6 @@
 package com.talex.talexframe.frame.core.talex;
 
 import com.talex.talexframe.frame.TalexFrameApplication;
-import com.talex.talexframe.frame.config.MysqlConfig;
 import com.talex.talexframe.frame.core.function.command.CommandManager;
 import com.talex.talexframe.frame.core.function.command.frame.HelpCmd;
 import com.talex.talexframe.frame.core.function.command.frame.PluginCmd;
@@ -13,11 +12,11 @@ import com.talex.talexframe.frame.core.modules.event.MethodManager;
 import com.talex.talexframe.frame.core.modules.event.TalexEvent;
 import com.talex.talexframe.frame.core.modules.event.events.frame.FrameStartedEvent;
 import com.talex.talexframe.frame.core.modules.event.service.TalexEventBus;
-import com.talex.talexframe.frame.core.modules.mysql.MysqlManager;
 import com.talex.talexframe.frame.core.modules.plugins.addon.FramePluginListener;
 import com.talex.talexframe.frame.core.modules.plugins.core.PluginInfo;
 import com.talex.talexframe.frame.core.modules.plugins.core.PluginManager;
 import com.talex.talexframe.frame.core.modules.repository.TRepositoryManager;
+import com.talex.talexframe.frame.core.pojo.dao.factory.DAOManager;
 import com.talex.talexframe.frame.core.pojo.enums.FrameStatus;
 import com.talex.talexframe.frame.core.pojo.mapper.frame.FrameSender;
 import com.talex.talexframe.frame.service.MailServiceImpl;
@@ -97,7 +96,7 @@ public class TFrame {
         started = true;
         setFrameStatus(FrameStatus.RUNNING);
 
-        this.mysqlManager = new MysqlManager(this, MysqlConfig.getInfo());
+        this.daoManager = new DAOManager();
 
         this.rateLimiterManager = new RateLimiterManager();
 
@@ -132,7 +131,7 @@ public class TFrame {
     private RateLimiterManager rateLimiterManager;
 
     private CommandManager commandManager;
-    private MysqlManager mysqlManager;
+    private DAOManager daoManager;
 
     private final FrameSender frameSender;
 

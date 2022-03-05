@@ -2,6 +2,12 @@ package com.talex.talexframe.frame.core.modules.repository;
 
 import com.talex.talexframe.frame.core.modules.mysql.MysqlManager;
 import com.talex.talexframe.frame.core.pojo.builder.*;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.*;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.data.SqlDataBuilder;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.insert.SqlInsertBuilder;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.liker.SqlLikeBuilder;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.table.SqlTableBuilder;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.update.SqlUpdBuilder;
 import com.talex.talexframe.frame.core.talex.FrameCreator;
 import com.talex.talexframe.frame.core.talex.TFrame;
 import com.talex.frame.talexframe.pojo.builder.*;
@@ -37,8 +43,8 @@ public class TRepository extends FrameCreator {
         return new SqlDataBuilder(getProvider());
     }
 
-    public SqlAddBuilder newSqlAddBuilder() {
-        return new SqlAddBuilder().setTableName(getProvider());
+    public SqlInsertBuilder newSqlAddBuilder() {
+        return new SqlInsertBuilder().setTableName(getProvider());
     }
 
     public SqlLikeBuilder newSqlLikeBuilder() {
@@ -69,7 +75,7 @@ public class TRepository extends FrameCreator {
         return this.mysql.updateData(upd.setTableName(getProvider()));
     }
 
-    public boolean addData(SqlAddBuilder sab) {
+    public boolean addData(SqlInsertBuilder sab) {
         return this.mysql.addData(sab.setTableName(getProvider()));
     }
 

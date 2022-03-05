@@ -7,4 +7,7 @@ package com.talex.talexframe.frame.core.pojo.dao.vo.addon;
  * @date 22/03/05 上午 11:14 <br /> Project: TalexFrame <br />
  */
 public class SaveOption {
+
+
+
 }

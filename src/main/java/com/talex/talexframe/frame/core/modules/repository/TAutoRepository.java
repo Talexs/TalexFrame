@@ -7,7 +7,7 @@ import com.talex.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import com.talex.talexframe.frame.core.talex.TFrame;
 import com.talex.talexframe.frame.core.pojo.dao.vo.auto.AutoSaveData;
 import com.talex.talexframe.frame.core.pojo.dao.vo.auto.TAutoSave;
-import com.talex.talexframe.frame.core.pojo.builder.SqlTableBuilder;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.table.SqlTableBuilder;
 import com.talex.talexframe.frame.core.pojo.wrapper.WrappedData;
 import lombok.Getter;
 import lombok.Setter;

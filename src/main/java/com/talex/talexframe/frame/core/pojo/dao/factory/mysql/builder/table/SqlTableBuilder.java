@@ -1,84 +1,21 @@
-package com.talex.talexframe.frame.core.pojo.builder;
+package com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.table;
 
 import cn.hutool.core.util.StrUtil;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.SqlBuilder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.SneakyThrows;
+import lombok.experimental.Accessors;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqlTableBuilder extends SqlBuilder{
+@Accessors( chain = true )
+public class SqlTableBuilder extends SqlBuilder {
 
-    @NoArgsConstructor
-    public static class TableParam {
+    public SqlTableBuilder(String tableName) {
 
-        @Getter
-        private String subParamName;
-
-        public TableParam setSubParamName(String name){
-
-            this.subParamName = name;
-            return this;
-
-        }
-
-        public TableParam(String subParamName) {
-
-            this.subParamName = subParamName;
-
-        }
-
-        @Getter
-        private String type = "TEXT(1024)";
-
-        public TableParam setType(String type){
-
-            this.type = type;
-            return this;
-
-        }
-
-        @Getter
-        private String defaultNull;
-
-        public TableParam setDefaultNull(String defaultNull){
-
-            this.defaultNull = defaultNull;
-            return this;
-
-        }
-
-        @Getter
-        private boolean main = false;
-
-        public TableParam setMain(boolean main){
-
-            this.main = main;
-            return this;
-
-        }
-
-        @Getter
-        private boolean uniqueOnly = false;
-
-        public TableParam setUniqueOnly(boolean only){
-
-            this.uniqueOnly = only;
-            return this;
-
-        }
-
-        @Getter
-        private String columnContent = null;
-
-        public TableParam setColumnContent(String content){
-
-        	this.columnContent = content;
-        	return this;
-
-        }
+        super(tableName);
 
     }
 
@@ -117,16 +54,6 @@ public class SqlTableBuilder extends SqlBuilder{
 
     }
 
-    @Getter
-    private String tableName = "default_table_" + System.currentTimeMillis();
-
-    public SqlTableBuilder setTableName(String name){
-
-        this.tableName = name;
-        return this;
-
-    }
-
     /**
      *
      * 若不设置则不会追加代码
@@ -134,14 +61,8 @@ public class SqlTableBuilder extends SqlBuilder{
      *
      */
     @Getter
+    @Setter
     private String addonSql;
-
-    public SqlTableBuilder setAddonSql(String addonSql) {
-
-        this.addonSql = addonSql;
-        return this;
-
-    }
 
     @Override
     public String toString(){
@@ -152,11 +73,11 @@ public class SqlTableBuilder extends SqlBuilder{
 
         for(TableParam tp : map){
 
-            StringBuilder tsb = new StringBuilder("`" + tp.getSubParamName() + "` " + tp.type).append(" ");
+            StringBuilder tsb = new StringBuilder("`" + tp.getSubParamName() + "` " + tp.getType()).append(" ");
 
             if(tp.isMain()){
 
-                key = key.replace("%stp%",tp.subParamName);
+                key = key.replace("%stp%",tp.getSubParamName());
 
             }
 
@@ -174,17 +95,17 @@ public class SqlTableBuilder extends SqlBuilder{
 
             } else {
 
-                if(tp.defaultNull == null){
+                if(tp.getDefaultNull() == null){
 
                     tsb.append("DEFAULT NULL,");
 
-                } else if(tp.defaultNull.equalsIgnoreCase("null")){
+                } else if(tp.getDefaultNull().equalsIgnoreCase("null")){
 
                     tsb.append("NOT NULL,");
 
                 } else {
 
-                    tsb.append("DEFAULT \"").append(tp.defaultNull).append("\",");
+                    tsb.append("DEFAULT \"").append(tp.getDefaultNull()).append("\",");
 
                 }
 
