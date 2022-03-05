@@ -1,6 +1,6 @@
 # Talexs 系列 - TalexFrame
 
-> 简单而不冗杂 平淡而不平庸 易学而不臃肿
+> 简单而不冗杂
 
 实现您的一切想法，只要您会一点语法。
 
@@ -9,11 +9,13 @@
 - Jre (1.8+) 为框架提供基本运行环境
 - MySQL (5.8+) 为框架提供基本数据存储
 - Redis (6.0+) 为框架提供并发存储以及容错回复支持
-- ErLang/OTP (24.2+) 为RabbitMQ提供支持
-- RabbitMQ (3.9.12+) 为框架提供消息中转(并发)支持
+- ~~ErLang/OTP (24.2+) 为RabbitMQ提供支持~~ (已停用)
+- ~~RabbitMQ (3.9.12+) 为框架提供消息中转(并发)支持~~ (已停用)
 - <del>ElasticSearch () 为框架提供搜索支持</del> (已停用)
 
-请在一切安装好后进入 **application.yml** 配置相关配置启动即可
+~~请在一切安装好后进入 **application.yml** 配置相关配置启动即可~~
+
+**全新 7.0.0 架构已加入自动配置系统**
 
 ### Launch/启动
 
@@ -25,7 +27,7 @@
 
 #### Unix
 
-> Unix用户应该保证您的系统至少为Centos7+ 或基于Centos7+ 的系统
+> Unix用户应该保证您的系统至少为Centos7+ 或基于 Centos7+ 的系统
 
 双击 start for unix 即可
 
