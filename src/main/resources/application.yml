@@ -1,0 +1,83 @@
+spring:
+  main:
+    banner-mode: off
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    timeout: 10s
+    lettuce:
+      pool:
+        max-active: 200
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 10
+  rabbitmq:
+    host: localhost
+    port: 5672
+    #  username: admin
+    #  password: 123456
+  mail:
+    host: smtp.qq.com
+    username: pvpinstudio@qq.com
+    password: dauaydjooqotdjdb
+    default-encoding: UTF-8
+#  jpa:
+#    database: MySQL
+#    show-sql: false
+#    generate-ddl: true
+#    hibernate:
+#      ddl-auto: create-drop
+
+server:
+  port: 9981
+#  ssl:
+#    enabled: true
+#    key-store: keystore.p12
+#    key-store-password: pvpinstudio
+#    keyStoreType: PKCS12
+#  servlet:
+#    context-path: /
+#  tomcat:
+#    uri-encoding: UTF-8
+#    max-threads: 500
+#    min-spare-threads: 30
+
+mysql:
+  ip: localhost
+  port: 3306
+  database: talexframe
+  username: root
+  password: 8NxZAhYAcHK44xKB
+  useSSL: false
+
+elasticsearch:
+  schema: http
+  address: 127.0.0.1:9200
+  connectTimeout: 5000
+  socketTimeout: 5000
+  connectionRequestTimeout: 5000
+  maxConnectNum: 100
+  maxConnectPerRoute: 100
+
+logging:
+  level:
+#    com.*: DEBUG
+#    org.*: WARN
+    com:
+      zaxxer: WARN
+    org:
+      springframework:
+        boot:
+          autoconfigure:
+            security:
+              servlet:
+                UserDetailsServiceAutoConfiguration: TRACE
+
+sa-token:
+  token-name: talex
+  timeout: -1
+  is-concurrent: false
+  is-share: false
+  is-log: true
+  isPrint: false
