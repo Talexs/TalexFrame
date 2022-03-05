@@ -35,3 +35,4 @@ build/
 /plugins/
 /latest.log
 !/.github/
+/.mvn/
