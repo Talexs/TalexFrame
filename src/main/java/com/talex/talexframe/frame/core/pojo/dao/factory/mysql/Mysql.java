@@ -1,7 +1,6 @@
 package com.talex.talexframe.frame.core.pojo.dao.factory.mysql;
 
 import cn.hutool.core.thread.ThreadUtil;
-import com.talex.talexframe.frame.config.MysqlConfig;
 import com.talex.talexframe.frame.core.modules.event.events.dao.DAOProcessorConnectFailedEvent;
 import com.talex.talexframe.frame.core.modules.event.events.dao.DAOProcessorConnectedEvent;
 import com.talex.talexframe.frame.core.modules.event.events.dao.DAOProcessorPreShutdownEvent;

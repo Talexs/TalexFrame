@@ -1,23 +1,21 @@
 package com.talex.talexframe.frame.core.modules.controller;
 
-import com.google.common.util.concurrent.RateLimiter;
+import com.talex.talexframe.frame.core.modules.network.connection.RequestAnalyser;
 import com.talex.talexframe.frame.core.modules.network.interfaces.IUnRegisterHandler;
 import com.talex.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import com.talex.talexframe.frame.core.modules.repository.TRepository;
 import com.talex.talexframe.frame.core.modules.repository.TRepositoryManager;
 import com.talex.talexframe.frame.core.pojo.annotations.TRepoInject;
-import com.talex.talexframe.frame.core.pojo.annotations.TRequestLimit;
 import com.talex.talexframe.frame.core.talex.TFrame;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * <br /> {@link com.talex.talexframe.frame.function.repository Package }
+ * <br /> {@link com.talex.talexframe.frame.core.modules.controller Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 18:49 <br /> Project: TalexFrame <br />
@@ -65,32 +63,6 @@ public class TControllerManager {
         this.controllers.put(controller.getClass(), controller);
         this.controllerPluginMap.put(controller, plugin.getName());
 
-        Class<?> clz = controller.getClass();
-
-        TRequestLimit clzLimit = clz.getAnnotation(TRequestLimit.class);
-
-        if( clzLimit != null ) {
-
-            RateLimiter limiter = RateLimiter.create(clzLimit.QPS(), clzLimit.timeout(), clzLimit.timeUnit());
-
-            TFrame.tframe.getRateLimiterManager().getClassLimiterMapper().put(clz, limiter);
-
-        }
-
-        for( Method method : clz.getMethods() ) {
-
-            TRequestLimit methodLimit = method.getAnnotation(TRequestLimit.class);
-
-            if( methodLimit != null ) {
-
-                RateLimiter limiter = RateLimiter.create(methodLimit.QPS(), methodLimit.timeout(), methodLimit.timeUnit());
-
-                TFrame.tframe.getRateLimiterManager().getMethodLimiterMapper().put(method, limiter);
-
-            }
-
-        }
-
         TRepositoryManager repoManager = TFrame.tframe.getRepositoryManager();
 
         /*
@@ -98,7 +70,7 @@ public class TControllerManager {
           扫描类中所有字段 带有 TRepInject 的字段，自动从 TRepositoryManager 中根据字段类型注入
 
          */
-        for( Field field : clz.getDeclaredFields() ) {
+        for( Field field : controller.getClass().getDeclaredFields() ) {
 
             TRepoInject repoInject = field.getAnnotation(TRepoInject.class);
 
@@ -121,6 +93,13 @@ public class TControllerManager {
             }
 
         }
+
+        /**
+         *
+         * 让 NetworkMananager 扫一下这个类
+         *
+         */
+        RequestAnalyser.scanRequests( controller );
 
         return true;
 
@@ -149,18 +128,10 @@ public class TControllerManager {
 
         }
 
+        RequestAnalyser.removeRequests( controller );
+
         this.controllers.remove(controller.getClass(), controller);
         this.controllerPluginMap.remove(controller, plugin.getName());
-
-        Class<?> clz = controller.getClass();
-
-        TFrame.tframe.getRateLimiterManager().getClassLimiterMapper().remove(clz);
-
-        for( Method method : clz.getMethods() ) {
-
-            TFrame.tframe.getRateLimiterManager().getMethodLimiterMapper().remove(method);
-
-        }
 
         return true;
 

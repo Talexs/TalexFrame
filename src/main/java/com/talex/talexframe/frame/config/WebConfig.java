@@ -1,6 +1,7 @@
 package com.talex.talexframe.frame.config;
 
 import com.talex.talexframe.frame.core.modules.network.interceptor.TimeConsumingInterceptor;
+import com.talex.talexframe.frame.core.modules.network.interceptor.request.RequestInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

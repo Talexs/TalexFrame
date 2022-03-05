@@ -1,4 +1,4 @@
-package com.talex.talexframe.frame.config;
+package com.talex.talexframe.frame.core.pojo.dao.factory.mysql;
 
 import com.talex.talexframe.frame.core.pojo.dao.interfaces.IProcessorConfig;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.talex.talexframe.frame.service;
+package com.talex.talexframe.frame.core.service;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

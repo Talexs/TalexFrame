@@ -19,8 +19,7 @@ import com.talex.talexframe.frame.core.modules.repository.TRepositoryManager;
 import com.talex.talexframe.frame.core.pojo.dao.factory.DAOManager;
 import com.talex.talexframe.frame.core.pojo.enums.FrameStatus;
 import com.talex.talexframe.frame.core.pojo.mapper.frame.FrameSender;
-import com.talex.talexframe.frame.service.MailServiceImpl;
-import com.talex.talexframe.frame.service.RateLimiterManager;
+import com.talex.talexframe.frame.core.service.MailServiceImpl;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <br /> {@link com.talex.talexframe.frame.function.talex Package }
+ * <br /> {@link com.talex.talexframe.frame.core.talex Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/18 22:10 <br /> Project: TalexFrame <br />
@@ -98,8 +97,6 @@ public class TFrame {
 
         this.daoManager = new DAOManager();
 
-        this.rateLimiterManager = new RateLimiterManager();
-
         CommandManager.initial();
         this.commandManager = CommandManager.INSTANCE;
         this.commandManager.setCommandExecutor("help", new HelpCmd());
@@ -127,8 +124,6 @@ public class TFrame {
         return MailServiceImpl.INSTANCE;
 
     }
-
-    private RateLimiterManager rateLimiterManager;
 
     private CommandManager commandManager;
     private DAOManager daoManager;
