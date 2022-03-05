@@ -1,6 +1,6 @@
 /**
  * TalexFrame # Network 网络通信
- * <br /> {@link com.talex.frame.talexframe.network Package }
+ * <br /> {@link com.talex.talexframe.frame.network Package }
  *
  * @author TalexDreamSoul
  * @date 22/02/10 下午 02:13 <br /> Project: TalexFrame <br />

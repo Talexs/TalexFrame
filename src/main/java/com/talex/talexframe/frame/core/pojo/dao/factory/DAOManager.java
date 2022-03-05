@@ -5,6 +5,7 @@ import com.talex.talexframe.frame.core.pojo.dao.interfaces.IDataProcessor;
 import com.talex.talexframe.frame.core.talex.TFrame;
 import lombok.SneakyThrows;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ public class DAOManager {
 
     private final TFrame tframe = TFrame.tframe;
 
-    private final Map<Class<?>, IDataProcessor> daoMap = new HashMap<>();
+    private static final Map<Class<?>, IDataProcessor> daoMap = new HashMap<>();
 
     @SneakyThrows
     public DAOManager() {
@@ -37,11 +38,17 @@ public class DAOManager {
 
     }
 
-    public class ProcessorGetter<T> {
+    public void shutdown() {
 
-        public T getProcessor(Class<T> clz) {
+        daoMap.values().forEach(IDataProcessor::disconnect);
 
-            return (T) daoMap.get(clz);
+    }
+
+    public static class ProcessorGetter<T> {
+
+        public T getProcessor() {
+
+            return (T) daoMap.get(((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
 
         }
 

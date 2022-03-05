@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * 加了此注解代表需要登录才可以使用相关功能
- * <br /> {@link com.talex.frame.talexframe.pojo.annotations Package }
+ * <br /> {@link com.talex.talexframe.frame.pojo.annotations Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/29 0:19 <br /> Project: TalexFrame <br />

@@ -5,7 +5,7 @@ import com.talex.talexframe.frame.core.pojo.dao.interfaces.IDataProcessor;
 import lombok.Getter;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.function.event.events.mysql Package }
+ * <br /> {@link com.talex.talexframe.frame.function.event.events.mysql Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/29 23:52 <br /> Project: TalexFrame <br />

@@ -4,7 +4,7 @@ import lombok.Getter;
 
 /**
  * 框架状态
- * <br /> {@link com.talex.frame.talexframe.pojo.enums Package }
+ * <br /> {@link com.talex.talexframe.frame.pojo.enums Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/19 20:44 <br /> Project: TalexFrame <br />

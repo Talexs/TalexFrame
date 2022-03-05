@@ -3,7 +3,7 @@ package com.talex.talexframe.frame.core.modules.network.interfaces;
 /**
  * 实现本接口后可实现注销时的处理
  * 目前仅支持 Controller 与 Repository
- * <br /> {@link com.talex.frame.talexframe.imple Package }
+ * <br /> {@link com.talex.talexframe.frame.imple Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/29 1:48 <br /> Project: TalexFrame <br />

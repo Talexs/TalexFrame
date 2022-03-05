@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 框架发出者
- * <br /> {@link com.talex.frame.talexframe.mapper.frame Package }
+ * <br /> {@link com.talex.talexframe.frame.mapper.frame Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 10:39 <br /> Project: TalexFrame <br />

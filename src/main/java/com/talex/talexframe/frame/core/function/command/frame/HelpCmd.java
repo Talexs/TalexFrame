@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * 帮助命令
- * <br /> {@link com.talex.frame.talexframe.function.command.frame Package }
+ * <br /> {@link com.talex.talexframe.frame.function.command.frame Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 11:40 <br /> Project: TalexFrame <br />

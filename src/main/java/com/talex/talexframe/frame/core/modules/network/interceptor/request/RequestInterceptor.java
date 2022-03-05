@@ -1,4 +1,4 @@
-package com.talex.talexframe.frame.interceptor.request;
+package com.talex.talexframe.frame.core.modules.network.interceptor.request;
 
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.convert.ConvertException;
@@ -8,17 +8,16 @@ import cn.hutool.json.JSONUtil;
 import com.google.common.util.concurrent.RateLimiter;
 import com.talex.talexframe.frame.core.modules.controller.TController;
 import com.talex.talexframe.frame.core.modules.controller.TControllerManager;
-import com.talex.frame.talexframe.function.event.events.request.*;
 import com.talex.talexframe.frame.core.modules.event.events.request.*;
 import com.talex.talexframe.frame.core.pojo.annotations.*;
-import com.talex.talexframe.frame.core.talex.TFrame;
-import com.talex.frame.talexframe.pojo.annotations.*;
-import com.talex.talexframe.frame.utils.ReqMethodUtil;
-import com.talex.talexframe.frame.utils.UrlUtil;
 import com.talex.talexframe.frame.core.pojo.wrapper.BodyCopyHttpServletRequestWrapper;
 import com.talex.talexframe.frame.core.pojo.wrapper.ResultData;
 import com.talex.talexframe.frame.core.pojo.wrapper.WrappedResponse;
+import com.talex.talexframe.frame.core.talex.TFrame;
+import com.talex.talexframe.frame.utils.ReqMethodUtil;
+import com.talex.talexframe.frame.utils.UrlUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,20 +32,18 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 请求过滤器
- * <br /> {@link com.talex.frame.talexframe.interceptor.request Package }
+ * <br /> {@link com.talex.talexframe.frame.interceptor.request Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 16:47 <br /> Project: TalexFrame <br />
  */
-// @Component
+@Component
 // @Order
 @Slf4j
 public final class RequestInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-        if( TFrame.tframe == null ) return false;
 
         TFrame tframe = TFrame.tframe;
 

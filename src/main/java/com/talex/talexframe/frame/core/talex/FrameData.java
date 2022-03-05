@@ -3,7 +3,7 @@ package com.talex.talexframe.frame.core.talex;
 import cn.hutool.json.JSONObject;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.function.talex Package }
+ * <br /> {@link com.talex.talexframe.frame.function.talex Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 16:06 <br /> Project: TalexFrame <br />

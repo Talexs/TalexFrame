@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.function.talex Package }
+ * <br /> {@link com.talex.talexframe.frame.function.talex Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/18 22:10 <br /> Project: TalexFrame <br />

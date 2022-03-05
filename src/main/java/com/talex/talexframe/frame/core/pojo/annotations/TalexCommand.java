@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * Command标识
  * 方法必须要有默认的 ISender sender
  * 如果为 ISender 实现类，框架会尽可能的匹配
- * <br /> {@link com.talex.frame.talexframe.pojo.annotations Package }
+ * <br /> {@link com.talex.talexframe.frame.pojo.annotations Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 11:48 <br /> Project: TalexFrame <br />

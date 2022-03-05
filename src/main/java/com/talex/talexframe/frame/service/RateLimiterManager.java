@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.service Package }
+ * <br /> {@link com.talex.talexframe.frame.service Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/23 23:51 <br /> Project: TalexFrame <br />

@@ -3,8 +3,8 @@ package com.talex.talexframe.frame.core.pojo.dao.vo.auto;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.talex.talexframe.frame.core.talex.FrameData;
 import com.talex.talexframe.frame.core.pojo.wrapper.WrappedData;
+import com.talex.talexframe.frame.core.talex.FrameData;
 import lombok.SneakyThrows;
 
 import java.lang.reflect.Constructor;
@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 
 /**
  * 自动保存数据类
- * <br /> {@link com.talex.frame.talexframe.function.auto.data Package }
+ * <br /> {@link com.talex.talexframe.frame.function.auto.data Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 14:49 <br /> Project: TalexFrame <br />

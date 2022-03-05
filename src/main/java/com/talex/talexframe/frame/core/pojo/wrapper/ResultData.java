@@ -1,10 +1,13 @@
 package com.talex.talexframe.frame.core.pojo.wrapper;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.wrapper Package }
+ * <br /> {@link com.talex.talexframe.frame.wrapper Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/16 10:19 <br /> Project: TalexFrame <br />

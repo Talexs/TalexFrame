@@ -6,7 +6,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.service Package }
+ * <br /> {@link com.talex.talexframe.frame.service Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/23 20:08 <br /> Project: TalexFrame <br />

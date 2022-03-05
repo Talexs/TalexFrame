@@ -5,7 +5,7 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * 注入URL字段
- * <br /> {@link com.talex.frame.talexframe.pojo.annotations Package }
+ * <br /> {@link com.talex.talexframe.frame.pojo.annotations Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/22 17:14 <br /> Project: TalexFrame <br />

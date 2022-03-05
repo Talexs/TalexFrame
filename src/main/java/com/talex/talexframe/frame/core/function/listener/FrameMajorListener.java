@@ -2,10 +2,9 @@ package com.talex.talexframe.frame.core.function.listener;
 
 import com.talex.talexframe.frame.TalexFrameApplication;
 import com.talex.talexframe.frame.core.modules.event.events.frame.*;
-import com.talex.talexframe.frame.core.modules.mysql.MysqlManager;
 import com.talex.talexframe.frame.core.modules.plugins.core.PluginManager;
-import com.talex.talexframe.frame.core.talex.TFrame;
 import com.talex.talexframe.frame.core.pojo.enums.FrameStatus;
+import com.talex.talexframe.frame.core.talex.TFrame;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationPreparedEvent;
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 框架内部主要的监听器
- * <br /> {@link com.talex.frame.talexframe.listener Package }
+ * <br /> {@link com.talex.talexframe.frame.core.function.listener Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/19 12:07 <br /> Project: TalexFrame <br />
@@ -108,9 +107,7 @@ public class FrameMajorListener {
         }
 
 
-        MysqlManager mysqlManager = TFrame.tframe.getMysqlManager();
-        if( mysqlManager != null )
-            mysqlManager.shutdown();
+        TFrame.tframe.getDaoManager().shutdown();
 
         log.warn("框架已停止.");
 

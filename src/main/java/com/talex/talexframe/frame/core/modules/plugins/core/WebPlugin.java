@@ -2,9 +2,9 @@ package com.talex.talexframe.frame.core.modules.plugins.core;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.IoUtil;
+import com.talex.talexframe.frame.core.pojo.mapper.frame.FrameSender;
 import com.talex.talexframe.frame.core.talex.FrameCreator;
 import com.talex.talexframe.frame.core.talex.TFrame;
-import com.talex.talexframe.frame.core.pojo.mapper.frame.FrameSender;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;

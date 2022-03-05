@@ -2,7 +2,7 @@ package com.talex.talexframe.frame.core.pojo.dao.vo.auto;
 
 /**
  * 实现本接口已实现当数据初始化完成时调用.
- * <br /> {@link com.talex.frame.talexframe.function.auto.data Package }
+ * <br /> {@link com.talex.talexframe.frame.function.auto.data Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 16:16 <br /> Project: TalexFrame <br />

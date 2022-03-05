@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.pojo.annotations Package }
+ * <br /> {@link com.talex.talexframe.frame.pojo.annotations Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/16 10:36 <br /> Project: TalexFrame <br />

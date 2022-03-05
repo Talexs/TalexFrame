@@ -1,7 +1,7 @@
 package com.talex.talexframe.frame.core.modules.repository;
 
-import com.talex.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import com.talex.talexframe.frame.core.modules.network.interfaces.IUnRegisterHandler;
+import com.talex.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import com.talex.talexframe.frame.core.pojo.annotations.TRepoInject;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.function.repository Package }
+ * <br /> {@link com.talex.talexframe.frame.function.repository Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 17:01 <br /> Project: TalexFrame <br />

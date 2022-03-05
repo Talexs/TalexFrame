@@ -14,7 +14,7 @@ import java.io.File;
 
 /**
  * SSL (HTTP & HTTPS)
- * <br /> {@link com.talex.frame.talexframe.config Package }
+ * <br /> {@link com.talex.talexframe.frame.config Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/24 16:48 <br /> Project: TalexFrame <br />

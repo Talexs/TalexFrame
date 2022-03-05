@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.wrapper Package }
+ * <br /> {@link com.talex.talexframe.frame.wrapper Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 20:39 <br /> Project: TalexFrame <br />

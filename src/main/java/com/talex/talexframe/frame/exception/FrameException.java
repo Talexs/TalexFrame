@@ -4,7 +4,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * 框架基本异常
- * <br /> {@link com.talex.frame.talexframe.exception Package }
+ * <br /> {@link com.talex.talexframe.frame.exception Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/16 10:52 <br /> Project: TalexFrame <br />

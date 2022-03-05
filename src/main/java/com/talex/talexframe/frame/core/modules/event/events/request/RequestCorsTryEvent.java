@@ -7,7 +7,7 @@ import lombok.Getter;
 
 /**
  * 框架尝试同意一个 OPTIONS 请求时
- * <br /> {@link com.talex.frame.talexframe.function.event.events.request Package }
+ * <br /> {@link com.talex.talexframe.frame.function.event.events.request Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/22 17:19 <br /> Project: TalexFrame <br />

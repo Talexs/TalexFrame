@@ -5,7 +5,7 @@ import com.talex.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import lombok.Getter;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.function.plugins.addon Package }
+ * <br /> {@link com.talex.talexframe.frame.function.plugins.addon Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/18 22:18 <br /> Project: TalexFrame <br />

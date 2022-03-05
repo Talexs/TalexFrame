@@ -9,7 +9,7 @@ import lombok.Getter;
 import java.lang.reflect.ParameterizedType;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.function.controller Package }
+ * <br /> {@link com.talex.talexframe.frame.function.controller Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 18:51 <br /> Project: TalexFrame <br />

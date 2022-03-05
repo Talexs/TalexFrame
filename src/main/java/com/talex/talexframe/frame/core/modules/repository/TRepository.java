@@ -1,33 +1,32 @@
 package com.talex.talexframe.frame.core.modules.repository;
 
-import com.talex.talexframe.frame.core.modules.mysql.MysqlManager;
-import com.talex.talexframe.frame.core.pojo.builder.*;
-import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.*;
-import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.data.SqlDataBuilder;
+import com.talex.talexframe.frame.core.pojo.dao.factory.DAOManager;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.Mysql;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.SqlBuilder;
 import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.insert.SqlInsertBuilder;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.liker.SqlDelBuilder;
 import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.liker.SqlLikeBuilder;
 import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.table.SqlTableBuilder;
-import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.update.SqlUpdBuilder;
 import com.talex.talexframe.frame.core.talex.FrameCreator;
 import com.talex.talexframe.frame.core.talex.TFrame;
-import com.talex.frame.talexframe.pojo.builder.*;
 import lombok.Getter;
 
 import java.sql.ResultSet;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.function.repository Package }
+ * <br /> {@link com.talex.talexframe.frame.core.modules.repository Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 17:02 <br /> Project: TalexFrame <br />
  */
 @Getter
+@SuppressWarnings("unused")
 public class TRepository extends FrameCreator {
 
     protected final TFrame tframe = TFrame.tframe;
-    protected final MysqlManager mysql = tframe.getMysqlManager();
+    protected final Mysql mysql = new DAOManager.ProcessorGetter<Mysql>().getProcessor();
     protected TRepositoryManager repositoryManager = tframe.getRepositoryManager();
-    
+
     /**
      *
      * provider 请一定填写 table name
@@ -39,24 +38,16 @@ public class TRepository extends FrameCreator {
         super("TREPOSITORY", provider);
     }
 
-    public SqlDataBuilder newSqlDataBuilder() {
-        return new SqlDataBuilder(getProvider());
-    }
-
     public SqlInsertBuilder newSqlAddBuilder() {
-        return new SqlInsertBuilder().setTableName(getProvider());
+        return new SqlInsertBuilder(getProvider());
     }
 
     public SqlLikeBuilder newSqlLikeBuilder() {
-        return new SqlLikeBuilder().setTableName(getProvider());
+        return new SqlLikeBuilder(getProvider());
     }
 
     public SqlTableBuilder newSqlTableBuilder() {
-        return new SqlTableBuilder().setTableName(getProvider());
-    }
-
-    public SqlUpdBuilder newSqlUpdBuilder() {
-        return new SqlUpdBuilder().setTableName(getProvider());
+        return new SqlTableBuilder(getProvider());
     }
 
     public boolean autoAccess(SqlBuilder sb) {
@@ -64,40 +55,35 @@ public class TRepository extends FrameCreator {
     }
 
     public ResultSet likeData(SqlLikeBuilder slb) {
-        return this.mysql.likeData(slb.setTableName(getProvider()));
+        return this.mysql.likeData(slb);
     }
 
     public boolean prepareStatement(String sql) {
         return this.mysql.prepareStatement(sql);
     }
 
-    public boolean updateData(SqlUpdBuilder upd) {
-        return this.mysql.updateData(upd.setTableName(getProvider()));
+    public boolean insertData(SqlInsertBuilder sab) {
+        return this.mysql.insertData(sab);
     }
 
-    public boolean addData(SqlInsertBuilder sab) {
-        return this.mysql.addData(sab.setTableName(getProvider()));
+    public boolean deleteData(SqlDelBuilder sdb) {
+        return this.mysql.delData(sdb);
     }
 
-    public boolean deleteData(String type, String value) {
-        return this.mysql.deleteData(getProvider(), type, value);
-    }
-
-    public void joinTable(SqlTableBuilder stb) {
-        this.mysql.joinTable(stb);
+    public void createTable(SqlTableBuilder stb) {
+        this.mysql.createTable(stb);
     }
 
     public ResultSet readSearchAllData() {
-        return this.mysql.readSearchAllData(getProvider());
+        return this.mysql.readAllData(getProvider());
     }
 
     public ResultSet readSearchData(String selectType, String value) {
-        return this.mysql.readSearchData(getProvider(), selectType, value);
+        return this.mysql.searchData(getProvider(), selectType, value);
     }
 
     public ResultSet readSearchData(String selectType, String value, int limit) {
-        return this.mysql.readSearchData(getProvider(), selectType, value, limit);
+        return this.mysql.searchData(getProvider(), selectType, value, limit);
     }
-
 
 }

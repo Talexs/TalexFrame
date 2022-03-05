@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * 默认 Controller 重写 rate相关方法就可以使用全局限流
  * 如果 Controller类 或 方法 上额外标注 则会在全局令牌桶上叠加
  * 相当于若都放该注解 最后进入方法会经过 三个令牌桶
- * <br /> {@link com.talex.frame.talexframe.pojo.annotations Package }
+ * <br /> {@link com.talex.talexframe.frame.pojo.annotations Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/23 23:27 <br /> Project: TalexFrame <br />

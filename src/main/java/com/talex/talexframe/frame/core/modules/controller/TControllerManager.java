@@ -1,13 +1,13 @@
 package com.talex.talexframe.frame.core.modules.controller;
 
 import com.google.common.util.concurrent.RateLimiter;
+import com.talex.talexframe.frame.core.modules.network.interfaces.IUnRegisterHandler;
 import com.talex.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import com.talex.talexframe.frame.core.modules.repository.TRepository;
 import com.talex.talexframe.frame.core.modules.repository.TRepositoryManager;
-import com.talex.talexframe.frame.core.talex.TFrame;
-import com.talex.talexframe.frame.core.modules.network.interfaces.IUnRegisterHandler;
 import com.talex.talexframe.frame.core.pojo.annotations.TRepoInject;
 import com.talex.talexframe.frame.core.pojo.annotations.TRequestLimit;
+import com.talex.talexframe.frame.core.talex.TFrame;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.function.repository Package }
+ * <br /> {@link com.talex.talexframe.frame.function.repository Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 18:49 <br /> Project: TalexFrame <br />

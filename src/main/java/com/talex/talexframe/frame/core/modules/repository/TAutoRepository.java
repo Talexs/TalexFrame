@@ -4,10 +4,10 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.talex.talexframe.frame.core.modules.plugins.core.WebPlugin;
-import com.talex.talexframe.frame.core.talex.TFrame;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.table.SqlTableBuilder;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.table.TableParam;
 import com.talex.talexframe.frame.core.pojo.dao.vo.auto.AutoSaveData;
 import com.talex.talexframe.frame.core.pojo.dao.vo.auto.TAutoSave;
-import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.table.SqlTableBuilder;
 import com.talex.talexframe.frame.core.pojo.wrapper.WrappedData;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentMap;
 
 /**
  * 自动化存储库 # 自动存储数据
- * <br /> {@link com.talex.frame.talexframe.function.repository Package }
+ * <br /> {@link com.talex.talexframe.frame.core.modules.repository Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 17:03 <br /> Project: TalexFrame <br />
@@ -49,6 +49,7 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
         super(tableName);
 
         this.ownPlugin = webPlugin;
+        
         //noinspection unchecked
         this.templateData = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
@@ -189,7 +190,7 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
             String sql = "INSERT INTO " + getProvider() + "(" + keys + ") VALUES(" +
                     values + ") ON DUPLICATE KEY UPDATE " + update;
 
-            TFrame.tframe.getMysqlManager().prepareStatement(sql);
+            mysql.prepareStatement(sql);
 
         }
 
@@ -209,7 +210,7 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
             if( !StrUtil.isBlankIfStr(as.columnContent()) ) {
 
-                sqlTableBuilder.addTableParam(new SqlTableBuilder.TableParam().setColumnContent(as.columnContent())
+                sqlTableBuilder.addTableParam(new TableParam().setColumnContent(as.columnContent())
                         .setSubParamName("as_" + field.getName()).setMain(as.isMain()));
 
             } else {
@@ -238,7 +239,7 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
                 }
 
-                sqlTableBuilder.addTableParam(new SqlTableBuilder.TableParam()
+                sqlTableBuilder.addTableParam(new TableParam()
 
                         .setSubParamName("as_" + field.getName())
                         .setType(as.type())
@@ -251,9 +252,9 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
         }
 
-        this.joinTable(sqlTableBuilder
+        this.createTable(sqlTableBuilder
 
-                .addTableParam(new SqlTableBuilder.TableParam()
+                .addTableParam(new TableParam()
                         .setDefaultNull(null).setType(infoType).setSubParamName("as_info").setMain(false)));
 
     }

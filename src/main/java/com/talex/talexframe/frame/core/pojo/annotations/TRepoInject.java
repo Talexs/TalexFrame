@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * 标记在 Controller 类中会自动注入字段
- * <br /> {@link com.talex.frame.talexframe.pojo.annotations Package }
+ * <br /> {@link com.talex.talexframe.frame.pojo.annotations Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/29 0:32 <br /> Project: TalexFrame <br />

@@ -2,8 +2,8 @@ package com.talex.talexframe.frame.core.function.command;
 
 import cn.hutool.core.util.StrUtil;
 import com.talex.talexframe.frame.core.pojo.annotations.TalexCommand;
-import com.talex.talexframe.frame.core.talex.TFrame;
 import com.talex.talexframe.frame.core.pojo.wrapper.WrappedSender;
+import com.talex.talexframe.frame.core.talex.TFrame;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
@@ -14,7 +14,7 @@ import java.util.*;
 
 /**
  * 命令管理器
- * <br /> {@link com.talex.frame.talexframe.function.command Package }
+ * <br /> {@link com.talex.talexframe.frame.function.command Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/19 23:26 <br /> Project: TalexFrame <br />

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 在建立请求之前 (interceptor pre handle request)
- * <br /> {@link com.talex.frame.talexframe.function.event.events.request Package }
+ * <br /> {@link com.talex.talexframe.frame.function.event.events.request Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 19:19 <br /> Project: TalexFrame <br />

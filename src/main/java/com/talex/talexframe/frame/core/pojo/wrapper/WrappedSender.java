@@ -8,7 +8,7 @@ import java.util.Locale;
 
 /**
  * 包装发送类 -> 支持变量解析 %%
- * <br /> {@link com.talex.frame.talexframe.wrapper Package }
+ * <br /> {@link com.talex.talexframe.frame.wrapper Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 13:01 <br /> Project: TalexFrame <br />

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 针对 ID自增序列 工具类
- * <br /> {@link com.talex.frame.talexframe.service Package }
+ * <br /> {@link com.talex.talexframe.frame.service Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/15 23:24 <br /> Project: TalexFrame <br />

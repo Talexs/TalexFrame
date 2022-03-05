@@ -3,7 +3,7 @@ package com.talex.talexframe.frame.utils;
 import com.talex.talexframe.frame.core.pojo.annotations.TReqSupportMethod;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.utils Package }
+ * <br /> {@link com.talex.talexframe.frame.utils Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/29 0:49 <br /> Project: TalexFrame <br />

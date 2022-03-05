@@ -1,7 +1,7 @@
 package com.talex.talexframe.frame.core.modules.event.events.frame;
 
-import com.talex.talexframe.frame.core.modules.event.TalexEvent;
 import com.talex.talexframe.frame.core.modules.event.Cancellable;
+import com.talex.talexframe.frame.core.modules.event.TalexEvent;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

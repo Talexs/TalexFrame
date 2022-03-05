@@ -18,7 +18,10 @@ import com.talex.talexframe.frame.core.talex.TFrame;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**

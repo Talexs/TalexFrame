@@ -1,4 +1,4 @@
-package com.talex.talexframe.frame.interceptor;
+package com.talex.talexframe.frame.core.modules.network.interceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.talex.talexframe.frame.core.pojo.annotations.WrapperResponse;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import java.util.Objects;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.interceptor Package }
+ * <br /> {@link com.talex.talexframe.frame.interceptor Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/16 10:33 <br /> Project: TalexFrame <br />

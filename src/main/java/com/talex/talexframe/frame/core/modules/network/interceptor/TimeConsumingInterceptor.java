@@ -1,4 +1,4 @@
-package com.talex.talexframe.frame.interceptor;
+package com.talex.talexframe.frame.core.modules.network.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.NamedThreadLocal;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.interceptor Package }
+ * <br /> {@link com.talex.talexframe.frame.interceptor Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/16 10:58 <br /> Project: TalexFrame <br />

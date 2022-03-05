@@ -3,7 +3,7 @@ package com.talex.talexframe.frame.exception.lang;
 import com.talex.talexframe.frame.exception.FrameException;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.exception.lang Package }
+ * <br /> {@link com.talex.talexframe.frame.exception.lang Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/16 11:26 <br /> Project: TalexFrame <br />

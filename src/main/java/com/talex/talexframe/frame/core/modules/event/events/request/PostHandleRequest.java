@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 在建立请求之后 (interceptor post handle request)
  * 如果取消则不会进入插件处理阶段
- * <br /> {@link com.talex.frame.talexframe.function.event.events.request Package }
+ * <br /> {@link com.talex.talexframe.frame.function.event.events.request Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 19:23 <br /> Project: TalexFrame <br />

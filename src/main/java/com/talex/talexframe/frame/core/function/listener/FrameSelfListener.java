@@ -9,7 +9,7 @@ import com.talex.talexframe.frame.core.modules.repository.TRepository;
 import com.talex.talexframe.frame.core.talex.TFrame;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.listener Package }
+ * <br /> {@link com.talex.talexframe.frame.listener Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/21 17:10 <br /> Project: TalexFrame <br />

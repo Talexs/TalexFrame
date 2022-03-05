@@ -6,7 +6,6 @@ import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.insert.Sql
 import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.liker.SqlDelBuilder;
 import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.liker.SqlLikeBuilder;
 import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.table.SqlTableBuilder;
-import lombok.SneakyThrows;
 
 import java.sql.ResultSet;
 
@@ -88,7 +87,6 @@ public interface IConnectorProcessor {
      * 是否有匹配指定参数的数据
      *
      */
-    @SneakyThrows
     boolean hasData(String table, BuilderMap map);
 
     /**

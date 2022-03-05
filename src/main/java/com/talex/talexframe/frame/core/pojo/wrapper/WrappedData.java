@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.wrapper Package }
+ * <br /> {@link com.talex.talexframe.frame.wrapper Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 16:14 <br /> Project: TalexFrame <br />

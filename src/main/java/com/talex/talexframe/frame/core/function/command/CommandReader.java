@@ -1,15 +1,15 @@
 package com.talex.talexframe.frame.core.function.command;
 
-import com.talex.talexframe.frame.core.talex.TFrame;
-import com.talex.talexframe.frame.core.pojo.mapper.frame.FrameSender;
 import com.talex.talexframe.frame.core.pojo.enums.FrameStatus;
+import com.talex.talexframe.frame.core.pojo.mapper.frame.FrameSender;
+import com.talex.talexframe.frame.core.talex.TFrame;
 import lombok.extern.slf4j.Slf4j;
 import net.minecrell.terminalconsole.SimpleTerminalConsole;
 import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.function.command Package }
+ * <br /> {@link com.talex.talexframe.frame.function.command Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/19 20:43 <br /> Project: TalexFrame <br />

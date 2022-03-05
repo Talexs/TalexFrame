@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.config Package }
+ * <br /> {@link com.talex.talexframe.frame.config Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/21 15:48 <br /> Project: TalexFrame <br />

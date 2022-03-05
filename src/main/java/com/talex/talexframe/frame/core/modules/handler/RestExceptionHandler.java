@@ -1,7 +1,7 @@
 package com.talex.talexframe.frame.core.modules.handler;
 
-import com.talex.talexframe.frame.exception.FrameException;
 import com.talex.talexframe.frame.core.pojo.wrapper.ResultData;
+import com.talex.talexframe.frame.exception.FrameException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * <br /> {@link com.talex.frame.talexframe.handler Package }
+ * <br /> {@link com.talex.talexframe.frame.handler Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/16 10:50 <br /> Project: TalexFrame <br />

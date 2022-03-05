@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * 结果包装类
- * <br /> {@link com.talex.frame.talexframe.wrapper Package }
+ * <br /> {@link com.talex.talexframe.frame.wrapper Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 19:29 <br /> Project: TalexFrame <br />
