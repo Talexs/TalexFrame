@@ -1,6 +1,6 @@
 # TalexFrame
 
-简体中文 | [English](.\.github\en\README.md)
+简体中文 | [English](./.github/en/README.md)
 
 ```
 
@@ -12,13 +12,13 @@
                                                                                    
 ```
 
-    
+
      _____ ___   ___  
     |___  / _ \ / _ \ 
        / / | | | | | |
       / /| |_| | |_| |
      /_(_)\___(_)___/ 
-                       
+
 
 
 
