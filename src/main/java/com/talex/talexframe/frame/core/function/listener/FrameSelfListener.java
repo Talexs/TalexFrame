@@ -6,6 +6,7 @@ import com.talex.talexframe.frame.core.modules.event.events.dao.DAOProcessorConn
 import com.talex.talexframe.frame.core.modules.event.events.dao.DAOProcessorPreShutdownEvent;
 import com.talex.talexframe.frame.core.modules.repository.TAutoRepository;
 import com.talex.talexframe.frame.core.modules.repository.TRepository;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.Mysql;
 import com.talex.talexframe.frame.core.talex.TFrame;
 
 /**
@@ -25,7 +26,7 @@ public class FrameSelfListener extends FrameListener {
     }
 
     @TalexSubscribe
-    public void onMysqlConnected(DAOProcessorConnectedEvent event) {
+    public void onMysqlConnected(DAOProcessorConnectedEvent<Mysql> event) {
 
         for( TRepository repository : tframe.getRepositoryManager().getRepositories().values() ) {
 
@@ -40,7 +41,7 @@ public class FrameSelfListener extends FrameListener {
     }
 
     @TalexSubscribe
-    public void onMysqlPreShutdown(DAOProcessorPreShutdownEvent event) {
+    public void onMysqlPreShutdown(DAOProcessorPreShutdownEvent<Mysql> event) {
 
         for( TRepository repository : tframe.getRepositoryManager().getRepositories().values() ) {
 

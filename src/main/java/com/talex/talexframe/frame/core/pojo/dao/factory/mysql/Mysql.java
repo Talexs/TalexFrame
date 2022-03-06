@@ -164,22 +164,26 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
 
         // ?autoReconnect=true&serverTimezone=Asia/Shanghai&useSSL=" + mysqlInfo.isUseSSL()
 
+        String url = "jdbc:mysql://" + config.getIpAddress() + ":" + config.getPort()
+        + "/" + config.getDatabaseName() + (config.getExtra() != null ? "?" + config.getExtra() : "");
+
         try {
 
             this.connection = DriverManager.getConnection(
-                    "jdbc:dao://" + config.getIpAddress() + ":" + config.getPort()
-                            + "/" + config.getDatabaseName() + (config.getExtra() != null ? "?" + config.getExtra() : "")
+                    url
                     , config.getUsername(), config.getPassword());
 
             status = DataProcessorStatus.CONNECTED;
 
         } catch ( SQLException e) {
 
-            DAOProcessorConnectFailedEvent daoConnectFailedEvent = new DAOProcessorConnectFailedEvent(this, e);
+            DAOProcessorConnectFailedEvent<Mysql> daoConnectFailedEvent = new DAOProcessorConnectFailedEvent<>(this, e);
 
             TFrame.tframe.callEvent(daoConnectFailedEvent);
 
             if (!daoConnectFailedEvent.isCancelled()) {
+
+                log.error(url);
 
                 e.printStackTrace();
 
@@ -191,9 +195,9 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
 
         }
 
-        TFrame.tframe.callEvent(new DAOProcessorConnectedEvent(this));
+        TFrame.tframe.callEvent(new DAOProcessorConnectedEvent<>(this));
 
-        return false;
+        return true;
     }
 
     @SneakyThrows
@@ -204,7 +208,7 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
 
         if (this.connection != null) {
 
-            DAOProcessorPreShutdownEvent daoProcessorPreShutdownEvent = new DAOProcessorPreShutdownEvent(this);
+            DAOProcessorPreShutdownEvent<Mysql> daoProcessorPreShutdownEvent = new DAOProcessorPreShutdownEvent<>(this);
 
             TFrame.tframe.callEvent(daoProcessorPreShutdownEvent);
 

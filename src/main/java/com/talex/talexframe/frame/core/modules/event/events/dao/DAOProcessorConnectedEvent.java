@@ -1,9 +1,6 @@
 package com.talex.talexframe.frame.core.modules.event.events.dao;
 
 import com.talex.talexframe.frame.core.modules.event.IContinue;
-import com.talex.talexframe.frame.core.modules.event.TalexEvent;
-import com.talex.talexframe.frame.core.pojo.dao.interfaces.IDataProcessor;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,10 +12,13 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@AllArgsConstructor
-public class DAOProcessorConnectedEvent extends TalexEvent implements IContinue {
+public class DAOProcessorConnectedEvent<T> extends BaseDAOEvent<T> implements IContinue {
 
-    private final IDataProcessor processor;
+    public DAOProcessorConnectedEvent(T t) {
+
+        super(t);
+
+    }
 
     @Override
     public String getMatchKey() {

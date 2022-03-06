@@ -88,27 +88,28 @@ public class TFrame {
 
         if( started ) return;
 
+        started = true;
+        setFrameStatus(FrameStatus.RUNNING);
+
+        log.info("Loading repository & controller ...");
+        this.repositoryManager = TRepositoryManager.init();
+        this.controllerManager = TControllerManager.init();
+
         getEventBus().registerListener( new FrameSelfListener() );
 
         callEvent(new FrameStartedEvent(System.nanoTime() - TalexFrameApplication.startedTimeStamp));
 
-        started = true;
-        setFrameStatus(FrameStatus.RUNNING);
-
+        log.info("Loading dao-manager ...");
         this.daoManager = new DAOManager();
 
+        log.info("Loading command-manager ...");
         CommandManager.initial();
         this.commandManager = CommandManager.INSTANCE;
         this.commandManager.setCommandExecutor("help", new HelpCmd());
         this.commandManager.setCommandExecutor("plugin", new PluginCmd());
         this.commandManager.setCommandExecutor("stop", new StopCmd());
 
-        log.info("正在准备 储存器与控制器 - 请等待...");
-
-        this.repositoryManager = TRepositoryManager.init();
-        this.controllerManager = TControllerManager.init();
-
-        log.info("开始加载插件...");
+        log.info("Loading plugin-manager ...");
 
         this.pluginManager = new PluginManager(new File(mainFile.getAbsolutePath() + "/plugins"));
 

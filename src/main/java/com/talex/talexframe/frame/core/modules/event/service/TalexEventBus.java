@@ -227,7 +227,6 @@ public class TalexEventBus implements IEventBus {
 
             if( e.getCause() == null ) {
 
-
                 log.error("[事件] 在调用 " + method.getName() + " 时, 目标抛出异常" + "   @" + method.getDeclaringClass().getName() + "." + method.getName());
 
             } else log.error("[事件] 在调用 " + method.getName() + " 时, 目标抛出异常: " + e.getCause().getMessage() + "   @" + method.getDeclaringClass().getName() + "." + method.getName());

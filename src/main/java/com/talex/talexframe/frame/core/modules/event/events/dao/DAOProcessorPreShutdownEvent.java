@@ -1,8 +1,6 @@
 package com.talex.talexframe.frame.core.modules.event.events.dao;
 
 import com.talex.talexframe.frame.core.modules.event.Cancellable;
-import com.talex.talexframe.frame.core.modules.event.TalexEvent;
-import com.talex.talexframe.frame.core.pojo.dao.interfaces.IDataProcessor;
 import lombok.Getter;
 
 /**
@@ -12,15 +10,13 @@ import lombok.Getter;
  * @date 2022/1/21 15:44 <br /> Project: TalexFrame <br />
  */
 @Getter
-public class DAOProcessorPreShutdownEvent extends TalexEvent implements Cancellable {
-
-    private final IDataProcessor processor;
+public class DAOProcessorPreShutdownEvent<T> extends BaseDAOEvent<T> implements Cancellable {
 
     private boolean cancel;
 
-    public DAOProcessorPreShutdownEvent(IDataProcessor processor) {
+    public DAOProcessorPreShutdownEvent(T processor) {
 
-        this.processor = processor;
+        super( processor );
 
     }
 

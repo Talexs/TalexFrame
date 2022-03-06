@@ -2,8 +2,6 @@ package com.talex.talexframe.frame.core.modules.event.events.dao;
 
 import com.talex.talexframe.frame.core.modules.event.Cancellable;
 import com.talex.talexframe.frame.core.modules.event.IContinue;
-import com.talex.talexframe.frame.core.modules.event.TalexEvent;
-import com.talex.talexframe.frame.core.pojo.dao.interfaces.IDataProcessor;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,14 +14,14 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class DAOProcessorConnectFailedEvent extends TalexEvent implements Cancellable, IContinue {
+public class DAOProcessorConnectFailedEvent<T> extends BaseDAOEvent<T> implements Cancellable, IContinue {
 
-    private final IDataProcessor processor;
     private final Exception e;
 
-    public DAOProcessorConnectFailedEvent(IDataProcessor processor, Exception e) {
+    public DAOProcessorConnectFailedEvent(T processor, Exception e) {
 
-        this.processor = processor;
+        super(processor);
+
         this.e = e;
 
     }
