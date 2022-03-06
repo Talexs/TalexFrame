@@ -90,9 +90,11 @@ public class RequestAnalyser {
 
                 }
 
+                log.info("[解析层] Access in " + methodReceiver.tRequest.value());
+
                 if( !clzReceiver.accessChecker( wr ) ) {
 
-                    return;
+                    continue;
 
                 }
 
@@ -519,10 +521,20 @@ public class RequestAnalyser {
 
             }
 
+            private String supportMethodName;
+
             /** 返回真则代表方法一致 **/
             public boolean methodChecker( String comingMethod ) {
 
-                return tReqSupportMethod != null && !ReqMethodUtil.checkStatus(comingMethod, tReqSupportMethod);
+                return tReqSupportMethod != null && comingMethod.equalsIgnoreCase(this.supportMethodName);
+
+            }
+
+            public String getSupportMethod() {
+
+                this.supportMethodName = ReqMethodUtil.getMethodName(tReqSupportMethod);
+
+                return this.supportMethodName;
 
             }
 
@@ -761,6 +773,8 @@ public class RequestAnalyser {
                     requestMethodReceiver.addParam(paramReceiver);
 
                 }
+
+                log.debug("[解析层] 扫描到请求: " + request.value() + " #" + requestMethodReceiver.getSupportMethod());
 
             }
 

@@ -99,7 +99,7 @@ public class RequestConnector {
 
             if(e.isCancelled()) return;
 
-            log.info("[连接层] 请求 " + request.getRequestURI() + " #来自: " + request.getSession().getId() + " 已批准跨域!");
+            log.info("[连接层] Allowed cors request from " + request.getRemoteAddr() + "(" + request.getRemoteHost() + ")");
 
             wr.returnDataByOK("SUCCESS");
 
