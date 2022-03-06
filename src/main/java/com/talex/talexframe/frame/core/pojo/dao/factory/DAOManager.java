@@ -29,7 +29,7 @@ public class DAOManager {
 
             processor.connect();
 
-            this.daoMap.put(clz, processor);
+            daoMap.put(clz, processor);
 
         }
 
@@ -45,7 +45,7 @@ public class DAOManager {
 
         public T getProcessor() {
 
-            return (T) daoMap.get(((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
+            return (T) daoMap.get(daoMap.get(((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0]));
 
         }
 
