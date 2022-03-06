@@ -13,7 +13,7 @@ public class SqlInsertBuilder extends SqlBuilder {
 
     public SqlInsertBuilder(String tableName, InsertType insertType) {
 
-        super(tableName);
+        super("SqlInsertBuilder", tableName);
 
         this.insertType = insertType;
 
@@ -27,7 +27,7 @@ public class SqlInsertBuilder extends SqlBuilder {
 
     @Getter
     @Setter
-    private BuilderMap builderMap = new BuilderMap();
+    private BuilderMap<SqlInsertBuilder> builderMap = new BuilderMap<>(this);
 
     @Getter
     @Setter

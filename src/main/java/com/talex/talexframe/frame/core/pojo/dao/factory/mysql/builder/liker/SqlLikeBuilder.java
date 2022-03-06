@@ -11,11 +11,11 @@ public class SqlLikeBuilder extends SqlBuilder {
 
     @Getter
     @Setter
-    private BuilderMap map = new BuilderMap();
+    private BuilderMap<SqlLikeBuilder> map = new BuilderMap<>(this);
 
     public SqlLikeBuilder(String tableName) {
 
-        super(tableName);
+        super("SqlLikeBuilder", tableName);
 
     }
 

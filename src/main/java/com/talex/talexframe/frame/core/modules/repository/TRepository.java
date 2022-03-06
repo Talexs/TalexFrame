@@ -2,6 +2,7 @@ package com.talex.talexframe.frame.core.modules.repository;
 
 import com.talex.talexframe.frame.core.pojo.dao.factory.DAOManager;
 import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.Mysql;
+import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.BuilderParam;
 import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.SqlBuilder;
 import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.insert.SqlInsertBuilder;
 import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.liker.SqlDelBuilder;
@@ -46,6 +47,10 @@ public class TRepository extends FrameCreator {
         return new SqlLikeBuilder(getProvider());
     }
 
+    public SqlDelBuilder newSqlDelBuilder() {
+        return new SqlDelBuilder(getProvider());
+    }
+
     public SqlTableBuilder newSqlTableBuilder() {
         return new SqlTableBuilder(getProvider());
     }
@@ -68,6 +73,12 @@ public class TRepository extends FrameCreator {
 
     public boolean deleteData(SqlDelBuilder sdb) {
         return this.mysql.delData(sdb);
+    }
+
+    public boolean deleteData(String type, String key) {
+
+        return deleteData((SqlDelBuilder) newSqlDelBuilder().getMap().addParam(new BuilderParam(type, key)).getBuilder());
+
     }
 
     public void createTable(SqlTableBuilder stb) {

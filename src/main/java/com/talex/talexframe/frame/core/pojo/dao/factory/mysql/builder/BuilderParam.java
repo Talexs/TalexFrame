@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor
 @AllArgsConstructor
-public class BuilderParam {
+public class BuilderParam{
 
     @Getter
     private String subParamName;

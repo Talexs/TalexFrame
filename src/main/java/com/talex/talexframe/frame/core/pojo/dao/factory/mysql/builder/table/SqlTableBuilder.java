@@ -15,7 +15,7 @@ public class SqlTableBuilder extends SqlBuilder {
 
     public SqlTableBuilder(String tableName) {
 
-        super(tableName);
+        super("SqlTableBuilder", tableName);
 
     }
 

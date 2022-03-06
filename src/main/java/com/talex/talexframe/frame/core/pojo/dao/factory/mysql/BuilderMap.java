@@ -3,6 +3,7 @@ package com.talex.talexframe.frame.core.pojo.dao.factory.mysql;
 import cn.dev33.satoken.secure.SaBase64Util;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.json.JSONUtil;
+import com.talex.talexframe.frame.core.pojo.FrameBuilder;
 import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.BuilderParam;
 import com.talex.talexframe.frame.core.pojo.dao.factory.mysql.builder.BuilderWhereParam;
 import lombok.Getter;
@@ -19,14 +20,31 @@ import java.util.Map;
  * @date 22/03/05 下午 01:51 <br /> Project: TalexFrame <br />
  */
 @SuppressWarnings("unused")
-public class BuilderMap {
+public class BuilderMap<T extends FrameBuilder> {
 
     @Getter
     private final List<BuilderParam> params = new ArrayList<>();
 
+    @Getter
+    private final T builder;
+
+    public BuilderMap(T builder) {
+
+        this.builder = builder;
+
+    }
+
     public BuilderMap addParam(BuilderParam param) {
 
         params.add(param);
+
+        return this;
+
+    }
+
+    public BuilderMap addParam(String key, Object value) {
+
+        params.add(new BuilderParam(key, value));
 
         return this;
 

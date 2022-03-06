@@ -11,11 +11,11 @@ public class SqlDelBuilder extends SqlBuilder {
 
     @Getter
     @Setter
-    private BuilderMap map = new BuilderMap();
+    private BuilderMap<SqlDelBuilder> map = new BuilderMap<>(this);
 
     public SqlDelBuilder(String tableName) {
 
-        super(tableName);
+        super("SqlDelBuilder", tableName);
 
     }
 
