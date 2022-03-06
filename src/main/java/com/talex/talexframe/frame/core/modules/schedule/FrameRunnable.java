@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class FrameRunnable {
 
     protected TFrame tFrame = TFrame.tframe;
-    protected Mysql mysql = new DAOManager.ProcessorGetter<Mysql>().getProcessor();
+    // protected
 
     // private Runnable runnable;
     //
@@ -43,6 +43,8 @@ public class FrameRunnable {
     /** 每十五分钟从 TFrame 获取一次mysql实例 执行 checkStatus 查询状态 如果前面获取的内容为null则不执行 **/
     @Scheduled( cron = "0 0/15 0/1 * * ?")
     public void mysqlChecker() {
+
+        Mysql mysql = new DAOManager.ProcessorGetter<Mysql>().getProcessor();
 
         mysql.checkStatus();
 

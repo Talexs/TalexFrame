@@ -2,7 +2,6 @@ package com.talex.talexframe.frame.core.pojo.dao.factory;
 
 import cn.hutool.core.util.ClassUtil;
 import com.talex.talexframe.frame.core.pojo.dao.interfaces.IDataProcessor;
-import com.talex.talexframe.frame.core.talex.TFrame;
 import lombok.SneakyThrows;
 
 import java.lang.reflect.ParameterizedType;
@@ -16,8 +15,6 @@ import java.util.Map;
  * @date 22/03/05 下午 01:39 <br /> Project: TalexFrame <br />
  */
 public class DAOManager {
-
-    private final TFrame tframe = TFrame.tframe;
 
     private static final Map<Class<?>, IDataProcessor> daoMap = new HashMap<>();
 
