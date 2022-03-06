@@ -278,8 +278,17 @@ public class RequestAnalyser {
 
         }
 
-        @Setter
         private RateLimiter rateLimiter;
+
+        public RequestReceiver setRateLimiter(TRequestLimit clzLimit) {
+
+            if( clzLimit == null ) return this;
+
+            RateLimiter.create(clzLimit.QPS(), clzLimit.timeout(), clzLimit.timeUnit());
+
+            return this;
+
+        }
 
         /**
          *
@@ -338,10 +347,21 @@ public class RequestAnalyser {
         private static class RequestMethodReceiver {
 
             private final TReqLoginChecker tReqLoginChecker;
-            @Setter
+
             private RateLimiter rateLimiter;
+
+            public RequestMethodReceiver setRateLimiter(TRequestLimit clzLimit) {
+
+                if( clzLimit == null ) return this;
+
+                RateLimiter.create(clzLimit.QPS(), clzLimit.timeout(), clzLimit.timeUnit());
+
+                return this;
+
+            }
+
             private final TRequest tRequest;
-            private  final RequestReceiver ownReceiver;
+            private final RequestReceiver ownReceiver;
 
             @Setter
             private TReqSupportMethod tReqSupportMethod;
@@ -695,9 +715,8 @@ public class RequestAnalyser {
 
             Class<?> clz = controller.getClass();
 
-            TRequestLimit clzLimit = clz.getAnnotation(TRequestLimit.class);
             RequestReceiver requestReceiver = new RequestReceiver(controller, clz, clz.getAnnotation(TReqLoginChecker.class))
-                    .setRateLimiter(RateLimiter.create(clzLimit.QPS(), clzLimit.timeout(), clzLimit.timeUnit()));
+                    .setRateLimiter(clz.getAnnotation(TRequestLimit.class));
 
             for( Method method : clz.getMethods() ) {
 
@@ -709,9 +728,8 @@ public class RequestAnalyser {
 
                 }
 
-                TRequestLimit methodLimit = method.getAnnotation(TRequestLimit.class);
                 RequestReceiver.RequestMethodReceiver requestMethodReceiver = new RequestReceiver.RequestMethodReceiver(requestReceiver,
-                        method.getAnnotation(TReqLoginChecker.class), request).setRateLimiter(RateLimiter.create(methodLimit.QPS(), methodLimit.timeout(), methodLimit.timeUnit()));
+                        method.getAnnotation(TReqLoginChecker.class), request).setRateLimiter(method.getAnnotation(TRequestLimit.class));
 
                 requestMethodReceiver.setTReqSupportMethod(method.getAnnotation(TReqSupportMethod.class));
                 requestMethodReceiver.setTRedisCache(method.getAnnotation(TRedisCache.class));
