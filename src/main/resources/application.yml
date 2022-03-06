@@ -73,6 +73,9 @@ logging:
             security:
               servlet:
                 UserDetailsServiceAutoConfiguration: TRACE
+        devtools:
+          restart:
+            ChangeableUrls: WARN
 
 sa-token:
   token-name: talex

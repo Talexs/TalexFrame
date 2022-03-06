@@ -44,7 +44,7 @@ public class FrameRunnable {
     @Scheduled( cron = "0 0/15 0/1 * * ?")
     public void mysqlChecker() {
 
-        Mysql mysql = new DAOManager.ProcessorGetter<Mysql>().getProcessor();
+        Mysql mysql = new DAOManager.ProcessorGetter<Mysql>(Mysql.class).getProcessor();
 
         mysql.checkStatus();
 

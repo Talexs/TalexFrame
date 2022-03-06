@@ -79,11 +79,15 @@ public abstract class WebPlugin extends FrameCreator implements IPlugin {
 
                 }
 
-                FileOutputStream os = new FileOutputStream(reference + "/" + entry.getName());
+                File target = new File(reference + "/" + entry.getName());
+
+                if( target.exists() ) continue;
+
+                FileOutputStream os = new FileOutputStream(target);
 
                 IoUtil.write(os, true, IoUtil.readBytes(jarFile.getInputStream(entry)));
 
-                tframe.getFrameSender().sendConsoleMessage("[PluginInfo] [" + getName() + "] 已写入文件: " + entry.getName());
+                tframe.getFrameSender().sendConsoleMessage("[PluginInfo] [" + getName() + "] 载入文件: " + entry.getName());
 
             }
 

@@ -46,7 +46,7 @@ public class RequestAnalyser {
 
     private static final NetworkManager networkManager = new NetworkManager();
 
-    private static final Redis redis = new DAOManager.ProcessorGetter<Redis>().getProcessor();
+    private static final Redis redis = new DAOManager.ProcessorGetter<Redis>(Redis.class).getProcessor();
 
     public static void scanRequests( TController tController ) {
 

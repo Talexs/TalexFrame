@@ -25,7 +25,7 @@ import java.sql.ResultSet;
 public class TRepository extends FrameCreator {
 
     protected final TFrame tframe = TFrame.tframe;
-    protected final Mysql mysql = new DAOManager.ProcessorGetter<Mysql>().getProcessor();
+    protected final Mysql mysql = new DAOManager.ProcessorGetter<Mysql>(Mysql.class).getProcessor();
     protected TRepositoryManager repositoryManager = tframe.getRepositoryManager();
 
     /**

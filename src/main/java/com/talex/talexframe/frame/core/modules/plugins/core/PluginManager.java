@@ -211,7 +211,7 @@ public class PluginManager {
 
         }
 
-        if( VersionComparator.INSTANCE.compare(info.getSupportVersion().getVersion(), TFrame.tframe.getVersion()) != 1 ) {
+        if( VersionComparator.INSTANCE.compare(TFrame.tframe.getVersion(), info.getSupportVersion().getVersion()) != 1 ) {
 
             log.warn("[插件] 此插件需要版本 " + info.getSupportVersion().getVersion() + " 或更高，当前框架版本：" + TFrame.tframe.getVersion() + " 请尝试升级框架.");
 

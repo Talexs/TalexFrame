@@ -74,7 +74,7 @@ public class MysqlConfig implements IProcessorConfig {
     @Override
     public String getExtra() {
 
-        return "?autoReconnect=true&serverTimezone=Asia/Shanghai&useSSL=" + useSSL;
+        return "autoReconnect=true&serverTimezone=Asia/Shanghai&useSSL=" + useSSL;
     }
 
 }

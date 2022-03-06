@@ -7,7 +7,7 @@ import lombok.Getter;
 
 public abstract class SqlBuilder extends FrameBuilder {
 
-    protected static Mysql mysql = new DAOManager.ProcessorGetter<Mysql>().getProcessor();
+    protected static Mysql mysql = new DAOManager.ProcessorGetter<Mysql>(Mysql.class).getProcessor();
 
     @Getter
     protected String tableName;
