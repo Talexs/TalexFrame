@@ -1,8 +1,0 @@
-/**
- * TalexFrame # 封装类
- * <br /> {@link com.talex.talexframe.frame.wrapper Package }
- *
- * @author TalexDreamSoul
- * @date 2022/1/16 10:18 <br /> Project: TalexFrame <br />
- */
-package com.talex.talexframe.frame.core.pojo.wrapper;

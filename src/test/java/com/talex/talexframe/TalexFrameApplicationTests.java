@@ -10,15 +10,6 @@ import java.lang.reflect.Method;
 class TalexFrameApplicationTests {
 
     @SneakyThrows
-    @Test
-    void contextLoads() {
-
-        // Print now folder path
-        // System.out.println("Current folder path: " + System.getProperty("user.dir"));
-
-    }
-
-    @SneakyThrows
     public static void main(String[] args) {
 
         System.out.println("params[0]".substring(8, 9));
@@ -31,6 +22,15 @@ class TalexFrameApplicationTests {
         System.out.println(method.getGenericReturnType());
 
         System.out.println(method.invoke(hello));
+
+    }
+
+    @SneakyThrows
+    @Test
+    void contextLoads() {
+
+        // Print now folder path
+        // System.out.println("Current folder path: " + System.getProperty("user.dir"));
 
     }
 

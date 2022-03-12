@@ -80,4 +80,5 @@
       "type": "java.lang.String",
       "description": "Description for elasticsearch.maxConnectPerRoute."
     }
-  ] }
+  ]
+}
