@@ -1,4 +1,4 @@
-package com.talex.talexframe;
+package com.talexframe;
 
 import org.springframework.boot.test.context.SpringBootTest;
 

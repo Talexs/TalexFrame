@@ -1,4 +1,4 @@
-package com.talex.talexframe;
+package com.talexframe;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
