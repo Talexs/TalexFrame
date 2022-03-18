@@ -22,20 +22,20 @@ import java.sql.ResultSet;
  */
 @Getter
 @SuppressWarnings( "unused" )
-public class TRepository extends FrameCreator {
+public class TRepo extends FrameCreator {
 
     protected final TFrame tframe = TFrame.tframe;
     protected final Mysql mysql = new DAOManager.ProcessorGetter<Mysql>(Mysql.class).getProcessor();
-    protected TRepositoryManager repositoryManager = tframe.getRepositoryManager();
+    protected TRepoManager repositoryManager = tframe.getRepoManager();
 
     /**
      * provider 请一定填写 table name
      *
      * @param provider TableName
      */
-    public TRepository(String provider) {
+    public TRepo(String provider) {
 
-        super("TREPOSITORY", provider);
+        super("TREPO", provider);
     }
 
     public SqlInsertBuilder newSqlAddBuilder() {

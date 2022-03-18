@@ -60,7 +60,7 @@ public class CommandManager {
 
         boolean match = false;
 
-        for ( Map.Entry<String, BaseCommand> entry : this.commands.entrySet() ) {
+        for ( Map.Entry<String, BaseCommand> entry : new HashSet<>(this.commands.entrySet()) ) {
 
             String cmdLabel = entry.getKey();
             BaseCommand cmd = entry.getValue();

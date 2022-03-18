@@ -34,11 +34,11 @@ public class DAOManager {
 
                 daoMap.put(clz, processor);
 
-                log.info("[DAO] " + clz.getName() + " connected.");
+                log.info("[DAO] " + clz.getSimpleName() + " connected.");
 
             } else {
 
-                log.warn("[DAO] " + clz.getName() + " connect failed!");
+                log.warn("[DAO] " + clz.getSimpleName() + " connect failed!");
 
                 if ( processor.doCrash() ) {
 

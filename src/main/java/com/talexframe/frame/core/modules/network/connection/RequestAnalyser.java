@@ -6,7 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.google.common.util.concurrent.RateLimiter;
-import com.talexframe.frame.core.modules.controller.TController;
+import com.talexframe.frame.core.modules.application.TApp;
 import com.talexframe.frame.core.modules.event.events.request.RequestCannotGetTokenEvent;
 import com.talexframe.frame.core.pojo.annotations.*;
 import com.talexframe.frame.core.pojo.dao.factory.DAOManager;
@@ -60,15 +60,15 @@ public class RequestAnalyser {
 
     }
 
-    public static void scanRequests(TController tController) {
+    public static void scanRequests(TApp tApp) {
 
-        networkManager.scanClassForRequests(tController);
+        networkManager.scanClassForRequests(tApp);
 
     }
 
-    public static void removeRequests(TController tController) {
+    public static void removeRequests(TApp tApp) {
 
-        networkManager.removeRequestsInClass(tController);
+        networkManager.removeRequestsInClass(tApp);
 
     }
 
@@ -130,10 +130,10 @@ public class RequestAnalyser {
                 for ( RequestReceiver.RequestMethodReceiver.RequestParameterReceiver paramReceiver : methodReceiver.getParamReceivers() ) {
 
                     if ( !paramReceiver.processUrlParam(url, params) ) {
-                        continue;
+                        return;
                     }
 
-                    if ( json == null ) {
+                    if ( json == null && methodReceiver.tRequest.parseJSON() ) {
 
                         log.warn("[解析层] DataNull # MissingBodyData");
 
@@ -191,6 +191,7 @@ public class RequestAnalyser {
 
                 // Class<?> returnClz = ownMethod.getReturnType();
 
+                log.debug("params: " + params);
                 Object object = methodReceiver.ownMethod.invoke(clzReceiver.controller, params.toArray());
 
                 if ( object != null ) {
@@ -205,11 +206,11 @@ public class RequestAnalyser {
 
                 if ( a > 300 ) {
 
-                    log.warn("[应用层] 处理完毕 - 耗时较长，请优化接口！ 耗时: " + a + "nanoTime");
+                    log.warn("[应用层] 处理完毕 - 耗时较长，请优化接口！ 耗时: " + a + "ms");
 
                 } else {
 
-                    log.info("[应用层] 处理完毕 耗时: " + a + "nanoTime");
+                    log.info("[应用层] 处理完毕 耗时: " + a + "ms");
 
                 }
 
@@ -247,17 +248,19 @@ public class RequestAnalyser {
     @Getter
     private static class RequestReceiver {
 
-        private final TController controller;
+        private final TApp controller;
         private final Class<?> ownClass;
         private final TReqLoginChecker tReqLoginChecker;
+        private final TRestFul tRestFul;
         private final List<RequestMethodReceiver> methods = new ArrayList<>();
         private RateLimiter rateLimiter;
 
-        public RequestReceiver(TController controller, Class<?> ownClass, TReqLoginChecker tReqLoginChecker) {
+        public RequestReceiver(TApp controller, Class<?> ownClass, TReqLoginChecker tReqLoginChecker, TRestFul tRestFul) {
 
             this.controller = controller;
             this.ownClass = ownClass;
             this.tReqLoginChecker = tReqLoginChecker;
+            this.tRestFul = tRestFul;
 
         }
 
@@ -709,21 +712,30 @@ public class RequestAnalyser {
 
                     }
 
-                    for ( int i = 0; i < requireUrls.length; ++i ) {
+                    String fieldName = tUrlParam.value();
+                    String[] originUrl = UrlUtil.formatUrl(ownMethodReceiver.tRequest.value()).split("/");
+                    String[] urls = UrlUtil.formatUrl(url).split("/");
 
-                        String subUrl = requireUrls[i];
+                    for( int i = 0; i < originUrl.length; ++i ) {
 
-                        log.debug("[解析层] VisitUrl: (" + i + ") " + url + " # " + subUrl + " / " + requireUrls[i]);
+                        String thisUrl = originUrl[i];
+                        log.debug("[解析层] thisUrl: " + thisUrl + " | fieldName: " + fieldName);
 
-                        if ( subUrl.startsWith("{") && subUrl.endsWith("}") ) {
+                        if( thisUrl.equalsIgnoreCase("{" + fieldName + "}") ) {
 
-                            params.add(requestUrls[i]);
+                            String obj = urls[i];
+
+                            params.add(obj);
+
+                            log.debug("[解析层] add param: " + obj);
+
+                            return true;
 
                         }
 
                     }
 
-                    return true;
+                    return false;
 
                 }
 
@@ -737,17 +749,17 @@ public class RequestAnalyser {
 
         private final Map<Class<?>, RequestReceiver> receivers = new HashMap<>();
 
-        private void removeRequestsInClass(TController controller) {
+        private void removeRequestsInClass(TApp controller) {
 
             this.receivers.remove(controller.getClass());
 
         }
 
-        private void scanClassForRequests(TController controller) {
+        private void scanClassForRequests(TApp controller) {
 
             Class<?> clz = controller.getClass();
 
-            RequestReceiver requestReceiver = new RequestReceiver(controller, clz, clz.getAnnotation(TReqLoginChecker.class))
+            RequestReceiver requestReceiver = new RequestReceiver(controller, clz, clz.getAnnotation(TReqLoginChecker.class), clz.getAnnotation(TRestFul.class))
                     .setRateLimiter(clz.getAnnotation(TRequestLimit.class));
 
             for ( Method method : clz.getMethods() ) {

@@ -71,6 +71,8 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
     @Override
     public ResultSet likeData(SqlLikeBuilder slb) {
 
+        log.debug("likeData: {}", slb.toString());
+
         return executeWithCallBack(slb.toString());
     }
 
@@ -100,7 +102,7 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
     @Override
     public ResultSet searchData(String table, String selectType, String value, int limit) {
 
-        return executeWithCallBack("SELECT * FROM " + table + " WHERE " + selectType + " and '%" + value + "%' "
+        return executeWithCallBack("SELECT * FROM " + table + " WHERE " + selectType + " = '" + value + "' "
                 + ( limit > 0 ? " LIMIT " + limit : "" ));
 
     }

@@ -7,7 +7,7 @@ import com.talexframe.frame.core.function.command.frame.InfoCmd;
 import com.talexframe.frame.core.function.command.frame.PluginCmd;
 import com.talexframe.frame.core.function.command.frame.StopCmd;
 import com.talexframe.frame.core.function.listener.FrameSelfListener;
-import com.talexframe.frame.core.modules.controller.TControllerManager;
+import com.talexframe.frame.core.modules.application.TAppManager;
 import com.talexframe.frame.core.modules.event.FrameListener;
 import com.talexframe.frame.core.modules.event.MethodManager;
 import com.talexframe.frame.core.modules.event.TalexEvent;
@@ -16,7 +16,7 @@ import com.talexframe.frame.core.modules.event.service.TalexEventBus;
 import com.talexframe.frame.core.modules.plugins.addon.FramePluginListener;
 import com.talexframe.frame.core.modules.plugins.core.PluginInfo;
 import com.talexframe.frame.core.modules.plugins.core.PluginManager;
-import com.talexframe.frame.core.modules.repository.TRepositoryManager;
+import com.talexframe.frame.core.modules.repository.TRepoManager;
 import com.talexframe.frame.core.pojo.dao.factory.DAOManager;
 import com.talexframe.frame.core.pojo.enums.FrameStatus;
 import com.talexframe.frame.core.pojo.mapper.frame.FrameSender;
@@ -55,8 +55,9 @@ public class TFrame {
     private CommandManager commandManager;
     private DAOManager daoManager;
     private PluginManager pluginManager;
-    private TRepositoryManager repositoryManager;
-    private TControllerManager controllerManager;
+    private TRepoManager repoManager;
+    private TAppManager appManager;
+
     private TFrame() {
 
         this.printBanner();
@@ -96,9 +97,9 @@ public class TFrame {
         started = true;
         setFrameStatus(FrameStatus.RUNNING);
 
-        log.info("Loading repository & controller ...");
-        this.repositoryManager = TRepositoryManager.init();
-        this.controllerManager = TControllerManager.init();
+        log.info("Loading repo & application ...");
+        this.repoManager = TRepoManager.init();
+        this.appManager = TAppManager.init();
 
         getEventBus().registerListener(new FrameSelfListener());
 

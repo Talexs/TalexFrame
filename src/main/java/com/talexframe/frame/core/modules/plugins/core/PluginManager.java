@@ -7,13 +7,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.talexframe.frame.TalexFrameApplication;
-import com.talexframe.frame.core.modules.controller.TController;
-import com.talexframe.frame.core.modules.controller.TControllerManager;
+import com.talexframe.frame.core.modules.application.TApp;
+import com.talexframe.frame.core.modules.application.TAppManager;
 import com.talexframe.frame.core.modules.event.FrameListener;
 import com.talexframe.frame.core.modules.event.events.frame.FrameFirstInstallEvent;
 import com.talexframe.frame.core.modules.plugins.addon.FramePluginListener;
-import com.talexframe.frame.core.modules.repository.TRepository;
-import com.talexframe.frame.core.modules.repository.TRepositoryManager;
+import com.talexframe.frame.core.modules.repository.TRepo;
+import com.talexframe.frame.core.modules.repository.TRepoManager;
 import com.talexframe.frame.core.pojo.wrapper.WrappedInfo;
 import com.talexframe.frame.core.talex.TFrame;
 import lombok.Getter;
@@ -378,13 +378,13 @@ public class PluginManager {
 
         int i = 0;
 
-        TControllerManager controllerManager = TFrame.tframe.getControllerManager();
+        TAppManager appManager = TFrame.tframe.getAppManager();
 
-        for ( Map.Entry<TController, String> entry : controllerManager.getControllerPluginMap().entrySet() ) {
+        for ( Map.Entry<TApp, String> entry : appManager.getControllerPluginMap().entrySet() ) {
 
             if ( entry.getValue().equalsIgnoreCase(pluginName) ) {
 
-                controllerManager.unRegisterController(plugin, entry.getKey());
+                appManager.unRegisterController(plugin, entry.getKey());
 
                 ++i;
 
@@ -398,13 +398,13 @@ public class PluginManager {
 
         i = 0;
 
-        TRepositoryManager repositoryManager = TFrame.tframe.getRepositoryManager();
+        TRepoManager repositoryManager = TFrame.tframe.getRepoManager();
 
-        for ( Map.Entry<TRepository, String> entry : repositoryManager.getRepositoryPluginMap().entrySet() ) {
+        for ( Map.Entry<TRepo, String> entry : repositoryManager.getRepoPluginMap().entrySet() ) {
 
             if ( entry.getValue().equalsIgnoreCase(pluginName) ) {
 
-                repositoryManager.unRegisterRepository(plugin, entry.getKey());
+                repositoryManager.unRegisterRepo(plugin, entry.getKey());
 
                 ++i;
 
