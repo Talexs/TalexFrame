@@ -7,6 +7,7 @@ import com.talexframe.frame.core.pojo.FrameBuilder;
 import com.talexframe.frame.core.pojo.dao.factory.mysql.builder.BuilderParam;
 import com.talexframe.frame.core.pojo.dao.factory.mysql.builder.BuilderWhereParam;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ import java.util.Map;
  * @date 22/03/05 下午 01:51 <br /> Project: TalexFrame <br />
  */
 @SuppressWarnings( "unused" )
+@Slf4j
 public class BuilderMap<T extends FrameBuilder> {
 
     @Getter
@@ -34,7 +36,7 @@ public class BuilderMap<T extends FrameBuilder> {
 
     }
 
-    public BuilderMap addParam(BuilderParam param) {
+    public BuilderMap<T> addParam(BuilderParam param) {
 
         params.add(param);
 
@@ -42,7 +44,7 @@ public class BuilderMap<T extends FrameBuilder> {
 
     }
 
-    public BuilderMap addParam(String key, Object value) {
+    public BuilderMap<T> addParam(String key, Object value) {
 
         params.add(new BuilderParam(key, value));
 
@@ -50,7 +52,7 @@ public class BuilderMap<T extends FrameBuilder> {
 
     }
 
-    public BuilderMap addMapParam(Map<String, Object> map) {
+    public BuilderMap<T> addMapParam(Map<String, Object> map) {
 
         map.forEach((key, value) -> params.add(new BuilderParam(key, value)));
 
@@ -128,12 +130,14 @@ public class BuilderMap<T extends FrameBuilder> {
 
             }
 
-            sb.append("\"").append(param.getSubParamName()).append("\"").append(" ").
-                    append(type).append(" \"").append(content).append("\" ").append(whereParam.isAfterAnd() ? " and " : " or ");
+            sb.append("`").append(param.getSubParamName()).append("`").append(" ").
+                    append(type).append(" \"").append(content).append("\" ").append(whereParam.isAfterAnd() ? " and " : "  or ");
 
         }
 
-        return sb.toString();
+        log.debug("toSqlWhereColumn: {}", sb.toString());
+
+        return sb.substring(0, sb.toString().length() - 4);
 
     }
 

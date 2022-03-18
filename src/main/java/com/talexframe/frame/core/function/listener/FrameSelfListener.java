@@ -4,8 +4,8 @@ import com.talexframe.frame.core.modules.event.FrameListener;
 import com.talexframe.frame.core.modules.event.TalexSubscribe;
 import com.talexframe.frame.core.modules.event.events.dao.DAOProcessorConnectedEvent;
 import com.talexframe.frame.core.modules.event.events.dao.DAOProcessorPreShutdownEvent;
-import com.talexframe.frame.core.modules.repository.TAutoRepository;
-import com.talexframe.frame.core.modules.repository.TRepository;
+import com.talexframe.frame.core.modules.repository.TRepoPlus;
+import com.talexframe.frame.core.modules.repository.TRepo;
 import com.talexframe.frame.core.pojo.dao.factory.mysql.Mysql;
 import com.talexframe.frame.core.talex.TFrame;
 
@@ -28,11 +28,11 @@ public class FrameSelfListener extends FrameListener {
     @TalexSubscribe
     public void onMysqlConnected(DAOProcessorConnectedEvent<Mysql> event) {
 
-        for ( TRepository repository : tframe.getRepositoryManager().getRepositories().values() ) {
+        for ( TRepo repository : tframe.getRepoManager().getRepositories().values() ) {
 
-            if ( repository instanceof TAutoRepository ) {
+            if ( repository instanceof TRepoPlus ) {
 
-                ( (TAutoRepository<?>) repository ).onInstall();
+                ( (TRepoPlus<?>) repository ).onInstall();
 
             }
 
@@ -43,11 +43,11 @@ public class FrameSelfListener extends FrameListener {
     @TalexSubscribe
     public void onMysqlPreShutdown(DAOProcessorPreShutdownEvent<Mysql> event) {
 
-        for ( TRepository repository : tframe.getRepositoryManager().getRepositories().values() ) {
+        for ( TRepo repository : tframe.getRepoManager().getRepositories().values() ) {
 
-            if ( repository instanceof TAutoRepository ) {
+            if ( repository instanceof TRepoPlus ) {
 
-                ( (TAutoRepository<?>) repository ).onUninstall();
+                ( (TRepoPlus<?>) repository ).onUninstall();
 
             }
 

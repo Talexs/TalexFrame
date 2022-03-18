@@ -70,4 +70,7 @@ public @interface TAutoColumn {
     /** 不为空时当前行替换为这里的内容 **/
     String content() default "";
 
+    /** 当前行的备注 **/
+    String comment() default "";
+
 }

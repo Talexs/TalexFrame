@@ -1,6 +1,7 @@
 package com.talexframe.frame.core.pojo.dao.factory.mysql.builder;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -14,7 +15,14 @@ import lombok.experimental.Accessors;
 @Setter
 @Getter
 @Accessors( chain = true )
+@NoArgsConstructor
 public class BuilderWhereParam extends BuilderParam {
+
+    public BuilderWhereParam(String key, Object value) {
+
+        super(key, value);
+
+    }
 
     /**
      * 决定在这个字段后是加入 or 或者是 and 为真则为 or 否则为 and

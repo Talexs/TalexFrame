@@ -12,4 +12,9 @@ import java.lang.annotation.RetentionPolicy;
 @Retention( RetentionPolicy.RUNTIME )
 public @interface TUrlParam {
 
+    /**
+     * 当前从url中取得的参数名 比如{hello}就写hello
+     */
+    String value();
+
 }

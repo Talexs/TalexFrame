@@ -2,7 +2,7 @@ package com.talexframe.frame.core.modules.network.connection;
 
 import cn.hutool.json.JSONUtil;
 import com.google.common.util.concurrent.RateLimiter;
-import com.talexframe.frame.core.modules.controller.TControllerManager;
+import com.talexframe.frame.core.modules.application.TAppManager;
 import com.talexframe.frame.core.modules.event.events.request.RequestCannotGetTokenEvent;
 import com.talexframe.frame.core.modules.event.events.request.RequestCorsTryEvent;
 import com.talexframe.frame.core.pojo.wrapper.ResultData;
@@ -25,7 +25,7 @@ public class RequestConnector {
 
     static TFrame tframe = TFrame.tframe;
     static RateLimiter globalLimiter = RateLimiter.create(100, 1, TimeUnit.SECONDS);
-    static TControllerManager manager = tframe.getControllerManager();
+    static TAppManager manager = tframe.getAppManager();
 
     private WrappedResponse wr;
 

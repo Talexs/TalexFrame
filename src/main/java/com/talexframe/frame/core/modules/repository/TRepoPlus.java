@@ -2,6 +2,7 @@ package com.talexframe.frame.core.modules.repository;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import com.talexframe.frame.core.pojo.dao.vo.auto.AutoSaveData;
@@ -32,7 +33,7 @@ import java.util.concurrent.ConcurrentMap;
 @Getter
 @Slf4j
 @SuppressWarnings( "unused" )
-public class TAutoRepository<T extends AutoSaveData> extends TRepository {
+public class TRepoPlus<T extends AutoSaveData> extends TRepo {
 
     protected final WebPlugin ownPlugin;
     protected final Class<? extends AutoSaveData> templateData;
@@ -43,7 +44,7 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
     @Setter
     protected String infoType = "VARCHAR(512)";
 
-    public TAutoRepository(String tableName, WebPlugin webPlugin) {
+    public TRepoPlus(String tableName, WebPlugin webPlugin) {
 
         super(tableName);
 
@@ -114,15 +115,21 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
         ResultSet rs = readSearchAllData();
 
+
         while ( rs != null && rs.next() ) {
+
             @SuppressWarnings( "unchecked" ) WrappedData<T> data = (WrappedData<T>) AutoSaveData.deserialize(templateData, JSONUtil.parseObj(Base64.decodeStr(rs.getString("as_info"))));
+
             if ( data.getValue() == null || data.getValue().getMainKey() == null ) {
                 log.error("[AutoSaveData] FatalError!! # " + templateData.getName());
             }
+
             if ( onSingleDataLoaded(data) ) {
                 continue;
             }
+
             dataMap.put(( data.getValue() ).getMainKey(), data.getValue());
+
         }
 
         onDataLoaded();
@@ -161,21 +168,37 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
         StringBuilder values = new StringBuilder();
         StringBuilder update = new StringBuilder();
 
+        JSONObject json = new JSONObject();
+
         TAutoTable tableAnnotation = templateData.getAnnotation(TAutoTable.class);
 
         for ( Field field : clz.getDeclaredFields() ) {
 
             TAutoColumn as = field.getAnnotation(TAutoColumn.class);
 
-            if ( as == null || !as.joinField() ) {
+            if ( as == null ) {
                 continue;
             }
 
-            if ( !field.isAccessible() ) {
-                field.setAccessible(true);
-            }
+            field.setAccessible(true);
             
             String name = field.getName();
+
+            if ( as.String() ) {
+
+                json.putOpt(name, field.get(data).toString());
+
+            } else {
+
+                json.putOpt(name, field.get(data));
+
+            }
+
+            if( !as.joinField() ) {
+
+                continue;
+
+            }
             
             if(tableAnnotation != null && tableAnnotation.prefix()) {
                 
@@ -211,7 +234,7 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
         }
 
-        String encStr = Base64.encode(data.toJSONObject().toString());
+        String encStr = Base64.encode(json.toString());
 
         if( tableAnnotation != null && tableAnnotation.fullJsonRecord() ) {
 
@@ -229,6 +252,8 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
         String sql = "INSERT INTO " + getProvider() + "(" + keys + ") VALUES(" +
                 values + ") ON DUPLICATE KEY UPDATE " + update;
+
+        log.debug("[BaseAutoSaveData] " + getProvider() + " @" + getClass() + " 存储数据: " + sql);
 
         return mysql.executeWithCallBack(sql);
 
@@ -261,7 +286,7 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
             TAutoColumn column = field.getAnnotation(TAutoColumn.class);
 
-            if ( column == null ) {
+            if ( column == null || !column.joinField() ) {
 
                 continue;
 
@@ -281,6 +306,8 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
             }
 
+            log.debug("Field Name: {}", fieldName);
+
             if ( field.isAnnotationPresent(TAutoSaveId.class) ) {
 
                 idList.add(fieldName);
@@ -294,13 +321,18 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
                 Class<?> type = field.getType();
                 boolean nullable = column.nullable();
                 String nullableStr = nullable ? "" : "not null";
+                String commentStr = StrUtil.isBlank(column.comment()) ? "" : "comment '" + column.comment() + "'";
                 String typeStr = column.type();
 
                 if( StrUtil.isBlankIfStr(typeStr) ) {
 
-                    if ( Integer.class == type ) {
+                    if ( Integer.class == type || type.getName().equalsIgnoreCase("int") ) {
 
                         typeStr = "int";
+
+                    } else if ( Long.class == type || type.getName().equalsIgnoreCase("long") ) {
+
+                        typeStr = "bigint(" + column.precision() + ")";
 
                     } else if ( String.class == type ) {
 
@@ -314,7 +346,7 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
                         typeStr = "varchar(" + precision + ")";
 
-                    } else if ( BigDecimal.class == type ) {
+                    } else if ( BigDecimal.class == type || type.getName().equalsIgnoreCase("double") || type.getName().equalsIgnoreCase("float") ) {
 
                         int precision = column.precision();
                         int scale = column.scale();
@@ -322,6 +354,8 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
                         typeStr = "decimal(" + precision + "," + scale + ")";
 
                     } else {
+
+                        log.debug("Unsupported type: {}", type);
 
                         continue;
 
@@ -332,11 +366,17 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
                 columnStr +=
                         fieldName + " "
                                 + typeStr + " "
-                                + nullableStr;
+                                + nullableStr + " " + commentStr;
 
             }
 
             columnList.add(columnStr);
+
+        }
+
+        if( tableAnnotation != null && tableAnnotation.fullJsonRecord() ) {
+
+            columnList.add("as_info varchar(" + tableAnnotation.precision() + ") not null");
 
         }
 
@@ -352,7 +392,9 @@ public class TAutoRepository<T extends AutoSaveData> extends TRepository {
 
         }
 
-        if( mysql.prepareStatement(createStr.toString()) > 0 ) {
+        ResultSet rs = mysql.executeWithCallBack(createStr.toString());
+        log.debug(createStr.toString());
+        if( rs != null && rs.getRow() > 0 ) {
 
             log.info("创建表成功：{}", tableName);
 
