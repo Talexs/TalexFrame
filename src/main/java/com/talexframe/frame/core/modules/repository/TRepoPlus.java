@@ -306,7 +306,7 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
 
             }
 
-            log.debug("Field Name: {}", fieldName);
+            // log.debug("Field Name: {}", fieldName);
 
             if ( field.isAnnotationPresent(TAutoSaveId.class) ) {
 

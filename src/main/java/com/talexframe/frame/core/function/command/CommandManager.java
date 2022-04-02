@@ -65,7 +65,7 @@ public class CommandManager {
             String cmdLabel = entry.getKey();
             BaseCommand cmd = entry.getValue();
 
-            if ( cmdLabel.equalsIgnoreCase(label) || Arrays.stream(cmd.getAlias()).anyMatch(s -> s.equalsIgnoreCase(label)) ) {
+            if ( cmd.getLabel().equalsIgnoreCase(label) || cmdLabel.equalsIgnoreCase(label) || Arrays.stream(cmd.getAlias()).anyMatch(s -> s.equalsIgnoreCase(label)) ) {
 
                 match = true;
 
@@ -259,6 +259,19 @@ public class CommandManager {
         this.commands.put(label, command);
 
         return true;
+
+    }
+
+    /**
+     *
+     * 删除指令的执行器
+     *
+     * @param label 指令标识符
+     * @return 返回是否成功 返回假一般代表没有此命令
+     */
+    public boolean removeCommandExecutor(String label) {
+
+        return this.commands.remove(label) != null;
 
     }
 

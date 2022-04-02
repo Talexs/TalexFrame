@@ -20,21 +20,21 @@ public class FrameRunnable {
 
     // private Runnable runnable;
     //
-    // public FrameRunnable(Runnable runnable) {
+    // adapt FrameRunnable(Runnable runnable) {
     //
     //     this.runnable = runnable;
     //
     // }
     //
     // @Async
-    // public void runAsync() {
+    // adapt void runAsync() {
     //
     //     this.runnable.run();
     //
     // }
     //
     // @Async
-    // public void runDelayAsync(long delayMS) {
+    // adapt void runDelayAsync(long delayMS) {
     //
     //     ThreadUtil.
     //

@@ -2,11 +2,13 @@ package com.talexframe.frame.core.talex;
 
 import com.talexframe.frame.TalexFrameApplication;
 import com.talexframe.frame.core.function.command.CommandManager;
+import com.talexframe.frame.core.function.command.TCmdCompAdapter;
 import com.talexframe.frame.core.function.command.frame.HelpCmd;
 import com.talexframe.frame.core.function.command.frame.InfoCmd;
 import com.talexframe.frame.core.function.command.frame.PluginCmd;
 import com.talexframe.frame.core.function.command.frame.StopCmd;
 import com.talexframe.frame.core.function.listener.FrameSelfListener;
+import com.talexframe.frame.core.modules.application.TAppCompAdapter;
 import com.talexframe.frame.core.modules.application.TAppManager;
 import com.talexframe.frame.core.modules.event.FrameListener;
 import com.talexframe.frame.core.modules.event.MethodManager;
@@ -16,6 +18,7 @@ import com.talexframe.frame.core.modules.event.service.TalexEventBus;
 import com.talexframe.frame.core.modules.plugins.addon.FramePluginListener;
 import com.talexframe.frame.core.modules.plugins.core.PluginInfo;
 import com.talexframe.frame.core.modules.plugins.core.PluginManager;
+import com.talexframe.frame.core.modules.repository.TRepoCompAdapter;
 import com.talexframe.frame.core.modules.repository.TRepoManager;
 import com.talexframe.frame.core.pojo.dao.factory.DAOManager;
 import com.talexframe.frame.core.pojo.enums.FrameStatus;
@@ -111,6 +114,7 @@ public class TFrame {
         if ( frameStatus == FrameStatus.RUNNING ) {
 
             log.info("Loading command-manager ...");
+
             CommandManager.initial();
             this.commandManager = CommandManager.INSTANCE;
             this.commandManager.setCommandExecutor("help", new HelpCmd());
@@ -118,18 +122,24 @@ public class TFrame {
             this.commandManager.setCommandExecutor("stop", new StopCmd());
             this.commandManager.setCommandExecutor("info", new InfoCmd());
 
+            new TCmdCompAdapter();
+
         }
 
         if ( frameStatus == FrameStatus.RUNNING ) {
+
+            new TAppCompAdapter();
+            new TRepoCompAdapter();
 
             log.info("Loading plugin-manager ...");
 
             this.pluginManager = new PluginManager(new File(mainFile.getAbsolutePath() + "/plugins"));
 
             this.pluginManager.loadAllPluginsInFolder();
+            // ThreadUtil.execAsync(() -> this.pluginManager.loadAllPluginsInFolder());
 
             log.info("框架启动成功!");
-            log.debug("DEBUG 模式已启动!");
+            log.debug("** DEBUG 模式已启动!");
 
         }
 

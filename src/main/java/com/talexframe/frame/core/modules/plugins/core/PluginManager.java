@@ -7,13 +7,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.talexframe.frame.TalexFrameApplication;
-import com.talexframe.frame.core.modules.application.TApp;
-import com.talexframe.frame.core.modules.application.TAppManager;
-import com.talexframe.frame.core.modules.event.FrameListener;
 import com.talexframe.frame.core.modules.event.events.frame.FrameFirstInstallEvent;
-import com.talexframe.frame.core.modules.plugins.addon.FramePluginListener;
-import com.talexframe.frame.core.modules.repository.TRepo;
-import com.talexframe.frame.core.modules.repository.TRepoManager;
+import com.talexframe.frame.core.modules.plugins.addon.PluginScanner;
 import com.talexframe.frame.core.pojo.wrapper.WrappedInfo;
 import com.talexframe.frame.core.talex.TFrame;
 import lombok.Getter;
@@ -31,8 +26,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -46,16 +39,19 @@ public class PluginManager {
     private final File pluginFolder;
 
     @Getter
-    private final ConcurrentMap<String, WebPlugin> pluginHashMap = new ConcurrentHashMap<>();
+    private final Map<String, WebPlugin> pluginHashMap = new HashMap<>();
 
     @Getter
-    private final ConcurrentMap<String, String> nameClassIndex = new ConcurrentHashMap<>();
+    private final Map<String, String> nameClassIndex = new HashMap<>();
 
     @Getter
-    private final ConcurrentMap<String, JarFile> pluginJarFiles = new ConcurrentHashMap<>();
+    private final Map<String, JarFile> pluginJarFiles = new HashMap<>();
 
     @Getter
-    private final ConcurrentMap<String, URLClassLoader> pluginClassLoaders = new ConcurrentHashMap<>();
+    private final Map<String, URLClassLoader> pluginClassLoaders = new HashMap<>();
+
+    @Getter
+    private final Map<String, PluginScanner> pluginScannerMap = new HashMap<>();
 
     @SneakyThrows
     public PluginManager(File mainFolder) {
@@ -79,7 +75,7 @@ public class PluginManager {
 
         String[] list = this.pluginFolder.list();
 
-        log.info("[Module] Plugin loading!");
+        log.info("[Plugin] Loading all plugins ...");
 
         if ( list != null ) {
 
@@ -91,7 +87,7 @@ public class PluginManager {
 
         }
 
-        log.info("[Module] Plugin loaded!");
+        log.info("[Plugin] Loaded all plugins.");
 
     }
 
@@ -102,6 +98,9 @@ public class PluginManager {
         for ( Enumeration<JarEntry> en = jarFile.entries(); en.hasMoreElements(); ) {
 
             JarEntry jarEntry = en.nextElement();
+
+            // log.debug( jarEntry.getName() );
+
             if ( jarEntry.getName().contains("plugin.yml") ) {
 
                 InputStream is = jarFile.getInputStream(jarEntry);
@@ -219,15 +218,15 @@ public class PluginManager {
 
         }
 
+        this.pluginJarFiles.put(info.getPluginName(), wInfo.getJarFile());
+
+        this.pluginClassLoaders.put(info.getPluginName(), urlClassLoader);
+
         if ( VersionComparator.INSTANCE.compare(TFrame.tframe.getVersion(), info.getSupportVersion().getVersion()) != 1 ) {
 
             log.warn("[插件] 此插件需要版本 " + info.getSupportVersion().getVersion() + " 或更高，当前框架版本：" + TFrame.tframe.getVersion() + " 请尝试升级框架.");
 
         }
-
-        this.pluginJarFiles.put(info.getPluginName(), wInfo.getJarFile());
-
-        this.pluginClassLoaders.put(info.getPluginName(), urlClassLoader);
 
         WebPlugin webPlugin = getPluginInstance(info.getPluginName(), info);
 
@@ -370,69 +369,15 @@ public class PluginManager {
 
         }
 
-//        HttpRequestManager.getInstance().releasePlugin(plugin);
-
         plugin.onDisable();
 
+        PluginScanner scanner = this.pluginScannerMap.get(pluginName);
+
+        scanner.logout();
+
+        this.pluginScannerMap.remove(pluginName);
+
         plugin.tempDataFolder.delete();
-
-        int i = 0;
-
-        TAppManager appManager = TFrame.tframe.getAppManager();
-
-        for ( Map.Entry<TApp, String> entry : appManager.getControllerPluginMap().entrySet() ) {
-
-            if ( entry.getValue().equalsIgnoreCase(pluginName) ) {
-
-                appManager.unRegisterController(plugin, entry.getKey());
-
-                ++i;
-
-            }
-
-        }
-
-        if ( i != 0 ) {
-            log.info("[Plugin] 已自动注销 " + i + " 个控制器类.");
-        }
-
-        i = 0;
-
-        TRepoManager repositoryManager = TFrame.tframe.getRepoManager();
-
-        for ( Map.Entry<TRepo, String> entry : repositoryManager.getRepoPluginMap().entrySet() ) {
-
-            if ( entry.getValue().equalsIgnoreCase(pluginName) ) {
-
-                repositoryManager.unRegisterRepo(plugin, entry.getKey());
-
-                ++i;
-
-            }
-
-        }
-
-        if ( i != 0 ) {
-            log.info("[Plugin] 已自动注销 " + i + " 个储存器类.");
-        }
-
-        i = 0;
-
-        for ( FrameListener listener : new HashSet<>(TFrame.tframe.getListeners().keySet()) ) {
-
-            if ( listener instanceof FramePluginListener ) {
-
-                if ( ( (FramePluginListener) listener ).getWebPlugin().getName().equals(plugin.getName()) ) {
-
-                    TFrame.tframe.unRegisterListener((FramePluginListener) listener);
-
-                    ++i;
-
-                }
-
-            }
-
-        }
 
         urlClassLoader.setPackageAssertionStatus(classPath, false);
 
@@ -503,7 +448,15 @@ public class PluginManager {
 
         wp.setInfo(info);
 
-        wp.onEnable();
+        wp.onPreScan();
+
+        PluginScanner scanner = new PluginScanner(wp);
+
+        pluginScannerMap.put(pluginName, scanner);
+
+        scanner.scan();
+
+        wp.onScanned();
 
         return wp;
 
