@@ -12,7 +12,7 @@ import lombok.Getter;
  * @date 2022/1/20 10:56 <br /> Project: TalexFrame <br />
  */
 @Getter
-public abstract class BaseCommand implements ICommand {
+public abstract class BaseCommand extends FrameCreator implements ICommand {
 
     public static final String DIVIDER = "---------------------------";
     protected final TFrame tframe = TFrame.tframe;
@@ -31,6 +31,8 @@ public abstract class BaseCommand implements ICommand {
      * @param description 指令描述
      */
     public BaseCommand(FrameCreator creator, String label, String[] alias, String description) {
+
+        super("COMMAND", label);
 
         this.owner = creator;
 

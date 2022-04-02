@@ -14,19 +14,19 @@ import lombok.extern.slf4j.Slf4j;
 public class TNamingStrategy /*implements PhysicalNamingStrategy*/ {
 
     // @Override
-    // public Identifier toPhysicalCatalogName(Identifier name,
+    // adapt Identifier toPhysicalCatalogName(Identifier name,
     //                                         JdbcEnvironment jdbcEnvironment) {
     //     return apply(name, jdbcEnvironment);
     // }
     //
     // @Override
-    // public Identifier toPhysicalSchemaName(Identifier name,
+    // adapt Identifier toPhysicalSchemaName(Identifier name,
     //                                        JdbcEnvironment jdbcEnvironment) {
     //     return apply(name, jdbcEnvironment);
     // }
     //
     // @Override
-    // public Identifier toPhysicalTableName(Identifier name,
+    // adapt Identifier toPhysicalTableName(Identifier name,
     //                                       JdbcEnvironment jdbcEnvironment) {
     //     Identifier identifier = apply(name, jdbcEnvironment);
     //     String tbName = "t_" + identifier.toString();
@@ -34,13 +34,13 @@ public class TNamingStrategy /*implements PhysicalNamingStrategy*/ {
     // }
     //
     // @Override
-    // public Identifier toPhysicalSequenceName(Identifier name,
+    // adapt Identifier toPhysicalSequenceName(Identifier name,
     //                                          JdbcEnvironment jdbcEnvironment) {
     //     return apply(name, jdbcEnvironment);
     // }
     //
     // @Override
-    // public Identifier toPhysicalColumnName(Identifier name,
+    // adapt Identifier toPhysicalColumnName(Identifier name,
     //                                        JdbcEnvironment jdbcEnvironment) {
     //     return apply(name, jdbcEnvironment);
     // }

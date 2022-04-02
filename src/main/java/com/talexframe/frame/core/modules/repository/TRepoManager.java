@@ -1,8 +1,10 @@
 package com.talexframe.frame.core.modules.repository;
 
 import com.talexframe.frame.core.modules.network.interfaces.IUnRegisterHandler;
+import com.talexframe.frame.core.modules.plugins.addon.PluginScanner;
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import com.talexframe.frame.core.pojo.annotations.TRepoInject;
+import com.talexframe.frame.core.talex.TFrame;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
@@ -11,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * <br /> {@link com.talexframe.frame.function.repository Package }
+ * <br /> {@link com.talexframe.frame.core.modules.repository Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/20 17:01 <br /> Project: TalexFrame <br />
@@ -93,32 +95,42 @@ public class TRepoManager {
 
         }
 
-        Class<?> clz = Repo.getClass();
+        PluginScanner scanner = TFrame.tframe.getPluginManager().getPluginScannerMap().get( plugin.getName() );
 
-        /* 扫描类中所有字段 带有 TRepInject 的字段，自动从 TRepoManager 中根据字段类型注入 **/
-        for ( Field field : clz.getDeclaredFields() ) {
+        scanner.pushService(() -> {
 
-            TRepoInject repoInject = field.getAnnotation(TRepoInject.class);
+            Class<?> clz = Repo.getClass();
 
-            if ( repoInject != null ) {
+            /* 扫描类中所有字段 带有 TRepInject 的字段，自动从 TRepoManager 中根据字段类型注入 **/
+            for ( Field field : clz.getDeclaredFields() ) {
 
-                Class<?> repClz = field.getType();
+                TRepoInject repoInject = field.getAnnotation(TRepoInject.class);
 
-                field.setAccessible(true);
+                if ( repoInject != null ) {
 
-                TRepo tRep = getASRepoByClass(repClz);
+                    Class<?> repClz = field.getType();
 
-                if ( tRep == null ) {
+                    field.setAccessible(true);
 
-                    throw new NullPointerException("Inject Repo with null - " + repClz.getName());
+                    TRepo tRep = getASRepoByClass(repClz);
+
+                    if ( tRep == null ) {
+
+                        throw new NullPointerException("Inject Repo with null - " + repClz.getName() + " - " + clz.getName());
+
+                    }
+
+                    try {
+                        field.set(Repo, tRep);
+                    } catch ( IllegalAccessException e ) {
+                        e.printStackTrace();
+                    }
 
                 }
 
-                field.set(Repo, tRep);
-
             }
 
-        }
+        });
 
         return true;
 

@@ -39,7 +39,7 @@ class ApplicationTestsForIdGenerator {
     //     IdGeneratorService idGeneratorService;
     //     int id;
     //
-    //     public TestThread(int id, IdGeneratorService idGeneratorService) {
+    //     adapt TestThread(int id, IdGeneratorService idGeneratorService) {
     //
     //         this.id = id;
     //         this.idGeneratorService = idGeneratorService;
@@ -47,7 +47,7 @@ class ApplicationTestsForIdGenerator {
     //     }
     //
     //     @Override
-    //     public void run() {
+    //     adapt void run() {
     //
     //         groupTimeInterval.start(String.valueOf(this.id));
     //

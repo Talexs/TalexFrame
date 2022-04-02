@@ -12,7 +12,7 @@ public class RedisConfig {
 
     // @Bean
     // @ConditionalOnMissingBean
-    // public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
+    // adapt RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
     //
     //     RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
     //
