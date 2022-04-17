@@ -15,6 +15,8 @@ import com.talexframe.frame.core.modules.event.MethodManager;
 import com.talexframe.frame.core.modules.event.TalexEvent;
 import com.talexframe.frame.core.modules.event.events.frame.FrameStartedEvent;
 import com.talexframe.frame.core.modules.event.service.TalexEventBus;
+import com.talexframe.frame.core.modules.plugins.adapt.config.json.JSONConfigAdapter;
+import com.talexframe.frame.core.modules.plugins.adapt.config.yaml.YamlConfigAdapter;
 import com.talexframe.frame.core.modules.plugins.addon.FramePluginListener;
 import com.talexframe.frame.core.modules.plugins.core.PluginInfo;
 import com.talexframe.frame.core.modules.plugins.core.PluginManager;
@@ -133,6 +135,8 @@ public class TFrame {
 
             log.info("Loading plugin-manager ...");
 
+            new YamlConfigAdapter();
+            new JSONConfigAdapter();
             this.pluginManager = new PluginManager(new File(mainFile.getAbsolutePath() + "/plugins"));
 
             this.pluginManager.loadAllPluginsInFolder();
