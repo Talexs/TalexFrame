@@ -103,6 +103,8 @@ public class YamlConfigAdapter extends PluginCompAdapter<YamlConfig> {
             for( Field field : clz.getDeclaredFields() ) {
 
                 TVConfig fieldAnno = field.getAnnotation(TVConfig.class);
+                if( fieldAnno == null ) continue;
+
                 String name = StrUtil.isBlankIfStr(fieldAnno.name()) ? field.getName() : fieldAnno.name();
 
                 field.setAccessible(true);
@@ -133,7 +135,8 @@ public class YamlConfigAdapter extends PluginCompAdapter<YamlConfig> {
 
         }
 
-        map.put( clz, instance );
+        if( classAnno == null || !classAnno.disable() )
+            map.put( clz, instance );
 
         return true;
     }
@@ -182,6 +185,10 @@ public class YamlConfigAdapter extends PluginCompAdapter<YamlConfig> {
                 for( Field field : clazz.getDeclaredFields() ) {
 
                     TVConfig fieldAnno = field.getAnnotation(TVConfig.class);
+
+                    if( fieldAnno == null ) continue;
+                    if( fieldAnno.disable() ) continue;
+
                     String name = StrUtil.isBlankIfStr(fieldAnno.name()) ? field.getName() : fieldAnno.name();
 
                     Object value = field.get( config );

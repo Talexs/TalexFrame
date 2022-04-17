@@ -27,4 +27,11 @@ public @interface TVConfig {
      */
     boolean ignore() default false;
 
+    /**
+     * 禁止保存
+     * 是否禁止保存(部分)字段
+     *
+     */
+    boolean disable() default false;
+
 }
