@@ -16,6 +16,7 @@ import com.talexframe.frame.core.pojo.wrapper.ResultData;
 import com.talexframe.frame.core.pojo.wrapper.WrappedResponse;
 import com.talexframe.frame.utils.ReqMethodUtil;
 import com.talexframe.frame.utils.UrlUtil;
+import com.talexframe.frame.utils.ValidatorUtil;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
@@ -148,6 +149,8 @@ public class RequestAnalyser {
                         TParam param = paramReceiver.tParam;
                         Parameter parameter = paramReceiver.getParameter();
 
+                        TPParamValidator validator = parameter.getAnnotation(TPParamValidator.class);
+
                         try {
 
                             String fieldName = param.field() != null ? param.field() : parameter.getName();
@@ -164,6 +167,39 @@ public class RequestAnalyser {
 
                                 Object obj = json.get(fieldName, parameter.getType());
 
+                                if ( validator != null ) {
+
+                                    int back = ValidatorUtil.validateData(validator, obj);
+
+                                    if( back != 100 ) {
+
+                                        wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Data error");
+
+                                        switch ( back ) {
+
+                                            case ValidatorUtil.MISS_MAX:
+                                                log.info("[解析层] AccessDenied # MissingMax " + fieldName);
+                                            case ValidatorUtil.MISS_MIN:
+                                                log.info("[解析层] AccessDenied # MissingMin " + fieldName);
+                                            case ValidatorUtil.MISS_PATTERN:
+                                                log.info("[解析层] AccessDenied # MissingPattern " + fieldName);
+                                            case ValidatorUtil.MISS_MAX_LENGTH:
+                                                log.info("[解析层] AccessDenied # MissingMaxLength " + fieldName);
+                                            case ValidatorUtil.MISS_MIN_LENGTH:
+                                                log.info("[解析层] AccessDenied # MissingMinLength " + fieldName);
+                                            case ValidatorUtil.MISS_ASSERT:
+                                                log.info("[解析层] AccessDenied # MissingAssert " + fieldName);
+                                            case ValidatorUtil.MISS_DATA:
+                                                log.info("[解析层] AccessDenied # MissingData " + fieldName);
+
+                                        }
+
+                                        return;
+
+                                    }
+
+                                }
+
                                 params.add(obj);
 
                             }
@@ -177,7 +213,6 @@ public class RequestAnalyser {
                                 return;
 
                             }
-
 
                         }
 
