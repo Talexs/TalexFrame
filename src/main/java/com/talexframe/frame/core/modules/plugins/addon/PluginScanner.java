@@ -149,6 +149,13 @@ public class PluginScanner extends FrameCreator {
 
                     tframe.crash( e.getCause() );
 
+                } catch ( IllegalArgumentException e ) {
+
+                    log.error("[PluginScanner] PluginCompAdapter inject failed | For constructors: {}", (Object) constructors);
+                    log.error("[PluginScanner] Oh, some possible solution: Please set the constructor params for null at " + clazz.getName());
+
+                    tframe.crash( e.getCause() );
+
                 }
 
             }
