@@ -27,6 +27,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.lang.NonNull;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.nio.charset.StandardCharsets;
@@ -228,7 +230,20 @@ public class RequestAnalyser {
 
                 if ( object != null ) {
 
-                    wr.returnDataByOK(object);
+                    HttpServletResponse response = wr.getResponse();
+                    OutputStream os = response.getOutputStream();
+
+                    response.setStatus(200);
+
+                    String str = JSONUtil.toJsonStr(object);
+
+                    response.setContentType("application/json");
+
+                    os.write(str.getBytes(StandardCharsets.UTF_8));
+
+                    os.flush();
+
+                    log.info("[应用层] OK Return: " + str);
 
                     methodReceiver.processRedisCache(json, params, object);
 
