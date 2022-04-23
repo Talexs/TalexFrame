@@ -30,10 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 请求解析器 <br /> {@link com.talexframe.frame.core.modules.network.connection Package }
@@ -134,7 +131,7 @@ public class RequestAnalyser {
                         return;
                     }
 
-                    if ( json == null && methodReceiver.tRequest.parseJSON() ) {
+                    if ( json == null && methodReceiver.tRequest.parseJSON() && !Objects.equals(methodReceiver.supportMethodName, "GET") ) {
 
                         log.warn("[解析层] DataNull # MissingBodyData");
 
