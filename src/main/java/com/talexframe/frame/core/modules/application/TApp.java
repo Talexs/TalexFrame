@@ -28,11 +28,13 @@ public abstract class TApp extends FrameCreator {
 
         this.repo = this.getRepo();
 
-        if ( this.repo == null ) {
+        // 不强制要求 Repository
 
-            throw new RuntimeException("无法找到 Repo");
+        // if ( this.repo == null ) {
 
-        }
+            // throw new RuntimeException("无法找到 Repo");
+
+        // }
 
     }
 

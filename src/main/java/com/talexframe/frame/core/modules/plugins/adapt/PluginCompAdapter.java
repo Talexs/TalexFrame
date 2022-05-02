@@ -1,12 +1,15 @@
 package com.talexframe.frame.core.modules.plugins.adapt;
 
+import com.google.common.annotations.Beta;
 import com.talexframe.frame.core.modules.plugins.addon.PluginScanner;
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import com.talexframe.frame.core.pojo.FrameBuilder;
+import com.talexframe.frame.core.talex.FrameAnno;
 import com.talexframe.frame.core.talex.FrameCreator;
 import com.talexframe.frame.core.talex.TFrame;
 import lombok.SneakyThrows;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 
 /**
@@ -34,6 +37,15 @@ public abstract class PluginCompAdapter<T extends FrameCreator> extends FrameBui
 
     }
 
+    private FrameAnno anno = null;
+
+    @Beta
+    public void setAnno(FrameAnno anno) {
+
+        this.anno = anno;
+
+    }
+
     /**
      *
      * For true for access, for false for deny
@@ -41,7 +53,19 @@ public abstract class PluginCompAdapter<T extends FrameCreator> extends FrameBui
      */
     public boolean shouldAccess(Class<? extends FrameCreator> clazz) {
 
-        return templateClass.isAssignableFrom(clazz);
+        boolean res = templateClass.isAssignableFrom(clazz);
+
+        if( res ) return true;
+
+        if( anno != null ) {
+
+            Annotation thisAnno = clazz.getAnnotation( anno.getClass() );
+
+            return thisAnno != null;
+
+        }
+
+        return false;
 
     }
 

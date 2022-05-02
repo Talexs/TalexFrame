@@ -104,8 +104,6 @@ public class RequestAnalyser {
 
                 List<Object> params = new ArrayList<>();
 
-                params.add(wr);
-
                 String str = wr.getRequest().getBody();
                 JSONObject json = null;
 
@@ -128,6 +126,12 @@ public class RequestAnalyser {
                 String url = wr.getRequest().getRequestURI();
 
                 for ( RequestReceiver.RequestMethodReceiver.RequestParameterReceiver paramReceiver : methodReceiver.getParamReceivers() ) {
+
+                    if( paramReceiver.parameter.getType().equals(WrappedResponse.class) ) {
+
+                        params.add(wr);
+
+                    }
 
                     if ( !paramReceiver.processUrlParam(url, params) ) {
                         return;
@@ -235,7 +239,7 @@ public class RequestAnalyser {
 
                     response.setStatus(200);
 
-                    String str = JSONUtil.toJsonStr(object);
+                    String tStr = JSONUtil.toJsonStr(object);
 
                     response.setContentType("application/json");
 
@@ -243,7 +247,7 @@ public class RequestAnalyser {
 
                     os.flush();
 
-                    log.info("[应用层] OK Return: " + str);
+                    log.info("[应用层] OK Return: " + tStr);
 
                     methodReceiver.processRedisCache(json, params, object);
 
