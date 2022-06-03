@@ -1,4 +1,4 @@
-package com.talexframe.frame.exception;
+package com.talexframe.frame.core.pojo.exception;
 
 import lombok.NoArgsConstructor;
 

@@ -13,10 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URLClassLoader;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
@@ -40,7 +37,7 @@ public class PluginScanner extends FrameCreator {
     private final PluginManager pluginManager = tframe.getPluginManager();
 
     @Getter
-    private Set<Runnable> runnables = new HashSet<>();
+    private final Stack<Runnable> runnables = new Stack<>();
 
     public void pushService( Runnable runnable ) {
 
@@ -162,7 +159,11 @@ public class PluginScanner extends FrameCreator {
 
         }
 
-        runnables.forEach( Runnable::run );
+        while( runnables.size() > 0 ) {
+
+            runnables.pop().run();
+
+        }
 
     }
 

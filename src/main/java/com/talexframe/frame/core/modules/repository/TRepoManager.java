@@ -91,12 +91,6 @@ public class TRepoManager {
         this.repositories.put(Repo.getClass(), Repo);
         this.RepoPluginMap.put(Repo, plugin.getName());
 
-        if ( Repo instanceof TRepoPlus ) {
-
-            ( (TRepoPlus<?>) Repo ).onInstall();
-
-        }
-
         PluginScanner scanner = TFrame.tframe.getPluginManager().getPluginScannerMap().get( plugin.getName() );
 
         scanner.pushService(() -> {
@@ -134,6 +128,16 @@ public class TRepoManager {
                 }
 
             }
+
+            scanner.pushService(() -> {
+
+                if ( Repo instanceof TRepoPlus ) {
+
+                    ( (TRepoPlus<?>) Repo ).onInstall();
+
+                }
+
+            });
 
         });
 

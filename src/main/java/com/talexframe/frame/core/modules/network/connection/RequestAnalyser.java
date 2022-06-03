@@ -22,8 +22,8 @@ import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.lang.NonNull;
 
 import javax.servlet.http.HttpServletRequest;
@@ -103,11 +103,18 @@ public class RequestAnalyser {
                 }
 
                 List<Object> params = new ArrayList<>();
+                Class<?>[] parameterTypes = methodReceiver.ownMethod.getParameterTypes();
+
+                if( parameterTypes.length > 0 && parameterTypes[0].equals(WrappedResponse.class) ) {
+
+                    params.add(wr);
+
+                }
 
                 String str = wr.getRequest().getBody();
                 JSONObject json = null;
 
-                if ( methodReceiver.tRequest.parseJSON() ) {
+                if ( !Objects.equals(methodReceiver.supportMethodName, "GET") && methodReceiver.tRequest.parseJSON() ) {
 
                     if ( StrUtil.isBlankIfStr(str) ) {
 
@@ -126,12 +133,6 @@ public class RequestAnalyser {
                 String url = wr.getRequest().getRequestURI();
 
                 for ( RequestReceiver.RequestMethodReceiver.RequestParameterReceiver paramReceiver : methodReceiver.getParamReceivers() ) {
-
-                    if( paramReceiver.parameter.getType().equals(WrappedResponse.class) ) {
-
-                        params.add(wr);
-
-                    }
 
                     if ( !paramReceiver.processUrlParam(url, params) ) {
                         return;
@@ -182,18 +183,25 @@ public class RequestAnalyser {
 
                                             case ValidatorUtil.MISS_MAX:
                                                 log.info("[解析层] AccessDenied # MissingMax " + fieldName);
+                                                break;
                                             case ValidatorUtil.MISS_MIN:
                                                 log.info("[解析层] AccessDenied # MissingMin " + fieldName);
+                                                break;
                                             case ValidatorUtil.MISS_PATTERN:
                                                 log.info("[解析层] AccessDenied # MissingPattern " + fieldName);
+                                                break;
                                             case ValidatorUtil.MISS_MAX_LENGTH:
                                                 log.info("[解析层] AccessDenied # MissingMaxLength " + fieldName);
+                                                break;
                                             case ValidatorUtil.MISS_MIN_LENGTH:
                                                 log.info("[解析层] AccessDenied # MissingMinLength " + fieldName);
+                                                break;
                                             case ValidatorUtil.MISS_ASSERT:
                                                 log.info("[解析层] AccessDenied # MissingAssert " + fieldName);
+                                                break;
                                             case ValidatorUtil.MISS_DATA:
                                                 log.info("[解析层] AccessDenied # MissingData " + fieldName);
+                                                break;
 
                                         }
 
@@ -230,7 +238,27 @@ public class RequestAnalyser {
                 // Class<?> returnClz = ownMethod.getReturnType();
 
                 log.debug("params: " + params);
-                Object object = methodReceiver.ownMethod.invoke(clzReceiver.controller, params.toArray());
+
+                // Cache Logic
+                RedisTemplate<String, Object> template = redis == null ? null : redis.getConfig().getRedisTemplate();
+                Object object = null;
+
+                if( template != null ) {
+
+                    Object cacheObj = methodReceiver.getRedisCache(params);
+
+                    if( cacheObj != null ) {
+
+                        object = cacheObj;
+
+                        log.info("[RedisCache] Cache Hit");
+
+                    }
+
+                }
+
+                if( object == null )
+                    object = methodReceiver.ownMethod.invoke(clzReceiver.controller, params.toArray());
 
                 if ( object != null ) {
 
@@ -243,13 +271,13 @@ public class RequestAnalyser {
 
                     response.setContentType("application/json");
 
-                    os.write(str.getBytes(StandardCharsets.UTF_8));
+                    os.write(tStr.getBytes(StandardCharsets.UTF_8));
 
                     os.flush();
 
                     log.info("[应用层] OK Return: " + tStr);
 
-                    methodReceiver.processRedisCache(json, params, object);
+                    methodReceiver.processRedisCache(params, object);
 
                 }
 
@@ -446,138 +474,177 @@ public class RequestAnalyser {
 
             }
 
-            public void processRedisCache(JSONObject json, List<Object> params, Object data) {
+            private String getRedisCacheKey( List<Object> params ) {
+
+                /*
+
+                  解析整个key
+                  首先解析文本 如果以#开头则解析为变量
+                  ~~#result 解析为返回的json结果 （如果返回的内容是基本数据类型则转换为字符串）~~
+                  #params 解析为参数列表 如#params[x].xxx
+                  ~~#data 解析为数据内容 如#data[x].xxx~~
+
+                 */
+                String key = tRedisCache.value();
+
+                if ( key.startsWith("#") ) {
+
+                    // if ( key.equals("#result") ) {
+                    //
+                    //     key = new JSONObject().putOpt("data", data).getStr("data");
+                    //
+                    // }
+
+                    if ( key.startsWith("#params") ) {
+
+                        int index = Integer.parseInt(key.substring(7, 8));
+
+                        if ( index + 1 > params.size() ) {
+
+                            throw new RuntimeException("params index out of range");
+
+                        }
+
+                        Object obj = params.get(index);
+                        String value = null;
+                        JSONObject json1 = new JSONObject().putOpt("data", obj);
+
+                        if ( key.contains("].") ) {
+
+                            String[] args = key.split(".");
+
+                            for ( int i = 1; i < args.length; ++i ) {
+
+                                String arg = args[i];
+
+                                Object o = json1.get(arg);
+
+                                if ( o instanceof JSONObject ) {
+
+                                    json1 = (JSONObject) o;
+                                    value = json1.toString();
+
+                                } else {
+
+                                    value = String.valueOf(o);
+
+                                }
+
+                            }
+
+                            key = value;
+
+                        }
+
+                    }
+
+                    // if ( key.startsWith("#data") ) {
+                    //
+                    //     String name = key.substring(4, key.indexOf("]"));
+                    //
+                    //     if ( !json.containsKey(name) ) {
+                    //
+                    //         throw new RuntimeException("data not found : " + name);
+                    //
+                    //     }
+                    //
+                    //     Object obj = json.get(name);
+                    //     String value = null;
+                    //     JSONObject json1 = new JSONObject().putOpt("data", obj);
+                    //
+                    //     if ( key.contains("].") ) {
+                    //
+                    //         String[] args = key.split(".");
+                    //
+                    //         for ( int i = 1; i < args.length; ++i ) {
+                    //
+                    //             String arg = args[i];
+                    //
+                    //             Object o = json1.get(arg);
+                    //
+                    //             if ( o instanceof JSONObject ) {
+                    //
+                    //                 json1 = (JSONObject) o;
+                    //                 value = json1.toString();
+                    //
+                    //             } else {
+                    //
+                    //                 value = String.valueOf(o);
+                    //
+                    //             }
+                    //
+                    //         }
+                    //
+                    //         key = value;
+                    //
+                    //     }
+                    //
+                    // }
+
+                }
+
+                return key;
+
+            }
+
+            public void processRedisCache(List<Object> params, Object data) {
+
+                if( tRedisCache == null ) return;
+
+                if( redis == null || redis.getConfig() == null ) {
+
+                    log.error("[解析层] @RedisCache # Redis not ready");
+
+                    return;
+
+                }
 
                 RedisTemplate<String, Object> template = redis.getConfig().getRedisTemplate();
 
-                template.execute((RedisCallback<Object>) connection -> {
+                ValueOperations<String, Object> vo = template.opsForValue();
 
-                    /**
-                     *
-                     * 解析整个key
-                     * 首先解析文本 如果以#开头则解析为变量
-                     * #result 解析为返回的json结果 （如果返回的内容是基本数据类型则转换为字符串）
-                     * #params 解析为参数列表 如#params[x].xxx
-                     * #data 解析为数据内容 如#data[x].xxx
-                     *
-                     */
-                    String key = tRedisCache.value();
+                String key = getRedisCacheKey(params);
 
-                    if ( key.startsWith("#") ) {
+                if ( tRedisCache.delete() ) {
 
-                        if ( key.equals("#result") ) {
+                    vo.getAndDelete(key);
 
-                            key = new JSONObject().putOpt("data", data).getStr("data");
+                } else {
 
-                        }
+                    JSONObject cacheValue = JSONUtil.parseObj(data);
 
-                        if ( key.startsWith("#params") ) {
+                    if ( tRedisCache.expireTime() > 0 ) {
 
-                            int index = Integer.parseInt(key.substring(7, 8));
-
-                            if ( index + 1 > params.size() ) {
-
-                                throw new RuntimeException("params index out of range");
-
-                            }
-
-                            Object obj = params.get(index);
-                            String value = null;
-                            JSONObject json1 = new JSONObject().putOpt("data", obj);
-
-                            if ( key.contains("].") ) {
-
-                                String[] args = key.split(".");
-
-                                for ( int i = 1; i < args.length; ++i ) {
-
-                                    String arg = args[i];
-
-                                    Object o = json1.get(arg);
-
-                                    if ( o instanceof JSONObject ) {
-
-                                        json1 = (JSONObject) o;
-                                        value = json1.toString();
-
-                                    } else {
-
-                                        value = String.valueOf(o);
-
-                                    }
-
-                                }
-
-                                key = value;
-
-                            }
-
-                        }
-
-                        if ( key.startsWith("#data") ) {
-
-                            String name = key.substring(4, key.indexOf("]"));
-
-                            if ( !json.containsKey(name) ) {
-
-                                throw new RuntimeException("data not found : " + name);
-
-                            }
-
-                            Object obj = json.get(name);
-                            String value = null;
-                            JSONObject json1 = new JSONObject().putOpt("data", obj);
-
-                            if ( key.contains("].") ) {
-
-                                String[] args = key.split(".");
-
-                                for ( int i = 1; i < args.length; ++i ) {
-
-                                    String arg = args[i];
-
-                                    Object o = json1.get(arg);
-
-                                    if ( o instanceof JSONObject ) {
-
-                                        json1 = (JSONObject) o;
-                                        value = json1.toString();
-
-                                    } else {
-
-                                        value = String.valueOf(o);
-
-                                    }
-
-                                }
-
-                                key = value;
-
-                            }
-
-                        }
-
-                    }
-
-                    if ( tRedisCache.delete() ) {
-
-                        return connection.del(key.getBytes(StandardCharsets.UTF_8));
+                        vo.set(key, cacheValue, tRedisCache.expireTime());
 
                     } else {
 
-                        JSONObject cacheValue = JSONUtil.parseObj(data);
-
-                        connection.set(key.getBytes(StandardCharsets.UTF_8), cacheValue.toString().getBytes(StandardCharsets.UTF_8));
-                        if ( tRedisCache.expireTime() > 0 ) {
-
-                            connection.expire(key.getBytes(StandardCharsets.UTF_8), tRedisCache.expireTime());
-
-                        }
+                        vo.set(key, cacheValue);
 
                     }
 
-                    return 1L;
-                });
+                    log.info("[Redis] cache key : " + key + " , value : " + cacheValue);
+
+                }
+
+            }
+
+            public Object getRedisCache(List<Object> params) {
+
+                if( tRedisCache == null ) return null;
+
+                RedisTemplate<String, Object> template = redis.getConfig().getRedisTemplate();
+
+                ValueOperations<String, Object> vo = template.opsForValue();
+
+                if ( !tRedisCache.delete() ) {
+
+                    String key = getRedisCacheKey(params);
+                    return vo.get(key);
+
+                }
+
+                return null;
 
             }
 
@@ -752,12 +819,12 @@ public class RequestAnalyser {
                         return true;
                     }
 
-                    String[] requestUrls = url.split("/");
-                    String[] requireUrls = ownMethodReceiver.tRequest.value().split("/");
+                    String[] requestUrls = UrlUtil.formatUrl("/" + url).split("/");
+                    String[] requireUrls = UrlUtil.formatUrl("/" + ownMethodReceiver.tRequest.value()).split("/");
 
                     if ( requestUrls.length != requireUrls.length ) {
 
-                        log.info("[解析层] AccessDenied - missing parameters # " + url);
+                        log.info("[解析层] AccessDenied - missing parameters # " + url + " as " + ownMethodReceiver.tRequest.value() + " | {}, {}", requestUrls.length, requireUrls.length);
 
                         return false;
 
@@ -774,7 +841,7 @@ public class RequestAnalyser {
 
                         if( thisUrl.equalsIgnoreCase("{" + fieldName + "}") ) {
 
-                            String obj = urls[i];
+                            String obj = urls[i + 1];
 
                             params.add(obj);
 

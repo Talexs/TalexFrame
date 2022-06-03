@@ -3,7 +3,7 @@ package com.talexframe.frame.core.pojo.dao.factory;
 import cn.hutool.core.util.ClassUtil;
 import com.talexframe.frame.core.pojo.dao.interfaces.IDataProcessor;
 import com.talexframe.frame.core.talex.TFrame;
-import com.talexframe.frame.exception.ConnectionException;
+import com.talexframe.frame.core.pojo.exception.ConnectionException;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 

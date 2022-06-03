@@ -4,4 +4,4 @@
  * @author TalexDreamSoul
  * @date 22/02/10 下午 08:03 <br /> Project: TalexFrame <br />
  */
-package com.talexframe.frame.exception.lang;
+package com.talexframe.frame.core.pojo.exception.lang;
