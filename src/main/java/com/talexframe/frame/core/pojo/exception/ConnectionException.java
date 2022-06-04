@@ -1,4 +1,4 @@
-package com.talexframe.frame.exception;
+package com.talexframe.frame.core.pojo.exception;
 
 import com.talexframe.frame.core.pojo.dao.interfaces.IDataProcessor;
 import lombok.Getter;

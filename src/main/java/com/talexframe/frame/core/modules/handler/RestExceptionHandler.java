@@ -1,7 +1,7 @@
 package com.talexframe.frame.core.modules.handler;
 
 import com.talexframe.frame.core.pojo.wrapper.ResultData;
-import com.talexframe.frame.exception.FrameException;
+import com.talexframe.frame.core.pojo.exception.FrameException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.HttpRequestMethodNotSupportedException;

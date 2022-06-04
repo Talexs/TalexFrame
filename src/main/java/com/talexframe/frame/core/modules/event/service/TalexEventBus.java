@@ -218,7 +218,11 @@ public class TalexEventBus implements IEventBus {
 
                 List<MethodManager> methodsList = mapCaches.get(listener);
 
-                methodsList.remove(methodManager);
+                if( methodsList != null ) {
+
+                    methodsList.remove(methodManager);
+
+                }
 
                 mapCaches.put(listener, methodsList);
 

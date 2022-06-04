@@ -62,6 +62,8 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
 
     public T getData(String identifyId) {
 
+        if( !doCached() ) return null;
+
         if ( identifyId == null ) {
             return null;
         }
@@ -69,6 +71,8 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
     }
 
     public void delData(T data) {
+
+        if( !doCached() ) return;
 
         this.dataMap.remove(data.getMainKey(), data);
         this.onSingleDataRemoved(new WrappedData<>(data));
@@ -80,8 +84,16 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
 
     public void addData(T data) {
 
-        this.dataMap.put(data.getMainKey(), data);
+        if( !doCached() ) {
+
+            return;
+
+        }
+
         this.onSingleDataLoaded(new WrappedData<>(data));
+
+        this.dataMap.put(data.getMainKey(), data);
+
     }
 
     /**
@@ -89,9 +101,14 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
      *
      * @return 返回真不放入数据map
      */
+    @SneakyThrows
     public boolean onSingleDataLoaded(WrappedData<T> data) {
 
         if ( !doCached() ) {
+
+            saveDataToMysql( data.getValue() ).close();
+
+        } else {
 
             saveAllDataToMysql();
 
@@ -107,32 +124,33 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
 
         initTable();
 
-        this.dataMap = new ConcurrentHashMap<>();
-
         if ( !doCached() ) {
             return;
         }
 
-        ResultSet rs = readSearchAllData();
+        this.dataMap = new ConcurrentHashMap<>();
 
+        try( ResultSet rs = readSearchAllData() ) {
 
-        while ( rs != null && rs.next() ) {
+            while ( rs != null && rs.next() ) {
 
-            @SuppressWarnings( "unchecked" ) WrappedData<T> data = (WrappedData<T>) AutoSaveData.deserialize(templateData, JSONUtil.parseObj(Base64.decodeStr(rs.getString("as_info"))));
+                @SuppressWarnings( "unchecked" ) WrappedData<T> data = (WrappedData<T>) AutoSaveData.deserialize(templateData, JSONUtil.parseObj(Base64.decodeStr(rs.getString("as_info"))));
 
-            if ( data.getValue() == null || data.getValue().getMainKey() == null ) {
-                log.error("[AutoSaveData] FatalError!! # " + templateData.getName());
+                if ( data.getValue() == null || data.getValue().getMainKey() == null ) {
+                    log.error("[AutoSaveData] FatalError!! # " + templateData.getName());
+                }
+
+                if ( onSingleDataLoaded(data) ) {
+                    continue;
+                }
+
+                dataMap.put(( data.getValue() ).getMainKey(), data.getValue());
+
             }
 
-            if ( onSingleDataLoaded(data) ) {
-                continue;
-            }
-
-            dataMap.put(( data.getValue() ).getMainKey(), data.getValue());
+            onDataLoaded();
 
         }
-
-        onDataLoaded();
 
     }
 
@@ -143,15 +161,24 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
     }
 
     @SneakyThrows
+    public void saveDataToMysqlSilence(T data) {
+
+        ResultSet rs = saveDataToMysql(data);
+
+        if( rs != null ) rs.close();
+
+    }
+
+    @SneakyThrows
     public void saveAllDataToMysql() {
 
         if ( dataMap == null ) {
             return;
         }
 
-        for ( AutoSaveData data : dataMap.values() ) {
+        for ( T data : dataMap.values() ) {
 
-            saveDataToMysql(data);
+            saveDataToMysqlSilence(data);
 
         }
 
@@ -160,7 +187,7 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
     }
 
     @SneakyThrows
-    public ResultSet saveDataToMysql(AutoSaveData data) {
+    public ResultSet saveDataToMysql(T data) {
 
         Class<? extends AutoSaveData> clz = data.getClass();
 
@@ -255,7 +282,11 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
 
         log.debug("[BaseAutoSaveData] " + getProvider() + " @" + getClass() + " 存储数据: " + sql);
 
-        return mysql.executeWithCallBack(sql);
+        try ( ResultSet rs = mysql.executeWithCallBack(sql) ) {
+
+            return rs;
+
+        }
 
     }
 

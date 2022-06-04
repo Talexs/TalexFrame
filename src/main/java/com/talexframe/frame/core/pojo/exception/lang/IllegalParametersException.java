@@ -1,6 +1,6 @@
-package com.talexframe.frame.exception.lang;
+package com.talexframe.frame.core.pojo.exception.lang;
 
-import com.talexframe.frame.exception.FrameException;
+import com.talexframe.frame.core.pojo.exception.FrameException;
 
 /**
  * <br /> {@link com.talexframe.frame.exception.lang Package }

@@ -7,6 +7,7 @@ import com.talexframe.frame.core.pojo.annotations.TRepoInject;
 import com.talexframe.frame.core.talex.TFrame;
 import lombok.Getter;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,6 +20,7 @@ import java.util.concurrent.ConcurrentMap;
  * @date 2022/1/20 17:01 <br /> Project: TalexFrame <br />
  */
 @Getter
+@Slf4j
 public class TRepoManager {
 
     private static TRepoManager manager;
@@ -89,12 +91,6 @@ public class TRepoManager {
         this.repositories.put(Repo.getClass(), Repo);
         this.RepoPluginMap.put(Repo, plugin.getName());
 
-        if ( Repo instanceof TRepoPlus ) {
-
-            ( (TRepoPlus<?>) Repo ).onInstall();
-
-        }
-
         PluginScanner scanner = TFrame.tframe.getPluginManager().getPluginScannerMap().get( plugin.getName() );
 
         scanner.pushService(() -> {
@@ -121,7 +117,10 @@ public class TRepoManager {
                     }
 
                     try {
+
                         field.set(Repo, tRep);
+                        log.debug("Inject Repo - " + repClz.getName() + " - " + clz.getName());
+
                     } catch ( IllegalAccessException e ) {
                         e.printStackTrace();
                     }
@@ -129,6 +128,16 @@ public class TRepoManager {
                 }
 
             }
+
+            scanner.pushService(() -> {
+
+                if ( Repo instanceof TRepoPlus ) {
+
+                    ( (TRepoPlus<?>) Repo ).onInstall();
+
+                }
+
+            });
 
         });
 
