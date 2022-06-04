@@ -32,6 +32,7 @@ import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.util.*;
 
 /**
@@ -497,7 +498,7 @@ public class RequestAnalyser {
 
                     if ( key.startsWith("#params") ) {
 
-                        int index = Integer.parseInt(key.substring(7, 8));
+                        int index = Integer.parseInt(key.substring(8, 9));
 
                         if ( index + 1 > params.size() ) {
 
@@ -506,12 +507,12 @@ public class RequestAnalyser {
                         }
 
                         Object obj = params.get(index);
-                        String value = null;
+                        String value = (String) obj;
                         JSONObject json1 = new JSONObject().putOpt("data", obj);
 
                         if ( key.contains("].") ) {
 
-                            String[] args = key.split(".");
+                            String[] args = key.split("\\.");
 
                             for ( int i = 1; i < args.length; ++i ) {
 
@@ -532,9 +533,9 @@ public class RequestAnalyser {
 
                             }
 
-                            key = value;
-
                         }
+
+                        key = value;
 
                     }
 
@@ -583,7 +584,7 @@ public class RequestAnalyser {
 
                 }
 
-                return key;
+                return tRedisCache.type() + "_" + key;
 
             }
 
@@ -615,7 +616,7 @@ public class RequestAnalyser {
 
                     if ( tRedisCache.expireTime() > 0 ) {
 
-                        vo.set(key, cacheValue, tRedisCache.expireTime());
+                        vo.set(key, cacheValue, Duration.ofSeconds(tRedisCache.expireTime()));
 
                     } else {
 
