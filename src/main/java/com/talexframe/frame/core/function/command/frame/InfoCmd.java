@@ -2,7 +2,7 @@ package com.talexframe.frame.core.function.command.frame;
 
 import cn.hutool.system.*;
 import com.talexframe.frame.core.function.command.BaseCommand;
-import com.talexframe.frame.core.pojo.annotations.TalexCommand;
+import com.talexframe.frame.core.pojo.annotations.TCmd;
 import com.talexframe.frame.core.pojo.wrapper.WrappedSender;
 import com.talexframe.frame.core.talex.TFrame;
 
@@ -19,7 +19,7 @@ public class InfoCmd extends BaseCommand {
         super(TFrame.tframe.getFrameSender(), "info", new String[] { "information", "i" }, "信息命令");
     }
 
-    @TalexCommand
+    @TCmd
     public void onDefault(WrappedSender sender) {
 
         sender.sendMessage(DIVIDER);
@@ -31,7 +31,7 @@ public class InfoCmd extends BaseCommand {
 
     }
 
-    @TalexCommand( "details" )
+    @TCmd( "details" )
     public void onDetails(WrappedSender sender) {
 
         sender.sendMessage( DIVIDER );
@@ -72,7 +72,7 @@ public class InfoCmd extends BaseCommand {
 
     }
 
-    @TalexCommand( "platform" )
+    @TCmd( "platform" )
     public void onPlatform(WrappedSender sender) {
 
         sender.sendMessage( DIVIDER );
@@ -96,8 +96,8 @@ public class InfoCmd extends BaseCommand {
         sender.sendMessage("  --> version: " + runtimeInfo.getVersion());
         sender.sendMessage("  --> home: " + runtimeInfo.getHomeDir());
         sender.sendMessage("  --> endorsed-dirs: " + runtimeInfo.getEndorsedDirs());
-        sender.sendMessage("  --> class-path: " + runtimeInfo.getClassPath());
-        sender.sendMessage("  --> class-version: " + runtimeInfo.getClassVersion());
+        sender.sendMessage("  --> app-path: " + runtimeInfo.getClassPath());
+        sender.sendMessage("  --> app-version: " + runtimeInfo.getClassVersion());
         sender.sendMessage("  --> library-path: " + runtimeInfo.getLibraryPath());
         sender.sendMessage("  --> protocol-packages: " + runtimeInfo.getProtocolPackages());
 
@@ -115,7 +115,7 @@ public class InfoCmd extends BaseCommand {
 
     }
 
-    @TalexCommand( "version" )
+    @TCmd( "version" )
     public void onVersion(WrappedSender sender) {
 
         sender.sendMessage( DIVIDER );

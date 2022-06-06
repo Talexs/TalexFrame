@@ -4,7 +4,7 @@ import com.talexframe.frame.core.function.command.BaseCommand;
 import com.talexframe.frame.core.function.command.ISender;
 import com.talexframe.frame.core.modules.plugins.core.PluginInfo;
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
-import com.talexframe.frame.core.pojo.annotations.TalexCommand;
+import com.talexframe.frame.core.pojo.annotations.TCmd;
 import com.talexframe.frame.core.pojo.mapper.frame.FrameSender;
 import com.talexframe.frame.core.pojo.wrapper.WrappedSender;
 import com.talexframe.frame.core.talex.TFrame;
@@ -22,7 +22,7 @@ public class PluginCmd extends BaseCommand {
         super(TFrame.tframe.getFrameSender(), "plugin", new String[] { "plugins", "plugman" }, "插件命令");
     }
 
-    @TalexCommand
+    @TCmd
     public void onDefault(WrappedSender sender) {
 
         sender.sendMessage(DIVIDER);
@@ -35,7 +35,7 @@ public class PluginCmd extends BaseCommand {
 
     }
 
-    @TalexCommand( "list" )
+    @TCmd( "list" )
     public void onListPlugin(WrappedSender sender) {
 
         sender.sendMessage("%divider%");
@@ -58,14 +58,14 @@ public class PluginCmd extends BaseCommand {
 
     }
 
-    @TalexCommand( "load" )
+    @TCmd( "load" )
     public void onLoadPlugin(ISender sender, String loadPlugin) {
 
         tframe.getPluginManager().loadPlugin(loadPlugin);
 
     }
 
-    @TalexCommand( "unload" )
+    @TCmd( "unload" )
     public void onUnloadPlugin(ISender sender, String loadPlugin) {
 
         sender.sendMessage("[插件] 正在卸载插件 " + loadPlugin);
@@ -88,7 +88,7 @@ public class PluginCmd extends BaseCommand {
 
     }
 
-    @TalexCommand( "reload" )
+    @TCmd( "reload" )
     public void onReloadPlugin(ISender sender, String loadPlugin) {
 
         sender.sendMessage("[插件] 正在重载插件 " + loadPlugin);

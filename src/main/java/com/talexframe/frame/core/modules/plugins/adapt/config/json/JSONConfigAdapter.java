@@ -8,7 +8,7 @@ import com.google.common.collect.HashMultimap;
 import com.talexframe.frame.core.modules.plugins.adapt.PluginCompAdapter;
 import com.talexframe.frame.core.modules.plugins.addon.PluginScanner;
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
-import com.talexframe.frame.core.pojo.annotations.TVConfig;
+import com.talexframe.frame.core.pojo.annotations.TValueConfig;
 import com.talexframe.frame.core.talex.FrameCreator;
 import lombok.SneakyThrows;
 
@@ -64,7 +64,7 @@ public class JSONConfigAdapter extends PluginCompAdapter<JSONConfig> {
 
         Class<?> clz = instance.getClass();
 
-        TVConfig classAnno = clz.getAnnotation(TVConfig.class);
+        TValueConfig classAnno = clz.getAnnotation(TValueConfig.class);
 
         if( classAnno != null ) {
 
@@ -84,7 +84,7 @@ public class JSONConfigAdapter extends PluginCompAdapter<JSONConfig> {
 
                 } else {
 
-                    tframe.crash(new RuntimeException("[JSONConfigAdapter] " + instance.getPath() + "/@JSON " + name + " - The plugin will not work without it! For class: " + clz.getName()));
+                    tframe.crash(new RuntimeException("[JSONConfigAdapter] " + instance.getPath() + "/@JSON " + name + " - The plugin will not work without it! For app: " + clz.getName()));
 
                     return false;
 
@@ -96,7 +96,7 @@ public class JSONConfigAdapter extends PluginCompAdapter<JSONConfig> {
 
             for( Field field : clz.getDeclaredFields() ) {
 
-                TVConfig fieldAnno = field.getAnnotation(TVConfig.class);
+                TValueConfig fieldAnno = field.getAnnotation(TValueConfig.class);
                 if( fieldAnno == null ) continue;
 
                 String name = StrUtil.isBlankIfStr(fieldAnno.name()) ? field.getName() : fieldAnno.name();
@@ -113,7 +113,7 @@ public class JSONConfigAdapter extends PluginCompAdapter<JSONConfig> {
 
                 } else {
 
-                    tframe.crash(new RuntimeException("[JSONConfigAdapter] " + instance.getPath() + "/@JSON " + name + " - The plugin will not work without it! For class: " + clz.getName()));
+                    tframe.crash(new RuntimeException("[JSONConfigAdapter] " + instance.getPath() + "/@JSON " + name + " - The plugin will not work without it! For app: " + clz.getName()));
 
                     return false;
 
@@ -138,7 +138,7 @@ public class JSONConfigAdapter extends PluginCompAdapter<JSONConfig> {
         for( JSONConfig config : configs ) {
 
             JSONObject json = new JSONObject();
-            TVConfig classAnno = clazz.getAnnotation(TVConfig.class);
+            TValueConfig classAnno = clazz.getAnnotation(TValueConfig.class);
 
             if( classAnno != null ) {
 
@@ -160,7 +160,7 @@ public class JSONConfigAdapter extends PluginCompAdapter<JSONConfig> {
 
                     } else {
 
-                        tframe.crash(new RuntimeException("[JSONConfigAdapter] " + config.getPath() + "/@json " + name + " - The plugin will not work without it! For class: " + clazz.getName()));
+                        tframe.crash(new RuntimeException("[JSONConfigAdapter] " + config.getPath() + "/@json " + name + " - The plugin will not work without it! For app: " + clazz.getName()));
 
                         return false;
 
@@ -172,7 +172,7 @@ public class JSONConfigAdapter extends PluginCompAdapter<JSONConfig> {
 
                 for( Field field : clazz.getDeclaredFields() ) {
 
-                    TVConfig fieldAnno = field.getAnnotation(TVConfig.class);
+                    TValueConfig fieldAnno = field.getAnnotation(TValueConfig.class);
                     if( fieldAnno == null ) continue;
                     if( fieldAnno.disable() ) continue;
 
@@ -191,7 +191,7 @@ public class JSONConfigAdapter extends PluginCompAdapter<JSONConfig> {
 
                     } else {
 
-                        tframe.crash(new RuntimeException("[JSONConfigAdapter] " + config.getPath() + "/@json " + name + " - The plugin will not work without it! For class: " + clazz.getName()));
+                        tframe.crash(new RuntimeException("[JSONConfigAdapter] " + config.getPath() + "/@json " + name + " - The plugin will not work without it! For app: " + clazz.getName()));
 
                         return false;
 

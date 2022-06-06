@@ -20,14 +20,14 @@ public class MethodManager {
     private Method method;
     @Setter
     @Getter
-    private TalexSubscribe talexSubscribe;
+    private THandler tHandler;
 
-    public MethodManager(FrameListener listener, Class<?> paramType, Method method, TalexSubscribe talexSubscribe) {
+    public MethodManager(FrameListener listener, Class<?> paramType, Method method, THandler tHandler) {
 
         this.owner = listener;
         this.paramType = paramType;
         this.method = method;
-        this.talexSubscribe = talexSubscribe;
+        this.tHandler = tHandler;
 
     }
 

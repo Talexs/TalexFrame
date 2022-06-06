@@ -37,7 +37,7 @@ public class PluginScanner extends FrameCreator {
     private final PluginManager pluginManager = tframe.getPluginManager();
 
     @Getter
-    private final Stack<Runnable> runnables = new Stack<>();
+    private final LinkedList<Runnable> runnables = new LinkedList<>();
 
     public void pushService( Runnable runnable ) {
 
@@ -92,11 +92,11 @@ public class PluginScanner extends FrameCreator {
 
             JarEntry jarEntry = en.nextElement();
 
-            if( jarEntry.getName().endsWith(".class") ) {
+            if( jarEntry.getName().endsWith(".app") ) {
 
                 String clzName = jarEntry.getName().replace("/", ".").substring(0, jarEntry.getName().length() - 6);
 
-                log.debug("Scanning class: {}", clzName);
+                log.debug("Scanning app: {}", clzName);
 
                 Class<?> clz = classLoader.loadClass( clzName );
 

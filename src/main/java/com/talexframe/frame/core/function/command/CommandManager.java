@@ -1,7 +1,7 @@
 package com.talexframe.frame.core.function.command;
 
 import cn.hutool.core.util.StrUtil;
-import com.talexframe.frame.core.pojo.annotations.TalexCommand;
+import com.talexframe.frame.core.pojo.annotations.TCmd;
 import com.talexframe.frame.core.pojo.wrapper.WrappedSender;
 import com.talexframe.frame.core.talex.TFrame;
 import lombok.Getter;
@@ -99,7 +99,7 @@ public class CommandManager {
 
         for ( Method method : cmd.getClass().getMethods() ) {
 
-            TalexCommand tc = method.getAnnotation(TalexCommand.class);
+            TCmd tc = method.getAnnotation(TCmd.class);
 
             if ( tc == null ) {
                 continue;

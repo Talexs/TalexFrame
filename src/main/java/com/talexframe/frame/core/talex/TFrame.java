@@ -3,10 +3,7 @@ package com.talexframe.frame.core.talex;
 import com.talexframe.frame.TalexFrameApplication;
 import com.talexframe.frame.core.function.command.CommandManager;
 import com.talexframe.frame.core.function.command.TCmdCompAdapter;
-import com.talexframe.frame.core.function.command.frame.HelpCmd;
-import com.talexframe.frame.core.function.command.frame.InfoCmd;
-import com.talexframe.frame.core.function.command.frame.PluginCmd;
-import com.talexframe.frame.core.function.command.frame.StopCmd;
+import com.talexframe.frame.core.function.command.frame.*;
 import com.talexframe.frame.core.function.listener.FrameSelfListener;
 import com.talexframe.frame.core.modules.application.TAppCompAdapter;
 import com.talexframe.frame.core.modules.application.TAppManager;
@@ -15,9 +12,12 @@ import com.talexframe.frame.core.modules.event.MethodManager;
 import com.talexframe.frame.core.modules.event.TalexEvent;
 import com.talexframe.frame.core.modules.event.events.frame.FrameStartedEvent;
 import com.talexframe.frame.core.modules.event.service.TalexEventBus;
+import com.talexframe.frame.core.modules.network.connection.NetworkListener;
+import com.talexframe.frame.core.modules.network.connection.app.addon.ReceiverAddonAdapter;
 import com.talexframe.frame.core.modules.plugins.adapt.config.json.JSONConfigAdapter;
 import com.talexframe.frame.core.modules.plugins.adapt.config.yaml.YamlConfigAdapter;
 import com.talexframe.frame.core.modules.plugins.addon.FramePluginListener;
+import com.talexframe.frame.core.modules.plugins.addon.TPluginListenerCompAdapter;
 import com.talexframe.frame.core.modules.plugins.core.PluginInfo;
 import com.talexframe.frame.core.modules.plugins.core.PluginManager;
 import com.talexframe.frame.core.modules.repository.TRepoCompAdapter;
@@ -25,7 +25,6 @@ import com.talexframe.frame.core.modules.repository.TRepoManager;
 import com.talexframe.frame.core.pojo.dao.factory.DAOManager;
 import com.talexframe.frame.core.pojo.enums.FrameStatus;
 import com.talexframe.frame.core.pojo.mapper.frame.FrameSender;
-import com.talexframe.frame.core.service.MailServiceImpl;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -122,6 +121,7 @@ public class TFrame {
             this.commandManager.setCommandExecutor("help", new HelpCmd());
             this.commandManager.setCommandExecutor("plugin", new PluginCmd());
             this.commandManager.setCommandExecutor("stop", new StopCmd());
+            this.commandManager.setCommandExecutor("restart", new RestartCmd());
             this.commandManager.setCommandExecutor("info", new InfoCmd());
 
             new TCmdCompAdapter();
@@ -130,8 +130,12 @@ public class TFrame {
 
         if ( frameStatus == FrameStatus.RUNNING ) {
 
+            getEventBus().registerListener(new NetworkListener());
+
             new TAppCompAdapter();
             new TRepoCompAdapter();
+            new TPluginListenerCompAdapter();
+            new ReceiverAddonAdapter();
 
             log.info("Loading plugin-manager ...");
 
@@ -188,12 +192,6 @@ public class TFrame {
             TalexFrameApplication.context.close();
 
         }
-
-    }
-
-    public MailServiceImpl getMailService() {
-
-        return MailServiceImpl.INSTANCE;
 
     }
 

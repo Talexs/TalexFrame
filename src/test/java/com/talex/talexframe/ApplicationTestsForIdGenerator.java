@@ -34,7 +34,7 @@ class ApplicationTestsForIdGenerator {
     // static GroupTimeInterval groupTimeInterval = new GroupTimeInterval(true);
     // static HashMap<Integer, Long> map = new HashMap<>();
 
-    // static class TestThread implements Runnable {
+    // static app TestThread implements Runnable {
     //
     //     IdGeneratorService idGeneratorService;
     //     int id;

@@ -112,19 +112,13 @@ public class RequestConnector {
 
         }
 
-        this.analyser();
+        new RequestAnalyser(wr, time);
 
         if ( !response.isCommitted() ) {
 
             wr.returnDataByFailed(ResultData.ResultEnum.NOT_FOUND, "请重新确认 URL 正误.");
 
         }
-
-    }
-
-    private void analyser() {
-
-        new RequestAnalyser(wr, time);
 
     }
 

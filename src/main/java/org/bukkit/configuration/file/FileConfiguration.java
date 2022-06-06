@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import java.io.*;
 
 /**
- * This is a base class for all File based implementations of {@link
+ * This is a base app for all File based implementations of {@link
  * Configuration}
  */
 public abstract class FileConfiguration extends MemoryConfiguration {

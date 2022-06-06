@@ -1,5 +1,7 @@
 package com.talexframe.frame.core.modules.repository;
 
+import cn.hutool.db.Db;
+import cn.hutool.db.Entity;
 import com.talexframe.frame.core.pojo.dao.factory.DAOManager;
 import com.talexframe.frame.core.pojo.dao.factory.mysql.Mysql;
 import com.talexframe.frame.core.pojo.dao.factory.mysql.builder.BuilderParam;
@@ -11,8 +13,10 @@ import com.talexframe.frame.core.pojo.dao.factory.mysql.builder.table.SqlTableBu
 import com.talexframe.frame.core.talex.FrameCreator;
 import com.talexframe.frame.core.talex.TFrame;
 import lombok.Getter;
+import lombok.SneakyThrows;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 /**
  * <br /> {@link com.talexframe.frame.core.modules.repository Package }
@@ -99,14 +103,38 @@ public class TRepo extends FrameCreator {
         return this.mysql.readAllData(getProvider());
     }
 
+    @SneakyThrows
+    public List<Entity> forAllData() {
+
+        return this.mysql.forDb().findAll(getProvider());
+    }
+
     public ResultSet readSearchData(String selectType, String value) {
 
         return this.mysql.searchData(getProvider(), selectType, value);
     }
 
+    @SneakyThrows
+    public List<Entity> forData(Entity where) {
+
+        return this.mysql.forDb().findAll(where);
+    }
+
     public ResultSet readSearchData(String selectType, String value, int limit) {
 
         return this.mysql.searchData(getProvider(), selectType, value, limit);
+    }
+
+    public Db forDb() {
+
+        return this.mysql.forDb();
+
+    }
+
+    public Entity forEntity() {
+
+        return Entity.create(getProvider());
+
     }
 
 }

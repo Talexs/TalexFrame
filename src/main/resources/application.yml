@@ -3,7 +3,7 @@ spring:
     banner-mode: off
   redis:
     database: 0
-    host: localhost
+    host: 156.251.180.136
     port: 6379
     timeout: 10s
     lettuce:
@@ -27,7 +27,7 @@ spring:
 #  datasource:
 #    username: xxx
 #    password: xxx
-#    driver-class-name: com.mysql.cj.jdbc.Driver   # mysql8 的连接驱动
+#    driver-app-name: com.mysql.cj.jdbc.Driver   # mysql8 的连接驱动
 #    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=Asia/Shanghai
 #    type: com.alibaba.druid.pool.DruidDataSource  # 指定数据源类型
 #    ########## 连接池 配置 ##########
@@ -115,11 +115,11 @@ server:
 #    min-spare-threads: 30
 
 mysql:
-  ip: localhost
+  ip: 156.251.180.136
   port: 3306
-  database: talexframe
-  username: root
-  password: 8NxZAhYAcHK44xKB
+  database: kxord
+  username: kxord
+  password: hz85TaxpSfzja
   useSSL: false
 
 elasticsearch:

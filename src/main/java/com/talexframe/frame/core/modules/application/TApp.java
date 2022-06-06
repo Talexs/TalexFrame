@@ -28,17 +28,22 @@ public abstract class TApp extends FrameCreator {
 
         this.repo = this.getRepo();
 
-        // 不强制要求 Repository
-
-        // if ( this.repo == null ) {
-
-            // throw new RuntimeException("无法找到 Repo");
-
-        // }
-
     }
 
     public abstract TRepo getRepo();
+
+    /**
+     *
+     * 获取这个类所有请求接口的起始路径
+     * For example, if you set 'api/v1/' as the base path, then in order to enter, the url path must initiative added on each request path;
+     *
+     * @return basic path
+     */
+    public String getDefaultPath() {
+
+        return "";
+
+    }
 
     public String getTableName() {
 

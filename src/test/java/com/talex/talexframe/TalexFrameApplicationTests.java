@@ -1,11 +1,10 @@
 package com.talex.talexframe;
 
+import cn.hutool.core.net.url.UrlBuilder;
+import cn.hutool.core.util.CharsetUtil;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.Arrays;
-import java.util.List;
 
 @SpringBootTest
 class TalexFrameApplicationTests {
@@ -13,14 +12,18 @@ class TalexFrameApplicationTests {
     @SneakyThrows
     public static void main(String[] args) {
 
-        // Spawn number list randomly and sort them in descending order
-        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        UrlBuilder builder = UrlBuilder.ofHttp("www.hutool.cn/?a=张三&b=%e6%9d%8e%e5%9b%9b#frag1", CharsetUtil.CHARSET_UTF_8);
 
-        list.stream().sorted((a, b) -> b - a).forEach(System.out::println);
-        System.out.println(list);
+        System.out.println(builder.getPath().getSegments());
 
-        System.out.println(log2(512));
-        System.out.println((int)Math.log(233) / Math.log(2));
+        // // Spawn number list randomly and sort them in descending order
+        // List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        //
+        // list.stream().sorted((a, b) -> b - a).forEach(System.out::println);
+        // System.out.println(list);
+        //
+        // System.out.println(log2(512));
+        // System.out.println((int)Math.log(233) / Math.log(2));
 
         // System.out.println("params[0]".substring(8, 9));
         //

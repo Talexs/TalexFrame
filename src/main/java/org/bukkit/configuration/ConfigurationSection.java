@@ -615,10 +615,10 @@ public interface ConfigurationSection {
      * will return the default value. If the Object does not exist and no
      * default value was specified, this will return null.
      *
-     * <b>Note:</b> For example #getObject(path, String.class) is <b>not</b>
+     * <b>Note:</b> For example #getObject(path, String.app) is <b>not</b>
      * equivalent to {@link #getString(String) #getString(path)} because
      * {@link #getString(String) #getString(path)} converts internally all
-     * Objects to Strings. However, #getObject(path, Boolean.class) is
+     * Objects to Strings. However, #getObject(path, Boolean.app) is
      * equivalent to {@link #getBoolean(String) #getBoolean(path)} for example.
      *
      * @param <T>   the type of the requested object
@@ -636,12 +636,12 @@ public interface ConfigurationSection {
      * returned regardless of if a default has been identified in the root
      * {@link Configuration}.
      *
-     * <b>Note:</b> For example #getObject(path, String.class, def) is
+     * <b>Note:</b> For example #getObject(path, String.app, def) is
      * <b>not</b> equivalent to
      * {@link #getString(String, String) #getString(path, def)} because
      * {@link #getString(String, String) #getString(path, def)} converts
      * internally all Objects to Strings. However, #getObject(path,
-     * Boolean.class, def) is equivalent to {@link #getBoolean(String, boolean) #getBoolean(path,
+     * Boolean.app, def) is equivalent to {@link #getBoolean(String, boolean) #getBoolean(path,
      * def)} for example.
      *
      * @param <T>   the type of the requested object

@@ -62,7 +62,7 @@ public class TalexEventBus implements IEventBus {
 
             for ( Method method : methods ) {
 
-                TalexSubscribe annotation = method.getAnnotation(TalexSubscribe.class);
+                THandler annotation = method.getAnnotation(THandler.class);
 
                 if ( annotation == null ) {
                     continue;
@@ -109,7 +109,7 @@ public class TalexEventBus implements IEventBus {
 
             methodManager.listen(( (IContinue) event ).getMatchKey());
 
-            if ( methodManager.getTalexSubscribe().threadMode() == ThreadMode.ASYNC ) {
+            if ( methodManager.getTHandler().threadMode() == ThreadMode.ASYNC ) {
 
                 ThreadUtil.execAsync(() -> event(event, methodManager));
 
@@ -154,8 +154,8 @@ public class TalexEventBus implements IEventBus {
 
         pl.sort((o1, o2) -> {
 
-            TalexSubscribe ts1 = o1.getTalexSubscribe();
-            TalexSubscribe ts2 = o2.getTalexSubscribe();
+            THandler ts1 = o1.getTHandler();
+            THandler ts2 = o2.getTHandler();
 
             return Integer.compare(ts1.priority().getLevel(), ts2.priority().getLevel());
 
@@ -163,7 +163,7 @@ public class TalexEventBus implements IEventBus {
 
         for ( MethodManager methodManager : pl ) {
 
-            if ( methodManager.getTalexSubscribe().threadMode() == ThreadMode.ASYNC ) {
+            if ( methodManager.getTHandler().threadMode() == ThreadMode.ASYNC ) {
 
                 ThreadUtil.execAsync(() -> event(event, methodManager));
 
@@ -212,7 +212,7 @@ public class TalexEventBus implements IEventBus {
 
             }
 
-            if ( methodManager.getTalexSubscribe().once() ) {
+            if ( methodManager.getTHandler().once() ) {
 
                 FrameListener listener = methodManager.getOwner();
 

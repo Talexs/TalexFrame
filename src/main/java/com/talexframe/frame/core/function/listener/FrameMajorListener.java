@@ -1,9 +1,11 @@
 package com.talexframe.frame.core.function.listener;
 
+import cn.hutool.core.thread.ThreadUtil;
 import com.talexframe.frame.TalexFrameApplication;
 import com.talexframe.frame.core.modules.event.events.frame.*;
 import com.talexframe.frame.core.pojo.enums.FrameStatus;
 import com.talexframe.frame.core.talex.TFrame;
+import com.talexframe.launcher.Launcher;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationPreparedEvent;
@@ -94,6 +96,22 @@ public class FrameMajorListener {
             scanner.nextLine();
 
             scanner.close();
+
+        } else if( Launcher.restart ) {
+
+            ThreadUtil.execAsync(() -> {
+
+                log.info("[框架] 将在 3 秒后重启...");
+
+                try {
+                    Thread.sleep(3000);
+                } catch ( InterruptedException e ) {
+                    throw new RuntimeException(e);
+                }
+
+                TalexFrameApplication.start(Launcher.g_args);
+
+            });
 
         }
 

@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Utility class for storing and retrieving classes for {@link Configuration}.
+ * Utility app for storing and retrieving classes for {@link Configuration}.
  */
 public class ConfigurationSerialization {
     public static final String SERIALIZED_TYPE_KEY = "==";
@@ -28,18 +28,18 @@ public class ConfigurationSerialization {
 
     /**
      * Attempts to deserialize the given arguments into a new instance of the
-     * given class.
+     * given app.
      * <p>
-     * The class must implement {@link ConfigurationSerializable}, including
+     * The app must implement {@link ConfigurationSerializable}, including
      * the extra methods as specified in the javadoc of
      * ConfigurationSerializable.
      * <p>
-     * If a new instance could not be made, an example being the class not
+     * If a new instance could not be made, an example being the app not
      * fully implementing the interface, null will be returned.
      *
      * @param args  Arguments for deserialization
      * @param clazz Class to deserialize into
-     * @return New instance of the specified class
+     * @return New instance of the specified app
      */
     @Nullable
     public static ConfigurationSerializable deserializeObject(@NotNull Map<String, ?> args, @NotNull Class<? extends ConfigurationSerializable> clazz) {
@@ -48,17 +48,17 @@ public class ConfigurationSerialization {
 
     /**
      * Attempts to deserialize the given arguments into a new instance of the
-     * given class.
+     * given app.
      * <p>
-     * The class must implement {@link ConfigurationSerializable}, including
+     * The app must implement {@link ConfigurationSerializable}, including
      * the extra methods as specified in the javadoc of
      * ConfigurationSerializable.
      * <p>
-     * If a new instance could not be made, an example being the class not
+     * If a new instance could not be made, an example being the app not
      * fully implementing the interface, null will be returned.
      *
      * @param args Arguments for deserialization
-     * @return New instance of the specified class
+     * @return New instance of the specified app
      */
     @Nullable
     public static ConfigurationSerializable deserializeObject(@NotNull Map<String, ?> args) {
@@ -73,7 +73,7 @@ public class ConfigurationSerialization {
                 }
                 clazz = getClassByAlias(alias);
                 if (clazz == null) {
-                    throw new IllegalArgumentException("Specified class does not exist ('" + alias + "')");
+                    throw new IllegalArgumentException("Specified app does not exist ('" + alias + "')");
                 }
             } catch (ClassCastException ex) {
                 ex.fillInStackTrace();
@@ -87,7 +87,7 @@ public class ConfigurationSerialization {
     }
 
     /**
-     * Registers the given {@link ConfigurationSerializable} class by its
+     * Registers the given {@link ConfigurationSerializable} app by its
      * alias
      *
      * @param clazz Class to register
@@ -103,7 +103,7 @@ public class ConfigurationSerialization {
 
     /**
      * Registers the given alias to the specified {@link
-     * ConfigurationSerializable} class
+     * ConfigurationSerializable} app
      *
      * @param clazz Class to register
      * @param alias Alias to register as
@@ -124,7 +124,7 @@ public class ConfigurationSerialization {
 
     /**
      * Unregisters any aliases for the specified {@link
-     * ConfigurationSerializable} class
+     * ConfigurationSerializable} app
      *
      * @param clazz Class to unregister
      */
@@ -134,11 +134,11 @@ public class ConfigurationSerialization {
     }
 
     /**
-     * Attempts to get a registered {@link ConfigurationSerializable} class by
+     * Attempts to get a registered {@link ConfigurationSerializable} app by
      * its alias
      *
      * @param alias Alias of the serializable
-     * @return Registered class, or null if not found
+     * @return Registered app, or null if not found
      */
     @Nullable
     public static Class<? extends ConfigurationSerializable> getClassByAlias(@NotNull String alias) {
@@ -147,10 +147,10 @@ public class ConfigurationSerialization {
 
     /**
      * Gets the correct alias for the given {@link ConfigurationSerializable}
-     * class
+     * app
      *
      * @param clazz Class to get alias for
-     * @return Alias to use for the class
+     * @return Alias to use for the app
      */
     @NotNull
     public static String getAlias(@NotNull Class<? extends ConfigurationSerializable> clazz) {

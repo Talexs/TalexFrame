@@ -133,7 +133,16 @@ public class TRepoManager {
 
                 if ( Repo instanceof TRepoPlus ) {
 
-                    ( (TRepoPlus<?>) Repo ).onInstall();
+                    TRepoPlus<?> plusRepo = ( (TRepoPlus<?>) Repo );
+                    plusRepo.initTable();
+
+                    scanner.pushService(() -> {
+
+                        plusRepo.onInstall();
+
+                        scanner.pushService(plusRepo::onAllRepoDone);
+
+                    });
 
                 }
 

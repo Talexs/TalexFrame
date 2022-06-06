@@ -12,8 +12,8 @@
         </encoder>
     </appender>
 
-    <!--    <appender name="fileTerminalLog" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
-    <!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+    <!--    <appender name="fileTerminalLog" app="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--        <filter app="ch.qos.logback.classic.filter.LevelFilter">-->
     <!--            <level>INFO</level>-->
     <!--        </filter>-->
     <!--        <TerminalConsole>-->

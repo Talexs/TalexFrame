@@ -2,6 +2,7 @@ package com.talexframe.frame.core.modules.repository;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.db.Entity;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
@@ -44,7 +45,7 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
     @Setter
     protected String infoType = "VARCHAR(512)";
 
-    public TRepoPlus(String tableName, WebPlugin webPlugin) {
+    public TRepoPlus(WebPlugin webPlugin, String tableName) {
 
         super(tableName);
 
@@ -59,6 +60,18 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
      * 是否默认读取所有数据到 dataMap 中, 默认为假
      */
     public boolean doCached() {return false;}
+
+    @SneakyThrows
+    public T readData(String key, String identifier) {
+
+        ResultSet rs =  readSearchData(key, identifier);
+
+        if( rs == null || !rs.next() ) return null;
+
+        //noinspection unchecked
+        return (T) AutoSaveData.deserialize(this.templateData, rs).getValue();
+
+    }
 
     public T getData(String identifyId) {
 
@@ -106,7 +119,7 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
 
         if ( !doCached() ) {
 
-            saveDataToMysql( data.getValue() ).close();
+            saveDataToMysql( data.getValue() );
 
         } else {
 
@@ -119,10 +132,14 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
         return false;
     }
 
+    /**
+     * 当所有的Repo都加载完毕后触发
+     * 请在这里做数据操作
+     */
+    public void onAllRepoDone() {}
+
     @SneakyThrows
     public void onInstall() {
-
-        initTable();
 
         if ( !doCached() ) {
             return;
@@ -130,23 +147,21 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
 
         this.dataMap = new ConcurrentHashMap<>();
 
-        try( ResultSet rs = readSearchAllData() ) {
+        List<Entity> entityList = this.forAllData();
 
-            while ( rs != null && rs.next() ) {
+        for ( Entity entity : entityList ) {
 
-                @SuppressWarnings( "unchecked" ) WrappedData<T> data = (WrappedData<T>) AutoSaveData.deserialize(templateData, JSONUtil.parseObj(Base64.decodeStr(rs.getString("as_info"))));
+            @SuppressWarnings( "unchecked" ) WrappedData<T> data = (WrappedData<T>) AutoSaveData.deserialize(templateData, JSONUtil.parseObj(Base64.decodeStr(entity.getStr("as_info"))));
 
-                if ( data.getValue() == null || data.getValue().getMainKey() == null ) {
-                    log.error("[AutoSaveData] FatalError!! # " + templateData.getName());
-                }
-
-                if ( onSingleDataLoaded(data) ) {
-                    continue;
-                }
-
-                dataMap.put(( data.getValue() ).getMainKey(), data.getValue());
-
+            if ( data.getValue() == null || data.getValue().getMainKey() == null ) {
+                log.error("[AutoSaveData] FatalError!! # " + templateData.getName());
             }
+
+            if ( onSingleDataLoaded(data) ) {
+                continue;
+            }
+
+            dataMap.put(( data.getValue() ).getMainKey(), data.getValue());
 
             onDataLoaded();
 
@@ -161,11 +176,10 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
     }
 
     @SneakyThrows
+    @Deprecated
     public void saveDataToMysqlSilence(T data) {
 
-        ResultSet rs = saveDataToMysql(data);
-
-        if( rs != null ) rs.close();
+        saveDataToMysql(data);
 
     }
 
@@ -178,7 +192,7 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
 
         for ( T data : dataMap.values() ) {
 
-            saveDataToMysqlSilence(data);
+            saveDataToMysql(data);
 
         }
 
@@ -187,7 +201,7 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
     }
 
     @SneakyThrows
-    public ResultSet saveDataToMysql(T data) {
+    public int saveDataToMysql(T data) {
 
         Class<? extends AutoSaveData> clz = data.getClass();
 
@@ -282,16 +296,12 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
 
         log.debug("[BaseAutoSaveData] " + getProvider() + " @" + getClass() + " 存储数据: " + sql);
 
-        try ( ResultSet rs = mysql.executeWithCallBack(sql) ) {
-
-            return rs;
-
-        }
+        return mysql.prepareStatement(sql);
 
     }
 
     @SneakyThrows
-    private void initTable() {
+    public void initTable() {
 
         List<String> idList = new ArrayList<>();
         List<String> columnList = new ArrayList<>();
@@ -423,9 +433,9 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
 
         }
 
-        ResultSet rs = mysql.executeWithCallBack(createStr.toString());
+        int row = mysql.prepareStatement(createStr.toString());
         log.debug(createStr.toString());
-        if( rs != null && rs.getRow() > 0 ) {
+        if( row == 1 ) {
 
             log.info("创建表成功：{}", tableName);
 
@@ -435,7 +445,7 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
         //
         // for( Field field : templateData.getDeclaredFields()) {
         //
-        //     TAutoColumn as = field.getAnnotation(TAutoColumn.class);
+        //     TAutoColumn as = field.getAnnotation(TAutoColumn.app);
         //
         //     if(as == null || !as.isMySqlFiled()) { continue; }
         //
@@ -452,9 +462,9 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
         //
         //         }
         //
-        //         if(!field.getType().isPrimitive() && field.getType() != String.class) {
+        //         if(!field.getAddonType().isPrimitive() && field.getAddonType() != String.app) {
         //
-        //             throw new IllegalArgumentException("MysqlField type can only use primitive type (" + field.getType().getName() + ")");
+        //             throw new IllegalArgumentException("MysqlField type can only use primitive type (" + field.getAddonType().getName() + ")");
         //
         //         }
         //
