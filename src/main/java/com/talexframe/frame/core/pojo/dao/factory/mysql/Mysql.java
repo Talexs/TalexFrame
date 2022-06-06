@@ -1,6 +1,7 @@
 package com.talexframe.frame.core.pojo.dao.factory.mysql;
 
 import cn.hutool.core.thread.ThreadUtil;
+import cn.hutool.db.Db;
 import cn.hutool.db.Session;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.talexframe.frame.core.modules.event.events.dao.DAOProcessorConnectFailedEvent;
@@ -20,7 +21,6 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -33,6 +33,7 @@ import java.sql.SQLException;
 @Slf4j
 public class Mysql implements IDataProcessor, IConnectorProcessor {
 
+    @Getter
     private final DruidDataSource dataSource = new DruidDataSource();
 
     @Getter
@@ -89,10 +90,16 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
 
     }
 
+    public Db forDb() {
+
+        return Db.use(dataSource);
+
+    }
+
     @Override
     public ResultSet readAllData(String table) {
 
-        return executeWithCallBack("SELECT * FROM " + table);
+        return executeWithCallBack("SELECT * FROM `" + table + "`");
 
     }
 
@@ -102,7 +109,7 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
     @Override
     public ResultSet searchData(String table, String selectType, String value, int limit) {
 
-        return executeWithCallBack("SELECT * FROM " + table + " WHERE " + selectType + " = '" + value + "' "
+        return executeWithCallBack("SELECT * FROM `" + table + "` WHERE `" + selectType + "` = '" + value + "' "
                 + ( limit > 0 ? " LIMIT " + limit : "" ));
 
     }
@@ -146,11 +153,9 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
 
         try {
 
-            PreparedStatement ps = this.session.getConnection().prepareStatement(sql);
+            log.debug("[数据库] [执行] 执行指令: " + sql);
 
-            ps.execute();
-
-            return ps.getResultSet();
+            return this.session.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeQuery(sql);
 
         } catch ( SQLException e ) {
 
@@ -175,6 +180,11 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
                     + "/" + config.getDatabaseName() + ( config.getExtra() != null ? "?" + config.getExtra() : "" ));
             dataSource.setUsername(config.getUsername());
             dataSource.setPassword(config.getPassword());
+
+            dataSource.setTimeBetweenEvictionRunsMillis(15000);
+            dataSource.setValidationQuery("SELECT 1");
+
+            dataSource.setTestWhileIdle(true);
 
             session = Session.create(dataSource);
 

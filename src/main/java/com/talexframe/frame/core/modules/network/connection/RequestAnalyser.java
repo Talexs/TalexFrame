@@ -246,7 +246,7 @@ public class RequestAnalyser {
 
                 if( template != null ) {
 
-                    Object cacheObj = methodReceiver.getRedisCache(params);
+                    Object cacheObj = methodReceiver.getRedisCache(request.getRequestURI(), params);
 
                     if( cacheObj != null ) {
 
@@ -278,7 +278,7 @@ public class RequestAnalyser {
 
                     log.info("[应用层] OK Return: " + tStr);
 
-                    methodReceiver.processRedisCache(params, object);
+                    methodReceiver.processRedisCache(request.getRequestURI(), params, object);
 
                 }
 
@@ -475,7 +475,7 @@ public class RequestAnalyser {
 
             }
 
-            private String getRedisCacheKey( List<Object> params ) {
+            private String getRedisCacheKey( String url, List<Object> params ) {
 
                 /*
 
@@ -537,6 +537,10 @@ public class RequestAnalyser {
 
                         key = value;
 
+                    } else if ( key.equalsIgnoreCase("#url") ) {
+
+                        key = url;
+
                     }
 
                     // if ( key.startsWith("#data") ) {
@@ -584,11 +588,11 @@ public class RequestAnalyser {
 
                 }
 
-                return tRedisCache.type() + "_" + key;
+                return tRedisCache.type() + ":" + key;
 
             }
 
-            public void processRedisCache(List<Object> params, Object data) {
+            public void processRedisCache( String url, List<Object> params, Object data) {
 
                 if( tRedisCache == null ) return;
 
@@ -604,7 +608,7 @@ public class RequestAnalyser {
 
                 ValueOperations<String, Object> vo = template.opsForValue();
 
-                String key = getRedisCacheKey(params);
+                String key = getRedisCacheKey(url, params);
 
                 if ( tRedisCache.delete() ) {
 
@@ -615,6 +619,8 @@ public class RequestAnalyser {
                     JSONObject cacheValue = JSONUtil.parseObj(data);
 
                     if ( tRedisCache.expireTime() > 0 ) {
+
+
 
                         vo.set(key, cacheValue, Duration.ofSeconds(tRedisCache.expireTime()));
 
@@ -630,7 +636,7 @@ public class RequestAnalyser {
 
             }
 
-            public Object getRedisCache(List<Object> params) {
+            public Object getRedisCache(String url, List<Object> params) {
 
                 if( tRedisCache == null ) return null;
 
@@ -640,7 +646,7 @@ public class RequestAnalyser {
 
                 if ( !tRedisCache.delete() ) {
 
-                    String key = getRedisCacheKey(params);
+                    String key = getRedisCacheKey(url, params);
                     return vo.get(key);
 
                 }
@@ -842,7 +848,7 @@ public class RequestAnalyser {
 
                         if( thisUrl.equalsIgnoreCase("{" + fieldName + "}") ) {
 
-                            String obj = urls[i + 1];
+                            String obj = (i + 1 >= urls.length) ? urls[i] : urls[i + 1];
 
                             params.add(obj);
 

@@ -37,7 +37,7 @@ public class PluginScanner extends FrameCreator {
     private final PluginManager pluginManager = tframe.getPluginManager();
 
     @Getter
-    private final Stack<Runnable> runnables = new Stack<>();
+    private final LinkedList<Runnable> runnables = new LinkedList<>();
 
     public void pushService( Runnable runnable ) {
 

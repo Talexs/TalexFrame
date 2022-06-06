@@ -3,7 +3,7 @@ spring:
     banner-mode: off
   redis:
     database: 0
-    host: localhost
+    host: 156.251.180.136
     port: 6379
     timeout: 10s
     lettuce:
@@ -115,11 +115,11 @@ server:
 #    min-spare-threads: 30
 
 mysql:
-  ip: localhost
+  ip: 156.251.180.136
   port: 3306
-  database: talexframe
-  username: root
-  password: 8NxZAhYAcHK44xKB
+  database: kxord
+  username: kxord
+  password: hz85TaxpSfzja
   useSSL: false
 
 elasticsearch:

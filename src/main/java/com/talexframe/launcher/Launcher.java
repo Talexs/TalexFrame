@@ -16,9 +16,14 @@ import java.io.File;
 @Slf4j
 public class Launcher {
 
+    public static boolean restart = false;
+    public static String[] g_args;
+
     public static void main(String[] args) {
 
-        log.info("[TalexFrame] Launcher start");
+        log.info("[TalexFrame] Launcher start ...");
+
+        g_args = args;
 
         // 如果文件不存在则启动第一次向导
 

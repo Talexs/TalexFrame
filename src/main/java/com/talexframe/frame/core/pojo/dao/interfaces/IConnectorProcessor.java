@@ -1,5 +1,6 @@
 package com.talexframe.frame.core.pojo.dao.interfaces;
 
+import cn.hutool.db.Db;
 import com.talexframe.frame.core.pojo.dao.factory.mysql.BuilderMap;
 import com.talexframe.frame.core.pojo.dao.factory.mysql.builder.SqlBuilder;
 import com.talexframe.frame.core.pojo.dao.factory.mysql.builder.insert.SqlInsertBuilder;
@@ -16,6 +17,12 @@ import java.sql.ResultSet;
  * @date 22/03/05 下午 01:08 <br /> Project: TalexFrame <br />
  */
 public interface IConnectorProcessor {
+
+    /**
+     * 获取 DbUtil 根据 DataSource
+     * @return DbUtil
+     */
+    Db forDb();
 
     /**
      * 向数据库中插入数据

@@ -3,10 +3,7 @@ package com.talexframe.frame.core.talex;
 import com.talexframe.frame.TalexFrameApplication;
 import com.talexframe.frame.core.function.command.CommandManager;
 import com.talexframe.frame.core.function.command.TCmdCompAdapter;
-import com.talexframe.frame.core.function.command.frame.HelpCmd;
-import com.talexframe.frame.core.function.command.frame.InfoCmd;
-import com.talexframe.frame.core.function.command.frame.PluginCmd;
-import com.talexframe.frame.core.function.command.frame.StopCmd;
+import com.talexframe.frame.core.function.command.frame.*;
 import com.talexframe.frame.core.function.listener.FrameSelfListener;
 import com.talexframe.frame.core.modules.application.TAppCompAdapter;
 import com.talexframe.frame.core.modules.application.TAppManager;
@@ -122,6 +119,7 @@ public class TFrame {
             this.commandManager.setCommandExecutor("help", new HelpCmd());
             this.commandManager.setCommandExecutor("plugin", new PluginCmd());
             this.commandManager.setCommandExecutor("stop", new StopCmd());
+            this.commandManager.setCommandExecutor("restart", new RestartCmd());
             this.commandManager.setCommandExecutor("info", new InfoCmd());
 
             new TCmdCompAdapter();
