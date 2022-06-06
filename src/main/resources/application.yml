@@ -27,7 +27,7 @@ spring:
 #  datasource:
 #    username: xxx
 #    password: xxx
-#    driver-class-name: com.mysql.cj.jdbc.Driver   # mysql8 的连接驱动
+#    driver-app-name: com.mysql.cj.jdbc.Driver   # mysql8 的连接驱动
 #    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=Asia/Shanghai
 #    type: com.alibaba.druid.pool.DruidDataSource  # 指定数据源类型
 #    ########## 连接池 配置 ##########

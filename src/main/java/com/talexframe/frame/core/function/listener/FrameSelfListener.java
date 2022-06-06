@@ -1,7 +1,7 @@
 package com.talexframe.frame.core.function.listener;
 
 import com.talexframe.frame.core.modules.event.FrameListener;
-import com.talexframe.frame.core.modules.event.TalexSubscribe;
+import com.talexframe.frame.core.modules.event.THandler;
 import com.talexframe.frame.core.modules.event.events.dao.DAOProcessorPreShutdownEvent;
 import com.talexframe.frame.core.modules.repository.TRepo;
 import com.talexframe.frame.core.modules.repository.TRepoPlus;
@@ -24,7 +24,7 @@ public class FrameSelfListener extends FrameListener {
 
     }
 
-    // @TalexSubscribe
+    // @THandler
     // public void onMysqlConnected(DAOProcessorConnectedEvent<Mysql> event) {
     //
     //     for ( TRepo repository : tframe.getRepoManager().getRepositories().values() ) {
@@ -39,7 +39,7 @@ public class FrameSelfListener extends FrameListener {
     //
     // }
 
-    @TalexSubscribe
+    @THandler
     public void onMysqlPreShutdown(DAOProcessorPreShutdownEvent<Mysql> event) {
 
         for ( TRepo repository : tframe.getRepoManager().getRepositories().values() ) {

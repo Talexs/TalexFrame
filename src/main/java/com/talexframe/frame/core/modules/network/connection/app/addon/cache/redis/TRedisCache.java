@@ -1,4 +1,4 @@
-package com.talexframe.frame.core.pojo.dao.factory.redis;
+package com.talexframe.frame.core.modules.network.connection.app.addon.cache.redis;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

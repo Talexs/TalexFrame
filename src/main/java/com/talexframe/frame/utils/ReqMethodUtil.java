@@ -1,6 +1,6 @@
 package com.talexframe.frame.utils;
 
-import com.talexframe.frame.core.pojo.annotations.TReqSupportMethod;
+import com.talexframe.frame.core.modules.network.connection.app.addon.method.TReqSupportMethod;
 
 /**
  * <br /> {@link com.talexframe.frame.utils Package }

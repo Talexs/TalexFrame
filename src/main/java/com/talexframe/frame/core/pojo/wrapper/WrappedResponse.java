@@ -63,51 +63,34 @@ public class WrappedResponse {
     @SneakyThrows
     public void returnDataByFailed(ResultData.ResultEnum rEnum, Object data) {
 
-        if ( response.isCommitted() ) {
-            return;
-        }
-
-        String str = JSONUtil.toJsonStr(ResultData.FAILED(rEnum, data));
-
-        response.setStatus(200);
-        // response.setContentLength(str.length());
-        response.setContentType("application/json");
-
-        OutputStream os = response.getOutputStream();
-        os.write(str.getBytes(StandardCharsets.UTF_8));
-
-        os.flush();
-
-        log.info("[应用层] FailedReturn: " + str);
+        returnData(ResultData.FAILED(rEnum, data));
 
     }
 
     @SneakyThrows
     public void returnDataByFailed(Object data) {
 
-        if ( response.isCommitted() ) {
-            return;
-        }
-
-        String str = JSONUtil.toJsonStr(ResultData.FAILED(data));
-
-        response.setStatus(200);
-        // response.setContentLength(str.length());
-        response.setContentType("application/json");
-
-        OutputStream os = response.getOutputStream();
-        os.write(str.getBytes(StandardCharsets.UTF_8));
-
-        os.flush();
-
-        log.info("[应用层] FailedReturn: " + str);
+        this.returnData(ResultData.FAILED(data));
 
     }
 
     @SneakyThrows
     public void returnDataByOK(Object data) {
 
-        String str = JSONUtil.toJsonStr(ResultData.SUCCESS(data));
+        this.returnData(ResultData.SUCCESS(data));
+
+    }
+
+    @SneakyThrows
+    public void returnData(Object data) {
+
+        if ( response.isCommitted() ) {
+
+            return;
+
+        }
+
+        String str = JSONUtil.toJsonStr(data);
 
         response.setStatus(200);
         // response.setContentLength(str.length());
@@ -118,7 +101,7 @@ public class WrappedResponse {
 
         os.flush();
 
-        log.info("[应用层] OK Return: " + str);
+        log.info("[应用层] Return: " + str);
 
     }
 

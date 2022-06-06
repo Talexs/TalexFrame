@@ -1,4 +1,4 @@
-package com.talexframe.frame.core.pojo.annotations;
+package com.talexframe.frame.core.modules.network.connection.app.addon.param;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
  */
 @Retention( RetentionPolicy.RUNTIME )
 @Target( { ElementType.METHOD } )
-public @interface TalexCommand {
+public @interface TCmd {
 
     /**
      * 监听的子参数 比如命令 /help page 1 如果输入 "page" 就会监听 /help 旗下 page 任意的参数 都会被注入 注入取决于方法参数长度 如果输入/help page 1 方法长度为2 则不匹配

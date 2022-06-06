@@ -1,4 +1,4 @@
-package com.talexframe.frame.core.pojo.annotations;
+package com.talexframe.frame.core.modules.network.connection;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -19,10 +19,5 @@ public @interface TRequest {
      * 接口的地址
      */
     String value();
-
-    /**
-     * 是否自动解析为 JSON 格式注入
-     */
-    boolean parseJSON() default true;
 
 }

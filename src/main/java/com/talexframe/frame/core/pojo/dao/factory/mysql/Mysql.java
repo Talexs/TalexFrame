@@ -1,6 +1,7 @@
 package com.talexframe.frame.core.pojo.dao.factory.mysql;
 
 import cn.hutool.core.thread.ThreadUtil;
+import cn.hutool.cron.CronUtil;
 import cn.hutool.db.Db;
 import cn.hutool.db.Session;
 import com.alibaba.druid.pool.DruidDataSource;
@@ -196,6 +197,34 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
 
             status = DataProcessorStatus.CONNECTED;
 
+            task = CronUtil.schedule("0/10 * * * * ? ", (Runnable) () -> {
+
+                if( !checker() ) return;
+
+                if( !getStatus(3000) ) {
+
+                    log.info("[数据库] [连接] 数据库连接已经断开，正在尝试重新连接...");
+
+                    reConnect();
+
+                } else {
+
+                    try {
+
+                        getSession().execute("SELECT 1");
+
+                        log.debug("[数据库] [连接] 测试数据库连接成功!");
+
+                    } catch ( SQLException e ) {
+
+                        throw new RuntimeException(e);
+
+                    }
+
+                }
+
+            });
+
         } catch ( SQLException e ) {
 
             DAOProcessorConnectFailedEvent<Mysql> daoConnectFailedEvent = new DAOProcessorConnectFailedEvent<>(this, e);
@@ -219,6 +248,22 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
         TFrame.tframe.callEvent(new DAOProcessorConnectedEvent<>(this));
 
         return true;
+    }
+
+    private String task;
+
+    private boolean checker() {
+
+        if( getStatus() != DataProcessorStatus.CONNECTED ) {
+
+            CronUtil.remove(task);
+
+            return false;
+
+        }
+
+        return true;
+
     }
 
     @SneakyThrows

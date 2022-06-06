@@ -18,7 +18,7 @@ public class RedisConfig {
     //
     //     redisTemplate.setConnectionFactory(connectionFactory);
     //
-    //     Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+    //     Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.app);
     //
     //     ObjectMapper objectMapper = new ObjectMapper();
     //     objectMapper.setVisibility(PropertyAccessor.ALL, com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.ANY);

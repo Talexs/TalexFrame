@@ -1,4 +1,6 @@
-package com.talexframe.frame.core.pojo.annotations;
+package com.talexframe.frame.core.modules.network.connection.app.addon.method;
+
+import org.springframework.http.HttpMethod;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -15,18 +17,6 @@ import java.lang.annotation.Target;
 @Target( ElementType.METHOD )
 public @interface TReqSupportMethod {
 
-    boolean get() default true;
-
-    boolean post() default false;
-
-    boolean put() default false;
-
-    boolean delete() default false;
-
-    boolean head() default false;
-
-    boolean options() default false;
-
-    boolean patch() default false;
+    HttpMethod[] value() default { HttpMethod.GET };
 
 }

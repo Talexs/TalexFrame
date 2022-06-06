@@ -11,13 +11,13 @@ import java.util.Map;
  * methods as defined by this interface:
  * <ul>
  * <li>A static method "deserialize" that accepts a single {@link Map}&lt;
- * {@link String}, {@link Object}&gt; and returns the class.</li>
+ * {@link String}, {@link Object}&gt; and returns the app.</li>
  * <li>A static method "valueOf" that accepts a single {@link Map}&lt;{@link
- * String}, {@link Object}&gt; and returns the class.</li>
+ * String}, {@link Object}&gt; and returns the app.</li>
  * <li>A constructor that accepts a single {@link Map}&lt;{@link String},
  * {@link Object}&gt;.</li>
  * </ul>
- * In addition to implementing this interface, you must register the class
+ * In addition to implementing this interface, you must register the app
  * with {@link ConfigurationSerialization#registerClass(Class)}.
  *
  * @see DelegateDeserialization
@@ -26,12 +26,12 @@ import java.util.Map;
 public interface ConfigurationSerializable {
 
     /**
-     * Creates a Map representation of this class.
+     * Creates a Map representation of this app.
      * <p>
-     * This class must provide a method to restore this class, as defined in
+     * This app must provide a method to restore this app, as defined in
      * the {@link ConfigurationSerializable} interface javadocs.
      *
-     * @return Map containing the current state of this class
+     * @return Map containing the current state of this app
      */
     @NotNull Map<String, Object> serialize();
 }

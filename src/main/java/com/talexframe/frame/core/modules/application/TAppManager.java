@@ -1,5 +1,8 @@
 package com.talexframe.frame.core.modules.application;
 
+import com.talexframe.frame.core.modules.event.events.app.AppPostRegisterEvent;
+import com.talexframe.frame.core.modules.event.events.app.AppPreRegisterEvent;
+import com.talexframe.frame.core.modules.event.events.app.AppUnRegisteredEvent;
 import com.talexframe.frame.core.modules.network.connection.RequestAnalyser;
 import com.talexframe.frame.core.modules.network.interfaces.IUnRegisterHandler;
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
@@ -59,6 +62,12 @@ public class TAppManager {
 
         }
 
+        AppPreRegisterEvent event = new AppPreRegisterEvent(plugin, controller);
+
+        TFrame.tframe.callEvent(new AppPostRegisterEvent(plugin, controller));
+
+        if( event.isCancelled() ) return false;
+
         this.controllers.put(controller.getClass(), controller);
         this.controllerPluginMap.put(controller, plugin.getName());
 
@@ -93,12 +102,7 @@ public class TAppManager {
 
         }
 
-        /**
-         *
-         * 让 NetworkMananager 扫一下这个类
-         *
-         */
-        RequestAnalyser.scanRequests(controller);
+        TFrame.tframe.callEvent(new AppPostRegisterEvent(plugin, controller));
 
         return true;
 
@@ -130,6 +134,8 @@ public class TAppManager {
 
         this.controllers.remove(controller.getClass(), controller);
         this.controllerPluginMap.remove(controller, plugin.getName());
+
+        TFrame.tframe.callEvent(new AppUnRegisteredEvent(plugin, controller));
 
         return true;
 

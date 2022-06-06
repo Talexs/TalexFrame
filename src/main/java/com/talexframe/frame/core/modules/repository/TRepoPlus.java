@@ -45,7 +45,7 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
     @Setter
     protected String infoType = "VARCHAR(512)";
 
-    public TRepoPlus(String tableName, WebPlugin webPlugin) {
+    public TRepoPlus(WebPlugin webPlugin, String tableName) {
 
         super(tableName);
 
@@ -445,7 +445,7 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
         //
         // for( Field field : templateData.getDeclaredFields()) {
         //
-        //     TAutoColumn as = field.getAnnotation(TAutoColumn.class);
+        //     TAutoColumn as = field.getAnnotation(TAutoColumn.app);
         //
         //     if(as == null || !as.isMySqlFiled()) { continue; }
         //
@@ -462,9 +462,9 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
         //
         //         }
         //
-        //         if(!field.getType().isPrimitive() && field.getType() != String.class) {
+        //         if(!field.getAddonType().isPrimitive() && field.getAddonType() != String.app) {
         //
-        //             throw new IllegalArgumentException("MysqlField type can only use primitive type (" + field.getType().getName() + ")");
+        //             throw new IllegalArgumentException("MysqlField type can only use primitive type (" + field.getAddonType().getName() + ")");
         //
         //         }
         //

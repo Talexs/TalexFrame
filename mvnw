@@ -265,7 +265,7 @@ else
                 if [ "$MVNW_VERBOSE" = true ]; then
                   echo " - Compiling MavenWrapperDownloader.java ..."
                 fi
-                # Compiling the Java class
+                # Compiling the Java app
                 ("$JAVA_HOME/bin/javac" "$javaClass")
             fi
             if [ -e "$BASE_DIR/.mvn/wrapper/MavenWrapperDownloader.class" ]; then

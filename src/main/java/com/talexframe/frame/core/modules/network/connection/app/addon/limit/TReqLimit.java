@@ -1,4 +1,4 @@
-package com.talexframe.frame.core.pojo.annotations;
+package com.talexframe.frame.core.modules.network.connection.app.addon.limit;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,14 +8,14 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 令牌桶限流 - 每一个注解都会创建一个令牌桶 慎用 默认 Controller 重写 rate相关方法就可以使用全局限流 如果 Controller类 或 方法 上额外标注 则会在全局令牌桶上叠加 相当于若都放该注解
- * 最后进入方法会经过 三个令牌桶 <br /> {@link com.talexframe.frame.pojo.annotations Package }
+ * 最后进入方法会经过 三个令牌桶 <br /> {@link com.talexframe.frame.core.modules.network.connection.app.addon.limit Package }
  *
  * @author TalexDreamSoul
  * @date 2022/1/23 23:27 <br /> Project: TalexFrame <br />
  */
 @Retention( RetentionPolicy.RUNTIME )
 @Target( { ElementType.METHOD, ElementType.TYPE } )
-public @interface TRequestLimit {
+public @interface TReqLimit {
 
     /**
      * 每秒并发 (创建令牌数)
@@ -31,8 +31,5 @@ public @interface TRequestLimit {
      * 超时时间单位 默认：毫秒
      **/
     TimeUnit timeUnit() default TimeUnit.MILLISECONDS;
-
-    // /** 无法获取令牌返回消息 **/
-    // String customMsg() default "服务器繁忙";
 
 }

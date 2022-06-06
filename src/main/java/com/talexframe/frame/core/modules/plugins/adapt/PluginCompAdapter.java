@@ -72,7 +72,7 @@ public abstract class PluginCompAdapter<T extends FrameCreator> extends FrameBui
     @SneakyThrows
     public boolean inject( PluginScanner scanner, WebPlugin webPlugin, Object obj ) {
 
-        // Method method = this.getClass().getMethod("injectWithInstance", PluginScanner.class, WebPlugin.class, templateClass);
+        // Method method = this.getClass().getMethod("injectWithInstance", PluginScanner.app, WebPlugin.app, templateClass);
 
         // method.invoke( this, scanner, webPlugin, (T) obj );
 
@@ -82,7 +82,7 @@ public abstract class PluginCompAdapter<T extends FrameCreator> extends FrameBui
 
     /**
      *
-     * Trigger after all class scanned
+     * Trigger after all app scanned
      *
      * @param scanner For the plugin scanner
      * @param webPlugin For the own plugin
@@ -99,7 +99,7 @@ public abstract class PluginCompAdapter<T extends FrameCreator> extends FrameBui
      *
      * @param scanner For the plugin scanner
      * @param webPlugin For the own plugin
-     * @param clazz For the class
+     * @param clazz For the app
      *
      * @return If you return false, the frame will be crashed
      */
