@@ -51,12 +51,6 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
         JSONObject json = JSONUtil.parseObj(str);
 
-        for ( Class<?> type : methodAppReceiver.getMethod().getParameterTypes() ) {
-
-
-
-        }
-
         for ( Parameter parameter : methodAppReceiver.getMethod().getParameters() ) {
 
             if( parameter.getType() == WrappedResponse.class ) {

@@ -175,6 +175,9 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
 
     }
 
+    /**
+     * &#064;Description  Please use saveDataToMysql instead
+     */
     @SneakyThrows
     @Deprecated
     public void saveDataToMysqlSilence(T data) {

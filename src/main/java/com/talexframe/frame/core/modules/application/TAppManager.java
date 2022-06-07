@@ -130,8 +130,6 @@ public class TAppManager {
 
         }
 
-        RequestAnalyser.removeRequests(controller);
-
         this.controllers.remove(controller.getClass(), controller);
         this.controllerPluginMap.remove(controller, plugin.getName());
 

@@ -13,12 +13,12 @@ import com.talexframe.frame.core.modules.network.connection.app.addon.param.vali
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.min.value.ReceiverMinValueValidateAddon;
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.nonull.ReceiverNoNullValidateAddon;
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.pattern.ReceiverPatternValidateAddon;
+import com.talexframe.frame.core.modules.network.connection.app.addon.permission.ReceiverPermissionAddon;
 import com.talexframe.frame.core.modules.plugins.adapt.PluginCompAdapter;
 import com.talexframe.frame.core.modules.plugins.addon.PluginScanner;
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import com.talexframe.frame.core.talex.FrameCreator;
 import lombok.SneakyThrows;
-import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -31,7 +31,6 @@ import java.util.stream.Collectors;
  *
  * @author TalexDreamSoul 22/04/02 下午 08:44 Project: TalexFrame
  */
-@Component
 public class ReceiverAddonAdapter extends PluginCompAdapter<ReceiverAddon> {
 
     private static final Map<Class<?>, ReceiverAddon> receiverAddonMap = new HashMap<>();
@@ -49,6 +48,7 @@ public class ReceiverAddonAdapter extends PluginCompAdapter<ReceiverAddon> {
         // 初始化内部的插件
 
         register(new ReceiverLoginAddon());
+        register(new ReceiverPermissionAddon());
         register(new ReceiverLimitAddon());
         register(new ReceiverMethodAddon());
 

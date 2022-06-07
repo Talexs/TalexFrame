@@ -1,9 +1,10 @@
-package com.talexframe.frame.core.modules.network.connection.app.addon.login;
+package com.talexframe.frame.core.modules.network.connection.app.addon.permission;
 
 import cn.dev33.satoken.stp.StpUtil;
 import com.talexframe.frame.core.modules.network.connection.app.ClassAppReceiver;
 import com.talexframe.frame.core.modules.network.connection.app.addon.ReceiverAddon;
 import com.talexframe.frame.core.modules.network.connection.app.subapp.MethodAppReceiver;
+import com.talexframe.frame.core.pojo.wrapper.ResultData;
 import com.talexframe.frame.core.pojo.wrapper.WrappedResponse;
 
 /**
@@ -11,31 +12,31 @@ import com.talexframe.frame.core.pojo.wrapper.WrappedResponse;
  *
  * @author TalexDreamSoul 22/06/06 下午 04:47 Project: TalexFrame
  */
-public class ReceiverLoginAddon extends ReceiverAddon {
+public class ReceiverPermissionAddon extends ReceiverAddon {
 
-    public ReceiverLoginAddon() {
+    public ReceiverPermissionAddon() {
 
-        super("ReceiverLogin", new ReceiverAddonType[] { ReceiverAddonType.CLASS_APP, ReceiverAddonType.METHOD_APP });
+        super("ReceiverPermission", new ReceiverAddonType[] { ReceiverAddonType.CLASS_APP, ReceiverAddonType.METHOD_APP });
 
-        super.priority = ReceiverAddonPriority.HIGHEST;
+        super.priority = ReceiverAddonPriority.HIGH;
 
     }
 
     @Override
     public boolean onPreCheckAppReceiver(ClassAppReceiver classAppReceiver, WrappedResponse wr) {
 
-        return got(classAppReceiver.getOwnClass().getAnnotation(TReqLoginChecker.class), wr);
+        return got(classAppReceiver.getOwnClass().getAnnotation(TReqPermissionChecker.class), wr);
 
     }
 
     @Override
     public boolean onPreInvokeMethod(MethodAppReceiver methodAppReceiver, WrappedResponse wr) {
 
-        return got(methodAppReceiver.getMethod().getAnnotation(TReqLoginChecker.class), wr);
+        return got(methodAppReceiver.getMethod().getAnnotation(TReqPermissionChecker.class), wr);
 
     }
 
-    private boolean got(TReqLoginChecker reqLoginChecker, WrappedResponse wr) {
+    private boolean got(TReqPermissionChecker reqLoginChecker, WrappedResponse wr) {
 
         // 不存在直接跳过
         if( reqLoginChecker == null ) {
@@ -46,18 +47,13 @@ public class ReceiverLoginAddon extends ReceiverAddon {
 
         // 存在则检查
 
-        // 需要登录
-        if( reqLoginChecker.value() ) {
+        if( StpUtil.hasPermissionAnd( reqLoginChecker.value() ) ) {
 
-            if( StpUtil.isLogin() ) return true;
-            else wr.returnDataByFailed("您还未登录!");
-
-        } else {
-
-            if( StpUtil.isLogin() ) wr.returnDataByFailed("只有未登录才能访问!");
-            else return true;
+            return true;
 
         }
+
+        wr.returnDataByFailed( ResultData.ResultEnum.ACCESS_DENIED, "权限不足! ");
 
         return false;
 

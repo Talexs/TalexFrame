@@ -48,7 +48,7 @@ public class TFrame {
     public static final TFrame tframe = new TFrame();
     @Getter
     private static final File mainFile = new File(System.getProperty("user.dir"));
-    private final PluginInfo.PluginSupportVersion versionE = PluginInfo.PluginSupportVersion.SEVEN;
+    private final PluginInfo.PluginSupportVersion versionE = PluginInfo.PluginSupportVersion.SEVEN_OFFICIAL;
     private final String version = "7.0.0";
     private final FrameSender frameSender;
     @Getter( AccessLevel.PACKAGE )
@@ -146,7 +146,7 @@ public class TFrame {
             this.pluginManager.loadAllPluginsInFolder();
             // ThreadUtil.execAsync(() -> this.pluginManager.loadAllPluginsInFolder());
 
-            log.info("框架启动成功!");
+            log.info("框架启动成功! (" + (System.nanoTime() - TalexFrameApplication.startedTimeStamp) + " ns)");
             log.debug("** DEBUG 模式已启动!");
 
         }
