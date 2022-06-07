@@ -34,7 +34,8 @@ public class PluginInfo {
     public enum PluginSupportVersion {
 
         //        7.0.0
-        SEVEN("7.0.0-core");
+        SEVEN("7.0.0-core"),
+        SEVEN_OFFICIAL("7.0.0-core-official");
 
         @Getter
         private final String version;

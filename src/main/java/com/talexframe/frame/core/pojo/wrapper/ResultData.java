@@ -171,7 +171,7 @@ public class ResultData<T> {
          **/
         HOT_PARAM_LIMITED(10002, "hot param limited"),
         /**
-         * 系统规则不满足
+         * 非法访问
          **/
         ILLEGAL_ACCESS(10003, "illegal access"),
         /**
@@ -179,7 +179,7 @@ public class ResultData<T> {
          **/
         ACCESS_DENIED(10004, "access denied"),
         /**
-         * access_denied
+         * 缺失权限
          **/
         INSUFFICIENT_PERMISSION(10005, "insufficient permissions"),
         /**
