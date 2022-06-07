@@ -52,15 +52,19 @@ public class MethodAppReceiver extends FrameCreator implements IRequestReceiver 
 
     public Object onRequest(ClassAppReceiver clzAppReceiver, MethodAppReceiver methodAppReceiver, WrappedResponse wr, long time) {
 
-        log.info("[解析层] Access @" + clzAppReceiver.getOwnClass().getName());
+        log.info("[应用层] 交付执行 @" + clzAppReceiver.getOwnClass().getName() + "." + methodAppReceiver.getMethod().getName());
+
+        log.info("[应用层]  #  参数一览 #");
+        log.info("[应用层]  #    (provide)-> {}", params);
+        log.info("[应用层]  #    (receive)-> {}", (Object) methodAppReceiver.getMethod().getParameters());
+        log.info("[应用层]  #  开始执行并计时 #");
+        log.info("[应用层]  ------------------------");
 
         try {
 
             String requestID = wr.getRequest().getSession().getId();
 
             timer.start(requestID);
-
-            log.debug("params: " + params);
 
             Object obj = method.invoke(ownApp, params.toArray());
 
@@ -77,6 +81,9 @@ public class MethodAppReceiver extends FrameCreator implements IRequestReceiver 
             }
 
             log.info("[解析层] Access in " + (System.currentTimeMillis() - time) + "ms totally");
+
+            log.info("[应用层]  应用执行完毕!");
+            log.info("[应用层] ------------------------");
 
             return obj;
 

@@ -1,8 +1,8 @@
 package com.talexframe.frame.core.modules.event.events.frame;
 
-import com.talexframe.frame.core.modules.event.Cancellable;
-import com.talexframe.frame.core.modules.event.IContinue;
-import com.talexframe.frame.core.modules.event.TalexEvent;
+import com.talexframe.frame.core.modules.event.service.Cancellable;
+import com.talexframe.frame.core.modules.event.service.IContinue;
+import com.talexframe.frame.core.modules.event.service.TalexEvent;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

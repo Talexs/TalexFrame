@@ -1,5 +1,6 @@
 package com.talexframe.frame.core.talex;
 
+import com.google.common.collect.Multimap;
 import com.talexframe.frame.TalexFrameApplication;
 import com.talexframe.frame.core.function.command.CommandManager;
 import com.talexframe.frame.core.function.command.TCmdCompAdapter;
@@ -9,9 +10,9 @@ import com.talexframe.frame.core.modules.application.TAppCompAdapter;
 import com.talexframe.frame.core.modules.application.TAppManager;
 import com.talexframe.frame.core.modules.event.FrameListener;
 import com.talexframe.frame.core.modules.event.MethodManager;
-import com.talexframe.frame.core.modules.event.TalexEvent;
+import com.talexframe.frame.core.modules.event.TalexEventBus;
 import com.talexframe.frame.core.modules.event.events.frame.FrameStartedEvent;
-import com.talexframe.frame.core.modules.event.service.TalexEventBus;
+import com.talexframe.frame.core.modules.event.service.TalexEvent;
 import com.talexframe.frame.core.modules.network.connection.NetworkListener;
 import com.talexframe.frame.core.modules.network.connection.app.addon.ReceiverAddonAdapter;
 import com.talexframe.frame.core.modules.plugins.adapt.config.json.JSONConfigAdapter;
@@ -31,8 +32,6 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
-import java.util.List;
-import java.util.Map;
 
 /**
  * <br /> {@link com.talexframe.frame.core.talex Package }
@@ -222,10 +221,10 @@ public class TFrame {
 
     }
 
-    public Map<FrameListener, List<MethodManager>> getListeners() {
+    public Multimap<FrameListener, MethodManager> getListeners() {
 
         assert eventBus != null;
-        return eventBus.getMapCaches();
+        return eventBus.getListenerManager();
 
     }
 

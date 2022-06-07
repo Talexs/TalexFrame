@@ -1,6 +1,6 @@
 package com.talexframe.frame.core.modules.event.events.request;
 
-import com.talexframe.frame.core.modules.event.TalexEvent;
+import com.talexframe.frame.core.modules.event.service.TalexEvent;
 import lombok.Getter;
 
 import javax.servlet.http.HttpServletRequest;

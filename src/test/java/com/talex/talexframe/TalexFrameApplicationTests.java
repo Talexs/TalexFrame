@@ -2,6 +2,7 @@ package com.talex.talexframe;
 
 import cn.hutool.core.net.url.UrlBuilder;
 import cn.hutool.core.util.CharsetUtil;
+import com.talexframe.frame.utils.UrlUtil;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +12,8 @@ class TalexFrameApplicationTests {
 
     @SneakyThrows
     public static void main(String[] args) {
+
+        System.out.println(UrlUtil.formatUrl("//user/////has/1141896356@qq.com"));
 
         UrlBuilder builder = UrlBuilder.ofHttp("www.hutool.cn/?a=张三&b=%e6%9d%8e%e5%9b%9b#frag1", CharsetUtil.CHARSET_UTF_8);
 

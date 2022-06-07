@@ -26,6 +26,10 @@ import java.util.stream.Collectors;
 @Slf4j
 public class PluginScanner extends FrameCreator {
 
+    private static final List<String> ignoreClassPrefix = Arrays.asList(
+            "javax.mail", "com.sun", "javax.activation"
+    );
+
     private final WebPlugin plugin;
 
     private static final TFrame tframe = TFrame.tframe;
@@ -92,9 +96,11 @@ public class PluginScanner extends FrameCreator {
 
             JarEntry jarEntry = en.nextElement();
 
-            if( jarEntry.getName().endsWith(".app") ) {
+            if( jarEntry.getName().endsWith(".class") ) {
 
                 String clzName = jarEntry.getName().replace("/", ".").substring(0, jarEntry.getName().length() - 6);
+
+                if( ignoreClassPrefix.stream().anyMatch(clzName::startsWith) ) continue;
 
                 log.debug("Scanning app: {}", clzName);
 

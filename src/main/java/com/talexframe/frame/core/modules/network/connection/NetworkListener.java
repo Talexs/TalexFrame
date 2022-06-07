@@ -1,7 +1,7 @@
 package com.talexframe.frame.core.modules.network.connection;
 
 import com.talexframe.frame.core.modules.event.FrameListener;
-import com.talexframe.frame.core.modules.event.THandler;
+import com.talexframe.frame.core.modules.event.service.THandler;
 import com.talexframe.frame.core.modules.event.events.app.AppPostRegisterEvent;
 import com.talexframe.frame.core.modules.event.events.app.AppUnRegisteredEvent;
 import com.talexframe.frame.core.modules.network.connection.app.ClassReceiverManager;
@@ -31,7 +31,7 @@ public class NetworkListener extends FrameListener {
 
         if( !reqClsManager.registerReqReceiver(event.getPlugin(), reqClsReceiver) ) {
 
-            log.warn("[Application] already registered: @{}", reqClsReceiver.getOwnClass());
+            log.warn("[Application] Already registered: @{}", reqClsReceiver.getOwnClass());
 
 
         }

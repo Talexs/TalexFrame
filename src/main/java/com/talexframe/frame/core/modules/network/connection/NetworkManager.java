@@ -4,9 +4,10 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.talexframe.frame.core.modules.network.connection.app.ClassAppReceiver;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * {@link com.talexframe.frame.core.modules.network.connection Package }
@@ -14,6 +15,7 @@ import java.util.Collection;
  * @author TalexDreamSoul 22/06/06 下午 12:51 Project: TalexFrame
  */
 @Getter
+@Slf4j
 public class NetworkManager {
 
     public static final NetworkManager INSTANCE = new NetworkManager();
@@ -26,15 +28,19 @@ public class NetworkManager {
 
     }
 
-    public Collection<ClassAppReceiver> matchUrlReceivers(String path) {
+    public Set<ClassAppReceiver> matchUrlReceivers(String path) {
+
+        log.debug("[解析层] Request path: " + path);
 
         // 类不支持路径变量
 
-        Collection<ClassAppReceiver> collection = new ArrayList<>();
+        Set<ClassAppReceiver> collection = new HashSet<>();
 
         map.entries().forEach((entry) -> {
 
             if( path.startsWith(entry.getKey()) ) {
+
+                log.debug("[解析层] Addon entry: {}", entry);
 
                 collection.add(entry.getValue());
 

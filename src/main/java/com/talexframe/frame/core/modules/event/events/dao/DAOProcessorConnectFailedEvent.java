@@ -1,7 +1,7 @@
 package com.talexframe.frame.core.modules.event.events.dao;
 
-import com.talexframe.frame.core.modules.event.Cancellable;
-import com.talexframe.frame.core.modules.event.IContinue;
+import com.talexframe.frame.core.modules.event.service.Cancellable;
+import com.talexframe.frame.core.modules.event.service.IContinue;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;

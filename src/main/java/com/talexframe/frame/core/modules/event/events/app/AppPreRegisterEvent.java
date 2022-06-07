@@ -1,8 +1,8 @@
 package com.talexframe.frame.core.modules.event.events.app;
 
 import com.talexframe.frame.core.modules.application.TApp;
-import com.talexframe.frame.core.modules.event.Cancellable;
-import com.talexframe.frame.core.modules.event.TalexEvent;
+import com.talexframe.frame.core.modules.event.service.Cancellable;
+import com.talexframe.frame.core.modules.event.service.TalexEvent;
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import lombok.Getter;
 

@@ -39,27 +39,22 @@ public class ReceiverMethodAddon extends ReceiverAddon {
     @Override
     public boolean onPreInvokeMethod(MethodAppReceiver methodAppReceiver, WrappedResponse wr) {
 
-        TReqSupportMethod supportMethod = methodAppReceiver.getMethod().getAnnotation(TReqSupportMethod.class);
-
-        if( supportMethod == null ) return true;
-
         TReqBody tReqBody = methodAppReceiver.getMethod().getAnnotation(TReqBody.class);
+        TReqSupportMethod supportMethod = methodAppReceiver.getMethod().getAnnotation(TReqSupportMethod.class);
 
         if( tReqBody != null ) {
 
-            if( Arrays.stream(supportMethod.value()).anyMatch(method -> method == HttpMethod.GET) ) {
+            if( supportMethod != null && Arrays.stream(supportMethod.value()).anyMatch(method -> method == HttpMethod.GET) ) {
 
                 throw new RuntimeException("[解析层] MethodNotSupport # GET: 当为 GET 时无法解析 Body Data ！");
 
-            } else {
-
-                methodAppReceiver.setParseData(true);
-
             }
+
+            methodAppReceiver.setParseData(true);
 
         }
 
-        return got(supportMethod, wr);
+        return supportMethod == null || got(supportMethod, wr);
 
     }
 

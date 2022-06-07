@@ -2,6 +2,7 @@ package com.talexframe.frame.core.modules.network.connection.app;
 
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +12,7 @@ import java.util.Map;
  *
  * @author TalexDreamSoul 22/06/06 下午 12:14 Project: TalexFrame
  */
+@Slf4j
 public class ClassReceiverManager {
 
     public static ClassReceiverManager INSTANCE = new ClassReceiverManager();
@@ -37,6 +39,8 @@ public class ClassReceiverManager {
 
         reqMap.put(receiver.getOwnClass(), receiver);
         pluginMap.put(receiver.getOwnClass(), webPlugin);
+
+        log.debug("[注册层] 注册 @" + receiver.getOwnClass().getName());
 
         return true;
 

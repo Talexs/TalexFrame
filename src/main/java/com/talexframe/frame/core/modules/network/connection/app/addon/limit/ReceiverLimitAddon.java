@@ -7,7 +7,6 @@ import com.talexframe.frame.core.modules.network.connection.app.subapp.MethodApp
 import com.talexframe.frame.core.pojo.wrapper.ResultData;
 import com.talexframe.frame.core.pojo.wrapper.WrappedResponse;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -21,13 +20,13 @@ import java.util.Optional;
 public class ReceiverLimitAddon extends ReceiverAddon {
 
     private final Map<Class<?>, RateLimiter> classRateLimiterMap = new HashMap<>();
-    private final Map<Method, RateLimiter> methodRateLimiterMap = new HashMap<>();
+    private final Map<String, RateLimiter> methodRateLimiterMap = new HashMap<>();
 
     public ReceiverLimitAddon() {
 
         super("ReceiverLimit", new ReceiverAddonType[] { ReceiverAddonType.CLASS_APP, ReceiverAddonType.METHOD_APP });
 
-        super.priority = ReceiverAddonPriority.HIGH;
+        super.priority = ReceiverAddonPriority.MOST_HIGHEST;
 
     }
 
@@ -40,7 +39,7 @@ public class ReceiverLimitAddon extends ReceiverAddon {
 
         RateLimiter rateLimiter = Optional.ofNullable(classRateLimiterMap.get(classAppReceiver.getOwnClass())).orElseGet(() -> {
 
-            RateLimiter rl =  RateLimiter.create(reqLimit.QPS(), reqLimit.timeout(), reqLimit.timeUnit());
+            RateLimiter rl = RateLimiter.create(reqLimit.QPS(), reqLimit.timeout(), reqLimit.timeUnit());
 
             classRateLimiterMap.put(classAppReceiver.getOwnClass(), rl);
 
@@ -59,11 +58,11 @@ public class ReceiverLimitAddon extends ReceiverAddon {
 
         if( reqLimit == null ) return true;
 
-        RateLimiter rateLimiter = Optional.ofNullable(methodRateLimiterMap.get(methodAppReceiver.getMethod())).orElseGet(() -> {
+        RateLimiter rateLimiter = Optional.ofNullable(methodRateLimiterMap.get(methodAppReceiver.getMethod().getName())).orElseGet(() -> {
 
-            RateLimiter rl =  RateLimiter.create(reqLimit.QPS(), reqLimit.timeout(), reqLimit.timeUnit());
+            RateLimiter rl = RateLimiter.create(reqLimit.QPS(), reqLimit.timeout(), reqLimit.timeUnit());
 
-            methodRateLimiterMap.put(methodAppReceiver.getMethod(), rl);
+            methodRateLimiterMap.put(methodAppReceiver.getMethod().getName(), rl);
 
             return rl;
 
@@ -85,7 +84,7 @@ public class ReceiverLimitAddon extends ReceiverAddon {
 
         rateLimiter.acquire();
 
-        return false;
+        return true;
 
     }
 

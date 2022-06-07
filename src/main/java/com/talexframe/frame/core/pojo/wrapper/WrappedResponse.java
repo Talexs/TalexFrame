@@ -84,6 +84,14 @@ public class WrappedResponse {
     @SneakyThrows
     public void returnData(Object data) {
 
+        if( data == null ) {
+
+            this.returnDataByFailed(ResultData.ResultEnum.SERVER_ERROR, "服务器异常!");
+
+            throw new RuntimeException("[应用层] 返回数据不能为空!");
+
+        }
+
         if ( response.isCommitted() ) {
 
             return;

@@ -1,7 +1,12 @@
-package com.talexframe.frame.core.modules.event.service;
+package com.talexframe.frame.core.modules.event;
 
 import cn.hutool.core.thread.ThreadUtil;
-import com.talexframe.frame.core.modules.event.*;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+import com.talexframe.frame.core.modules.event.service.IContinue;
+import com.talexframe.frame.core.modules.event.service.IEventBus;
+import com.talexframe.frame.core.modules.event.service.THandler;
+import com.talexframe.frame.core.modules.event.service.TalexEvent;
 import com.talexframe.frame.core.pojo.enums.ThreadMode;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -9,10 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author TalexDreamSoul
@@ -20,26 +22,25 @@ import java.util.Map;
 @Slf4j
 public class TalexEventBus implements IEventBus {
 
-    private static TalexEventBus instance;
+    private static TalexEventBus INSTANCE;
 
     @Getter
-    private final Map<FrameListener, List<MethodManager>> mapCaches;
+    private final Multimap<FrameListener, MethodManager> listenerManager = ArrayListMultimap.create();
+
     @Getter
     private final Map<String, TalexEvent> continueEvents = new HashMap<>(16);
 
     private TalexEventBus() {
 
-        mapCaches = new HashMap<>();
-
     }
 
     public static TalexEventBus getDefault() {
 
-        if ( instance == null ) {
+        if ( INSTANCE == null ) {
 
-            instance = new TalexEventBus();
+            INSTANCE = new TalexEventBus();
 
-            return instance;
+            return INSTANCE;
 
         }
 
@@ -50,74 +51,69 @@ public class TalexEventBus implements IEventBus {
     @Override
     public TalexEventBus registerListener(FrameListener listener) {
 
-        List<MethodManager> methodsList = mapCaches.get(listener);
+        if( listenerManager.containsKey(listener) ) {
 
-        if ( methodsList == null || methodsList.size() == 0 ) {
+            return this;
 
-            methodsList = new ArrayList<>();
+        }
 
-            Class<?> clazz = listener.getClass();
+        List<MethodManager> methodsList = new ArrayList<>(listenerManager.get(listener));
 
-            Method[] methods = clazz.getMethods();
+        Class<?> clazz = listener.getClass();
 
-            for ( Method method : methods ) {
+        Arrays.asList( clazz.getMethods() ).forEach((method) -> {
 
-                THandler annotation = method.getAnnotation(THandler.class);
+            THandler annotation = method.getAnnotation(THandler.class);
 
-                if ( annotation == null ) {
-                    continue;
-                }
+            if ( annotation == null ) return;
 
-                Type type = method.getGenericReturnType();
+            Type type = method.getGenericReturnType();
 
-                if ( !"void".equals(type.toString()) ) {
-                    throw new RuntimeException(method.getName() + " 返回值类型必须为void类型");
-                }
+            if ( !"void".equals(type.toString()) ) {
 
-                Class<?>[] parameterTypes = method.getParameterTypes();
-
-                if ( parameterTypes.length > 2 ) {
-
-                    throw new RuntimeException(method.getName() + " 参数个数必须 <= 2");
-
-                }
-
-                MethodManager methodManager = new MethodManager(listener, parameterTypes[0],
-                        method, annotation);
-
-                methodsList.add(methodManager);
-
-                for ( TalexEvent continueEvent : continueEvents.values() ) {
-
-                    this.callEvent(continueEvent, methodManager);
-
-                }
+                throw new RuntimeException(method.getName() + " 返回值类型必须为void类型");
 
             }
 
-            mapCaches.put(listener, methodsList);
+            Class<?>[] parameterTypes = method.getParameterTypes();
 
-        }
+            if ( parameterTypes.length > 2 ) {
+
+                throw new RuntimeException(method.getName() + " 参数个数必须 <= 2");
+
+            }
+
+            MethodManager methodManager = new MethodManager(listener, method, annotation);
+
+            methodsList.add(methodManager);
+
+            for ( TalexEvent continueEvent : continueEvents.values() ) {
+
+                this._callEvent(continueEvent, methodManager);
+
+            }
+
+        });
+
+        listenerManager.putAll(listener, methodsList);
 
         return this;
 
     }
 
-    private void callEvent(TalexEvent event, MethodManager methodManager) {
+    private void _callEvent(TalexEvent event, MethodManager methodManager) {
 
-        if ( methodManager.getParamType().isAssignableFrom(event.getClass()) ) {
+        // 判断 event 参数是否和 continue event 相同
+        if( !methodManager.getMethod().getParameterTypes()[0].isAssignableFrom(event.getClass()) ) return;
 
-            methodManager.listen(( (IContinue) event ).getMatchKey());
+        // execute
+        if ( methodManager.getTHandler().threadMode() == ThreadMode.ASYNC ) {
 
-            if ( methodManager.getTHandler().threadMode() == ThreadMode.ASYNC ) {
+            ThreadUtil.execAsync(() -> event(event, methodManager));
 
-                ThreadUtil.execAsync(() -> event(event, methodManager));
+        } else {
 
-            } else {
-
-                event(event, methodManager);
-
-            }
+            event(event, methodManager);
 
         }
 
@@ -126,6 +122,7 @@ public class TalexEventBus implements IEventBus {
     @Override
     public TalexEventBus callEvent(TalexEvent event) {
 
+        // 如果是 ContinuouslyEvent 放到 map 中
         if ( event instanceof IContinue ) {
 
             String matchKey = ( (IContinue) event ).getMatchKey();
@@ -133,22 +130,18 @@ public class TalexEventBus implements IEventBus {
 
         }
 
-        Map<Integer, MethodManager> preList = new HashMap<>(mapCaches.size());
+        // 筛选出匹配的 methodManager
+        Map<Integer, MethodManager> preList = new HashMap<>();
 
-        for ( Map.Entry<FrameListener, List<MethodManager>> entry : mapCaches.entrySet() ) {
+        listenerManager.entries().forEach((entry) -> {
 
-            List<MethodManager> methodList = entry.getValue();
+            if( entry.getValue().getMethod().getParameterTypes()[0].isAssignableFrom(event.getClass()) ) {
 
-            for ( MethodManager methodManager : methodList ) {
+                preList.put(entry.getKey().hashCode(), entry.getValue());
 
-                if ( methodManager.getParamType().isAssignableFrom(event.getClass()) ) {
-
-                    preList.put(methodManager.hashCode(), methodManager);
-
-                }
             }
 
-        }
+        });
 
         List<MethodManager> pl = new ArrayList<>(preList.values());
 
@@ -165,9 +158,13 @@ public class TalexEventBus implements IEventBus {
 
             if ( methodManager.getTHandler().threadMode() == ThreadMode.ASYNC ) {
 
+                log.debug("[Event] Execute async event: {}", methodManager.getMethod().getName());
+
                 ThreadUtil.execAsync(() -> event(event, methodManager));
 
             } else {
+
+                log.debug("[Event] Execute event: {}", methodManager.getMethod().getName());
 
                 event(event, methodManager);
 
@@ -208,7 +205,7 @@ public class TalexEventBus implements IEventBus {
                 String matchKey = ( (IContinue) event ).getMatchKey();
                 continueEvents.put(matchKey, event);
 
-                methodManager.listen(matchKey);
+                methodManager.listened(matchKey);
 
             }
 
@@ -216,15 +213,7 @@ public class TalexEventBus implements IEventBus {
 
                 FrameListener listener = methodManager.getOwner();
 
-                List<MethodManager> methodsList = mapCaches.get(listener);
-
-                if( methodsList != null ) {
-
-                    methodsList.remove(methodManager);
-
-                }
-
-                mapCaches.put(listener, methodsList);
+                listenerManager.remove(listener, methodManager);
 
             }
 
@@ -247,7 +236,7 @@ public class TalexEventBus implements IEventBus {
     @Override
     public TalexEventBus unRegisterListener(FrameListener listener) {
 
-        mapCaches.remove(listener);
+        listenerManager.removeAll(listener);
 
         return this;
 

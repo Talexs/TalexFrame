@@ -1,5 +1,6 @@
 package com.talexframe.frame.core.modules.event;
 
+import com.talexframe.frame.core.modules.event.service.THandler;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,22 +17,21 @@ public class MethodManager {
     private final FrameListener owner;
     @Getter
     private final Map<String, Long> listenedEvents = new HashMap<>();
-    private Class<?> paramType;
+
     private Method method;
     @Setter
     @Getter
     private THandler tHandler;
 
-    public MethodManager(FrameListener listener, Class<?> paramType, Method method, THandler tHandler) {
+    public MethodManager(FrameListener listener, Method method, THandler tHandler) {
 
         this.owner = listener;
-        this.paramType = paramType;
         this.method = method;
         this.tHandler = tHandler;
 
     }
 
-    public void listen(String key) {
+    public void listened(String key) {
 
         if ( listenedEvents.containsKey(key) ) {
 
@@ -42,10 +42,6 @@ public class MethodManager {
         listenedEvents.put(key, System.currentTimeMillis());
 
     }
-
-    public Class<?> getParamType() {return paramType;}
-
-    public void setParamType(Class<?> paramType) {this.paramType = paramType;}
 
     public Method getMethod() {return method;}
 

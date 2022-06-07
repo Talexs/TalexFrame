@@ -1,4 +1,4 @@
-package com.talexframe.frame.core.modules.event;
+package com.talexframe.frame.core.modules.event.service;
 
 /**
  * 持续性集成事件 # 即只要事件发布 不论多久监听器注册都会收到这个事件 <br /> {@link com.talexframe.frame.function.event Package }

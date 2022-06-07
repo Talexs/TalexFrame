@@ -72,7 +72,7 @@ public class ReceiverAddon extends FrameCreator {
     /**
      * 当方法调用完成时调用
      */
-    public void onPostAddParam(MethodAppReceiver methodAppReceiver, WrappedResponse wr, Object methodReturn) {  };
+    public void onPostInvokeMethod(MethodAppReceiver methodAppReceiver, WrappedResponse wr, Object methodReturn) {  };
 
     /**
      * 当即将添加参数时调用

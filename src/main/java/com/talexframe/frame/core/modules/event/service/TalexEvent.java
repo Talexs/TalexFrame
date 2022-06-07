@@ -1,4 +1,4 @@
-package com.talexframe.frame.core.modules.event;
+package com.talexframe.frame.core.modules.event.service;
 
 import lombok.Data;
 

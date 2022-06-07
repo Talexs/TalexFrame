@@ -33,7 +33,7 @@ public class ReceiverCacheRedisAddon extends ReceiverAddon {
 
         super("ReceiverMethod", new ReceiverAddonType[] { ReceiverAddonType.METHOD_APP });
 
-        super.priority = ReceiverAddonPriority.MOST_HIGHEST;
+        super.priority = ReceiverAddonPriority.LOW;
 
     }
 
@@ -52,7 +52,11 @@ public class ReceiverCacheRedisAddon extends ReceiverAddon {
 
             String key = getRedisCacheKey( tRedisCache, wr.getRequest().getRequestURI(), methodAppReceiver.getParams() );
 
-            wr.returnData(vo.get(key));
+            Object obj = vo.get(key);
+
+            if( obj == null ) return true;
+
+            wr.returnData(obj);
 
             log.info("[RedisCache] Cache Hit!");
 
@@ -65,7 +69,7 @@ public class ReceiverCacheRedisAddon extends ReceiverAddon {
     }
 
     @Override
-    public void onPostAddParam(MethodAppReceiver methodAppReceiver, WrappedResponse wr, Object methodReturn) {
+    public void onPostInvokeMethod(MethodAppReceiver methodAppReceiver, WrappedResponse wr, Object methodReturn) {
 
         TRedisCache tRedisCache = methodAppReceiver.getMethod().getAnnotation(TRedisCache.class);
 
@@ -126,7 +130,10 @@ public class ReceiverCacheRedisAddon extends ReceiverAddon {
 
                 int index = Integer.parseInt(key.substring(8, 9));
 
-                if ( index + 1 > params.size() ) {
+                if ( index > params.size() ) {
+
+                    log.warn("[RedisCache] @RedisCache #params index out of range");
+                    log.warn("[RedisCache] For param index: {} with params: {}", index, params);
 
                     throw new RuntimeException("params index out of range");
 

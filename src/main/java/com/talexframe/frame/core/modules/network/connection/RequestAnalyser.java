@@ -48,6 +48,13 @@ public class RequestAnalyser {
 
         // 解析请求
         String originalUrl = request.getRequestURI();
+
+        if( originalUrl.endsWith("/") ) {
+
+            originalUrl = originalUrl.substring(0, originalUrl.length() - 1);
+
+        }
+
         UrlBuilder urlBuilder = UrlBuilder.ofHttp(originalUrl, Charset.forName(request.getCharacterEncoding()));
 
         UrlPath urlPath = urlBuilder.getPath();
@@ -64,55 +71,81 @@ public class RequestAnalyser {
 
         String parsedUrl = UrlUtil.formatUrl(urlPath.toString());
 
+        log.debug("[解析层] Format url: " + parsedUrl);
+
         networkManager.matchUrlReceivers(parsedUrl).forEach((reqReceiver) -> {
 
-            AtomicBoolean could = new AtomicBoolean(true);
-            LinkedList<ReceiverAddon> clsReceiverAddons = ReceiverAddonAdapter.getReceiverAddons(ReceiverAddon.ReceiverAddonType.CLASS_APP);
-            clsReceiverAddons.forEach((addon) -> {
-
-                if( !could.get() ) return;
-
-                could.set(addon.onPreCheckAppReceiver(reqReceiver, wr));
-
-            });
-
-            if( !could.get() ) return;
-
             String subUrl = parsedUrl.replaceFirst(reqReceiver.getTApp().getDefaultPath(), "");
-
-            log.debug("[解析层] 匹配到的路径: " + subUrl);
 
             reqReceiver.matchUrlSubReceivers(subUrl).forEach((subReqReceiver) -> {
 
                 if( wr.getResponse().isCommitted() ) return;
 
-                Collection<ReceiverAddon> receiverAddons = ReceiverAddonAdapter.getReceiverAddons(ReceiverAddon.ReceiverAddonType.METHOD_APP);
+                log.debug("[解析层] 匹配到的路径: " + subUrl);
 
-                receiverAddons.forEach((addon) -> {
+                AtomicBoolean could = new AtomicBoolean(true);
+                LinkedList<ReceiverAddon> clsReceiverAddons = ReceiverAddonAdapter.getReceiverAddons(ReceiverAddon.ReceiverAddonType.CLASS_APP);
+                clsReceiverAddons.forEach((addon) -> {
 
                     if( !could.get() ) return;
 
-                    could.set(addon.onPreInvokeMethod(subReqReceiver, wr));
+                    log.debug("[解析层] # -- CLASS -- 开始执行接收器: " + addon.getClass().getName());
+
+                    could.set(addon.onPreCheckAppReceiver(reqReceiver, wr));
+
+                    log.debug("[解析层] # -- CLASS -- 接收器执行结果: " + could.get());
 
                 });
 
-                Object obj = subReqReceiver.onRequest(reqReceiver, subReqReceiver, wr, time);
+                if( !could.get() ) return;
 
-                receiverAddons.forEach((addon) -> addon.onPostAddParam(subReqReceiver, wr, obj));
+                    if( wr.getResponse().isCommitted() ) return;
 
-                if ( obj != null ) {
+                    Collection<ReceiverAddon> receiverAddons = ReceiverAddonAdapter.getReceiverAddons(ReceiverAddon.ReceiverAddonType.METHOD_APP);
 
-                    String tStr = JSONUtil.toJsonStr(obj);
+                    receiverAddons.forEach((addon) -> {
 
-                    wr.returnData(tStr);
+                        if( !could.get() ) return;
 
-                    log.info("[应用层] OK Return: " + tStr);
+                        log.debug("[解析层]   # -- METHOD -- 开始执行接收器: " + addon.getClass().getName());
 
-                }
+                        could.set(addon.onPreInvokeMethod(subReqReceiver, wr));
+
+                        log.debug("[解析层]   # -- METHOD -- 接收器执行结果: " + could.get());
+
+                    });
+
+                    log.debug("[解析层]   # -- METHOD -- 总体执行结果: " + could.get());
+
+                    if( !could.get() ) return;
+
+                    log.debug("[解析层]   # -- METHOD -- >>> 进入 (onRequest) | {}", could.get());
+
+                    Object obj = subReqReceiver.onRequest(reqReceiver, subReqReceiver, wr, time);
+
+                    log.debug("[解析层]   #   -- onRequest -- 执行结果: " + JSONUtil.toJsonStr(obj));
+
+                    receiverAddons.forEach((addon) -> addon.onPostInvokeMethod(subReqReceiver, wr, obj));
+
+                    log.debug("[解析层]   # -- METHOD -- 执行结果完毕!");
+
+                    if ( obj != null ) {
+
+                        String tStr = JSONUtil.toJsonStr(obj);
+
+                        wr.returnData(tStr);
+
+                        log.info("[应用层] ## OK Return: " + tStr + " ##");
+
+                    }
+
+                clsReceiverAddons.forEach((addon) -> addon.onPostCheckAppReceiver(reqReceiver, wr));
+
+                log.debug("[解析层] # -- CLASS -- 接收器执行结果完毕!");
+
+                log.debug("-------------------------------------------");
 
             });
-
-            clsReceiverAddons.forEach((addon) -> addon.onPostCheckAppReceiver(reqReceiver, wr));
 
         });
 

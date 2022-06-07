@@ -60,7 +60,13 @@ public class UrlUtil {
     }
 
     public static String formatUrl(String url) {
-        return ("/" + url).replace("\\", "/").replace("//", "/");
+
+        String result = ("/" + url);
+
+        while( result.contains("\\") ) result = result.replace("\\", "/");
+        while( result.contains("//") ) result = result.replace("//", "/");
+
+        return result;
     }
 
 }
