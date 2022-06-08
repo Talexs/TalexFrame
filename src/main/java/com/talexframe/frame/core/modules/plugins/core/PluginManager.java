@@ -370,6 +370,8 @@ public class PluginManager {
 
         }
 
+        log.info("[插件] Plugin onDisable: {}", plugin);
+
         plugin.onDisable();
 
         PluginScanner scanner = this.pluginScannerMap.get(pluginName);

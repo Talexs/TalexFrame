@@ -44,13 +44,23 @@ public class ReceiverCacheRedisAddon extends ReceiverAddon {
 
         if( tRedisCache == null ) return true;
 
+        Class<?> returnType = methodAppReceiver.getMethod().getReturnType();
+
+        if( returnType.isAssignableFrom(Void.TYPE) ) {
+
+            log.warn("[RedisCache] 方法返回类型为Void, 不支持缓存! ");
+
+            return true;
+
+        }
+
         RedisTemplate<String, Object> template = redis.getConfig().getRedisTemplate();
 
         ValueOperations<String, Object> vo = template.opsForValue();
 
         if ( !tRedisCache.delete() ) {
 
-            String key = getRedisCacheKey( tRedisCache, wr.getRequest().getRequestURI(), methodAppReceiver.getParams() );
+            String key = getRedisCacheKey( tRedisCache, wr.getRequest().getRequestURI(), wr.getParams() );
 
             Object obj = vo.get(key);
 
@@ -85,7 +95,17 @@ public class ReceiverCacheRedisAddon extends ReceiverAddon {
 
         }
 
-        String key = getRedisCacheKey( tRedisCache, wr.getRequest().getRequestURI(), methodAppReceiver.getParams() );
+        Class<?> returnType = methodAppReceiver.getMethod().getReturnType();
+
+        if( returnType.isAssignableFrom(Void.TYPE) ) {
+
+            log.warn("[RedisCache] 方法返回类型为Void, 不支持缓存! ");
+
+            return;
+
+        }
+
+        String key = getRedisCacheKey( tRedisCache, wr.getRequest().getRequestURI(), wr.getParams() );
 
         if ( tRedisCache.delete() ) {
 

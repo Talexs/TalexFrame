@@ -13,6 +13,8 @@ class TalexFrameApplicationTests {
     @SneakyThrows
     public static void main(String[] args) {
 
+        System.out.println(Number.class.isAssignableFrom(Integer.class));
+
         System.out.println(UrlUtil.formatUrl("//user/////has/1141896356@qq.com"));
 
         UrlBuilder builder = UrlBuilder.ofHttp("www.hutool.cn/?a=张三&b=%e6%9d%8e%e5%9b%9b#frag1", CharsetUtil.CHARSET_UTF_8);

@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Parameter;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -35,6 +36,8 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
         boolean parseData = methodAppReceiver.isParseData();
 
+        List<Object> params = wr.getParams();
+
         String str = parseData ? wr.getRequest().getBody() : null;
         JSONObject json = null;
 
@@ -52,7 +55,7 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
             json = JSONUtil.parseObj(str);
 
-            log.debug("[解析层] RequestData: " + json.toString());
+            log.debug("[解析层] RequestData: " + json);
 
         }
 
@@ -62,7 +65,7 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
             if( parameter.getType() == WrappedResponse.class ) {
 
-                methodAppReceiver.getParams().add(wr);
+                params.add(wr);
 
                 log.debug("[解析层]     #    -> WrappedResponse");
 
@@ -84,7 +87,7 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
             if( tParam == null ) {
 
-                methodAppReceiver.getParams().add(null);
+                params.add(null);
 
                 log.warn("[解析层] AccessWarned # MissingParamAnnotation -> In null");
 
@@ -102,7 +105,7 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
                 if ( !json.containsKey(fieldName) ) {
 
-                    if ( extracted(wr, methodAppReceiver, parameter, tParam) ) {
+                    if ( extracted(wr, parameter, tParam) ) {
 
                         log.debug("[解析层]  -- # -> Extracted");
 
@@ -126,11 +129,11 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
                         could.set(addon.onPreAddParam(methodAppReceiver, parameter, wr, obj));
 
-                        log.info("[解析层]     Accessing <- Value: {}", could.get());
+                        log.debug("[解析层]     Accessing <- Value: {}", could.get());
 
                     });
 
-                    methodAppReceiver.getParams().add(obj);
+                    params.add(obj);
 
                     paramReceiverAddons.forEach((addon) -> {
 
@@ -146,7 +149,7 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
             } catch ( ConvertException e ) {
 
-                if ( extracted(wr, methodAppReceiver, parameter, tParam) ) {
+                if ( extracted(wr, parameter, tParam) ) {
 
                     e.printStackTrace();
 
@@ -208,6 +211,8 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
         if ( tUrlParam == null ) return true;
 
+        List<Object> params = wr.getParams();
+
         String url = UrlUtil.formatUrl("/" + wr.getRequest().getRequestURI());
         String[] requestUrls = url.split("/");
         String requestUrl = UrlUtil.formatUrl("/" + methodReceiver.getTRequest().value());
@@ -238,7 +243,7 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
                 String obj = (i + 1 >= urls.length) ? urls[i] : urls[i + 1];
 
-                int ind = methodReceiver.getParams().size();
+                int ind = params.size();
 
                 AtomicBoolean could = new AtomicBoolean(true);
                 LinkedList<ReceiverAddon> urlParamReceiverAddons = ReceiverAddonAdapter.getReceiverAddons(ReceiverAddonType.URL_PARAM_APP);
@@ -250,13 +255,9 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
                 });
 
-                methodReceiver.getParams().add(obj);
+                params.add(obj);
 
-                urlParamReceiverAddons.forEach((addon) -> {
-
-                    addon.onPostAddUrlParam(methodReceiver, methodReceiver.getMethod().getParameters()[ind], wr, requestUrl, url, fieldName, obj);
-
-                });
+                urlParamReceiverAddons.forEach((addon) -> addon.onPostAddUrlParam(methodReceiver, methodReceiver.getMethod().getParameters()[ind], wr, requestUrl, url, fieldName, obj));
 
                 log.debug("[解析层]     add param: " + obj);
 
@@ -270,7 +271,7 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
     }
 
-    private boolean extracted(WrappedResponse wr, MethodAppReceiver methodAppReceiver, Parameter parameter, TParam param) {
+    private boolean extracted(WrappedResponse wr, Parameter parameter, TParam param) {
 
         if ( !param.nullable() ) {
 
@@ -282,7 +283,21 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
         } else {
 
-            methodAppReceiver.getParams().add(null);
+            if( !StrUtil.isBlankIfStr(param.defaultValue()) ) {
+
+                wr.getParams().add(
+                        new JSONObject().putOpt("value", param.defaultValue()).get("value", parameter.getType(), true)
+                );
+
+            } else if ( Number.class.isAssignableFrom( parameter.getType() ) ) { // 如果类型是数字类型就塞 0
+
+                wr.getParams().add(0);
+
+            } else if ( Boolean.class.isAssignableFrom( parameter.getType() ) ) {
+
+                wr.getParams().add(false);
+
+            } else wr.getParams().add(null);
 
         }
 

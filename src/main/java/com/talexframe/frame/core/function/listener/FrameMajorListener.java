@@ -84,6 +84,8 @@ public class FrameMajorListener {
     @EventListener
     public void onStopped(ContextClosedEvent event) {
 
+        TFrame.tframe.shutdown();
+
         log.warn("框架已停止.");
 
         TFrame.tframe.callEvent(new FramePostUnInstallEvent(System.nanoTime() - TalexFrameApplication.startedTimeStamp));

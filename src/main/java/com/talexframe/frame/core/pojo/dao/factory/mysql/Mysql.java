@@ -213,7 +213,7 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
 
                         getSession().execute("SELECT 1");
 
-                        log.debug("[数据库] [连接] 测试数据库连接成功!");
+                        log.info("[数据库] [连接] 测试数据库连接成功!");
 
                     } catch ( SQLException e ) {
 
@@ -256,11 +256,15 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
 
         if( getStatus() != DataProcessorStatus.CONNECTED ) {
 
+            log.warn("[数据库] [连接] 数据库连接已经断开，已移除检测线程 ...");
+
             CronUtil.remove(task);
 
             return false;
 
         }
+
+        log.info("[数据库] [连接] 数据库连接正常, 正在测试通道是否正常 ...");
 
         return true;
 

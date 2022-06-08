@@ -1,6 +1,7 @@
 package com.talexframe.frame.core.modules.event;
 
 import cn.hutool.core.thread.ThreadUtil;
+import cn.hutool.json.JSONUtil;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.talexframe.frame.core.modules.event.service.IContinue;
@@ -106,6 +107,8 @@ public class TalexEventBus implements IEventBus {
         // 判断 event 参数是否和 continue event 相同
         if( !methodManager.getMethod().getParameterTypes()[0].isAssignableFrom(event.getClass()) ) return;
 
+        log.debug("[Event] For _event: {} | {}", event, JSONUtil.toJsonStr(methodManager));
+
         // execute
         if ( methodManager.getTHandler().threadMode() == ThreadMode.ASYNC ) {
 
@@ -128,6 +131,8 @@ public class TalexEventBus implements IEventBus {
             String matchKey = ( (IContinue) event ).getMatchKey();
             continueEvents.put(matchKey, event);
 
+            log.debug("[Event] For continuously event: {} | {}", event, JSONUtil.toJsonStr(continueEvents));
+
         }
 
         // 筛选出匹配的 methodManager
@@ -142,6 +147,8 @@ public class TalexEventBus implements IEventBus {
             }
 
         });
+
+        log.debug("[Event] For event preList: {}", preList);
 
         List<MethodManager> pl = new ArrayList<>(preList.values());
 

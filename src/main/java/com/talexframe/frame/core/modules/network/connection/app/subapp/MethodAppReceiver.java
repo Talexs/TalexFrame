@@ -12,8 +12,6 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * {@link com.talexframe.frame.core.modules.network.connection.app Package }
@@ -41,11 +39,7 @@ public class MethodAppReceiver extends FrameCreator implements IRequestReceiver 
 
         this.tRequest = method.getAnnotation(TRequest.class);
 
-        this.params = new ArrayList<>(method.getParameterCount());
-
     }
-
-    private final List<Object> params;
 
     @Setter
     private boolean parseData = false;
@@ -55,7 +49,7 @@ public class MethodAppReceiver extends FrameCreator implements IRequestReceiver 
         log.info("[应用层] 交付执行 @" + clzAppReceiver.getOwnClass().getName() + "." + methodAppReceiver.getMethod().getName());
 
         log.info("[应用层]  #  参数一览 #");
-        log.info("[应用层]  #    (provide)-> {}", params);
+        log.info("[应用层]  #    (provide)-> {}", wr.getParams());
         log.info("[应用层]  #    (receive)-> {}", (Object) methodAppReceiver.getMethod().getParameters());
         log.info("[应用层]  #  开始执行并计时 #");
         log.info("[应用层]  ------------------------");
@@ -66,7 +60,7 @@ public class MethodAppReceiver extends FrameCreator implements IRequestReceiver 
 
             timer.start(requestID);
 
-            Object obj = method.invoke(ownApp, params.toArray());
+            Object obj = method.invoke(ownApp, wr.getParams().toArray());
 
             long ms = timer.intervalMs(wr.getRequest().getSession().getId());
 

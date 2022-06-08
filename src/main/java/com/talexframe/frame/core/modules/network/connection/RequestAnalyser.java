@@ -73,11 +73,19 @@ public class RequestAnalyser {
 
         log.debug("[解析层] Format url: " + parsedUrl);
 
+        AtomicBoolean matched = new AtomicBoolean(false);
+
         networkManager.matchUrlReceivers(parsedUrl).forEach((reqReceiver) -> {
+
+            if( matched.get() ) return;
 
             String subUrl = parsedUrl.replaceFirst(reqReceiver.getTApp().getDefaultPath(), "");
 
             reqReceiver.matchUrlSubReceivers(subUrl).forEach((subReqReceiver) -> {
+
+                if( matched.get() ) return;
+
+                matched.set(true);
 
                 if( wr.getResponse().isCommitted() ) return;
 

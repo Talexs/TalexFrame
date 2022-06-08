@@ -165,30 +165,38 @@ public class TFrame {
     public synchronized void shutdown() {
 
         if ( frameStatus == FrameStatus.STOPPED ) {
+
             return;
+
         }
 
-        this.setFrameStatus(FrameStatus.STOPPING);
-
-        log.warn("正在关闭服务器...");
+        log.warn("正在关闭服务器... (" + frameStatus.name() + ")");
 
         if ( pluginManager != null ) {
 
+            log.info("[插件] 正在卸载插件...");
+
             for ( String plugin : pluginManager.getPluginHashMap().keySet() ) {
+
+                log.info("[插件] 卸载插件: " + plugin);
 
                 pluginManager.unloadPlugin(plugin);
 
+                log.info("[插件] 插件卸载完成: " + plugin);
+
             }
+
+            log.info("[插件] 所有插件卸载完成!");
 
         }
 
         if ( daoManager != null ) {
+
+            log.info("[数据库] 正在关闭数据库连接...");
+
             daoManager.shutdown();
-        }
 
-        if ( TalexFrameApplication.context != null ) {
-
-            TalexFrameApplication.context.close();
+            log.info("[数据库] 所有数据库连接已关闭!");
 
         }
 

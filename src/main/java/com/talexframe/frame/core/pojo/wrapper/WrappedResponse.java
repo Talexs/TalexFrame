@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 结果包装类 <br /> {@link com.talexframe.frame.wrapper Package }
@@ -24,6 +26,9 @@ public class WrappedResponse {
 
     private BodyCopyHttpServletRequestWrapper request;
     private HttpServletResponse response;
+
+    @Getter
+    private final List<Object> params = new ArrayList<>();
 
     /**
      * 注意，此重定向请求会被浏览器缓存，谨慎使用!
