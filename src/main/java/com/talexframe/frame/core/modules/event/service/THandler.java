@@ -1,4 +1,4 @@
-package com.talexframe.frame.core.modules.event;
+package com.talexframe.frame.core.modules.event.service;
 
 import com.talexframe.frame.core.pojo.enums.EventPriority;
 import com.talexframe.frame.core.pojo.enums.ThreadMode;

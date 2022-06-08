@@ -1,6 +1,7 @@
-package com.talexframe.frame.core.modules.event;
+package com.talexframe.frame.core.modules.event.service;
 
-import com.talexframe.frame.core.modules.event.service.TalexEventBus;
+import com.talexframe.frame.core.modules.event.FrameListener;
+import com.talexframe.frame.core.modules.event.TalexEventBus;
 
 /**
  * EventBus 抽象接口逻辑

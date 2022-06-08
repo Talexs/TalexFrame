@@ -1,6 +1,6 @@
 package com.talexframe.frame.core.modules.event.events.dao;
 
-import com.talexframe.frame.core.modules.event.Cancellable;
+import com.talexframe.frame.core.modules.event.service.Cancellable;
 
 /**
  * <br /> {@link com.talexframe.frame.function.event.events.mysql Package }

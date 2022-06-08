@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 结果包装类 <br /> {@link com.talexframe.frame.wrapper Package }
@@ -24,6 +26,9 @@ public class WrappedResponse {
 
     private BodyCopyHttpServletRequestWrapper request;
     private HttpServletResponse response;
+
+    @Getter
+    private final List<Object> params = new ArrayList<>();
 
     /**
      * 注意，此重定向请求会被浏览器缓存，谨慎使用!
@@ -83,6 +88,14 @@ public class WrappedResponse {
 
     @SneakyThrows
     public void returnData(Object data) {
+
+        if( data == null ) {
+
+            this.returnDataByFailed(ResultData.ResultEnum.SERVER_ERROR, "服务器异常!");
+
+            throw new RuntimeException("[应用层] 返回数据不能为空!");
+
+        }
 
         if ( response.isCommitted() ) {
 

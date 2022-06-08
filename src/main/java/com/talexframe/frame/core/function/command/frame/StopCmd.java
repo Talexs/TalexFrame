@@ -1,5 +1,6 @@
 package com.talexframe.frame.core.function.command.frame;
 
+import com.talexframe.frame.TalexFrameApplication;
 import com.talexframe.frame.core.function.command.BaseCommand;
 import com.talexframe.frame.core.function.command.ISender;
 import com.talexframe.frame.core.talex.TFrame;
@@ -20,7 +21,11 @@ public class StopCmd extends BaseCommand {
     @Override
     public boolean executeCommand(ISender sender, String wholeCommand, String matchedLabel, String[] args) {
 
-        tframe.shutdown();
+        if ( TalexFrameApplication.context != null ) {
+
+            TalexFrameApplication.context.stop();
+
+        }
 
         return false;
 

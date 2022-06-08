@@ -10,11 +10,11 @@ import com.talexframe.frame.core.modules.network.connection.app.subapp.MethodApp
 import com.talexframe.frame.core.talex.FrameCreator;
 import com.talexframe.frame.utils.UrlUtil;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * {@link com.talexframe.frame.core.modules.network.connection.app Package }
@@ -22,6 +22,7 @@ import java.util.List;
  * @author TalexDreamSoul 22/06/06 下午 12:08 Project: TalexFrame
  */
 @Getter
+@Slf4j
 public class ClassAppReceiver extends FrameCreator implements IRequestReceiver {
 
     private final TApp tApp;
@@ -41,15 +42,17 @@ public class ClassAppReceiver extends FrameCreator implements IRequestReceiver {
 
     }
 
-    public Collection<MethodAppReceiver> matchUrlSubReceivers(String url) {
+    public Set<MethodAppReceiver> matchUrlSubReceivers(String url) {
 
-        List<MethodAppReceiver> list = new ArrayList<>();
+        Set<MethodAppReceiver> list = new HashSet<>();
 
         this.map.entries().forEach((entry) -> {
 
             if( UrlUtil.advancedUrlChecker(entry.getKey(), url) ) {
 
                 list.add( entry.getValue() );
+
+                log.debug("[解析层] 匹配到 - {} | @{}.{}", entry.getKey(), entry.getValue().getOwnClass().getName(), entry.getValue().getMethod().getName());
 
             }
 
@@ -68,7 +71,10 @@ public class ClassAppReceiver extends FrameCreator implements IRequestReceiver {
 
             MethodAppReceiver receiver = new MethodAppReceiver(this.tApp, method);
 
-            map.put(receiver.getTRequest().value(), receiver);
+            String value = UrlUtil.formatUrl(receiver.getTRequest().value());
+            map.put(value, receiver);
+
+            log.debug("[ClassAppReceiver] 方法注册成功 - " + value);
 
         }
 

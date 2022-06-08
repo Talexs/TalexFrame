@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Parameter;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -28,50 +29,65 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
         super("ReceiverParam", new ReceiverAddonType[] { ReceiverAddonType.METHOD_APP });
 
-        super.priority = ReceiverAddonPriority.HIGHEST;
-
     }
 
     @Override
     public boolean onPreInvokeMethod(MethodAppReceiver methodAppReceiver, WrappedResponse wr) {
 
-        if ( !methodAppReceiver.isParseData() ) { return true; }
+        boolean parseData = methodAppReceiver.isParseData();
 
-        String str = wr.getRequest().getBody();
+        List<Object> params = wr.getParams();
 
-        if ( StrUtil.isBlankIfStr(str) ) {
+        String str = parseData ? wr.getRequest().getBody() : null;
+        JSONObject json = null;
 
-            wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Data error");
+        if ( parseData ) {
 
-            log.info("[解析层] AccessDenied # MissingBodyData");
+            if( StrUtil.isBlankIfStr(str) ) {
 
-            return false;
+                wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Data error");
+
+                log.info("[解析层] AccessDenied # MissingBodyData");
+
+                return false;
+
+            }
+
+            json = JSONUtil.parseObj(str);
+
+            log.debug("[解析层] RequestData: " + json);
 
         }
 
-        JSONObject json = JSONUtil.parseObj(str);
-
         for ( Parameter parameter : methodAppReceiver.getMethod().getParameters() ) {
+
+            log.debug("[解析层]  -- Parameter: " + parameter.getName());
 
             if( parameter.getType() == WrappedResponse.class ) {
 
-                methodAppReceiver.getParams().add(wr);
+                params.add(wr);
+
+                log.debug("[解析层]     #    -> WrappedResponse");
 
                 continue;
 
             }
 
-            if ( this.processUrlParam( methodAppReceiver, wr ) ) {
+            if ( !this.processUrlParam( methodAppReceiver, parameter, wr ) ) {
+
+                log.debug("[解析层]     #    -> UrlParam");
 
                 continue;
 
             }
 
-            TParam tParam = methodAppReceiver.getMethod().getAnnotation(TParam.class);
+            if( !parseData ) continue;
+
+            TParam tParam = parameter.getAnnotation(TParam.class);
 
             if( tParam == null ) {
 
-                methodAppReceiver.getParams().add(null);
+                params.add(null);
 
                 log.warn("[解析层] AccessWarned # MissingParamAnnotation -> In null");
 
@@ -79,13 +95,19 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
             }
 
+            log.debug("[解析层]     #    -> TParam");
+
             try {
 
                 String fieldName = tParam.value() != null ? tParam.value() : parameter.getName();
 
+                log.debug("[解析层]          -> FieldName: " + fieldName);
+
                 if ( !json.containsKey(fieldName) ) {
 
-                    if ( extracted(wr, methodAppReceiver, parameter, tParam) ) {
+                    if ( extracted(wr, parameter, tParam) ) {
+
+                        log.debug("[解析层]  -- # -> Extracted");
 
                         return false;
 
@@ -95,31 +117,39 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
                     Object obj = json.get(fieldName, parameter.getType());
 
+                    log.debug("[解析层]  -- # -> Param: " + obj);
+
                     AtomicBoolean could = new AtomicBoolean(true);
                     LinkedList<ReceiverAddon> paramReceiverAddons = ReceiverAddonAdapter.getReceiverAddons(ReceiverAddonType.PARAM_APP);
                     paramReceiverAddons.forEach((addon) -> {
 
                         if( !could.get() ) return;
 
+                        log.debug("[解析层]     Accessing -> {} | Object: {}", parameter.getType().getName(), obj);
+
                         could.set(addon.onPreAddParam(methodAppReceiver, parameter, wr, obj));
+
+                        log.debug("[解析层]     Accessing <- Value: {}", could.get());
 
                     });
 
-                    methodAppReceiver.getParams().add(obj);
+                    params.add(obj);
 
                     paramReceiverAddons.forEach((addon) -> {
 
+                        log.debug("[解析层]     Accessing -> {} | Object: {}", parameter.getType().getName(), obj);
+
                         addon.onPostAddParam(methodAppReceiver, parameter, wr, obj);
 
-                    });
+                        log.debug("[解析层]     Accessing <- Done!");
 
-                    return true;
+                    });
 
                 }
 
             } catch ( ConvertException e ) {
 
-                if ( extracted(wr, methodAppReceiver, parameter, tParam) ) {
+                if ( extracted(wr, parameter, tParam) ) {
 
                     e.printStackTrace();
 
@@ -175,39 +205,45 @@ public class ReceiverParamAddon extends ReceiverAddon {
     //
     // }
 
-    public boolean processUrlParam(MethodAppReceiver methodReceiver, WrappedResponse wr) {
+    public boolean processUrlParam(MethodAppReceiver methodReceiver, Parameter parameter, WrappedResponse wr) {
 
-        TUrlParam tUrlParam = methodReceiver.getMethod().getAnnotation(TUrlParam.class);
+        TUrlParam tUrlParam = parameter.getAnnotation(TUrlParam.class);
 
         if ( tUrlParam == null ) return true;
 
-        String url = wr.getRequest().getRequestURI();
+        List<Object> params = wr.getParams();
 
-        String[] requestUrls = UrlUtil.formatUrl("/" + url).split("/");
-        String[] requireUrls = UrlUtil.formatUrl("/" + methodReceiver.getTRequest().value()).split("/");
+        String url = UrlUtil.formatUrl("/" + wr.getRequest().getRequestURI());
+        String[] requestUrls = url.split("/");
+        String requestUrl = UrlUtil.formatUrl("/" + methodReceiver.getTRequest().value());
+        String[] requireUrls = requestUrl.split("/");
 
         if ( requestUrls.length != requireUrls.length ) {
 
-            log.info("[解析层] AccessDenied - missing parameters # " + url + " as " + methodReceiver.getTRequest().value() + " | {}, {}", requestUrls.length, requireUrls.length);
+            log.info("[解析层]   AccessDenied - missing parameters # " + url + " as " + requestUrl + " | {}, {}", requestUrls.length, requireUrls.length);
+
+            wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Data error!");
 
             return false;
 
         }
 
         String fieldName = tUrlParam.value();
-        String[] originUrl = UrlUtil.formatUrl(methodReceiver.getTRequest().value()).split("/");
+        String[] originUrl = UrlUtil.formatUrl(requestUrl).split("/");
         String[] urls = UrlUtil.formatUrl(url).split("/");
+
+        log.debug("[解析层] --> For method: {}", (Object) methodReceiver.getMethod().getParameters());
 
         for( int i = 0; i < originUrl.length; ++i ) {
 
             String thisUrl = originUrl[i];
-            log.debug("[解析层] thisUrl: " + thisUrl + " | fieldName: " + fieldName);
+            log.debug("[解析层]     thisUrl: " + thisUrl + " | fieldName: " + fieldName);
 
             if( thisUrl.equalsIgnoreCase("{" + fieldName + "}") ) {
 
                 String obj = (i + 1 >= urls.length) ? urls[i] : urls[i + 1];
 
-                int ind = methodReceiver.getParams().size();
+                int ind = params.size();
 
                 AtomicBoolean could = new AtomicBoolean(true);
                 LinkedList<ReceiverAddon> urlParamReceiverAddons = ReceiverAddonAdapter.getReceiverAddons(ReceiverAddonType.URL_PARAM_APP);
@@ -215,19 +251,15 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
                     if( !could.get() ) return;
 
-                    could.set(addon.onPreAddUrlParam(methodReceiver, methodReceiver.getMethod().getParameters()[ind], wr, methodReceiver.getTRequest().value(), url, fieldName, obj));
+                    could.set(addon.onPreAddUrlParam(methodReceiver, methodReceiver.getMethod().getParameters()[ind], wr, requestUrl, url, fieldName, obj));
 
                 });
 
-                methodReceiver.getParams().add(obj);
+                params.add(obj);
 
-                urlParamReceiverAddons.forEach((addon) -> {
+                urlParamReceiverAddons.forEach((addon) -> addon.onPostAddUrlParam(methodReceiver, methodReceiver.getMethod().getParameters()[ind], wr, requestUrl, url, fieldName, obj));
 
-                    addon.onPostAddUrlParam(methodReceiver, methodReceiver.getMethod().getParameters()[ind], wr, methodReceiver.getTRequest().value(), url, fieldName, obj);
-
-                });
-
-                log.debug("[解析层] add param: " + obj);
+                log.debug("[解析层]     add param: " + obj);
 
                 return true;
 
@@ -239,7 +271,7 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
     }
 
-    private boolean extracted(WrappedResponse wr, MethodAppReceiver methodAppReceiver, Parameter parameter, TParam param) {
+    private boolean extracted(WrappedResponse wr, Parameter parameter, TParam param) {
 
         if ( !param.nullable() ) {
 
@@ -251,7 +283,21 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
         } else {
 
-            methodAppReceiver.getParams().add(null);
+            if( !StrUtil.isBlankIfStr(param.defaultValue()) ) {
+
+                wr.getParams().add(
+                        new JSONObject().putOpt("value", param.defaultValue()).get("value", parameter.getType(), true)
+                );
+
+            } else if ( Number.class.isAssignableFrom( parameter.getType() ) ) { // 如果类型是数字类型就塞 0
+
+                wr.getParams().add(0);
+
+            } else if ( Boolean.class.isAssignableFrom( parameter.getType() ) ) {
+
+                wr.getParams().add(false);
+
+            } else wr.getParams().add(null);
 
         }
 

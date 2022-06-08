@@ -1,4 +1,4 @@
-package com.talexframe.frame.core.modules.event;
+package com.talexframe.frame.core.modules.event.service;
 
 /**
  * 标志者一个事件可以被取消

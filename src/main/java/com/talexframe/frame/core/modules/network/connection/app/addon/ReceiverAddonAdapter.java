@@ -6,6 +6,7 @@ import com.talexframe.frame.core.modules.network.connection.app.addon.cache.redi
 import com.talexframe.frame.core.modules.network.connection.app.addon.limit.ReceiverLimitAddon;
 import com.talexframe.frame.core.modules.network.connection.app.addon.login.ReceiverLoginAddon;
 import com.talexframe.frame.core.modules.network.connection.app.addon.method.ReceiverMethodAddon;
+import com.talexframe.frame.core.modules.network.connection.app.addon.param.ReceiverParamAddon;
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.assertions.ReceiverAssertValidateAddon;
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.max.length.ReceiverMaxLengthValidateAddon;
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.max.value.ReceiverMaxValueValidateAddon;
@@ -20,7 +21,6 @@ import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import com.talexframe.frame.core.talex.FrameCreator;
 import lombok.SneakyThrows;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -39,7 +39,7 @@ public class ReceiverAddonAdapter extends PluginCompAdapter<ReceiverAddon> {
 
     public static LinkedList<ReceiverAddon> getReceiverAddons(ReceiverAddon.ReceiverAddonType type) {
 
-        return receiverAddonTypeMap.get(type).stream().sorted(Comparator.comparingInt(o -> o.getPriority().getPriority())).collect(Collectors.toCollection(LinkedList::new));
+        return receiverAddonTypeMap.get(type).stream().sorted((o1, o2) -> o2.getPriority().getPriority() - o1.getPriority().getPriority()).collect(Collectors.toCollection(LinkedList::new));
 
     }
 
@@ -51,6 +51,7 @@ public class ReceiverAddonAdapter extends PluginCompAdapter<ReceiverAddon> {
         register(new ReceiverPermissionAddon());
         register(new ReceiverLimitAddon());
         register(new ReceiverMethodAddon());
+        register(new ReceiverParamAddon());
 
         register(new ReceiverCacheRedisAddon());
 

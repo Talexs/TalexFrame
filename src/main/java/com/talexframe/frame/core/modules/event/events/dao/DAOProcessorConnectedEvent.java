@@ -1,6 +1,6 @@
 package com.talexframe.frame.core.modules.event.events.dao;
 
-import com.talexframe.frame.core.modules.event.IContinue;
+import com.talexframe.frame.core.modules.event.service.IContinue;
 import lombok.Getter;
 import lombok.Setter;
 

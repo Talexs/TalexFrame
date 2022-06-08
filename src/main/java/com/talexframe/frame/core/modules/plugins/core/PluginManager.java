@@ -16,7 +16,6 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -73,15 +72,17 @@ public class PluginManager {
 
     public void loadAllPluginsInFolder() {
 
-        String[] list = this.pluginFolder.list();
+        File[] list = this.pluginFolder.listFiles();
 
         log.info("[Plugin] Loading all plugins ...");
 
         if ( list != null ) {
 
-            for ( String targetFile : Objects.requireNonNull(list) ) {
+            for ( File targetFile : Objects.requireNonNull(list) ) {
 
-                loadPlugin(targetFile);
+                if( targetFile.isDirectory() ) continue;
+
+                loadPlugin(targetFile.getName());
 
             }
 
@@ -254,7 +255,7 @@ public class PluginManager {
 
                 String a = IoUtil.read(is, Charset.defaultCharset());
 
-                IoUtil.writeUtf8(new FileOutputStream(file), true, a);
+                IoUtil.writeUtf8(Files.newOutputStream(file.toPath()), true, a);
 
             }
 
@@ -368,6 +369,8 @@ public class PluginManager {
             return false;
 
         }
+
+        log.info("[插件] Plugin onDisable: {}", plugin);
 
         plugin.onDisable();
 

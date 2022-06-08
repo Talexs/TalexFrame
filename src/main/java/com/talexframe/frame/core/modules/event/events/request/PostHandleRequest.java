@@ -1,6 +1,6 @@
 package com.talexframe.frame.core.modules.event.events.request;
 
-import com.talexframe.frame.core.modules.event.TalexEvent;
+import com.talexframe.frame.core.modules.event.service.TalexEvent;
 import com.talexframe.frame.core.pojo.wrapper.BodyCopyHttpServletRequestWrapper;
 import lombok.Getter;
 import org.springframework.web.servlet.ModelAndView;

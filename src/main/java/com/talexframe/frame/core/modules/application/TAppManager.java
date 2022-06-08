@@ -3,7 +3,6 @@ package com.talexframe.frame.core.modules.application;
 import com.talexframe.frame.core.modules.event.events.app.AppPostRegisterEvent;
 import com.talexframe.frame.core.modules.event.events.app.AppPreRegisterEvent;
 import com.talexframe.frame.core.modules.event.events.app.AppUnRegisteredEvent;
-import com.talexframe.frame.core.modules.network.connection.RequestAnalyser;
 import com.talexframe.frame.core.modules.network.interfaces.IUnRegisterHandler;
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import com.talexframe.frame.core.modules.repository.TRepo;
@@ -64,7 +63,7 @@ public class TAppManager {
 
         AppPreRegisterEvent event = new AppPreRegisterEvent(plugin, controller);
 
-        TFrame.tframe.callEvent(new AppPostRegisterEvent(plugin, controller));
+        TFrame.tframe.callEvent(event);
 
         if( event.isCancelled() ) return false;
 

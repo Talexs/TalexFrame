@@ -1,7 +1,7 @@
 package com.talexframe.frame.core.function.listener;
 
 import com.talexframe.frame.core.modules.event.FrameListener;
-import com.talexframe.frame.core.modules.event.THandler;
+import com.talexframe.frame.core.modules.event.service.THandler;
 import com.talexframe.frame.core.modules.event.events.dao.DAOProcessorPreShutdownEvent;
 import com.talexframe.frame.core.modules.repository.TRepo;
 import com.talexframe.frame.core.modules.repository.TRepoPlus;
