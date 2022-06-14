@@ -97,11 +97,11 @@ public class RequestAnalyser {
 
                     if( !could.get() ) return;
 
-                    log.debug("[解析层] # -- CLASS -- 开始执行接收器: " + addon.getClass().getName());
+                    // log.debug("[解析层] # -- CLASS -- 开始执行接收器: " + addon.getClass().getName());
 
                     could.set(addon.onPreCheckAppReceiver(reqReceiver, wr));
 
-                    log.debug("[解析层] # -- CLASS -- 接收器执行结果: " + could.get());
+                    // log.debug("[解析层] # -- CLASS -- 接收器执行结果: " + could.get());
 
                 });
 
@@ -133,7 +133,8 @@ public class RequestAnalyser {
 
                     log.debug("[解析层]   #   -- onRequest -- 执行结果: " + JSONUtil.toJsonStr(obj));
 
-                    receiverAddons.forEach((addon) -> addon.onPostInvokeMethod(subReqReceiver, wr, obj));
+                    final Object finalObj = obj;
+                    receiverAddons.forEach((addon) -> addon.onPostInvokeMethod(subReqReceiver, wr, finalObj));
 
                     log.debug("[解析层]   # -- METHOD -- 执行结果完毕!");
 
@@ -149,7 +150,7 @@ public class RequestAnalyser {
 
                 clsReceiverAddons.forEach((addon) -> addon.onPostCheckAppReceiver(reqReceiver, wr));
 
-                log.debug("[解析层] # -- CLASS -- 接收器执行结果完毕!");
+                // log.debug("[解析层] # -- CLASS -- 接收器执行结果完毕!");
 
                 log.debug("-------------------------------------------");
 

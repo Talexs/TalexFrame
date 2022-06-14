@@ -5,6 +5,7 @@ import com.google.common.util.concurrent.RateLimiter;
 import com.talexframe.frame.core.modules.application.TAppManager;
 import com.talexframe.frame.core.modules.event.events.request.RequestCannotGetTokenEvent;
 import com.talexframe.frame.core.modules.event.events.request.RequestCorsTryEvent;
+import com.talexframe.frame.core.pojo.enums.FrameStatus;
 import com.talexframe.frame.core.pojo.wrapper.ResultData;
 import com.talexframe.frame.core.pojo.wrapper.WrappedResponse;
 import com.talexframe.frame.core.talex.TFrame;
@@ -38,6 +39,8 @@ public class RequestConnector {
         this.printConnectionInfo();
 
         this.processLimiter();
+
+        this.processFrameStatus();
 
     }
 
@@ -74,7 +77,21 @@ public class RequestConnector {
 
         globalLimiter.acquire();
 
-        this.headerProcessor();
+    }
+
+    private void processFrameStatus() {
+
+        if( tframe.getFrameStatus() != FrameStatus.RUNNING ) {
+
+            wr.returnDataByFailed(ResultData.ResultEnum.SERVER_ERROR, "服务器维护");
+
+            log.warn("[连接层] 请求已被拦截 - 服务器状态异常 | {}", tframe.getFrameStatus().getMsg());
+
+        } else {
+
+            this.headerProcessor();
+
+        }
 
     }
 

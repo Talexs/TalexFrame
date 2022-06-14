@@ -194,9 +194,7 @@ public class ReceiverCacheRedisAddon extends ReceiverAddon {
 
                 key = url;
 
-            }
-
-            if ( key.startsWith("#url") ) {
+            } else if ( key.startsWith("#url") ) {
 
                 int index = Integer.parseInt(key.substring(5, 6));
 

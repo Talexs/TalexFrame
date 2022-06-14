@@ -182,10 +182,10 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
             dataSource.setUsername(config.getUsername());
             dataSource.setPassword(config.getPassword());
 
-            dataSource.setTimeBetweenEvictionRunsMillis(15000);
-            dataSource.setValidationQuery("SELECT 1");
+            // dataSource.setTimeBetweenEvictionRunsMillis(15000);
+            // dataSource.setValidationQuery("SELECT 1");
 
-            dataSource.setTestWhileIdle(true);
+            // dataSource.setTestWhileIdle(true);
 
             session = Session.create(dataSource);
 
@@ -197,7 +197,13 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
 
             status = DataProcessorStatus.CONNECTED;
 
-            task = CronUtil.schedule("0/10 * * * * ? ", (Runnable) () -> {
+            task = CronUtil.schedule("0/10 * * * * ?", (Runnable) () -> {
+
+                if( status != DataProcessorStatus.CONNECTED ) {
+
+                     return;
+
+                }
 
                 if( !checker() ) return;
 
@@ -273,6 +279,8 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
     @SneakyThrows
     @Override
     public boolean disconnect() {
+
+        log.debug("[数据库] [断开] 断开数据库连接 ...");
 
         status = DataProcessorStatus.DISCONNECTED;
 
