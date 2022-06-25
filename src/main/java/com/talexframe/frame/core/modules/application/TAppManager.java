@@ -154,7 +154,7 @@ public class TAppManager {
 
         }
 
-        public List<T> getAnnos(TApp controller) {
+        public List<T> getAnnos() {
 
             List<T> list = new ArrayList<>();
 
