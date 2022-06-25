@@ -107,46 +107,44 @@ public class RequestAnalyser {
 
                 if( !could.get() ) return;
 
-                    if( wr.getResponse().isCommitted() ) return;
+                Collection<ReceiverAddon> receiverAddons = ReceiverAddonAdapter.getReceiverAddons(ReceiverAddon.ReceiverAddonType.METHOD_APP);
 
-                    Collection<ReceiverAddon> receiverAddons = ReceiverAddonAdapter.getReceiverAddons(ReceiverAddon.ReceiverAddonType.METHOD_APP);
-
-                    receiverAddons.forEach((addon) -> {
-
-                        if( !could.get() ) return;
-
-                        log.debug("[解析层]   # -- METHOD -- 开始执行接收器: " + addon.getClass().getName());
-
-                        could.set(addon.onPreInvokeMethod(subReqReceiver, wr));
-
-                        log.debug("[解析层]   # -- METHOD -- 接收器执行结果: " + could.get());
-
-                    });
-
-                    log.debug("[解析层]   # -- METHOD -- 总体执行结果: " + could.get());
+                receiverAddons.forEach((addon) -> {
 
                     if( !could.get() ) return;
 
-                    log.debug("[解析层]   # -- METHOD -- >>> 进入 (onRequest) | {}", could.get());
+                    // log.debug("[解析层]   # -- METHOD -- 开始执行接收器: " + addon.getClass().getName());
 
-                    Object obj = subReqReceiver.onRequest(reqReceiver, subReqReceiver, wr, time);
+                    could.set(addon.onPreInvokeMethod(subReqReceiver, wr));
 
-                    log.debug("[解析层]   #   -- onRequest -- 执行结果: " + JSONUtil.toJsonStr(obj));
+                    // log.debug("[解析层]   # -- METHOD -- 接收器执行结果: " + could.get());
 
-                    final Object finalObj = obj;
-                    receiverAddons.forEach((addon) -> addon.onPostInvokeMethod(subReqReceiver, wr, finalObj));
+                });
 
-                    log.debug("[解析层]   # -- METHOD -- 执行结果完毕!");
+                log.debug("[解析层]   # -- METHOD -- 总体执行结果: " + could.get());
 
-                    if ( obj != null ) {
+                if( !could.get() ) return;
 
-                        String tStr = JSONUtil.toJsonStr(obj);
+                log.debug("[解析层]   # -- METHOD -- >>> 进入 (onRequest) | {}", could.get());
 
-                        wr.returnData(tStr);
+                Object obj = subReqReceiver.onRequest(reqReceiver, subReqReceiver, wr, time);
 
-                        log.info("[应用层] ## OK Return: " + tStr + " ##");
+                log.debug("[解析层]   #   -- onRequest -- 执行结果: " + JSONUtil.toJsonStr(obj));
 
-                    }
+                final Object finalObj = obj;
+                receiverAddons.forEach((addon) -> addon.onPostInvokeMethod(subReqReceiver, wr, finalObj));
+
+                log.debug("[解析层]   # -- METHOD -- 执行结果完毕!");
+
+                if ( obj != null ) {
+
+                    String tStr = JSONUtil.toJsonStr(obj);
+
+                    wr.returnData(tStr);
+
+                    log.info("[应用层] ## OK Return: " + tStr + " ##");
+
+                }
 
                 clsReceiverAddons.forEach((addon) -> addon.onPostCheckAppReceiver(reqReceiver, wr));
 

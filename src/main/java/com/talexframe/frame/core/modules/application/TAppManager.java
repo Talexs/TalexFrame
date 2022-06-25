@@ -12,7 +12,12 @@ import com.talexframe.frame.core.talex.TFrame;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -135,6 +140,41 @@ public class TAppManager {
         TFrame.tframe.callEvent(new AppUnRegisteredEvent(plugin, controller));
 
         return true;
+
+    }
+
+    public static class TAppAnnoGetter<T extends Annotation> {
+
+        @SuppressWarnings( "unchecked" )
+        private Class<T> templateClass = (Class<T>) ( (ParameterizedType) this.getClass().getGenericSuperclass() ).getActualTypeArguments()[0];
+
+        public TAppAnnoGetter() {
+
+
+
+        }
+
+        public List<T> getAnnos(TApp controller) {
+
+            List<T> list = new ArrayList<>();
+
+            manager.controllers.keySet().forEach((cls) -> {
+
+                for( Method method : cls.getMethods() ) {
+
+                    if( method.isAnnotationPresent(templateClass) ) {
+
+                        list.add(method.getAnnotation(templateClass));
+
+                    }
+
+                }
+
+            });
+
+            return list;
+
+        }
 
     }
 
