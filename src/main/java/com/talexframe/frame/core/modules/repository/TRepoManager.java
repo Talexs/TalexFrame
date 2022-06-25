@@ -133,10 +133,14 @@ public class TRepoManager {
 
                 if ( Repo instanceof TRepoPlus ) {
 
+                    log.debug("Init table Repo - " + Repo.getClass().getName());
+
                     TRepoPlus<?> plusRepo = ( (TRepoPlus<?>) Repo );
                     plusRepo.initTable();
 
                     scanner.pushService(() -> {
+
+                        log.debug("Init Repo - " + Repo.getClass().getName());
 
                         plusRepo.onInstall();
 

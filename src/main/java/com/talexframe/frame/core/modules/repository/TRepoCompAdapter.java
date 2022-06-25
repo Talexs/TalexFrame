@@ -21,7 +21,7 @@ public class TRepoCompAdapter extends PluginCompAdapter<TRepo> {
     @Override
     public boolean injectWithInstance(PluginScanner scanner, WebPlugin webPlugin, TRepo instance) {
 
-        log.info("[TRepoCompAdapter] injectWithInstance: {}", instance.getClass().getName());
+        log.debug("[TRepoCompAdapter] injectWithInstance: {}", instance.getClass().getName());
 
         return repoManager.registerRepo( webPlugin, instance );
 

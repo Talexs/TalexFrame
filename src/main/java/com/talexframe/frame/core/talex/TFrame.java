@@ -1,5 +1,6 @@
 package com.talexframe.frame.core.talex;
 
+import cn.hutool.core.thread.ThreadUtil;
 import com.google.common.collect.Multimap;
 import com.talexframe.frame.TalexFrameApplication;
 import com.talexframe.frame.core.function.command.CommandManager;
@@ -104,12 +105,13 @@ public class TFrame {
         this.repoManager = TRepoManager.init();
         this.appManager = TAppManager.init();
 
+        log.info("Loading dao-manager ...");
+        this.daoManager = new DAOManager();
+
+
         getEventBus().registerListener(new FrameSelfListener());
 
         callEvent(new FrameStartedEvent(System.nanoTime() - TalexFrameApplication.startedTimeStamp));
-
-        log.info("Loading dao-manager ...");
-        this.daoManager = new DAOManager();
 
         if ( frameStatus == FrameStatus.RUNNING ) {
 
@@ -140,10 +142,15 @@ public class TFrame {
 
             new YamlConfigAdapter();
             new JSONConfigAdapter();
-            this.pluginManager = new PluginManager(new File(mainFile.getAbsolutePath() + "/plugins"));
-
-            this.pluginManager.loadAllPluginsInFolder();
             // ThreadUtil.execAsync(() -> this.pluginManager.loadAllPluginsInFolder());
+
+            ThreadUtil.execute(() -> {
+
+                this.pluginManager = new PluginManager(new File(mainFile.getAbsolutePath() + "/plugins"));
+
+                this.pluginManager.loadAllPluginsInFolder();
+
+            });
 
             log.info("框架启动成功! (" + (System.nanoTime() - TalexFrameApplication.startedTimeStamp) + " ns)");
             log.debug("** DEBUG 模式已启动!");

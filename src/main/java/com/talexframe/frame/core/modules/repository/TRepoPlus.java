@@ -4,7 +4,6 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.Entity;
 import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import com.talexframe.frame.core.pojo.dao.vo.auto.AutoSaveData;
 import com.talexframe.frame.core.pojo.dao.vo.auto.TAutoColumn;
@@ -95,9 +94,14 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
 
     }
 
+    /**
+     * @param data 数据实例 默认 不cache 所以每次数据一更新就自动塞到数据库
+     */
     public void addData(T data) {
 
         if( !doCached() ) {
+
+            saveDataToMysql(data);
 
             return;
 
@@ -110,24 +114,14 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
     }
 
     /**
-     * @param data 数据实例 默认 不cache 所以每次数据一更新就自动塞到数据库
-     *
      * @return 返回真不放入数据map
      */
     @SneakyThrows
     public boolean onSingleDataLoaded(WrappedData<T> data) {
 
-        if ( !doCached() ) {
+        // 每次放入map也刷新数据库中数据
 
-            saveDataToMysql( data.getValue() );
-
-        } else {
-
-            saveAllDataToMysql();
-
-            dataMap.clear();
-
-        }
+        saveDataToMysql( data.getValue() );
 
         return false;
     }
@@ -142,30 +136,38 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
     public void onInstall() {
 
         if ( !doCached() ) {
+
             return;
+
         }
 
         this.dataMap = new ConcurrentHashMap<>();
 
-        List<Entity> entityList = this.forAllData();
+        List<Entity> entities = this.forDb().findAll(forEntity());
 
-        for ( Entity entity : entityList ) {
+        for ( Entity entity : entities ) {
 
-            @SuppressWarnings( "unchecked" ) WrappedData<T> data = (WrappedData<T>) AutoSaveData.deserialize(templateData, JSONUtil.parseObj(Base64.decodeStr(entity.getStr("as_info"))));
+            // log.debug("[AutoSaveData] Load all data for first column {}", rs);
+
+            @SuppressWarnings( "unchecked" ) WrappedData<T> data = (WrappedData<T>) AutoSaveData.deserializeByBase64Str(templateData, entity.getStr("as_info"));
 
             if ( data.getValue() == null || data.getValue().getMainKey() == null ) {
+
                 log.error("[AutoSaveData] FatalError!! # " + templateData.getName());
+
             }
 
             if ( onSingleDataLoaded(data) ) {
+
                 continue;
+
             }
 
             dataMap.put(( data.getValue() ).getMainKey(), data.getValue());
 
-            onDataLoaded();
-
         }
+
+        onDataLoaded();
 
     }
 

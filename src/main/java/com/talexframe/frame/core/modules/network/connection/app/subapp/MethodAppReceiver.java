@@ -5,6 +5,7 @@ import com.talexframe.frame.core.modules.application.TApp;
 import com.talexframe.frame.core.modules.network.connection.IRequestReceiver;
 import com.talexframe.frame.core.modules.network.connection.TRequest;
 import com.talexframe.frame.core.modules.network.connection.app.ClassAppReceiver;
+import com.talexframe.frame.core.pojo.wrapper.ResultData;
 import com.talexframe.frame.core.pojo.wrapper.WrappedResponse;
 import com.talexframe.frame.core.talex.FrameCreator;
 import lombok.Getter;
@@ -78,6 +79,12 @@ public class MethodAppReceiver extends FrameCreator implements IRequestReceiver 
 
             log.info("[应用层]  应用执行完毕!");
             log.info("[应用层] ------------------------");
+
+            if ( !(obj instanceof ResultData ) ) {
+
+                obj = ResultData.SUCCESS(obj);
+
+            }
 
             return obj;
 
