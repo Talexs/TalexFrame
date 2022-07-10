@@ -15,7 +15,6 @@ import lombok.SneakyThrows;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -145,16 +144,13 @@ public class TAppManager {
 
     public static class TAppAnnoGetter<T extends Annotation> {
 
-        @SuppressWarnings( "unchecked" )
-        private Class<T> templateClass = (Class<T>) ( (ParameterizedType) this.getClass().getGenericSuperclass() ).getActualTypeArguments()[0];
-
         public TAppAnnoGetter() {
 
 
 
         }
 
-        public List<T> getAnnos() {
+        public List<T> getAnnos(Class<T> templateCls) {
 
             List<T> list = new ArrayList<>();
 
@@ -162,9 +158,11 @@ public class TAppManager {
 
                 for( Method method : cls.getMethods() ) {
 
-                    if( method.isAnnotationPresent(templateClass) ) {
+                    Annotation[] annotationsByType = method.getAnnotationsByType(templateCls);
 
-                        list.add(method.getAnnotation(templateClass));
+                    for ( Annotation anno : annotationsByType ) {
+
+                        list.add((T) anno);
 
                     }
 

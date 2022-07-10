@@ -24,9 +24,7 @@
 
 ## 项目背景
 
-受到 Minecraft 启发，想要制作一个基于 插件 的框架
-
-框架一定是用来解决某一特定领域的问题的 本框架就是用来解决 微服务类 问题
+受到 Minecraft服务端 Bukkit及系列框架 启发，针对主体功能进行框架化完善，对从属功能使用 ModulePlugin 进行解耦化操作
 
 ## 项目介绍
 
@@ -36,7 +34,7 @@
 
 ## 可以做啥
 
-通过 插件 实现功能的快速迭代 （也就是常说的**微服务**）
+通过 插件 实现功能的快速迭代 （也可以理解**微服务**）
 
 通过命令与插件等实现快速的功能开发 避免重复启动 SpringBoot 的时间
 
@@ -45,6 +43,8 @@
 ## 项目历史
 
 曾是为网易我的世界HyCraft打造的后端，后来用于 Pubsher 目前用于 PVPIN Studio 的后台开发
+
+目前，该项目也正在为 Kxord 项目进行保驾护航。
 
 ## 模块系统
 
@@ -67,6 +67,12 @@
 ## 开发计划
 
 正在逐步更新 **RPC框架模块 (Remote Procedure Call Module)**
+
+## 墨菲安全
+
+> 本项目由 MurphySec 进行安全保护。
+
+[![OSCS Status](https://www.oscs1024.com/platform/badge/pvpin/pvpin-end/ends-box.git.svg?size=large)](https://www.murphysec.com/dr/mpY1VJvMJwXMyezCpb)
 
 ##  联系方式
 
