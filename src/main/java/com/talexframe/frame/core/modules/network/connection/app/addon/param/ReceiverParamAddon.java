@@ -283,17 +283,19 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
         } else {
 
+            log.debug("  # ParameterType: {}", parameter.getType().getName());
+
             if( !StrUtil.isBlankIfStr(param.defaultValue()) ) {
 
                 wr.getParams().add(
                         new JSONObject().putOpt("value", param.defaultValue()).get("value", parameter.getType(), true)
                 );
 
-            } else if ( Number.class.isAssignableFrom( parameter.getType() ) ) { // 如果类型是数字类型就塞 0
+            } else if ( "int long double float".contains(parameter.getType().getName()) /*Number.class.isAssignableFrom( parameter.getType() )*/ ) { // 如果类型是数字类型就塞 0
 
                 wr.getParams().add(0);
 
-            } else if ( Boolean.class.isAssignableFrom( parameter.getType() ) ) {
+            } else if ( "boolean".equals(parameter.getType().getName()) /*Boolean.class.isAssignableFrom( parameter.getType() )*/ ) {
 
                 wr.getParams().add(false);
 
