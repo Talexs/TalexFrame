@@ -72,7 +72,7 @@
 
 > 本项目由 MurphySec 进行安全保护。
 
-[![OSCS Status](https://www.oscs1024.com/platform/badge/pvpin/pvpin-end/ends-box.git.svg?size=large)](https://www.murphysec.com/dr/mpY1VJvMJwXMyezCpb)
+[![OSCS Status](https://www.oscs1024.com/platform/badge/Talexs/TalexFrame.svg?size=large)](https://www.murphysec.com/dr/ok0G9SGTn0xsXi7Zex)
 
 ##  联系方式
 
