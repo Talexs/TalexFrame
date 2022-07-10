@@ -24,7 +24,7 @@ public class ReceiverParamSqlValidateAddon extends ReceiverValidateAddon<TParamS
 
         str = str.toLowerCase();
 
-        String[] badStrArray = "select|update|and|or|delete|insert|truncate|char|into|substr|ascii|declare|exec|count|master|into|drop|execute|table"
+        String[] badStrArray = (tParamSqlValid.normal() + "|" + tParamSqlValid.extra())
                 .split("\\|");
 
         for ( final String s : badStrArray ) {

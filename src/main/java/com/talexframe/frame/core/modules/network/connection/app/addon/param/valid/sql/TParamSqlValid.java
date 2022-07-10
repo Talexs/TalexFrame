@@ -15,4 +15,8 @@ import java.lang.annotation.Target;
 @Target( { ElementType.PARAMETER, ElementType.TYPE } )
 public @interface TParamSqlValid {
 
+    String normal() default "select|update|and|or|delete|insert|truncate|char|into|substr|ascii|declare|exec|count|master|into|drop|execute|table";
+
+    String extra() default ""; // extra value
+
 }
