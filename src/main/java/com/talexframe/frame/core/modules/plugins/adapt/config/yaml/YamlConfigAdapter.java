@@ -218,7 +218,7 @@ public class YamlConfigAdapter extends PluginCompAdapter<YamlConfig> {
 
         }
 
-        return false;
+        return true;
     }
 
 }
