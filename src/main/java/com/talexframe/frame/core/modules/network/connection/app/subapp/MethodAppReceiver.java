@@ -63,7 +63,7 @@ public class MethodAppReceiver extends FrameCreator implements IRequestReceiver 
 
             Object obj = method.invoke(ownApp, wr.getParams().toArray());
 
-            long ms = timer.intervalMs(wr.getRequest().getSession().getId());
+            long ms = timer.intervalMs(requestID);
 
             if ( ms > 300 ) {
 
