@@ -9,7 +9,6 @@ import com.talexframe.frame.core.pojo.wrapper.ResultData;
 import com.talexframe.frame.core.pojo.wrapper.WrappedResponse;
 import com.talexframe.frame.core.talex.FrameCreator;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
@@ -42,8 +41,15 @@ public class MethodAppReceiver extends FrameCreator implements IRequestReceiver 
 
     }
 
-    @Setter
     private boolean parseData = false;
+
+    public void setParseData(boolean parseData, String reason) {
+
+        log.debug("[解析层] setParseData: " + parseData + " | for: {}", reason);
+
+        this.parseData = parseData;
+
+    }
 
     public Object onRequest(ClassAppReceiver clzAppReceiver, MethodAppReceiver methodAppReceiver, WrappedResponse wr, long time) {
 
