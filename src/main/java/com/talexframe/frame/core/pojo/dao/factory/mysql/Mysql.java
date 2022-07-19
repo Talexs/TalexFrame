@@ -282,8 +282,6 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
 
         log.debug("[数据库] [断开] 断开数据库连接 ...");
 
-        status = DataProcessorStatus.DISCONNECTED;
-
         if ( this.session != null ) {
 
             DAOProcessorPreShutdownEvent<Mysql> daoProcessorPreShutdownEvent = new DAOProcessorPreShutdownEvent<>(this);
@@ -296,12 +294,16 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
 
             }
 
-            log.warn("[数据库] MySQL数据库已停止服务!");
+            status = DataProcessorStatus.DISCONNECTED;
 
             this.session.close();
             this.dataSource.close();
 
+            log.warn("[数据库] MySQL数据库已停止服务!");
+
         }
+
+        log.debug("[数据库] [断开] 已断开数据库连接 !");
 
         return false;
     }

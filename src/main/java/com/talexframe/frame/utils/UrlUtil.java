@@ -54,8 +54,8 @@ public class UrlUtil {
 
     public static boolean urlChecker(String url1, String url2) {
 
-        url1 = formatUrl("/" + url1);
-        url2 = formatUrl("/" + url2);
+        url1 = formatUrl(url1);
+        url2 = formatUrl(url2);
         return url1.equalsIgnoreCase(url2);
     }
 

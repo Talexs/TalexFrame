@@ -207,7 +207,7 @@ public class JSONConfigAdapter extends PluginCompAdapter<JSONConfig> {
 
         }
 
-        return false;
+        return true;
 
     }
 

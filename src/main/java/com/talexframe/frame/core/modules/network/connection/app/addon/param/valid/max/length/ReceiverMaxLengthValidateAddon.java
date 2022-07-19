@@ -20,7 +20,7 @@ public class ReceiverMaxLengthValidateAddon extends ReceiverValidateAddon<TMaxLe
     @Override
     public boolean validate(WrappedResponse wr, TMaxLengthValid tMaxLengthValid, Object addedParam) {
 
-        return addedParam != null && ((String) addedParam).length() <= tMaxLengthValid.value();
+        return addedParam == null || ((String) addedParam).length() <= tMaxLengthValid.value();
 
     }
 
