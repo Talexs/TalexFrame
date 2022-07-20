@@ -51,13 +51,13 @@ public class MethodAppReceiver extends FrameCreator implements IRequestReceiver 
 
     }
 
-    public Object onRequest(ClassAppReceiver clzAppReceiver, MethodAppReceiver methodAppReceiver, WrappedResponse wr, long time) {
+    public Object onRequest(ClassAppReceiver clzAppReceiver, WrappedResponse wr, long time) {
 
-        log.info("[应用层] 交付执行 @" + clzAppReceiver.getOwnClass().getName() + "." + methodAppReceiver.getMethod().getName());
+        log.info("[应用层] 交付执行 @" + clzAppReceiver.getOwnClass().getName() + "." + this.getMethod().getName());
 
         log.info("[应用层]  #  参数一览 #");
         log.info("[应用层]  #    (provide)-> {}", wr.getParams());
-        log.info("[应用层]  #    (receive)-> {}", (Object) methodAppReceiver.getMethod().getParameters());
+        log.info("[应用层]  #    (receive)-> {}", (Object) this.getMethod().getParameters());
         log.info("[应用层]  #  开始执行并计时 #");
         log.info("[应用层]  ------------------------");
 

@@ -16,6 +16,7 @@ import java.util.Set;
  */
 @Getter
 @Slf4j
+@Deprecated
 public class NetworkManager {
 
     public static final NetworkManager INSTANCE = new NetworkManager();

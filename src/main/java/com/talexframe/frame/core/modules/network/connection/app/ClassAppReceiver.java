@@ -1,10 +1,7 @@
 package com.talexframe.frame.core.modules.network.connection.app;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
 import com.talexframe.frame.core.modules.application.TApp;
 import com.talexframe.frame.core.modules.network.connection.IRequestReceiver;
-import com.talexframe.frame.core.modules.network.connection.NetworkManager;
 import com.talexframe.frame.core.modules.network.connection.TRequest;
 import com.talexframe.frame.core.modules.network.connection.app.subapp.MethodAppReceiver;
 import com.talexframe.frame.core.talex.FrameCreator;
@@ -13,7 +10,6 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -25,9 +21,10 @@ import java.util.Set;
 @Slf4j
 public class ClassAppReceiver extends FrameCreator implements IRequestReceiver {
 
+    private static final ClassReceiverManager managerIns = ClassReceiverManager.INSTANCE;
+
     private final TApp tApp;
     private final Class<? extends TApp> ownClass;
-    private final Multimap<String, MethodAppReceiver> map = ArrayListMultimap.create();
 
     public ClassAppReceiver(TApp tApp, Class<? extends TApp> ownClass) {
 
@@ -36,29 +33,32 @@ public class ClassAppReceiver extends FrameCreator implements IRequestReceiver {
         this.tApp = tApp;
         this.ownClass = ownClass;
 
-        NetworkManager.INSTANCE.getMap().put(UrlUtil.formatUrl(tApp.getDefaultPath()), this);
+        // NetworkManager.INSTANCE.getMap().put(UrlUtil.formatUrl(tApp.getDefaultPath()), this);
 
         this.scanForSubApp();
 
     }
 
+    @Deprecated
     public Set<MethodAppReceiver> matchUrlSubReceivers(String url) {
 
-        Set<MethodAppReceiver> list = new HashSet<>();
+        return null;
 
-        this.map.entries().forEach((entry) -> {
-
-            if( UrlUtil.advancedUrlChecker(entry.getKey(), url) ) {
-
-                list.add( entry.getValue() );
-
-                log.debug("[解析层] 匹配到 - {} | @{}.{}", entry.getKey(), entry.getValue().getOwnClass().getName(), entry.getValue().getMethod().getName());
-
-            }
-
-        });
-
-        return list;
+        // Set<MethodAppReceiver> list = new HashSet<>();
+        //
+        // this.map.entries().forEach((entry) -> {
+        //
+        //     if( UrlUtil.advancedUrlChecker(entry.getKey(), url) ) {
+        //
+        //         list.add( entry.getValue() );
+        //
+        //         log.debug("[解析层] 匹配到 - {} | @{}.{}", entry.getKey(), entry.getValue().getOwnClass().getName(), entry.getValue().getMethod().getName());
+        //
+        //     }
+        //
+        // });
+        //
+        // return list;
 
     }
 
@@ -71,8 +71,9 @@ public class ClassAppReceiver extends FrameCreator implements IRequestReceiver {
 
             MethodAppReceiver receiver = new MethodAppReceiver(this.tApp, method);
 
-            String value = UrlUtil.formatUrl(receiver.getTRequest().value());
-            map.put(value, receiver);
+            String value = UrlUtil.formatUrl(tApp.getDefaultPath()+ "/" + receiver.getTRequest().value());
+
+            managerIns.getTireRouter().addRoute(receiver, value);
 
             log.debug("[ClassAppReceiver] 方法注册成功 - " + value);
 

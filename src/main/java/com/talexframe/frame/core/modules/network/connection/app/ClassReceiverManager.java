@@ -1,8 +1,10 @@
 package com.talexframe.frame.core.modules.network.connection.app;
 
+import com.talexframe.frame.core.modules.network.connection.app.trie.TrieRouter;
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.AntPathMatcher;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +18,11 @@ import java.util.Map;
 public class ClassReceiverManager {
 
     public static ClassReceiverManager INSTANCE = new ClassReceiverManager();
+
+    @Getter
+    private final TrieRouter tireRouter = new TrieRouter();
+
+    private AntPathMatcher antPathMatcher = new AntPathMatcher();
 
     private ClassReceiverManager() {
 
