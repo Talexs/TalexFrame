@@ -2,7 +2,7 @@ package com.talexframe.frame.core.modules.plugins.core;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.IoUtil;
-import com.talexframe.frame.core.pojo.mapper.frame.FrameSender;
+import com.talexframe.frame.core.pojo.mapper.frame.FramePluginSender;
 import com.talexframe.frame.core.talex.FrameCreator;
 import com.talexframe.frame.core.talex.TFrame;
 import lombok.Getter;
@@ -23,16 +23,17 @@ public abstract class WebPlugin extends FrameCreator implements IPlugin {
     protected final File pluginDataFolder;
     protected final File tempDataFolder;
     private final String name;
-    protected FrameSender sender = TFrame.tframe.getFrameSender();
+
+    protected FramePluginSender consoleSender = new FramePluginSender(this);
+
     @Setter
     private PluginInfo info;
 
-    public WebPlugin(String pluginName, PluginInfo info) {
+    public WebPlugin(String pluginName) {
 
         super("PLUGIN", pluginName);
 
         this.name = pluginName;
-        this.info = info;
 
         this.jarFile = tframe.getPluginManager().getPluginJarFiles().get(this.getName());
 

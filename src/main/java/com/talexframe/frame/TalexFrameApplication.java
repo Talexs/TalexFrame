@@ -23,6 +23,8 @@ public class TalexFrameApplication {
 
         context = SpringApplication.run(TalexFrameApplication.class, args);
 
+        context.setId("TalexFrameApp");
+
     }
 
 }
