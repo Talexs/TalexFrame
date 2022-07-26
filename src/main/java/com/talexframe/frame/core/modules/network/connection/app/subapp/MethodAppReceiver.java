@@ -9,7 +9,6 @@ import com.talexframe.frame.core.pojo.wrapper.ResultData;
 import com.talexframe.frame.core.pojo.wrapper.WrappedResponse;
 import com.talexframe.frame.core.talex.FrameCreator;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
@@ -42,16 +41,23 @@ public class MethodAppReceiver extends FrameCreator implements IRequestReceiver 
 
     }
 
-    @Setter
     private boolean parseData = false;
 
-    public Object onRequest(ClassAppReceiver clzAppReceiver, MethodAppReceiver methodAppReceiver, WrappedResponse wr, long time) {
+    public void setParseData(boolean parseData, String reason) {
 
-        log.info("[应用层] 交付执行 @" + clzAppReceiver.getOwnClass().getName() + "." + methodAppReceiver.getMethod().getName());
+        log.debug("[解析层] setParseData: " + parseData + " | for: {}", reason);
+
+        this.parseData = parseData;
+
+    }
+
+    public Object onRequest(ClassAppReceiver clzAppReceiver, WrappedResponse wr, long time) {
+
+        log.info("[应用层] 交付执行 @" + clzAppReceiver.getOwnClass().getName() + "." + this.getMethod().getName());
 
         log.info("[应用层]  #  参数一览 #");
         log.info("[应用层]  #    (provide)-> {}", wr.getParams());
-        log.info("[应用层]  #    (receive)-> {}", (Object) methodAppReceiver.getMethod().getParameters());
+        log.info("[应用层]  #    (receive)-> {}", (Object) this.getMethod().getParameters());
         log.info("[应用层]  #  开始执行并计时 #");
         log.info("[应用层]  ------------------------");
 

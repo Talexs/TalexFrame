@@ -4,6 +4,7 @@ import com.talexframe.frame.core.modules.network.connection.app.ClassAppReceiver
 import com.talexframe.frame.core.modules.network.connection.app.addon.ReceiverAddon;
 import com.talexframe.frame.core.modules.network.connection.app.subapp.MethodAppReceiver;
 import com.talexframe.frame.core.pojo.wrapper.WrappedResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import java.util.Arrays;
  * @author TalexDreamSoul 22/06/06 下午 04:47 Project: TalexFrame
  */
 @SuppressWarnings( "UnstableApiUsage" )
+@Slf4j
 public class ReceiverMethodAddon extends ReceiverAddon {
 
     public ReceiverMethodAddon() {
@@ -44,13 +46,17 @@ public class ReceiverMethodAddon extends ReceiverAddon {
 
         if( tReqBody != null ) {
 
+            // 如果有注解，然后用 get 方式
             if( supportMethod != null && Arrays.stream(supportMethod.value()).anyMatch(method -> method == HttpMethod.GET) ) {
 
                 throw new RuntimeException("[解析层] MethodNotSupport # GET: 当为 GET 时无法解析 Body Data ！");
 
             }
 
-            methodAppReceiver.setParseData(true);
+            log.debug("For method: {} | TReqBody: {}", methodAppReceiver.getMethod().getName(), tReqBody);
+            log.debug("Annotations: {}", methodAppReceiver.getMethod().getAnnotations());
+
+            methodAppReceiver.setParseData(true, "body not null");
 
         }
 

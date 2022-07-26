@@ -177,6 +177,8 @@ public class TFrame {
 
         }
 
+        TalexFrameApplication.context.stop();
+
         log.warn("正在关闭服务器... (" + frameStatus.name() + ")");
 
         if ( pluginManager != null ) {
@@ -206,6 +208,8 @@ public class TFrame {
             log.info("[数据库] 所有数据库连接已关闭!");
 
         }
+
+        log.warn("服务器已关闭!");
 
     }
 

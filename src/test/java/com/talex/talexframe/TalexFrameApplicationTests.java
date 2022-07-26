@@ -1,7 +1,6 @@
 package com.talex.talexframe;
 
 import lombok.SneakyThrows;
-import lombok.val;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -11,11 +10,32 @@ class TalexFrameApplicationTests {
     @SneakyThrows
     public static void main(String[] args) {
 
-        Class<?> clazz = Class.forName("com.talex.talexframe.TalexFrameApplicationTests");
+        // TrieRouter router = new TrieRouter();
+        //
+        // router.addRoute("/hello/233");
+        // router.addRoute("/good/goods");
+        // router.addRoute("/good/info/{id}");
+        // router.addRoute("/good/detail/{id}/{name}");
+        // router.addRoute("/good/");
+        // router.addRoute("/day/**");
+        //
+        // System.out.println(router.matchRoute("/good/info/233"));
+        // System.out.println(router.matchRoute("/good/detail/hello/as"));
+        // System.out.println(router.matchRoute("/good/info/"));
+        // System.out.println(router.matchRoute("/good/inf"));
+        // System.out.println(router.matchRoute("/hello/"));
+        // System.out.println(router.matchRoute("/hello/233"));
+        // System.out.println(router.matchRoute("/day"));
+        // System.out.println(router.matchRoute("/day/"));
+        // System.out.println(router.matchRoute("/day/123"));
 
-        val log2s = clazz.getMethod("log2", int.class).getParameterTypes();
+        // System.out.println(UrlUtil.advancedUrlChecker("/good/good", "/good/info/52595b"));
 
-        System.out.println(log2s[0].getName());
+        // Class<?> clazz = Class.forName("com.talex.talexframe.TalexFrameApplicationTests");
+
+        // val log2s = clazz.getMethod("log2", int.class).getParameterTypes();
+
+        // System.out.println(log2s[0].getName());
 
         // System.out.println(int.class);
         //

@@ -8,6 +8,7 @@ package com.talexframe.frame.utils;
  */
 public class UrlUtil {
 
+    @Deprecated
     public static boolean advancedUrlChecker(String url1, String url2) {
 
         url1 = formatUrl("/" + url1);

@@ -29,7 +29,7 @@ public class PluginInfo {
     //    插件网页
     private String website;
     //    插件支持的框架版本
-    private PluginSupportVersion supportVersion;
+    private PluginSupportVersion supportVersion = PluginSupportVersion.SEVEN;
 
     public enum PluginSupportVersion {
 

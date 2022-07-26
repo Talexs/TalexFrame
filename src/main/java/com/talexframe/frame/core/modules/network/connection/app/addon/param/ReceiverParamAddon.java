@@ -73,7 +73,7 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
             }
 
-            if ( !this.processUrlParam( methodAppReceiver, parameter, wr ) ) {
+            if ( this.processUrlParam( methodAppReceiver, parameter, wr ) ) {
 
                 log.debug("[解析层]     #    -> UrlParam");
 
@@ -209,7 +209,7 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
         TUrlParam tUrlParam = parameter.getAnnotation(TUrlParam.class);
 
-        if ( tUrlParam == null ) return true;
+        if ( tUrlParam == null ) return false;
 
         List<Object> params = wr.getParams();
 
@@ -224,7 +224,7 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
             wr.returnDataByFailed(ResultData.ResultEnum.INFORMATION_ERROR, "Data error!");
 
-            return false;
+            return true;
 
         }
 
