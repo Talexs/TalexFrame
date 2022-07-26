@@ -55,12 +55,10 @@ TalexFrame 简称 TF，是一款用于构建系统性后端的 Java 转换式框
 TalexFrame 通过 Talexs 系列生态，为您提供全栈解决方案，在不同应用场景中实现代码统一化，项目系统化，应用集成化。目前，根据您的需求场景，您可以将 TalexFrame 用于不同的场景：
 
 - 增强型 SpringBoot 后端 （通过 talex-spring-boot-strater 使用）
-
 - 修复型 Game 后台 （通过 TalexFrame + TGameAddon使用）
-
 - 转换型 AllStack 服务器 （通过完全引用 TalexFrame 使用）
 
-  针对不同应用场景，从上至下复杂度递增。除此之外，addon比plugin更加重量，这将在后续章节中逐步介绍。
+针对不同应用场景，从上至下复杂度递增。除此之外，addon比plugin更加重量，这将在后续章节中逐步介绍。
 
 ## 项目优势
 
