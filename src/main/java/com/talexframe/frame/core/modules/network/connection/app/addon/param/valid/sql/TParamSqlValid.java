@@ -15,8 +15,19 @@ import java.lang.annotation.Target;
 @Target( { ElementType.PARAMETER, ElementType.TYPE } )
 public @interface TParamSqlValid {
 
+    /**
+     * 默认的匹配字符表 用 | 分割
+     */
     String normal() default "select|update|and|or|delete|insert|truncate|char|into|substr|ascii|declare|exec|count|master|into|drop|execute|table";
 
-    String extra() default ""; // extra value
+    /**
+     * 额外要匹配的字符表
+     */
+    String extra() default "";
+
+    /**
+     * 校验失败提示信息
+     */
+    String msg() default "你传入的参数非法!";
 
 }

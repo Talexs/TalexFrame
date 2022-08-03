@@ -3,6 +3,7 @@ package com.talexframe.frame.core.modules.network.connection.app.addon.param.val
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.ReceiverValidateAddon;
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.TAssertValid;
 import com.talexframe.frame.core.pojo.wrapper.WrappedResponse;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * {@link com.talexframe.frame.core.modules.network.connection.app.addon.login Package }
@@ -28,9 +29,9 @@ public class ReceiverAssertValidateAddon extends ReceiverValidateAddon<TAssertVa
     }
 
     @Override
-    public String getErrorMessage() {
+    public String getErrorMessage(WrappedResponse wr, @NotNull TAssertValid tNoNullValid, Object addedParam) {
 
-        return "类型断言错误!";
+        return tNoNullValid.msg();
 
     }
 

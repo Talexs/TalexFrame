@@ -140,7 +140,7 @@ public class PluginScanner extends FrameCreator {
 
                 try {
 
-                    if( !adapter.inject( this, this.plugin, constructors[0].newInstance() ) ) {
+                    if( !adapter.inject( this, this.plugin, adapter.createInstance(this.plugin, clazz, constructors) ) ) {
 
                         log.warn("[PluginScanner] PluginCompAdapter " + clazz.getName() + " inject failed");
 

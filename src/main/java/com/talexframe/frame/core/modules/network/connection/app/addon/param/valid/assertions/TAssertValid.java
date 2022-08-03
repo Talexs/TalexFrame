@@ -21,4 +21,9 @@ public @interface TAssertValid {
      */
     boolean value() default true;
 
+    /**
+     * 断言失败时的提示信息
+     */
+    String msg() default "类型断言错误!";
+
 }

@@ -3,6 +3,7 @@ package com.talexframe.frame.core.modules.application;
 import com.talexframe.frame.core.modules.plugins.core.WebPlugin;
 import com.talexframe.frame.core.modules.repository.TRepoPlus;
 import com.talexframe.frame.core.modules.repository.TRepo;
+import com.talexframe.frame.core.pojo.mapper.frame.FramePluginSender;
 import com.talexframe.frame.core.talex.TFrame;
 import lombok.Getter;
 
@@ -22,6 +23,8 @@ public class TAppPlus<T extends TRepoPlus<?>> extends TApp {
      * 如果使用的是 TAppPlus 那么应该调用这个 repo
      */
     protected T asRepository;
+    protected FramePluginSender logger;
+
     private Class<T> templateData;
 
     /**
@@ -34,6 +37,7 @@ public class TAppPlus<T extends TRepoPlus<?>> extends TApp {
         super(provider);
 
         this.ownPlugin = webPlugin;
+        this.logger = webPlugin.getConsoleSender();
 
     }
 

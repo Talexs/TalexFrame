@@ -27,10 +27,9 @@ public class ReceiverMinValueValidateAddon extends ReceiverValidateAddon<TMinVal
     }
 
     @Override
-    public String getErrorMessage() {
+    public String getErrorMessage(WrappedResponse wr, TMinValueValid tMinValueValid, Object addedParam) {
 
-        return "不满足最小值区间!";
-
+        return tMinValueValid.msg();
     }
 
 }

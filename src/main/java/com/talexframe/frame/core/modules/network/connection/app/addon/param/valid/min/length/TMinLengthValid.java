@@ -20,4 +20,9 @@ public @interface TMinLengthValid {
      */
     int value();
 
+    /**
+     * 校验失败提示信息
+     */
+    String msg() default "不满足最小长度区间!";
+
 }

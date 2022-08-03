@@ -20,4 +20,9 @@ public @interface TPatternValid {
      */
     String value();
 
+    /**
+     * 校验失败提示信息
+     */
+    String msg() default "";
+
 }

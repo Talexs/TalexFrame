@@ -20,4 +20,9 @@ public @interface TMaxLengthValid {
      */
     int value();
 
+    /**
+     * 校验失败提示信息
+     */
+    String msg() default "不满足最大长度区间!";
+
 }

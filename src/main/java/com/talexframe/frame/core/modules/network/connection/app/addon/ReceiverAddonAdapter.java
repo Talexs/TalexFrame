@@ -12,7 +12,6 @@ import com.talexframe.frame.core.modules.network.connection.app.addon.param.vali
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.max.value.ReceiverMaxValueValidateAddon;
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.min.length.ReceiverMinLengthValidateAddon;
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.min.value.ReceiverMinValueValidateAddon;
-import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.nonull.ReceiverNoNullValidateAddon;
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.pattern.ReceiverPatternValidateAddon;
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.sql.ReceiverParamSqlValidateAddon;
 import com.talexframe.frame.core.modules.network.connection.app.addon.permission.ReceiverPermissionAddon;
@@ -57,7 +56,6 @@ public class ReceiverAddonAdapter extends PluginCompAdapter<ReceiverAddon> {
         register(new ReceiverCacheRedisAddon());
 
         register(new ReceiverPatternValidateAddon());
-        register(new ReceiverNoNullValidateAddon());
         register(new ReceiverAssertValidateAddon());
         register(new ReceiverMaxLengthValidateAddon());
         register(new ReceiverMaxValueValidateAddon());

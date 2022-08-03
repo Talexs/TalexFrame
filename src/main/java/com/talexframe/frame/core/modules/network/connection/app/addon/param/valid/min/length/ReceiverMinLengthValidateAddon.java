@@ -25,10 +25,9 @@ public class ReceiverMinLengthValidateAddon extends ReceiverValidateAddon<TMinLe
     }
 
     @Override
-    public String getErrorMessage() {
+    public String getErrorMessage(WrappedResponse wr, TMinLengthValid tMinLengthValid, Object addedParam) {
 
-        return "不满足最小长度区间!";
-
+        return tMinLengthValid.msg();
     }
 
 }

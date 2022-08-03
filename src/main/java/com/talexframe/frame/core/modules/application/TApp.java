@@ -2,7 +2,6 @@ package com.talexframe.frame.core.modules.application;
 
 import com.talexframe.frame.core.modules.repository.TRepo;
 import com.talexframe.frame.core.modules.repository.TRepoManager;
-import com.talexframe.frame.core.pojo.mapper.frame.FrameSender;
 import com.talexframe.frame.core.talex.FrameCreator;
 import com.talexframe.frame.core.talex.TFrame;
 import lombok.Getter;
@@ -17,7 +16,7 @@ import lombok.Getter;
 public abstract class TApp extends FrameCreator {
 
     protected final TFrame tframe = TFrame.tframe;
-    protected FrameSender frameSender = tframe.getFrameSender();
+
     protected TAppManager controllerManager = tframe.getAppManager();
     protected TRepoManager repositoryManager = tframe.getRepoManager();
     protected TRepo repo;
@@ -45,6 +44,10 @@ public abstract class TApp extends FrameCreator {
 
     }
 
+    /**
+     * Use getRepo().getProvider() instead, because of single responsibility
+     */
+    @Deprecated
     public String getTableName() {
 
         return this.repo.getProvider();
