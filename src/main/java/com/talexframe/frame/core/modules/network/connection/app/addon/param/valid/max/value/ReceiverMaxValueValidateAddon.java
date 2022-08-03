@@ -27,10 +27,9 @@ public class ReceiverMaxValueValidateAddon extends ReceiverValidateAddon<TMaxVal
     }
 
     @Override
-    public String getErrorMessage() {
+    public String getErrorMessage(WrappedResponse wr, TMaxValueValid tMaxValueValid, Object addedParam) {
 
-        return "不满足最大值区间!";
-
+        return tMaxValueValid.msg();
     }
 
 }
