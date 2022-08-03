@@ -21,9 +21,4 @@ public @interface TMaxValueValid {
      */
     int value();
 
-    /**
-     * 错误消息
-     */
-    String msg() default "不满足最大值区间!";
-
 }
