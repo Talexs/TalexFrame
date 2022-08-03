@@ -22,7 +22,7 @@ public class ClassReceiverManager {
     @Getter
     private final TrieRouter tireRouter = new TrieRouter();
 
-    private AntPathMatcher antPathMatcher = new AntPathMatcher();
+    private final AntPathMatcher antPathMatcher = new AntPathMatcher();
 
     private ClassReceiverManager() {
 

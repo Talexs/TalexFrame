@@ -57,7 +57,7 @@ public abstract class ReceiverValidateAddon<T extends Annotation> extends Receiv
             log.info("[ParamValidator] For error | Param name: {} | ValidateType: {} | In param: {} | At class: {}",
                     paramName, t.getClass(), addedParam, this.getClass().getSimpleName());
 
-            wr.returnDataByFailed( ResultData.ResultEnum.INFORMATION_ERROR, getErrorMessage() );
+            wr.returnDataByFailed( ResultData.ResultEnum.INFORMATION_ERROR, getErrorMessage(wr, t, addedParam) );
 
             return false;
 
@@ -65,9 +65,9 @@ public abstract class ReceiverValidateAddon<T extends Annotation> extends Receiv
 
     }
 
-    public String getErrorMessage() {
+    public String getErrorMessage(WrappedResponse wr, T t, Object addedParam) {
 
-        return "参数不匹配";
+        return "参数不匹配!";
 
     }
 

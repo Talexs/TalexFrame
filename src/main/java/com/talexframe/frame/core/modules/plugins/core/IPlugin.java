@@ -6,13 +6,13 @@ public interface IPlugin {
     void onPreScan();
 
     /**
-     * 当插件被卸载时调用
-     **/
-    void onDisable();
-
-    /**
      * 当插件被启用时调用 （此时扫包已完成） onScanned()
      **/
     void onScanned();
+
+    /**
+     * 当插件被卸载时调用
+     **/
+    void onDisable();
 
 }

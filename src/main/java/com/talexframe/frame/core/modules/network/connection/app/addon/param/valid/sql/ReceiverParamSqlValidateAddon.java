@@ -42,10 +42,9 @@ public class ReceiverParamSqlValidateAddon extends ReceiverValidateAddon<TParamS
     }
 
     @Override
-    public String getErrorMessage() {
+    public String getErrorMessage(WrappedResponse wr, TParamSqlValid tParamSqlValid, Object addedParam) {
 
-        return "你传入的参数非法!";
-
+        return tParamSqlValid.msg();
     }
 
 }

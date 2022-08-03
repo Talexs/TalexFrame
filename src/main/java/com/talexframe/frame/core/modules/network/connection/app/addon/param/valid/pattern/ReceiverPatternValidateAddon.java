@@ -1,5 +1,6 @@
 package com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.pattern;
 
+import cn.hutool.core.util.StrUtil;
 import com.talexframe.frame.core.modules.network.connection.app.addon.param.valid.ReceiverValidateAddon;
 import com.talexframe.frame.core.pojo.wrapper.WrappedResponse;
 
@@ -22,6 +23,12 @@ public class ReceiverPatternValidateAddon extends ReceiverValidateAddon<TPattern
 
         return String.valueOf(addedParam).matches(tPatternValid.value());
 
+    }
+
+    @Override
+    public String getErrorMessage(WrappedResponse wr, TPatternValid tPatternValid, Object addedParam) {
+
+        return StrUtil.isBlankIfStr(tPatternValid.msg()) ? super.getErrorMessage(wr, tPatternValid, addedParam) : tPatternValid.msg();
     }
 
 }

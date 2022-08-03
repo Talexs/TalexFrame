@@ -198,7 +198,9 @@ public class ResultData<T> {
 
         INFORMATION_ERROR(10012, "information error"),
 
-        UNSUPPORTED_GRANT_TYPE(10013, "unsupported token type");
+        UNSUPPORTED_GRANT_TYPE(10013, "unsupported token type"),
+
+        INFORMATION_UNKNOWN(10014, "unknown information");
 
         final int code;
         final String msg;

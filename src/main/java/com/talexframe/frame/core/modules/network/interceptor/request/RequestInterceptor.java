@@ -1,6 +1,6 @@
 package com.talexframe.frame.core.modules.network.interceptor.request;
 
-import com.talexframe.frame.core.modules.event.events.request.PostHandleRequest;
+import com.talexframe.frame.core.modules.event.events.request.PostHandleRequestEvent;
 import com.talexframe.frame.core.modules.event.events.request.PreHandleRequest;
 import com.talexframe.frame.core.modules.event.events.request.RequestAfterCompletion;
 import com.talexframe.frame.core.modules.network.connection.RequestConnector;
@@ -54,7 +54,7 @@ public final class RequestInterceptor implements HandlerInterceptor {
 
         BodyCopyHttpServletRequestWrapper copiedRequest = new BodyCopyHttpServletRequestWrapper(request);
 
-        PostHandleRequest event = new PostHandleRequest(copiedRequest, response, handler, modelAndView);
+        PostHandleRequestEvent event = new PostHandleRequestEvent(copiedRequest, response, handler, modelAndView);
 
         tframe.callEvent(event);
 

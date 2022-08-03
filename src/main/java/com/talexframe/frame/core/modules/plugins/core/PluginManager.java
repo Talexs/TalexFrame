@@ -8,6 +8,10 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.talexframe.frame.TalexFrameApplication;
 import com.talexframe.frame.core.modules.event.events.frame.FrameFirstInstallEvent;
+import com.talexframe.frame.core.modules.event.events.plugin.WebPluginDisabledEvent;
+import com.talexframe.frame.core.modules.event.events.plugin.WebPluginPreDisableEvent;
+import com.talexframe.frame.core.modules.event.events.plugin.WebPluginPreScanEvent;
+import com.talexframe.frame.core.modules.event.events.plugin.WebPluginScannedEvent;
 import com.talexframe.frame.core.modules.plugins.addon.PluginScanner;
 import com.talexframe.frame.core.pojo.wrapper.WrappedInfo;
 import com.talexframe.frame.core.talex.TFrame;
@@ -372,7 +376,11 @@ public class PluginManager {
 
         log.info("[插件] Plugin onDisable: {}", plugin);
 
+        TFrame.tframe.callEvent(new WebPluginPreDisableEvent(plugin));
+
         plugin.onDisable();
+
+        TFrame.tframe.callEvent(new WebPluginDisabledEvent(plugin));
 
         PluginScanner scanner = this.pluginScannerMap.get(pluginName);
 
@@ -422,6 +430,7 @@ public class PluginManager {
 
         try {
 
+
             instance = clazz.newInstance();
             // instance = clazz.getConstructors()[0].newInstance(pluginName, info);
 
@@ -451,6 +460,8 @@ public class PluginManager {
 
         wp.setInfo(info);
 
+        TFrame.tframe.callEvent(new WebPluginPreScanEvent(wp));
+
         wp.onPreScan();
 
         PluginScanner scanner = new PluginScanner(wp);
@@ -460,6 +471,8 @@ public class PluginManager {
         scanner.scan();
 
         wp.onScanned();
+
+        TFrame.tframe.callEvent(new WebPluginScannedEvent(wp));
 
         return wp;
 
