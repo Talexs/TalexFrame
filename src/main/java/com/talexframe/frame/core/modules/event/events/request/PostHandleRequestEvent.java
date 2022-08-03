@@ -8,13 +8,13 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 在建立请求之后 (interceptor post handle request) 如果取消则不会进入插件处理阶段 <br /> {@link com.talexframe.frame.function.event.events.request
+ * 在建立请求之后 (interceptor post handle request) 如果取消则不会进入插件处理阶段 <br /> {@link com.talexframe.frame.core.modules.event.events.request
  * Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 19:23 <br /> Project: TalexFrame <br />
+ * 2022/08/01 02:55:40 <br /> Project: TalexFrame <br />
  */
-public class PostHandleRequest extends TalexEvent {
+public class PostHandleRequestEvent extends TalexEvent {
 
     @Getter
     private final BodyCopyHttpServletRequestWrapper request;
@@ -28,7 +28,7 @@ public class PostHandleRequest extends TalexEvent {
     @Getter
     private final ModelAndView modelAndView;
 
-    public PostHandleRequest(BodyCopyHttpServletRequestWrapper request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+    public PostHandleRequestEvent(BodyCopyHttpServletRequestWrapper request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
 
         this.request = request;
         this.response = response;

@@ -25,10 +25,9 @@ public class ReceiverMaxLengthValidateAddon extends ReceiverValidateAddon<TMaxLe
     }
 
     @Override
-    public String getErrorMessage() {
+    public String getErrorMessage(WrappedResponse wr, TMaxLengthValid tMaxLengthValid, Object addedParam) {
 
-        return "不满足最大长度区间!";
-
+        return tMaxLengthValid.msg();
     }
 
 }

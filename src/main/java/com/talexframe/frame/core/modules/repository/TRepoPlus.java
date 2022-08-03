@@ -9,6 +9,7 @@ import com.talexframe.frame.core.pojo.dao.vo.auto.AutoSaveData;
 import com.talexframe.frame.core.pojo.dao.vo.auto.TAutoColumn;
 import com.talexframe.frame.core.pojo.dao.vo.auto.TAutoSaveId;
 import com.talexframe.frame.core.pojo.dao.vo.auto.TAutoTable;
+import com.talexframe.frame.core.pojo.mapper.frame.FramePluginSender;
 import com.talexframe.frame.core.pojo.wrapper.WrappedData;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,6 +39,8 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
     protected final WebPlugin ownPlugin;
     protected final Class<? extends AutoSaveData> templateData;
     protected ConcurrentMap<String, T> dataMap;
+
+    protected FramePluginSender logger;
     /**
      * 当预估自己的数据过大时请调整!
      */
@@ -49,6 +52,7 @@ public class TRepoPlus<T extends AutoSaveData> extends TRepo {
         super(tableName);
 
         this.ownPlugin = webPlugin;
+        this.logger = webPlugin.getConsoleSender();
 
         //noinspection unchecked
         this.templateData = (Class<T>) ( (ParameterizedType) this.getClass().getGenericSuperclass() ).getActualTypeArguments()[0];

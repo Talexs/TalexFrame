@@ -10,6 +10,8 @@ import com.talexframe.frame.core.talex.TFrame;
 import lombok.SneakyThrows;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 
 /**
@@ -77,6 +79,12 @@ public abstract class PluginCompAdapter<T extends FrameCreator> extends FrameBui
         // method.invoke( this, scanner, webPlugin, (T) obj );
 
         return this.injectWithInstance(scanner, webPlugin, (T) obj);
+
+    }
+
+    public Object createInstance(WebPlugin webPlugin, Class<?> cls, Constructor<?>[] constructors) throws InvocationTargetException, InstantiationException, IllegalAccessException {
+
+        return constructors[0].newInstance();
 
     }
 

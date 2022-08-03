@@ -87,6 +87,18 @@ public class ReceiverParamAddon extends ReceiverAddon {
 
             if( tParam == null ) {
 
+                TObjParam tObjParam = parameter.getAnnotation(TObjParam.class);
+
+                if( tObjParam != null ) {
+
+                    // Object obj = this.forObjParam(parameter);
+
+                    // params.add(obj);
+
+                    continue;
+
+                }
+
                 params.add(null);
 
                 log.warn("[解析层] AccessWarned # MissingParamAnnotation -> In null");
@@ -164,6 +176,140 @@ public class ReceiverParamAddon extends ReceiverAddon {
         return true;
 
     }
+
+    // private void _eachValidate() {
+    //
+    //     log.debug("[解析层]  -- Parameter: " + parameter.getName());
+    //
+    //     if( parameter.getType() == WrappedResponse.class ) {
+    //
+    //         params.add(wr);
+    //
+    //         log.debug("[解析层]     #    -> WrappedResponse");
+    //
+    //         continue;
+    //
+    //     }
+    //
+    //     if ( this.processUrlParam( methodAppReceiver, parameter, wr ) ) {
+    //
+    //         log.debug("[解析层]     #    -> UrlParam");
+    //
+    //         continue;
+    //
+    //     }
+    //
+    //     if( !parseData ) continue;
+    //
+    //     TParam tParam = parameter.getAnnotation(TParam.class);
+    //
+    //     if( tParam == null ) {
+    //
+    //         TObjParam tObjParam = parameter.getAnnotation(TObjParam.class);
+    //
+    //         if( tObjParam != null ) {
+    //
+    //             Object obj = this.forObjParam(parameter);
+    //
+    //             params.add(obj);
+    //
+    //             continue;
+    //
+    //         }
+    //
+    //         params.add(null);
+    //
+    //         log.warn("[解析层] AccessWarned # MissingParamAnnotation -> In null");
+    //
+    //         continue;
+    //
+    //     }
+    //
+    //     log.debug("[解析层]     #    -> TParam");
+    //
+    //     try {
+    //
+    //         String fieldName = tParam.value() != null ? tParam.value() : parameter.getName();
+    //
+    //         log.debug("[解析层]          -> FieldName: " + fieldName);
+    //
+    //         if ( !json.containsKey(fieldName) ) {
+    //
+    //             if ( extracted(wr, parameter, tParam) ) {
+    //
+    //                 log.debug("[解析层]  -- # -> Extracted");
+    //
+    //                 return false;
+    //
+    //             }
+    //
+    //         } else {
+    //
+    //             Object obj = json.get(fieldName, parameter.getType());
+    //
+    //             log.debug("[解析层]  -- # -> Param: " + obj);
+    //
+    //             AtomicBoolean could = new AtomicBoolean(true);
+    //             LinkedList<ReceiverAddon> paramReceiverAddons = ReceiverAddonAdapter.getReceiverAddons(ReceiverAddonType.PARAM_APP);
+    //             paramReceiverAddons.forEach((addon) -> {
+    //
+    //                 if( !could.get() ) return;
+    //
+    //                 log.debug("[解析层]     Accessing -> {} | Object: {}", parameter.getType().getName(), obj);
+    //
+    //                 could.set(addon.onPreAddParam(methodAppReceiver, parameter, wr, obj));
+    //
+    //                 log.debug("[解析层]     Accessing <- Value: {}", could.get());
+    //
+    //             });
+    //
+    //             params.add(obj);
+    //
+    //             paramReceiverAddons.forEach((addon) -> {
+    //
+    //                 log.debug("[解析层]     Accessing -> {} | Object: {}", parameter.getType().getName(), obj);
+    //
+    //                 addon.onPostAddParam(methodAppReceiver, parameter, wr, obj);
+    //
+    //                 log.debug("[解析层]     Accessing <- Done!");
+    //
+    //             });
+    //
+    //         }
+    //
+    //     } catch ( ConvertException e ) {
+    //
+    //         if ( extracted(wr, parameter, tParam) ) {
+    //
+    //             e.printStackTrace();
+    //
+    //             return false;
+    //
+    //         }
+    //
+    //     }
+    //
+    // }
+
+    // private Object validates(Object obj) {
+    //
+    //
+    //
+    // }
+    //
+    // private boolean forObjParam(Parameter parameter) {
+    //
+    //     Class<?> typeCls = parameter.getType();
+    //
+    //     for( Field field : typeCls.getFields() ) {
+    //
+    //         TParam tParam = field.getAnnotation(TParam.class);
+    //
+    //
+    //
+    //     }
+    //
+    // }
 
     // if ( validator != null ) {
     //

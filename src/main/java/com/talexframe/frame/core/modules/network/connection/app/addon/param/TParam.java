@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
  * @date 2022/1/20 20:33 <br /> Project: TalexFrame <br />
  */
 @Retention( RetentionPolicy.RUNTIME )
-@Target( { ElementType.PARAMETER, ElementType.TYPE } )
+@Target( { ElementType.PARAMETER, ElementType.TYPE, ElementType.FIELD } )
 public @interface TParam {
 
     /**

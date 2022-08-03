@@ -33,7 +33,7 @@ public class FrameSaTokenListener implements SaTokenListener {
     @Override
     public void doKickout(String loginType, Object loginId, String tokenValue) {
 
-        TFrame.tframe.callEvent(new SaPostLogoutEvent(loginType, loginId, tokenValue));
+        TFrame.tframe.callEvent(new SaKickLogoutEvent(loginType, loginId, tokenValue));
 
     }
 
@@ -41,7 +41,7 @@ public class FrameSaTokenListener implements SaTokenListener {
     @Override
     public void doReplaced(String loginType, Object loginId, String tokenValue) {
 
-        TFrame.tframe.callEvent(new SaPostLogoutEvent(loginType, loginId, tokenValue));
+        TFrame.tframe.callEvent(new SaPostReplacedOutEvent(loginType, loginId, tokenValue));
 
     }
 

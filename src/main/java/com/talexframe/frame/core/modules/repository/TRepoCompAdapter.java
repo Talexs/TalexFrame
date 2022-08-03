@@ -7,6 +7,9 @@ import com.talexframe.frame.core.talex.FrameCreator;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * {@link com.talexframe.frame.core.modules.application Package }
  *
@@ -34,6 +37,21 @@ public class TRepoCompAdapter extends PluginCompAdapter<TRepo> {
 
         return repoManager.unRegisterRepo( webPlugin, repoManager.getRepoByClass(clazz));
 
+    }
+
+    @Override
+    public Object createInstance(WebPlugin webPlugin, Class<?> cls, Constructor<?>[] constructors) throws InvocationTargetException, InstantiationException, IllegalAccessException {
+
+        Constructor<?> constructor = constructors[0];
+        Class<?>[] parameterTypes = constructor.getParameterTypes();
+
+        if( parameterTypes.length > 0 && parameterTypes[0] == WebPlugin.class ) {
+
+            return constructor.newInstance(webPlugin);
+
+        }
+
+        return super.createInstance(webPlugin, cls, constructors);
     }
 
 }
