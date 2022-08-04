@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentMap;
  * <br /> {@link com.talexframe.frame.core.modules.repository Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 17:01 <br /> Project: TalexFrame <br />
+ * 2022/1/20 17:01 <br /> Project: TalexFrame <br />
  */
 @Getter
 @Slf4j

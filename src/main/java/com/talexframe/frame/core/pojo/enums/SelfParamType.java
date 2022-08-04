@@ -5,7 +5,7 @@ package com.talexframe.frame.core.pojo.enums;
  * {@link # com.pubsher.talexs.web.data.enums }
  *
  * @author TalexDreamSoul
- * @date 2021/8/11 20:32
+ * 2021/8/11 20:32
  * <p>
  * Project: TalexsWeb
  * <p>

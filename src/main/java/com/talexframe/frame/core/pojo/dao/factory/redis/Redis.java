@@ -12,7 +12,7 @@ import java.util.Objects;
  * <br /> {@link com.talexframe.frame.core.pojo.dao.factory.redis Package }
  *
  * @author TalexDreamSoul
- * @date 22/03/05 下午 10:28 <br /> Project: TalexFrame <br />
+ * 22/03/05 下午 10:28 <br /> Project: TalexFrame <br />
  */
 public class Redis implements IDataProcessor, IKVProcessor {
 

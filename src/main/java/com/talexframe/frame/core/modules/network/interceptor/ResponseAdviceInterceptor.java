@@ -17,7 +17,7 @@
 //  * <br /> {@link com.talexframe.frame.interceptor Package }
 //  *
 //  * @author TalexDreamSoul
-//  * @date 2022/1/16 10:33 <br /> Project: TalexFrame <br />
+//  * 2022/1/16 10:33 <br /> Project: TalexFrame <br />
 //  */
 // @RestControllerAdvice
 // public class ResponseAdviceInterceptor implements ResponseBodyAdvice<Object> {

@@ -29,7 +29,7 @@ import java.util.concurrent.ConcurrentMap;
  * 自动化存储库 # 自动存储数据 <br /> {@link com.talexframe.frame.core.modules.repository Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 17:03 <br /> Project: TalexFrame <br />
+ * 2022/1/20 17:03 <br /> Project: TalexFrame <br />
  */
 @Getter
 @Slf4j

@@ -52,6 +52,16 @@ public class RequestAnalyser {
         // 解析请求
         String originalUrl = request.getRequestURI();
 
+        if( originalUrl.equals("/") ) {
+
+            log.info("[解析层] 请求路径为空!");
+
+            wr.returnDataByFailed("请求路径为空!");
+
+            return;
+
+        }
+
         if( originalUrl.endsWith("/") ) {
 
             originalUrl = originalUrl.substring(0, originalUrl.length() - 1);
@@ -62,15 +72,15 @@ public class RequestAnalyser {
 
         UrlPath urlPath = urlBuilder.getPath();
 
-        if( urlPath.getSegments().size() == 0 ) {
-
-            log.info("[解析层] 请求路径为空!");
-
-            wr.returnDataByFailed("请求路径为空!");
-
-            return;
-
-        }
+        // if( urlPath.getSegments().size() == 0 ) {
+        //
+        //     log.info("[解析层] 请求路径为空!");
+        //
+        //     wr.returnDataByFailed("请求路径为空!");
+        //
+        //     return;
+        //
+        // }
 
         String parsedUrl = UrlUtil.formatUrl(urlPath.toString());
 
@@ -173,6 +183,14 @@ public class RequestAnalyser {
     private void _process(TrieNode node) {
 
         log.debug("[解析层] 匹配到的路径: " + node.getPath());
+
+        if( node.getReceiver() == null ) {
+
+            log.warn("[解析层] 没有找到接收器!");
+
+            return;
+
+        }
 
         ClassAppReceiver clsReceiver = managerIns.getReqMap().get(node.getReceiver().getOwnClass());
 

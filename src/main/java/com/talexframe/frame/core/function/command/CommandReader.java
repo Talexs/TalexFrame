@@ -12,7 +12,7 @@ import org.jline.reader.LineReaderBuilder;
  * <br /> {@link com.talexframe.frame.function.command Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/19 20:43 <br /> Project: TalexFrame <br />
+ * 2022/1/19 20:43 <br /> Project: TalexFrame <br />
  */
 @Slf4j
 public class CommandReader {

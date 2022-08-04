@@ -22,7 +22,7 @@ import java.util.List;
  * <br /> {@link com.talexframe.frame.core.modules.repository Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 17:02 <br /> Project: TalexFrame <br />
+ * 2022/1/20 17:02 <br /> Project: TalexFrame <br />
  */
 @Getter
 @SuppressWarnings( "unused" )

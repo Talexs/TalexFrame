@@ -29,7 +29,7 @@ import java.sql.SQLException;
  * <br /> {@link com.talexframe.frame.core.pojo.dao.factory.mysql Package }
  *
  * @author TalexDreamSoul
- * @date 22/03/05 下午 01:06 <br /> Project: TalexFrame <br />
+ * 22/03/05 下午 01:06 <br /> Project: TalexFrame <br />
  */
 @Slf4j
 public class Mysql implements IDataProcessor, IConnectorProcessor {
@@ -178,7 +178,7 @@ public class Mysql implements IDataProcessor, IConnectorProcessor {
         try {
 
             dataSource.setUrl("jdbc:mysql://" + config.getIpAddress() + ":" + config.getPort()
-                    + "/" + config.getDatabaseName() + ( config.getExtra() != null ? "?" + config.getExtra() : "" ));
+                    + "/" + config.getDatabaseName() + "?autoReconnect=true" + ( config.getExtra() != null ? "&" + config.getExtra() : "" ));
             dataSource.setUsername(config.getUsername());
             dataSource.setPassword(config.getPassword());
 

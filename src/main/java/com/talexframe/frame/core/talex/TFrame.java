@@ -38,7 +38,7 @@ import java.io.File;
  * <br /> {@link com.talexframe.frame.core.talex Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/18 22:10 <br /> Project: TalexFrame <br />
+ * 2022/1/18 22:10 <br /> Project: TalexFrame <br />
  */
 @Getter
 @Slf4j

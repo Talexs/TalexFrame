@@ -8,7 +8,7 @@ import lombok.Setter;
  * <br /> {@link com.talexframe.frame.function.event.events.mysql Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/21 15:38 <br /> Project: TalexFrame <br />
+ * 2022/1/21 15:38 <br /> Project: TalexFrame <br />
  */
 @Getter
 @Setter

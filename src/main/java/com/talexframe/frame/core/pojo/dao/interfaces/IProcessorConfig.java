@@ -4,7 +4,7 @@ package com.talexframe.frame.core.pojo.dao.interfaces;
  * 数据库的配置信息 <br /> {@link com.talexframe.frame.core.pojo.dao.interfaces Package }
  *
  * @author TalexDreamSoul
- * @date 22/03/05 下午 01:27 <br /> Project: TalexFrame <br />
+ * 22/03/05 下午 01:27 <br /> Project: TalexFrame <br />
  */
 public interface IProcessorConfig {
 

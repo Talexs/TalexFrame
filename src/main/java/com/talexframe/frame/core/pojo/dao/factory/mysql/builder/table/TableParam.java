@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
  * <br /> {@link com.talexframe.frame.core.pojo.dao.factory.mysql.builder.table Package }
  *
  * @author TalexDreamSoul
- * @date 22/03/05 下午 03:53 <br /> Project: TalexFrame <br />
+ * 22/03/05 下午 03:53 <br /> Project: TalexFrame <br />
  */
 @Getter
 @Setter

@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * 加了此注解代表需要登录才可以使用相关功能 <br /> {@link com.talexframe.frame.core.modules.network.connection.app.addon.login Package }
  *
  * @author TalexDreamSoul
- * @date 2022/6/6 05:00 <br /> Project: TalexFrame <br />
+ * 2022/6/6 05:00 <br /> Project: TalexFrame <br />
  */
 @Retention( RetentionPolicy.RUNTIME )
 @Target( { ElementType.METHOD } )

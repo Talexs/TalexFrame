@@ -17,7 +17,7 @@ import java.util.List;
  * 结果包装类 <br /> {@link com.talexframe.frame.wrapper Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 19:29 <br /> Project: TalexFrame <br />
+ * 2022/1/20 19:29 <br /> Project: TalexFrame <br />
  */
 @Getter
 @AllArgsConstructor

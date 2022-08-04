@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * <br /> {@link com.talexframe.frame.config Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/16 11:07 <br /> Project: TalexFrame <br />
+ * 2022/1/16 11:07 <br /> Project: TalexFrame <br />
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {

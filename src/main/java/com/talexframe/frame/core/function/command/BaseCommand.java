@@ -9,7 +9,7 @@ import lombok.Getter;
  * <br /> {@link com.talexframe.frame.function.command Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 10:56 <br /> Project: TalexFrame <br />
+ * 2022/1/20 10:56 <br /> Project: TalexFrame <br />
  */
 @Getter
 public abstract class BaseCommand extends FrameCreator implements ICommand {

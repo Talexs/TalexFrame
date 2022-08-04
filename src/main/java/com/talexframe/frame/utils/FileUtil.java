@@ -6,7 +6,7 @@ import java.util.Arrays;
  * <br /> {@link com.talexframe.frame.utils Package }
  *
  * @author TalexDreamSoul
- * @date 22/03/06 下午 12:58 <br /> Project: TalexFrame <br />
+ * 22/03/06 下午 12:58 <br /> Project: TalexFrame <br />
  */
 public class FileUtil {
 

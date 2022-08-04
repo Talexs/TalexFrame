@@ -9,7 +9,7 @@ import com.talexframe.launcher.Launcher;
  * 帮助命令 <br /> {@link com.talexframe.frame.function.command.frame Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 11:40 <br /> Project: TalexFrame <br />
+ * 2022/1/20 11:40 <br /> Project: TalexFrame <br />
  */
 public class RestartCmd extends BaseCommand {
 

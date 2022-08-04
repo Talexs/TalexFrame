@@ -6,7 +6,7 @@ import lombok.Getter;
  * <br /> {@link com.talexframe.frame.core.pojo.dao.factory.mysql.builder.insert Package }
  *
  * @author TalexDreamSoul
- * @date 22/03/05 下午 03:42 <br /> Project: TalexFrame <br />
+ * 22/03/05 下午 03:42 <br /> Project: TalexFrame <br />
  */
 public enum InsertType {
 

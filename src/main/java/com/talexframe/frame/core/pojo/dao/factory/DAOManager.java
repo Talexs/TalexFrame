@@ -14,7 +14,7 @@ import java.util.Map;
  * <br /> {@link com.talexframe.frame.core.pojo.dao.factory Package }
  *
  * @author TalexDreamSoul
- * @date 22/03/05 下午 01:39 <br /> Project: TalexFrame <br />
+ * 22/03/05 下午 01:39 <br /> Project: TalexFrame <br />
  */
 @Slf4j
 public class DAOManager {

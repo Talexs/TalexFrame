@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * <br /> {@link com.talexframe.frame.config Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/29 1:05 <br /> Project: TalexFrame <br />
+ * 2022/1/29 1:05 <br /> Project: TalexFrame <br />
  */
 @Configuration
 @Getter

@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  * 注入JSON字段 <br /> {@link com.talexframe.frame.pojo.annotations Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 20:33 <br /> Project: TalexFrame <br />
+ * 2022/1/20 20:33 <br /> Project: TalexFrame <br />
  */
 @Retention( RetentionPolicy.RUNTIME )
 @Target( { ElementType.PARAMETER, ElementType.TYPE, ElementType.FIELD } )

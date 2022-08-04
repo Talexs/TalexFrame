@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * <br /> {@link com.talexframe.frame.pojo.annotations Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 19:38 <br /> Project: TalexFrame <br />
+ * 2022/1/20 19:38 <br /> Project: TalexFrame <br />
  */
 @Retention( RetentionPolicy.RUNTIME )
 @Target( ElementType.METHOD )

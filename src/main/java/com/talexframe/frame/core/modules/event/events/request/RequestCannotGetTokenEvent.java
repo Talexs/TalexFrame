@@ -9,7 +9,7 @@ import lombok.Getter;
  * 当一个请求无法获得令牌而被取消时 <br /> {@link com.talexframe.frame.function.event.events.request Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/23 23:59 <br /> Project: TalexFrame <br />
+ * 2022/1/23 23:59 <br /> Project: TalexFrame <br />
  */
 @Getter
 public class RequestCannotGetTokenEvent extends TalexEvent implements Cancellable {

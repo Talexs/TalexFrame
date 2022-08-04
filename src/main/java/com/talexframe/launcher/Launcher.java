@@ -11,7 +11,7 @@ import java.io.File;
  * <br /> {@link com.talexframe.launcher Package }
  *
  * @author TalexDreamSoul
- * @date 22/03/05 上午 12:09 <br /> Project: TalexFrame <br />
+ * 22/03/05 上午 12:09 <br /> Project: TalexFrame <br />
  */
 @Slf4j
 public class Launcher {

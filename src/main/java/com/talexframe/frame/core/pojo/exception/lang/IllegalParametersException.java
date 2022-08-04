@@ -6,7 +6,7 @@ import com.talexframe.frame.core.pojo.exception.FrameException;
  * <br /> {@link com.talexframe.frame.exception.lang Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/16 11:26 <br /> Project: TalexFrame <br />
+ * 2022/1/16 11:26 <br /> Project: TalexFrame <br />
  */
 public class IllegalParametersException extends FrameException {
 

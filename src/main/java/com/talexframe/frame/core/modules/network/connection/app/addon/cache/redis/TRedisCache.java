@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * 将结果自动保存到 RedisCache <br /> {@link com.talexframe.frame.core.pojo.dao.factory.redis Package }
  *
  * @author TalexDreamSoul
- * @date 22/03/05 下午 10:58 <br /> Project: TalexFrame <br />
+ * 22/03/05 下午 10:58 <br /> Project: TalexFrame <br />
  */
 @Retention( RetentionPolicy.RUNTIME )
 @Target( ElementType.METHOD )

@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * 自动保存实例 标注在方法上，代表将执行这个方法并保存方法返回 <br /> {@link com.talexframe.frame.pojo.annotations Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 15:14 <br /> Project: TalexFrame <br />
+ * 2022/1/20 15:14 <br /> Project: TalexFrame <br />
  */
 @Target( { ElementType.FIELD, ElementType.METHOD } )
 @Retention( RetentionPolicy.RUNTIME )

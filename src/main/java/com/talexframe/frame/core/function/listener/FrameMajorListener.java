@@ -22,7 +22,7 @@ import java.util.Scanner;
  * 框架内部主要的监听器 <br /> {@link com.talexframe.frame.core.function.listener Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/19 12:07 <br /> Project: TalexFrame <br />
+ * 2022/1/19 12:07 <br /> Project: TalexFrame <br />
  */
 @Component
 @Slf4j

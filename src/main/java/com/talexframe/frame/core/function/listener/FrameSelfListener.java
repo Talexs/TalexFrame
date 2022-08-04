@@ -12,7 +12,7 @@ import com.talexframe.frame.core.talex.TFrame;
  * <br /> {@link com.talexframe.frame.listener Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/21 17:10 <br /> Project: TalexFrame <br />
+ * 2022/1/21 17:10 <br /> Project: TalexFrame <br />
  */
 public class FrameSelfListener extends FrameListener {
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * <br /> {@link com.talexframe.frame.handler Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/16 10:50 <br /> Project: TalexFrame <br />
+ * 2022/1/16 10:50 <br /> Project: TalexFrame <br />
  */
 @Slf4j
 @RestControllerAdvice

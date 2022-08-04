@@ -16,7 +16,7 @@ import java.util.*;
  * 命令管理器 <br /> {@link com.talexframe.frame.function.command Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/19 23:26 <br /> Project: TalexFrame <br />
+ * 2022/1/19 23:26 <br /> Project: TalexFrame <br />
  */
 @Getter
 public class CommandManager {

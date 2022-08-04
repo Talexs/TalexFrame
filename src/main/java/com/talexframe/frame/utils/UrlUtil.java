@@ -4,7 +4,7 @@ package com.talexframe.frame.utils;
  * <br /> {@link com.talexframe.frame.utils Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/21 0:34 <br /> Project: TalexFrame <br />
+ * 2022/1/21 0:34 <br /> Project: TalexFrame <br />
  */
 public class UrlUtil {
 

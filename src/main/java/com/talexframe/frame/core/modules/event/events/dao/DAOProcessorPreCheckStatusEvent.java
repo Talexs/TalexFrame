@@ -6,7 +6,7 @@ import com.talexframe.frame.core.modules.event.service.Cancellable;
  * <br /> {@link com.talexframe.frame.function.event.events.mysql Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/29 23:50 <br /> Project: TalexFrame <br />
+ * 2022/1/29 23:50 <br /> Project: TalexFrame <br />
  */
 public class DAOProcessorPreCheckStatusEvent<T> extends BaseDAOEvent<T> implements Cancellable {
 

@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
  * T命名策略 <br /> {@link com.talexframe.frame.handler Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/16 11:51 <br /> Project: TalexFrame <br />
+ * 2022/1/16 11:51 <br /> Project: TalexFrame <br />
  */
 @Slf4j
 // @Configuration

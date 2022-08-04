@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * 请求连接器 <br /> {@link com.talexframe.frame.core.modules.network.connection Package }
  *
  * @author TalexDreamSoul
- * @date 22/03/05 下午 08:46 <br /> Project: TalexFrame <br />
+ * 22/03/05 下午 08:46 <br /> Project: TalexFrame <br />
  */
 @Slf4j
 public class RequestConnector {

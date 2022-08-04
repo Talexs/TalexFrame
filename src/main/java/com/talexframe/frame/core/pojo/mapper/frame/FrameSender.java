@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
  * 框架发出者 <br /> {@link com.talexframe.frame.mapper.frame Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 10:39 <br /> Project: TalexFrame <br />
+ * 2022/1/20 10:39 <br /> Project: TalexFrame <br />
  */
 @Slf4j
 public final class FrameSender extends FrameCreator implements IConsoleSender {

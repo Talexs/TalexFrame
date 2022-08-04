@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 11:48 <br /> Project: TalexFrame <br />
+ * 2022/1/20 11:48 <br /> Project: TalexFrame <br />
  */
 @Retention( RetentionPolicy.RUNTIME )
 @Target( { ElementType.METHOD } )

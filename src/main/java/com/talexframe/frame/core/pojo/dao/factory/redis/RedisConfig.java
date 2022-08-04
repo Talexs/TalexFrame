@@ -20,7 +20,7 @@ import java.util.Map;
  * <br /> {@link com.talexframe.frame.config Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/21 15:48 <br /> Project: TalexFrame <br />
+ * 2022/1/21 15:48 <br /> Project: TalexFrame <br />
  */
 @Configuration
 @Getter

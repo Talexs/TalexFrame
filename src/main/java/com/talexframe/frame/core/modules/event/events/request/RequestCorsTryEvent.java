@@ -9,7 +9,7 @@ import lombok.Getter;
  * 框架尝试同意一个 OPTIONS 请求时 <br /> {@link com.talexframe.frame.function.event.events.request Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/22 17:19 <br /> Project: TalexFrame <br />
+ * 2022/1/22 17:19 <br /> Project: TalexFrame <br />
  */
 public class RequestCorsTryEvent extends TalexEvent implements Cancellable {
 

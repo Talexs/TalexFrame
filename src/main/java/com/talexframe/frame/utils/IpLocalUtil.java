@@ -6,7 +6,7 @@ import cn.hutool.http.HttpUtil;
  * <br /> {@link com.talex.frame.utils Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/25 23:37 <br /> Project: TFunction <br />
+ * 2022/1/25 23:37 <br /> Project: TFunction <br />
  */
 public class IpLocalUtil {
 

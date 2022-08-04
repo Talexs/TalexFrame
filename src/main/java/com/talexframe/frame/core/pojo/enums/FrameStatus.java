@@ -6,7 +6,7 @@ import lombok.Getter;
  * 框架状态 <br /> {@link com.talexframe.frame.pojo.enums Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/19 20:44 <br /> Project: TalexFrame <br />
+ * 2022/1/19 20:44 <br /> Project: TalexFrame <br />
  */
 @Getter
 public enum FrameStatus {

@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  * Define a request must be which method sent <br /> {@link com.talexframe.frame.pojo.annotations Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/29 0:45 <br /> Project: TalexFrame <br />
+ * 2022/1/29 0:45 <br /> Project: TalexFrame <br />
  */
 @Retention( RetentionPolicy.RUNTIME )
 @Target( ElementType.METHOD )

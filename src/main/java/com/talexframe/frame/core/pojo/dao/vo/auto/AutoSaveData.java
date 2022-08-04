@@ -15,7 +15,7 @@ import java.sql.ResultSet;
  * 自动保存数据类 <br /> {@link com.talexframe.frame.function.auto.data Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/20 14:49 <br /> Project: TalexFrame <br />
+ * 2022/1/20 14:49 <br /> Project: TalexFrame <br />
  */
 public abstract class AutoSaveData extends FrameData {
 

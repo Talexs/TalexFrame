@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * 最后进入方法会经过 三个令牌桶 <br /> {@link com.talexframe.frame.core.modules.network.connection.app.addon.limit Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/23 23:27 <br /> Project: TalexFrame <br />
+ * 2022/1/23 23:27 <br /> Project: TalexFrame <br />
  */
 @Retention( RetentionPolicy.RUNTIME )
 @Target( { ElementType.METHOD, ElementType.TYPE } )

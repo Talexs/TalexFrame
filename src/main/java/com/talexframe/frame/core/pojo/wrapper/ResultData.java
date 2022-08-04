@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
  * <br /> {@link com.talexframe.frame.wrapper Package }
  *
  * @author TalexDreamSoul
- * @date 2022/1/16 10:19 <br /> Project: TalexFrame <br />
+ * 2022/1/16 10:19 <br /> Project: TalexFrame <br />
  */
 @Getter
 @Setter
