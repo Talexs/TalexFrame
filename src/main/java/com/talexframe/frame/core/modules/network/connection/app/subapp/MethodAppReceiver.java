@@ -96,7 +96,11 @@ public class MethodAppReceiver extends FrameCreator implements IRequestReceiver 
 
         } catch (Exception e) {
 
+            log.warn("[应用层] 应用执行错误: ");
+
             e.printStackTrace();
+
+            log.warn("[应用层] 请联系" +  clzAppReceiver.getProvider() + " | @" + clzAppReceiver.getOwnClass().getName() );
 
         }
 
