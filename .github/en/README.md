@@ -1,6 +1,6 @@
 # TalexFrame
 
-Simplified Chinese | [English](./.github/en/README.md)
+[简体中文](./../README.md) | English
 
 
 ```
